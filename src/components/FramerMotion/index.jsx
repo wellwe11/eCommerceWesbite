@@ -14,8 +14,8 @@ const FramerMotion = () => {
     offset: ["start end", "end start"],
   });
 
-  const md = useTransform(scrollYProgress, [0, 1], [0, -150]);
-  const lg = useTransform(scrollYProgress, [0, 1], [0, -250]);
+  const md = useTransform(scrollYProgress, [0, 0.5, 1], [50, 0, -50]);
+  const lg = useTransform(scrollYProgress, [0, 0.5, 1], [150, 0, -150]);
 
   const images = [
     { src: imageOne, y: 0 },
