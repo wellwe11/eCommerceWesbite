@@ -1,0 +1,71 @@
+@import "tailwindcss";
+
+/* 1. THEME CUSTOMIZATION */
+@theme {
+  /* Adding a custom brand color for your eCommerce store */
+  --color-brand-primary: #0f172a;
+  --color-brand-accent: #3b82f6;
+
+  /* Custom fonts - Make sure to import these in your HTML or via @font-face */
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+
+  /* Adding a custom animation for your Framer Motion transitions to sync with */
+  --animate-fade-in: fade-in 0.5s ease-out;
+
+  @keyframes fade-in {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+}
+
+/* 2. BASE RESET & GLOBAL STYLES */
+@layer base {
+  html {
+    -webkit-tap-highlight-color: transparent;
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-white text-slate-900 antialiased selection:bg-brand-accent/30;
+    /* Ensuring the body always fills the screen for your layout */
+    min-height: 100dvh;
+  }
+
+  /* Standardizing focus states for accessibility */
+  :focus-visible {
+    @apply outline-2 outline-offset-2 outline-brand-accent;
+  }
+}
+
+/* 3. UTILITY COMPONENTS (The "Dry" approach) */
+@layer components {
+  /* Create reusable styles for things you use everywhere in your eCommerce site */
+  .container-tight {
+    @apply mx-auto max-w-7xl px-4 sm:px-6 lg:px-8;
+  }
+
+  .btn-primary {
+    @apply inline-flex items-center justify-center rounded-lg bg-brand-primary px-5 py-2.5 
+           text-sm font-medium text-white transition-all hover:bg-slate-800 
+           active:scale-95 disabled:opacity-50;
+  }
+}
+
+/* 4. CUSTOM SCROLLBAR (Optional - subtle look) */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply rounded-full bg-slate-300 hover:bg-slate-400;
+}
