@@ -2,13 +2,13 @@ import { ReactLenis } from "lenis/react";
 
 import "./App.css";
 
-import FramerMotion from "../components/FramerMotion/index.jsx";
+import FramerMotionContainer from "../components/FramerMotion/index.jsx";
 
 function App() {
   return (
     <div>
       <ReactLenis />
-      <FramerMotion />
+      <FramerMotionContainer />
     </div>
   );
 }
