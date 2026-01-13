@@ -1,5 +1,11 @@
 import { useRef } from "react";
-import { motion, useScroll, useTransform } from "framer-motion";
+import {
+  easeInOut,
+  motion,
+  useScroll,
+  useSpring,
+  useTransform,
+} from "framer-motion";
 
 import styles from "./framerMotion.module.scss";
 
@@ -46,8 +52,21 @@ const FramerMotion = () => {
     offset: ["start end", "end start"],
   });
 
-  const md = useTransform(scrollYProgress, [0, 0.5, 1], [50, 0, -50]);
-  const lg = useTransform(scrollYProgress, [0, 0.5, 1], [150, 0, -150]);
+  const mdRaw = useTransform(
+    scrollYProgress,
+    [0, 0.4, 0.5, 0.6, 1],
+    [150, 20, 0, -20, -150]
+  );
+  const lgRaw = useTransform(
+    scrollYProgress,
+    [0, 0.42, 0.5, 0.58, 1],
+    [200, 30, 0, -30, -200]
+  );
+
+  const springConfig = { stiffness: 120, damping: 40, mass: 1 };
+
+  const md = useSpring(mdRaw, springConfig);
+  const lg = useSpring(lgRaw, springConfig);
 
   const images = [
     { src: imageOne, y: 0 },
@@ -71,7 +90,6 @@ const FramerMotion = () => {
             src={src}
             placeholder="blur"
             alt="image"
-            fill="true"
           />
         </motion.div>
       ))}

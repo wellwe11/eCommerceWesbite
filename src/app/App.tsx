@@ -5,9 +5,15 @@ import "./App.css";
 import FramerMotionContainer from "../components/FramerMotion/index.jsx";
 
 function App() {
+  const lenisOptions = {
+    lerp: 0.05,
+    duration: 1.5,
+    smoothWheel: true,
+  };
+
   return (
     <div>
-      <ReactLenis />
+      <ReactLenis options={lenisOptions} />
       <FramerMotionContainer />
     </div>
   );
