@@ -85,8 +85,13 @@
 
     .textContainer {
       width: 580px;
-      margin-bottom: 50px;
+      margin-bottom: 70px;
       margin-left: -35px;
+
+      p {
+        font-size: 12px;
+        font-variation-settings: "wght" 150;
+      }
     }
   }
 
@@ -99,16 +104,20 @@
 
     .bioContainer {
       margin-top: -120px;
-      margin-right: 250px;
+      margin-right: 210px;
 
       width: 40%;
 
+      text-align: end;
+
       .title {
         font-variation-settings: "wght" 650;
+        font-size: 14px;
       }
 
       .bio {
-        font-variation-settings: "wght" 200;
+        font-variation-settings: "wght" 250;
+        font-size: 12px;
       }
     }
   }
