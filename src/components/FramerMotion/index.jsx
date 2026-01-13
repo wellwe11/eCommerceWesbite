@@ -54,16 +54,16 @@ const FramerMotion = () => {
 
   const mdRaw = useTransform(
     scrollYProgress,
-    [0, 0.4, 0.5, 0.6, 1],
-    [150, 20, 0, -20, -150]
+    [0, 0.4, 0.45, 0.55, 0.6, 1],
+    [150, 40, 5, -5, -40, -150]
   );
   const lgRaw = useTransform(
     scrollYProgress,
-    [0, 0.42, 0.5, 0.58, 1],
-    [200, 30, 0, -30, -200]
+    [0, 0.4, 0.45, 0.55, 0.6, 1],
+    [250, 60, 10, -10, -60, -250]
   );
 
-  const springConfig = { stiffness: 120, damping: 40, mass: 1 };
+  const springConfig = { stiffness: 100, damping: 40, mass: 1 };
 
   const md = useSpring(mdRaw, springConfig);
   const lg = useSpring(lgRaw, springConfig);

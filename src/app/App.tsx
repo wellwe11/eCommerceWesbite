@@ -9,6 +9,8 @@ function App() {
     lerp: 0.05,
     duration: 1.5,
     smoothWheel: true,
+    smoothTouch: false,
+    syncTouch: false,
   };
 
   return (
