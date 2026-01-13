@@ -7,24 +7,26 @@ import imageOne from "./resources/imageOne.avif";
 import imageTwo from "./resources/imageTwo.avif";
 import imageThree from "./resources/imageThree.avif";
 
-// what needs to be done for this component
-
-// this component (the completed version) is going to have texts on both sides
-// those texts are going to the centered.
-// left side is going to have a title, and a short bio
-// right side is going to be a title with a number (the number-id of that collection)
-// below collection of images, there will be a smaller text, which contains further information
-
-// what i need to do is create a component with all of these texts
-// whenever the with the correct images intersects, the correct texts should display
-// the reason i say correct texts, is because when I have 2-3-4 components like this
-// the texts must switch to match the new collection of images
-
 const TextsContainer = () => {
+  const bioTitle = "Lorem ipsum dolor sit amet, consectetur adipiscing elit.";
+  const bio =
+    "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut. ";
+
+  const longText =
+    "Duis aute irure esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia.";
+
   return (
     <div className={styles.textsContainer}>
+      <div className={styles.subText}>
+        <div className={styles.textContainer}>
+          <p>{longText}</p>
+        </div>
+      </div>
       <div className={styles.leftContainer}>
-        <div className={styles.bioContainer}></div>
+        <div className={styles.bioContainer}>
+          <h6 className={styles.title}>{bioTitle}</h6>
+          <p className={styles.bio}>{bio}</p>
+        </div>
       </div>
       <div className={styles.rightContainer}>
         <div className={styles.collectionContainer}>
