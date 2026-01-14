@@ -3,21 +3,10 @@ import { motion } from "framer-motion";
 
 import styles from "./framerMotion.module.scss";
 
-import imageOne from "./resources/imageOne.avif";
-import imageTwo from "./resources/imageTwo.avif";
-import imageThree from "./resources/imageThree.avif";
-
 import useInView from "./hooks/useInView.js";
 import useSpringScroll from "./hooks/usespringScroll.js";
 
-const bioTitle = "Lorem ipsum dolor sit amet, consectetur adipiscing elit.";
-const bio =
-  "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut. ";
-
-const longText =
-  "Duis aute irure esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia.";
-
-const BioContainer = () => {
+const BioContainer = ({ bioTitle, bio }) => {
   return (
     <div className={styles.bioContainer}>
       <div className={styles.fixedContainer}>
@@ -28,15 +17,17 @@ const BioContainer = () => {
   );
 };
 
-const CollectionTypeContainer = () => {
+const CollectionTypeContainer = ({ index = 0 }) => {
+  const indexText = index < 10 ? "0" + index : index;
+
   return (
     <div className={styles.typeContainer}>
-      <h1 className={styles.title}>01</h1>
+      <h1 className={styles.title}>{indexText}</h1>
     </div>
   );
 };
 
-const LongTextContainer = () => {
+const LongTextContainer = ({ longText }) => {
   return (
     <div className={styles.longTextContainer}>
       <p className={styles.text}>{longText}</p>
@@ -52,11 +43,17 @@ const LongTextContainer = () => {
 const FramerMotion = ({ containerRef, isIntersecting, data }) => {
   const { md, lg } = useSpringScroll(containerRef);
 
+  const {
+    index,
+    text: { title, info, bio },
+    images: imageSources,
+  } = data;
+
   const images = [
-    { src: imageOne, y: 0 },
-    { src: imageTwo, y: lg },
+    { src: imageSources[0], y: 0 },
+    { src: imageSources[1], y: lg },
     {
-      src: imageThree,
+      src: imageSources[2],
       y: md,
     },
   ];
@@ -90,19 +87,19 @@ const FramerMotion = ({ containerRef, isIntersecting, data }) => {
         className={`${styles.leftContainer} ${styles.gridTextClass}`}
         style={intersectingStyle}
       >
-        <BioContainer />
+        <BioContainer bioTitle={title} bio={info} />
       </div>
       <div
         className={`${styles.rightContainer} ${styles.gridTextClass}`}
         style={intersectingStyle}
       >
-        <CollectionTypeContainer />
+        <CollectionTypeContainer index={index} />
       </div>
       <div
         className={`${styles.belowContainer} ${styles.gridTextClass}`}
         style={intersectingStyle}
       >
-        <LongTextContainer />
+        <LongTextContainer longText={bio} />
       </div>
     </div>
   );
