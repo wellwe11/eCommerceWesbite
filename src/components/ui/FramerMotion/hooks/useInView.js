@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 /**
  * @param {object} options - Intersection Observer config (threshold, rootMargin);
  * @param {object} ref - Intersection Observer ref
- * @returns [isIntersecting]
+ * @returns { isIntersecting }
  */
 
 const useInView = (
@@ -34,7 +34,7 @@ const useInView = (
     };
   }, [options]);
 
-  return [targetRef, isIntersecting];
+  return { isIntersecting };
 };
 
 export default useInView;

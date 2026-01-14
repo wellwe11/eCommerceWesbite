@@ -2,8 +2,8 @@ import { ReactLenis } from "lenis/react";
 
 import "./App.css";
 
-import FramerMotionContainer from "../components/FramerMotion/framerMotion.jsx";
-import Navbar from "../components/Navbar/navbar.js";
+import FramerMotionContainer from "../components/ui/FramerMotion/framerMotion.jsx";
+import Navbar from "../components/layout/Navbar/navbar.js";
 
 import imageOne from "./resources/imageOne.avif";
 import imageTwo from "./resources/imageTwo.avif";

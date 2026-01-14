@@ -38,7 +38,7 @@ const LongTextContainer = ({ longText }) => {
 const FramerMotion = ({ data }) => {
   const containerRef = useRef(null);
   const { md, lg } = useSpringScroll(containerRef);
-  const [targetRef, isIntersecting] = useInView(containerRef, {
+  const { isIntersecting } = useInView(containerRef, {
     threshold: 0.7,
   });
 
