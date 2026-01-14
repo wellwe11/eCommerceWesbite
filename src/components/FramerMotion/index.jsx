@@ -80,6 +80,15 @@ const FramerMotion = ({ containerRef, isIntersecting }) => {
     },
   ];
 
+  const intersectingStyle = {
+    opacity: isIntersecting ? "1" : "0",
+    visibility: isIntersecting ? "visible" : "hidden",
+    transition: isIntersecting
+      ? "opacity 0.6s ease, visibility 1s ease"
+      : "opacity 0.2s ease, visibility 0.2s ease",
+    transform: "translateX(0)",
+  };
+
   return (
     <div className={styles.framerMotion} ref={containerRef}>
       {images.map(({ src, y }, i) => (
@@ -97,38 +106,20 @@ const FramerMotion = ({ containerRef, isIntersecting }) => {
         </motion.div>
       ))}
       <div
-        className={styles.leftContainer}
-        style={{
-          opacity: isIntersecting ? "1" : "0",
-          visibility: isIntersecting ? "visible" : "hidden",
-          transition: isIntersecting
-            ? "opacity 0.6s ease, visibility 1s ease"
-            : "opacity 0.2s ease, visibility 0.2s ease",
-        }}
+        className={`${styles.leftContainer} ${styles.gridTextClass}`}
+        style={intersectingStyle}
       >
         <BioContainer />
       </div>
       <div
-        className={styles.rightContainer}
-        style={{
-          opacity: isIntersecting ? "1" : "0",
-          visibility: isIntersecting ? "visible" : "hidden",
-          transition: isIntersecting
-            ? "opacity 0.6s ease, visibility 1s ease"
-            : "opacity 0.2s ease, visibility 0.2s ease",
-        }}
+        className={`${styles.rightContainer} ${styles.gridTextClass}`}
+        style={intersectingStyle}
       >
         <CollectionTypeContainer />
       </div>
       <div
-        className={styles.belowContainer}
-        style={{
-          opacity: isIntersecting ? "1" : "0",
-          visibility: isIntersecting ? "visible" : "hidden",
-          transition: isIntersecting
-            ? "opacity 0.6s ease, visibility 1s ease"
-            : "opacity 0.2s ease, visibility 0.2s ease",
-        }}
+        className={`${styles.belowContainer} ${styles.gridTextClass}`}
+        style={intersectingStyle}
       >
         <LongTextContainer />
       </div>
