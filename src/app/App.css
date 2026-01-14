@@ -34,15 +34,15 @@ html {
 
   @layer base {
   }
+}
 
-  body {
-    @apply bg-white text-slate-900 antialiased selection:bg-brand-accent/30;
-    min-height: 100dvh;
-  }
+body {
+  @apply bg-white text-slate-900 antialiased selection:bg-brand-accent/30;
+  min-height: 100dvh;
+}
 
-  :focus-visible {
-    @apply outline-2 outline-offset-2 outline-brand-accent;
-  }
+:focus-visible {
+  @apply outline-2 outline-offset-2 outline-brand-accent;
 }
 
 @layer components {

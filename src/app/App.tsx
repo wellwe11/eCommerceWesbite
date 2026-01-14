@@ -2,7 +2,8 @@ import { ReactLenis } from "lenis/react";
 
 import "./App.css";
 
-import FramerMotionContainer from "../components/FramerMotion/index.jsx";
+import FramerMotionContainer from "../components/FramerMotion/framerMotion.jsx";
+import Navbar from "../components/Navbar/navbar.js";
 
 function App() {
   const lenisOptions = {
@@ -15,6 +16,7 @@ function App() {
 
   return (
     <div>
+      <Navbar />
       <ReactLenis options={lenisOptions} />
       <FramerMotionContainer />
       <FramerMotionContainer />
