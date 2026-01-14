@@ -21,36 +21,35 @@ const bio =
 const longText =
   "Duis aute irure esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia.";
 
-const TextsContainer = ({ isIntersecting, data }) => {
-  const isIntersectingStyle = {
-    opacity: isIntersecting ? "1" : "0",
-  };
-
+const BioContainer = () => {
   return (
-    <div className={styles.textsContainer} style={isIntersectingStyle}>
-      <div className={styles.subText}>
-        <div className={styles.textContainer}>
-          <p>{longText}</p>
-        </div>
-      </div>
-      <div className={styles.leftContainer}>
-        <div className={styles.bioContainer}>
-          <h6 className={styles.title}>{bioTitle}</h6>
-          <p className={styles.bio}>{bio}</p>
-        </div>
-      </div>
-      <div className={styles.rightContainer}>
-        <div className={styles.collectionContainer}>
-          <div className={styles.title}>
-            <h1>01</h1>
-          </div>
-        </div>
+    <div className={styles.bioContainer}>
+      <div className={styles.fixedContainer}>
+        <h6 className={styles.bioTitle}>{bioTitle}</h6>
+        <p className={styles.bio}>{bio}</p>
       </div>
     </div>
   );
 };
 
+const CollectionTypeContainer = () => {
+  return (
+    <div className={styles.typeContainer}>
+      <h1 className={styles.title}>01</h1>
+    </div>
+  );
+};
+
+const LongTextContainer = () => {
+  return (
+    <div className={styles.longTextContainer}>
+      <p className={styles.text}>{longText}</p>
+    </div>
+  );
+};
+
 const FramerMotion = ({ containerRef, isIntersecting }) => {
+  console.log(isIntersecting);
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ["start end", "end start"],
@@ -97,6 +96,42 @@ const FramerMotion = ({ containerRef, isIntersecting }) => {
           />
         </motion.div>
       ))}
+      <div
+        className={styles.leftContainer}
+        style={{
+          opacity: isIntersecting ? "1" : "0",
+          visibility: isIntersecting ? "visible" : "hidden",
+          transition: isIntersecting
+            ? "opacity 0.6s ease, visibility 1s ease"
+            : "opacity 0.2s ease, visibility 0.2s ease",
+        }}
+      >
+        <BioContainer />
+      </div>
+      <div
+        className={styles.rightContainer}
+        style={{
+          opacity: isIntersecting ? "1" : "0",
+          visibility: isIntersecting ? "visible" : "hidden",
+          transition: isIntersecting
+            ? "opacity 0.6s ease, visibility 1s ease"
+            : "opacity 0.2s ease, visibility 0.2s ease",
+        }}
+      >
+        <CollectionTypeContainer />
+      </div>
+      <div
+        className={styles.belowContainer}
+        style={{
+          opacity: isIntersecting ? "1" : "0",
+          visibility: isIntersecting ? "visible" : "hidden",
+          transition: isIntersecting
+            ? "opacity 0.6s ease, visibility 1s ease"
+            : "opacity 0.2s ease, visibility 0.2s ease",
+        }}
+      >
+        <LongTextContainer />
+      </div>
     </div>
   );
 };
@@ -104,13 +139,16 @@ const FramerMotion = ({ containerRef, isIntersecting }) => {
 const FramerMotionContainer = () => {
   const containerRef = useRef(null);
   const [targetRef, isIntersecting] = useInView(containerRef, {
-    threshold: 0.1,
+    threshold: 0.7,
   });
 
   return (
     <div className={styles.container}>
-      <TextsContainer isIntersecting={isIntersecting} />
-      <FramerMotion containerRef={containerRef} />
+      {/* <TextsContainer isIntersecting={isIntersecting} /> */}
+      <FramerMotion
+        containerRef={containerRef}
+        isIntersecting={isIntersecting}
+      />
     </div>
   );
 };
