@@ -37,7 +37,6 @@ const LongTextContainer = ({ longText }) => {
 
 const FramerMotion = ({ data }) => {
   const containerRef = useRef(null);
-
   const { md, lg } = useSpringScroll(containerRef);
   const [targetRef, isIntersecting] = useInView(containerRef, {
     threshold: 0.7,
@@ -62,8 +61,8 @@ const FramerMotion = ({ data }) => {
     opacity: isIntersecting ? "1" : "0",
     visibility: isIntersecting ? "visible" : "hidden",
     transition: isIntersecting
-      ? "opacity 0.6s ease, visibility 1s ease"
-      : "opacity 0.2s ease, visibility 0.2s ease",
+      ? "opacity 0.6s ease, visibility 1s cubic-bezier(0.16, 1, 0.3, 1)"
+      : "opacity 0.2s ease, visibility 0.2s cubic-bezier(0.7, 0, 0.84, 0)",
     transform: "translateX(0)",
   };
 

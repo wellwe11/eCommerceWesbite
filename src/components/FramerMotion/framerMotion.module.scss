@@ -9,6 +9,8 @@
   margin-bottom: 50rem;
 
   position: relative;
+
+  pointer-events: none; // change in future if i chosoe to change the interactivety
 }
 
 .framerMotion {
