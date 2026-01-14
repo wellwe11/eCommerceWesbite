@@ -17,6 +17,8 @@ function App() {
     <div>
       <ReactLenis options={lenisOptions} />
       <FramerMotionContainer />
+      <FramerMotionContainer />
+      <FramerMotionContainer />
     </div>
   );
 }

@@ -1,11 +1,5 @@
 import { useRef } from "react";
-import {
-  easeInOut,
-  motion,
-  useScroll,
-  useSpring,
-  useTransform,
-} from "framer-motion";
+import { motion, useScroll, useSpring, useTransform } from "framer-motion";
 
 import styles from "./framerMotion.module.scss";
 
@@ -13,16 +7,27 @@ import imageOne from "./resources/imageOne.avif";
 import imageTwo from "./resources/imageTwo.avif";
 import imageThree from "./resources/imageThree.avif";
 
-const TextsContainer = () => {
-  const bioTitle = "Lorem ipsum dolor sit amet, consectetur adipiscing elit.";
-  const bio =
-    "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut. ";
+import useInView from "./hooks/useInView.js";
 
-  const longText =
-    "Duis aute irure esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia.";
+// for tomorrow:
+// make component scalable for smaller/bigger screens
+// abstract code:
+// textscontainer need to take in data from parent
+
+const bioTitle = "Lorem ipsum dolor sit amet, consectetur adipiscing elit.";
+const bio =
+  "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut. ";
+
+const longText =
+  "Duis aute irure esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia.";
+
+const TextsContainer = ({ isIntersecting, data }) => {
+  const isIntersectingStyle = {
+    opacity: isIntersecting ? "1" : "0",
+  };
 
   return (
-    <div className={styles.textsContainer}>
+    <div className={styles.textsContainer} style={isIntersectingStyle}>
       <div className={styles.subText}>
         <div className={styles.textContainer}>
           <p>{longText}</p>
@@ -45,8 +50,7 @@ const TextsContainer = () => {
   );
 };
 
-const FramerMotion = () => {
-  const containerRef = useRef(null);
+const FramerMotion = ({ containerRef, isIntersecting }) => {
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ["start end", "end start"],
@@ -54,8 +58,8 @@ const FramerMotion = () => {
 
   const mdRaw = useTransform(
     scrollYProgress,
-    [0, 0.4, 0.45, 0.55, 0.6, 1],
-    [150, 40, 5, -5, -40, -150]
+    [0, 0.4, 0.6, 1],
+    [150, 0, 0, -150]
   );
   const lgRaw = useTransform(
     scrollYProgress,
@@ -63,7 +67,7 @@ const FramerMotion = () => {
     [250, 60, 10, -10, -60, -250]
   );
 
-  const springConfig = { stiffness: 100, damping: 40, mass: 1 };
+  const springConfig = { stiffness: 1000, damping: 150, mass: 1 };
 
   const md = useSpring(mdRaw, springConfig);
   const lg = useSpring(lgRaw, springConfig);
@@ -98,10 +102,15 @@ const FramerMotion = () => {
 };
 
 const FramerMotionContainer = () => {
+  const containerRef = useRef(null);
+  const [targetRef, isIntersecting] = useInView(containerRef, {
+    threshold: 0.1,
+  });
+
   return (
     <div className={styles.container}>
-      <TextsContainer />
-      <FramerMotion />
+      <TextsContainer isIntersecting={isIntersecting} />
+      <FramerMotion containerRef={containerRef} />
     </div>
   );
 };
