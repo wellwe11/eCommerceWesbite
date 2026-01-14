@@ -1,5 +1,8 @@
 @import "tailwindcss";
 
+@navbutton {
+}
+
 @theme {
   --color-brand-primary: #0f172a;
   --color-brand-accent: #3b82f6;
