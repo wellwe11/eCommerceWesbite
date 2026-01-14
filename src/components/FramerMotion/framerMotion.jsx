@@ -35,13 +35,13 @@ const LongTextContainer = ({ longText }) => {
   );
 };
 
-// data is going to hold images src & bio info. An object will look something like:
-// data: [ {
-// images: [ {src: ""}, {src: ""}, {srec: ""} ],
-// bio: { title: "", description: "", bio: "" }
-// } ]
-const FramerMotion = ({ containerRef, isIntersecting, data }) => {
+const FramerMotion = ({ data }) => {
+  const containerRef = useRef(null);
+
   const { md, lg } = useSpringScroll(containerRef);
+  const [targetRef, isIntersecting] = useInView(containerRef, {
+    threshold: 0.7,
+  });
 
   const {
     index,
@@ -106,18 +106,9 @@ const FramerMotion = ({ containerRef, isIntersecting, data }) => {
 };
 
 const FramerMotionContainer = ({ data }) => {
-  const containerRef = useRef(null);
-  const [targetRef, isIntersecting] = useInView(containerRef, {
-    threshold: 0.7,
-  });
-
   return (
     <div className={styles.container}>
-      <FramerMotion
-        containerRef={containerRef}
-        isIntersecting={isIntersecting}
-        data={data}
-      />
+      <FramerMotion data={data} />
     </div>
   );
 };
