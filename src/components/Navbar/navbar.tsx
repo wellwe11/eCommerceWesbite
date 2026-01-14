@@ -8,8 +8,8 @@ const Button = ({ children, link }: { children: string; link: string }) => {
   };
 
   return (
-    <button onClick={handleNavigate}>
-      <h5>{children}</h5>
+    <button onClick={handleNavigate} className="">
+      <h5 className="">{children}</h5>
     </button>
   );
 };
@@ -27,16 +27,20 @@ const ButtonsContainer = () => {
     },
   ];
 
-  return buttons.map(({ link, text }, i) => (
-    <Button key={"navButton " + i} link={link}>
-      {text}
-    </Button>
-  ));
+  return (
+    <div className="flex justify-end align-center gap-8 p-8 pr-15 grow">
+      {buttons.map(({ link, text }, i) => (
+        <Button key={"navButton " + i} link={link}>
+          {text}
+        </Button>
+      ))}
+    </div>
+  );
 };
 
 const Navbar = () => {
   return (
-    <nav>
+    <nav className="fixed top-0 left-0 w-full h">
       <ButtonsContainer />
     </nav>
   );
