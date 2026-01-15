@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 
 import styles from "./framerMotion.module.scss";
 
-import useInView from "./hooks/useInView.js";
+import useInView from "../../hooks/useInView.js";
 import useSpringScroll from "./hooks/usespringScroll.js";
 
 const BioContainer = ({ bioTitle, bio }) => {

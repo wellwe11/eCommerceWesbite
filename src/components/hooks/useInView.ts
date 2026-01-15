@@ -7,7 +7,7 @@ import { useEffect, useState } from "react";
  */
 
 const useInView = (
-  targetRef: React.RefObject<HTMLElement> | null,
+  targetRef: React.RefObject<HTMLElement> | React.RefObject<null>,
   options: IntersectionObserverInit = { threshold: 0.1, rootMargin: "0px" }
 ) => {
   if (!targetRef) {

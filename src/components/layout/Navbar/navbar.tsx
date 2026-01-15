@@ -1,11 +1,12 @@
 import Logo from "./logo";
 
-// import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+
 const Button = ({ children, link }: { children: string; link: string }) => {
-  //   const navigate = useNavigate();
+  const navigate = useNavigate();
 
   const handleNavigate = () => {
-    // navigate(link);
+    navigate(link);
   };
 
   return (
@@ -21,10 +22,10 @@ const Button = ({ children, link }: { children: string; link: string }) => {
 const ButtonsContainer = () => {
   const buttons = [
     {
-      link: "",
+      link: "/",
       text: "HOME",
     },
-    { link: "", text: "GALLERY" },
+    { link: "/gallery", text: "GALLERY" },
     {
       link: "",
       text: "CONTACT",

@@ -19,13 +19,13 @@ const Details = ({ data }: { data: Omit<ProductData, "images"> }) => {
   const { name, price, width, height } = data;
 
   return (
-    <div className="flex justify-between">
+    <div className="flex justify-between py-1">
       <div>
         <p className="bio-text">{name}</p>
       </div>
       <div>
-        <p className="bio-text text-right">{`${width} x ${height}`}</p>
-        <p className="bio-text text-right">{price}</p>
+        <p className="bio-text text-right">{`${width} x ${height} cm`}</p>
+        <p className="bio-text text-right">{price} €</p>
       </div>
     </div>
   );
@@ -34,7 +34,7 @@ const Details = ({ data }: { data: Omit<ProductData, "images"> }) => {
 const Product = ({ data }: { data: ProductData }) => {
   const { images, ...details } = data;
   return (
-    <div className="max-w-100">
+    <div className="max-w-100 cursor-pointer hover:bg-gray-200/50 transition-colors duration-400 ease">
       <Image data={images} />
       <Details data={details} />
     </div>
