@@ -3,11 +3,28 @@ import { ReactLenis } from "lenis/react";
 import "./App.css";
 
 import FramerMotionContainer from "../components/ui/FramerMotion/framerMotion.jsx";
+import Product from "../components/ui/Product/product.tsx";
 import Navbar from "../components/layout/Navbar/navbar.tsx";
 
 import imageOne from "./resources/imageOne.avif";
 import imageTwo from "./resources/imageTwo.avif";
 import imageThree from "./resources/imageThree.avif";
+
+export type ProductImage = {
+  src: string;
+  type?: string;
+};
+
+export type ProductData = {
+  name: string;
+  price: number;
+  width: number;
+  height: number;
+
+  colors: string[];
+
+  images: ProductImage[];
+};
 
 function App() {
   const lenisOptions = {
@@ -55,9 +72,29 @@ function App() {
     images: [imageThree, imageOne, imageTwo],
   };
 
+  const productObject: ProductData = {
+    name: "Picture in blue",
+
+    price: 34.99,
+
+    width: 20,
+    height: 45,
+
+    colors: ["blue", "white"],
+
+    images: [
+      { src: imageOne, type: "main" },
+      { src: imageThree },
+      { src: imageTwo },
+      { src: imageOne },
+      { src: imageTwo },
+    ],
+  };
+
   return (
     <div>
       <Navbar />
+      <Product data={productObject} />
       <ReactLenis options={lenisOptions} />
       <FramerMotionContainer data={motionOne} />
       <FramerMotionContainer data={motionTwo} />
