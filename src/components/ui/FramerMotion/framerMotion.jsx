@@ -35,11 +35,11 @@ const LongTextContainer = ({ longText }) => {
   );
 };
 
-const FramerMotion = ({ data }) => {
+const FramerMotion = ({ data, threshold = 0.7 }) => {
   const containerRef = useRef(null);
   const { md, lg } = useSpringScroll(containerRef);
   const { isIntersecting } = useInView(containerRef, {
-    threshold: 0.7,
+    threshold: threshold,
   });
 
   const {
@@ -104,10 +104,10 @@ const FramerMotion = ({ data }) => {
   );
 };
 
-const FramerMotionContainer = ({ data }) => {
+const FramerMotionContainer = ({ data, threshold }) => {
   return (
     <div className={styles.container}>
-      <FramerMotion data={data} />
+      <FramerMotion data={data} threshold={threshold} />
     </div>
   );
 };
