@@ -5,7 +5,8 @@ import Gallery from "./pages/Gallery/gallery";
 
 import imageOne from "./resources/imageOne.avif";
 import imageTwo from "./resources/imageTwo.avif";
-import imageThree from "./resources/imageThree.avif";
+import imageThree from "./resources/imageFour.avif";
+import Contact from "./pages/Contact/contact";
 
 const bioTitle = "Lorem ipsum dolor sit amet, consectetur adipiscing elit.";
 const info =
@@ -488,6 +489,7 @@ const router = createBrowserRouter([
         path: "gallery",
         element: <Gallery data={galleryData} />,
       },
+      { path: "contact", element: <Contact /> },
     ],
   },
 ]);

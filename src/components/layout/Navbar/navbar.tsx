@@ -13,6 +13,7 @@ const Button = ({ children, link }: { children: string; link: string }) => {
     <button
       onClick={handleNavigate}
       className="cursor-pointer flex-1 flex items-center justify-center hover:bg-gray-50/50 hover:backdrop-blur-xs transition-colors duration 400 ease"
+      type="button"
     >
       <h5 className="">{children}</h5>
     </button>
@@ -27,7 +28,7 @@ const ButtonsContainer = () => {
     },
     { link: "/gallery", text: "GALLERY" },
     {
-      link: "",
+      link: "/contact",
       text: "CONTACT",
     },
   ];
@@ -45,7 +46,7 @@ const ButtonsContainer = () => {
 
 const Navbar = () => {
   return (
-    <nav className="fixed top-0 left-0 w-full flex justify-between align-middle z-50">
+    <nav className="fixed top-0 left-0 w-full flex justify-between align-middle z-50 px-2">
       <Logo />
       <ButtonsContainer />
     </nav>

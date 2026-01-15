@@ -1,10 +1,11 @@
-import { ReactLenis } from "lenis/react";
+import { useLenis } from "lenis/react";
 
 import "./App.css";
 
 import Navbar from "../components/layout/Navbar/navbar.tsx";
 
-import { Outlet } from "react-router-dom";
+import { Outlet, useLocation } from "react-router-dom";
+import { useEffect } from "react";
 
 export type ProductImage = {
   src: string;
@@ -23,19 +24,18 @@ export type ProductData = {
 };
 
 function App() {
-  const lenisOptions = {
-    lerp: 0.05,
-    duration: 1.5,
-    smoothWheel: true,
-    smoothTouch: false,
-    syncTouch: false,
-  };
+  const { pathname } = useLocation();
+
+  const lenis = useLenis();
+
+  useEffect(() => {
+    lenis?.scrollTo(0, { immediate: true });
+  }, [pathname]);
 
   return (
     <div>
-      <ReactLenis options={lenisOptions} />
-
       <Navbar />
+
       <main>
         <Outlet />
       </main>
