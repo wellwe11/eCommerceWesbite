@@ -15,14 +15,37 @@ const info =
 const longText =
   "Duis aute irure esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia.";
 
-const motionOne = {
-  index: 1,
-  text: {
-    title: bioTitle,
-    info: info,
-    bio: longText,
+const homeData = {
+  one: {
+    index: 1,
+
+    text: {
+      title: bioTitle,
+      info: info,
+      bio: longText,
+    },
+    images: [imageOne, imageTwo, imageThree],
   },
-  images: [imageOne, imageTwo, imageThree],
+  two: {
+    index: 2,
+
+    text: {
+      title: bioTitle,
+      info: info,
+      bio: longText,
+    },
+    images: [imageTwo, imageThree, imageOne],
+  },
+  three: {
+    index: 3,
+
+    text: {
+      title: bioTitle,
+      info: info,
+      bio: longText,
+    },
+    images: [imageOne, imageThree, imageTwo],
+  },
 };
 
 const galleryData = [
@@ -484,7 +507,7 @@ const router = createBrowserRouter([
     path: "/",
     element: <App />,
     children: [
-      { index: true, element: <Home data={motionOne} /> },
+      { index: true, element: <Home data={homeData} /> },
       {
         path: "gallery",
         element: <Gallery data={galleryData} />,

@@ -12,8 +12,9 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
       root
       options={{
         lerp: 0.05,
-        duration: 1.5,
+        duration: 1,
         smoothWheel: true,
+        wheelMultiplier: 0.5,
       }}
     >
       <RouterProvider router={router} />
