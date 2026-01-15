@@ -84,10 +84,10 @@ function App() {
 
     images: [
       { src: imageOne, type: "main" },
-      { src: imageThree },
-      { src: imageTwo },
-      { src: imageOne },
-      { src: imageTwo },
+      { src: imageThree, type: "alternative" },
+      { src: imageTwo, type: "rest" },
+      { src: imageOne, type: "rest" },
+      { src: imageTwo, type: "rest" },
     ],
   };
 

@@ -1,7 +1,16 @@
 import type { ProductData, ProductImage } from "../../../app/App";
 
 const Image = ({ data }: { data: ProductImage[] }) => {
-  const mainImage = data.find((a: ProductImage) => a.type === "main")!.src;
+  const mappedImages = new Map();
+  data.forEach((d) => {
+    if (mappedImages.has(d.type)) {
+      mappedImages.get(d.type).push(d);
+    } else {
+      mappedImages.set(d.type, [d]);
+    }
+  });
+
+  const mainImage = mappedImages.get("main")[0].src;
 
   return <img src={mainImage} />;
 };
