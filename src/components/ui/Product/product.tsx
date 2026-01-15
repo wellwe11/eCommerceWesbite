@@ -15,13 +15,26 @@ const Image = ({ data }: { data: ProductImage[] }) => {
   return <img src={mainImage} />;
 };
 
-const Details = ({ data }: { data: Omit<ProductData, "images"> }) => {};
+const Details = ({ data }: { data: Omit<ProductData, "images"> }) => {
+  const { name, price, width, height } = data;
+
+  return (
+    <div className="flex justify-between">
+      <div>
+        <p className="bio-text">{name}</p>
+      </div>
+      <div>
+        <p className="bio-text text-right">{`${width} x ${height}`}</p>
+        <p className="bio-text text-right">{price}</p>
+      </div>
+    </div>
+  );
+};
 
 const Product = ({ data }: { data: ProductData }) => {
   const { images, ...details } = data;
   return (
-    <div>
-      <h1>hello</h1>
+    <div className="max-w-100">
       <Image data={images} />
       <Details data={details} />
     </div>

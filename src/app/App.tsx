@@ -9,6 +9,7 @@ import Navbar from "../components/layout/Navbar/navbar.tsx";
 import imageOne from "./resources/imageOne.avif";
 import imageTwo from "./resources/imageTwo.avif";
 import imageThree from "./resources/imageThree.avif";
+import Gallery from "../pages/Gallery/gallery.tsx";
 
 export type ProductImage = {
   src: string;
@@ -91,10 +92,248 @@ function App() {
     ],
   };
 
+  const galleryData = [
+    {
+      name: "Picture in blue",
+
+      price: 34.99,
+
+      width: 20,
+      height: 45,
+
+      colors: ["blue", "white"],
+
+      images: [
+        { src: imageOne, type: "main" },
+        { src: imageThree, type: "alternative" },
+        { src: imageTwo, type: "rest" },
+        { src: imageOne, type: "rest" },
+        { src: imageTwo, type: "rest" },
+      ],
+    },
+    {
+      name: "Picture in blue",
+
+      price: 34.99,
+
+      width: 20,
+      height: 45,
+
+      colors: ["blue", "white"],
+
+      images: [
+        { src: imageOne, type: "main" },
+        { src: imageThree, type: "alternative" },
+        { src: imageTwo, type: "rest" },
+        { src: imageOne, type: "rest" },
+        { src: imageTwo, type: "rest" },
+      ],
+    },
+    {
+      name: "Picture in blue",
+
+      price: 34.99,
+
+      width: 20,
+      height: 45,
+
+      colors: ["blue", "white"],
+
+      images: [
+        { src: imageOne, type: "main" },
+        { src: imageThree, type: "alternative" },
+        { src: imageTwo, type: "rest" },
+        { src: imageOne, type: "rest" },
+        { src: imageTwo, type: "rest" },
+      ],
+    },
+    {
+      name: "Picture in blue",
+
+      price: 34.99,
+
+      width: 20,
+      height: 45,
+
+      colors: ["blue", "white"],
+
+      images: [
+        { src: imageOne, type: "main" },
+        { src: imageThree, type: "alternative" },
+        { src: imageTwo, type: "rest" },
+        { src: imageOne, type: "rest" },
+        { src: imageTwo, type: "rest" },
+      ],
+    },
+    {
+      name: "Picture in blue",
+
+      price: 34.99,
+
+      width: 20,
+      height: 45,
+
+      colors: ["blue", "white"],
+
+      images: [
+        { src: imageOne, type: "main" },
+        { src: imageThree, type: "alternative" },
+        { src: imageTwo, type: "rest" },
+        { src: imageOne, type: "rest" },
+        { src: imageTwo, type: "rest" },
+      ],
+    },
+    {
+      name: "Picture in blue",
+
+      price: 34.99,
+
+      width: 20,
+      height: 45,
+
+      colors: ["blue", "white"],
+
+      images: [
+        { src: imageOne, type: "main" },
+        { src: imageThree, type: "alternative" },
+        { src: imageTwo, type: "rest" },
+        { src: imageOne, type: "rest" },
+        { src: imageTwo, type: "rest" },
+      ],
+    },
+    {
+      name: "Picture in blue",
+
+      price: 34.99,
+
+      width: 20,
+      height: 45,
+
+      colors: ["blue", "white"],
+
+      images: [
+        { src: imageOne, type: "main" },
+        { src: imageThree, type: "alternative" },
+        { src: imageTwo, type: "rest" },
+        { src: imageOne, type: "rest" },
+        { src: imageTwo, type: "rest" },
+      ],
+    },
+    {
+      name: "Picture in blue",
+
+      price: 34.99,
+
+      width: 20,
+      height: 45,
+
+      colors: ["blue", "white"],
+
+      images: [
+        { src: imageOne, type: "main" },
+        { src: imageThree, type: "alternative" },
+        { src: imageTwo, type: "rest" },
+        { src: imageOne, type: "rest" },
+        { src: imageTwo, type: "rest" },
+      ],
+    },
+    {
+      name: "Picture in blue",
+
+      price: 34.99,
+
+      width: 20,
+      height: 45,
+
+      colors: ["blue", "white"],
+
+      images: [
+        { src: imageOne, type: "main" },
+        { src: imageThree, type: "alternative" },
+        { src: imageTwo, type: "rest" },
+        { src: imageOne, type: "rest" },
+        { src: imageTwo, type: "rest" },
+      ],
+    },
+    {
+      name: "Picture in blue",
+
+      price: 34.99,
+
+      width: 20,
+      height: 45,
+
+      colors: ["blue", "white"],
+
+      images: [
+        { src: imageOne, type: "main" },
+        { src: imageThree, type: "alternative" },
+        { src: imageTwo, type: "rest" },
+        { src: imageOne, type: "rest" },
+        { src: imageTwo, type: "rest" },
+      ],
+    },
+    {
+      name: "Picture in blue",
+
+      price: 34.99,
+
+      width: 20,
+      height: 45,
+
+      colors: ["blue", "white"],
+
+      images: [
+        { src: imageOne, type: "main" },
+        { src: imageThree, type: "alternative" },
+        { src: imageTwo, type: "rest" },
+        { src: imageOne, type: "rest" },
+        { src: imageTwo, type: "rest" },
+      ],
+    },
+    {
+      name: "Picture in blue",
+
+      price: 34.99,
+
+      width: 20,
+      height: 45,
+
+      colors: ["blue", "white"],
+
+      images: [
+        { src: imageOne, type: "main" },
+        { src: imageThree, type: "alternative" },
+        { src: imageTwo, type: "rest" },
+        { src: imageOne, type: "rest" },
+        { src: imageTwo, type: "rest" },
+      ],
+    },
+    {
+      name: "Picture in blue",
+
+      price: 34.99,
+
+      width: 20,
+      height: 45,
+
+      colors: ["blue", "white"],
+
+      images: [
+        { src: imageOne, type: "main" },
+        { src: imageThree, type: "alternative" },
+        { src: imageTwo, type: "rest" },
+        { src: imageOne, type: "rest" },
+        { src: imageTwo, type: "rest" },
+      ],
+    },
+  ];
+
   return (
     <div>
       <Navbar />
-      <Product data={productObject} />
+      <Gallery data={galleryData} />
+
       <ReactLenis options={lenisOptions} />
       <FramerMotionContainer data={motionOne} />
       <FramerMotionContainer data={motionTwo} />

@@ -1,6 +1,9 @@
 @import "tailwindcss";
 
-@navbutton {
+@layer components {
+  .bio-text {
+    @apply text-xs leading-relaxed text-gray-700 font-normal antialiased [font-variation-settings:'wght'_500];
+  }
 }
 
 @theme {

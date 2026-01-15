@@ -32,7 +32,7 @@ const ButtonsContainer = () => {
   ];
 
   return (
-    <div className="flex cursor-pointer w-[clamp(400px,10vw,700px)] h-[clamp(50px,5vw,75px)]">
+    <div className="flex cursor-pointer w-[clamp(300px,10vw,400px)] h-[clamp(50px,5vw,75px)]">
       {buttons.map(({ link, text }, i) => (
         <Button key={"navButton " + i} link={link}>
           {text}
