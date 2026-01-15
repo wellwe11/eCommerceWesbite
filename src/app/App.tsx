@@ -3,7 +3,7 @@ import { ReactLenis } from "lenis/react";
 import "./App.css";
 
 import FramerMotionContainer from "../components/ui/FramerMotion/framerMotion.jsx";
-import Navbar from "../components/layout/Navbar/navbar.js";
+import Navbar from "../components/layout/Navbar/navbar.tsx";
 
 import imageOne from "./resources/imageOne.avif";
 import imageTwo from "./resources/imageTwo.avif";
@@ -67,3 +67,16 @@ function App() {
 }
 
 export default App;
+
+// Today:
+// Fix logo for navbar
+// Create empty pages
+// -- home
+// -- gallery
+// -- contact
+// add routing
+
+// Create a top-component for home
+// create a introduction-component (something below top-component to introduce user)
+// create a slider for home
+//
