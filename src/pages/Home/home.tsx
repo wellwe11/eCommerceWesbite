@@ -7,12 +7,14 @@ import HeroSection from "../../components/ui/HeroSection/heroSection.js";
 import WelcomeSection from "../../components/ui/WelcomeSection/welcomeSection.js";
 
 const FramerMotionsContainer = ({ data }) => {
-  const [activeImage, setActiveImage] = useState(1);
+  const [activeImage, setActiveImage] = useState(0);
   const { one, two, three } = data;
 
   const refOne = useRef(null);
   const refTwo = useRef(null);
   const refThree = useRef(null);
+
+  const containerRef = useRef(null);
 
   const { isIntersecting: intOne } = useInView(refOne, {
     threshold: 0.3,
@@ -26,6 +28,10 @@ const FramerMotionsContainer = ({ data }) => {
     threshold: 0.3,
   });
 
+  const { isIntersecting: intContainerRef } = useInView(containerRef, {
+    threshold: 0.1,
+  });
+
   useEffect(() => {
     [intOne, intTwo, intThree].forEach((boolean, i) => {
       if (boolean) {
@@ -36,10 +42,17 @@ const FramerMotionsContainer = ({ data }) => {
 
   return (
     <div className="grid grid-cols-[1fr_600px_1fr] grid-rows-1 w-screen">
-      <div className="col-start-3 row-start-1 row-end-3 h-full text-start relative">
+      <div
+        ref={containerRef}
+        className="col-start-3 row-start-1 row-end-3 h-full text-start relative"
+      >
         <div
-          className="top-[15%] left-100 sticky h-15 overflow-hidden"
-          style={{ opacity: activeImage === 0 ? "0" : "1" }}
+          className="top-[15%] fixed h-15 overflow-hidden"
+          style={{
+            opacity: !intContainerRef ? "0" : "1",
+            visibility: !intContainerRef ? "hidden" : "visible",
+            transition: "opacity 0.2s ease, visibility 0.2s ease",
+          }}
         >
           <h3 className="text-6xl font-extralight">0</h3>
           <div
