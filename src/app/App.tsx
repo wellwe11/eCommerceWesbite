@@ -35,7 +35,6 @@ function App() {
   return (
     <div>
       <Navbar />
-
       <main>
         <Outlet />
       </main>
@@ -53,7 +52,15 @@ export default App;
 // -- contact
 // add routing
 
-// Create a top-component for home
+// for home:
+
 // create a introduction-component (something below top-component to introduce user)
 // create a slider for home
-//
+
+// general TODO:
+// Product page
+// add navigation to logo
+// add navigation to explore
+// Footer
+// Contact
+// Cart
