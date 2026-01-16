@@ -17,16 +17,6 @@ const BioContainer = ({ bioTitle, bio }) => {
   );
 };
 
-// const CollectionTypeContainer = ({ index = 0 }) => {
-//   const indexText = index < 10 ? "0" + index : index;
-
-//   return (
-//     <div className={styles.typeContainer}>
-//       <h1 className={styles.title}>{indexText}</h1>
-//     </div>
-//   );
-// };
-
 const LongTextContainer = ({ longText }) => {
   return (
     <div className={styles.longTextContainer}>
@@ -88,12 +78,7 @@ const FramerMotion = ({ data, threshold = 0.7 }) => {
       >
         <BioContainer bioTitle={title} bio={info} />
       </div>
-      {/* <div
-        className={`${styles.rightContainer} ${styles.gridTextClass}`}
-        style={intersectingStyle}
-      >
-        <CollectionTypeContainer index={index} />
-      </div> */}
+
       <div
         className={`${styles.belowContainer} ${styles.gridTextClass}`}
         style={intersectingStyle}
