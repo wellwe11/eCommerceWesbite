@@ -44,23 +44,8 @@ function App() {
 
 export default App;
 
-// Today:
-// Fix logo for navbar
-// Create empty pages
-// -- home
-// -- gallery
-// -- contact
-// add routing
-
-// for home:
-
-// create a introduction-component (something below top-component to introduce user)
-// create a slider for home
-
 // general TODO:
 // Product page
-// add navigation to logo
-// add navigation to explore
+// Cart page
+// Contact page
 // Footer
-// Contact
-// Cart

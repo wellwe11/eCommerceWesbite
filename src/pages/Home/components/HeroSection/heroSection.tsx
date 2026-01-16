@@ -1,4 +1,4 @@
-import heroImage from "../../../resources/imageThree.avif";
+import heroImage from "../../resources/imageThree.avif";
 
 const Button = () => {
   return (

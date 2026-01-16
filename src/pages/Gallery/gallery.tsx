@@ -1,5 +1,5 @@
 import { useRef, useState, useEffect } from "react";
-import Product from "../../components/ui/Product/product";
+import Product from "./components/product";
 import type { ProductData } from "../../app/App";
 
 import useInView from "../../components/hooks/useInView";
