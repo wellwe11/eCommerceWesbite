@@ -7,10 +7,10 @@
 import { useEffect, useState, type RefObject } from "react";
 
 const useFoundInView = (
-  refs: React.RefObject<Element[]>,
+  refs: RefObject<(HTMLDivElement | null)[]>,
   options: IntersectionObserverInit = { threshold: 0.1, rootMargin: "0px" }
 ) => {
-  if (!refs) {
+  if (!refs || !refs.current) {
     throw new Error("-- useInView -- requires a ref");
   }
 
@@ -21,9 +21,10 @@ const useFoundInView = (
   useEffect(() => {
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
-        console.log(entry);
         if (entry.isIntersecting) {
-          setIntersectingEl(refs.current.indexOf(entry.target));
+          setIntersectingEl(
+            refs.current.indexOf(entry.target as HTMLDivElement)
+          );
         }
       });
     }, options);

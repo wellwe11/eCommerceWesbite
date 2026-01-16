@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import { useRef, type Ref } from "react";
 
 import useInView from "../../components/hooks/useInView.js";
 import FramerMotionContainer from "../../components/ui/FramerMotion/framerMotion";
@@ -8,7 +8,7 @@ import WelcomeSection from "../../components/ui/WelcomeSection/welcomeSection.js
 import useFoundInView from "./hooks/useFoundInView.js";
 
 const FramerMotionsContainer = ({ data }) => {
-  const intersectingRefs: React.RefObject<Element[]> = useRef([]);
+  const intersectingRefs = useRef<(HTMLDivElement | null)[]>([]);
 
   const containerRef = useRef(null);
 
