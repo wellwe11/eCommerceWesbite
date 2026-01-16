@@ -47,7 +47,9 @@ const FramerMotionsContainer = ({ data }) => {
         {Object.entries(data).map(([entry, obj], i) => (
           <div
             key={`framerContainer_${entry}_${i}`}
-            ref={(el) => (intersectingRefs.current[i] = el)}
+            ref={(el) => {
+              intersectingRefs.current[i] = el;
+            }}
             className="mt-80 mb-80"
           >
             <FramerMotionContainer data={obj} />
