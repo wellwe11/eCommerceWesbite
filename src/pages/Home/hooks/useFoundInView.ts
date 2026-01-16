@@ -4,10 +4,10 @@
  * @returns { interesectingEl } - index of item in array that is returned
  */
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, type RefObject } from "react";
 
 const useFoundInView = (
-  refs: React.RefObject<HTMLElement>[] | React.RefObject<null>[],
+  refs: React.RefObject<Element[]>,
   options: IntersectionObserverInit = { threshold: 0.1, rootMargin: "0px" }
 ) => {
   if (!refs) {
@@ -19,8 +19,9 @@ const useFoundInView = (
   const [intersectingEl, setIntersectingEl] = useState(0);
 
   useEffect(() => {
-    const observer = new IntersectionObserver((entries, index) => {
+    const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
+        console.log(entry);
         if (entry.isIntersecting) {
           setIntersectingEl(refs.current.indexOf(entry.target));
         }

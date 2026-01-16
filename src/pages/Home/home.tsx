@@ -8,9 +8,7 @@ import WelcomeSection from "../../components/ui/WelcomeSection/welcomeSection.js
 import useFoundInView from "./hooks/useFoundInView.js";
 
 const FramerMotionsContainer = ({ data }) => {
-  const { one, two, three } = data;
-
-  const intersectingRefs = useRef([]);
+  const intersectingRefs: React.RefObject<Element[]> = useRef([]);
 
   const containerRef = useRef(null);
 
