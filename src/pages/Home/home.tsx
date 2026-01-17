@@ -1,8 +1,9 @@
 import HeroSection from "./components/HeroSection/heroSection";
 import WelcomeSection from "./components/WelcomeSection/welcomeSection";
 import CollectionsScroller from "./components/CollectionsScroller/collectionsScoller";
+import type { HomeSection } from "src/router";
 
-const Home = ({ data }) => {
+const Home = ({ data }: { data: Record<string, HomeSection> }) => {
   /*
    * fix button for heroSection (its not central & add navigation)
    * add navigation to logo

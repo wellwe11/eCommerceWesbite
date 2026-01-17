@@ -5,8 +5,13 @@ import useInView from "../../../../components/hooks/useInView.ts";
 import FramerMotionContainer from "@components/ui/FramerMotion/framerMotion.tsx";
 
 import useFoundInView from "../../hooks/useFoundInView.ts";
+import type { HomeSection } from "src/router.tsx";
 
-const CollectionsScoller = ({ data }) => {
+const CollectionsScoller = ({
+  data,
+}: {
+  data: Record<string, HomeSection>;
+}) => {
   const intersectingRefs = useRef<(HTMLDivElement | null)[]>([]);
 
   const containerRef = useRef(null);
@@ -51,7 +56,7 @@ const CollectionsScoller = ({ data }) => {
             }}
             className="mt-80 mb-80"
           >
-            <FramerMotionContainer data={obj} />
+            <FramerMotionContainer data={obj} threshold={undefined} />
           </div>
         ))}
       </div>

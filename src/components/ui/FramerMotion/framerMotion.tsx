@@ -5,6 +5,7 @@ import styles from "./framerMotion.module.scss";
 
 import useInView from "../../hooks/useInView.js";
 import useSpringScroll from "./hooks/useSpringScroll.ts";
+import type { HomeSection } from "src/router.tsx";
 
 const BioContainer = ({ bioTitle, bio }: { bioTitle: string; bio: string }) => {
   return (
@@ -29,12 +30,8 @@ const FramerMotion = ({
   data,
   threshold = 0.7,
 }: {
-  data: {
-    index: number;
-    text: { title: string; info: string; bio: string };
-    images: string[];
-  };
-  threshold: number;
+  data: HomeSection;
+  threshold: number | undefined;
 }) => {
   const containerRef = useRef(null);
   const { md, lg } = useSpringScroll(containerRef);
@@ -98,12 +95,8 @@ const FramerMotionContainer = ({
   data,
   threshold,
 }: {
-  data: {
-    index: number;
-    text: { title: string; info: string; bio: string };
-    images: string[];
-  };
-  threshold: number;
+  data: HomeSection;
+  threshold: number | undefined;
 }) => {
   return (
     <div className={styles.container}>

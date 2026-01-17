@@ -15,7 +15,17 @@ const info =
 const longText =
   "Duis aute irure esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia.";
 
-const homeData = {
+export interface HomeSection {
+  index: number;
+  text: {
+    title: string;
+    info: string;
+    bio: string;
+  };
+  images: string[];
+}
+
+const homeData: Record<string, HomeSection> = {
   one: {
     index: 1,
 
