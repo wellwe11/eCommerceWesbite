@@ -4,9 +4,9 @@ import { motion } from "framer-motion";
 import styles from "./framerMotion.module.scss";
 
 import useInView from "../../hooks/useInView.js";
-import useSpringScroll from "./hooks/usespringScroll.js";
+import useSpringScroll from "./hooks/useSpringScroll.ts";
 
-const BioContainer = ({ bioTitle, bio }) => {
+const BioContainer = ({ bioTitle, bio }: { bioTitle: string; bio: string }) => {
   return (
     <div className={styles.bioContainer}>
       <div className={styles.fixedContainer}>
@@ -17,7 +17,7 @@ const BioContainer = ({ bioTitle, bio }) => {
   );
 };
 
-const LongTextContainer = ({ longText }) => {
+const LongTextContainer = ({ longText }: { longText: string }) => {
   return (
     <div className={styles.longTextContainer}>
       <p className={styles.text}>{longText}</p>
@@ -25,7 +25,17 @@ const LongTextContainer = ({ longText }) => {
   );
 };
 
-const FramerMotion = ({ data, threshold = 0.7 }) => {
+const FramerMotion = ({
+  data,
+  threshold = 0.7,
+}: {
+  data: {
+    index: number;
+    text: { title: string; info: string; bio: string };
+    images: string[];
+  };
+  threshold: number;
+}) => {
   const containerRef = useRef(null);
   const { md, lg } = useSpringScroll(containerRef);
   const { isIntersecting } = useInView(containerRef, {
@@ -47,7 +57,7 @@ const FramerMotion = ({ data, threshold = 0.7 }) => {
     },
   ];
 
-  const intersectingStyle = {
+  const intersectingStyle: Object = {
     opacity: isIntersecting ? "1" : "0",
     visibility: isIntersecting ? "visible" : "hidden",
     transition: isIntersecting
@@ -64,12 +74,7 @@ const FramerMotion = ({ data, threshold = 0.7 }) => {
           style={{ y }}
           className={styles.imageContainer}
         >
-          <img
-            className={styles.image}
-            src={src}
-            placeholder="blur"
-            alt="image"
-          />
+          <img className={styles.image} src={src} alt="image" />
         </motion.div>
       ))}
       <div
@@ -89,7 +94,17 @@ const FramerMotion = ({ data, threshold = 0.7 }) => {
   );
 };
 
-const FramerMotionContainer = ({ data, threshold }) => {
+const FramerMotionContainer = ({
+  data,
+  threshold,
+}: {
+  data: {
+    index: number;
+    text: { title: string; info: string; bio: string };
+    images: string[];
+  };
+  threshold: number;
+}) => {
   return (
     <div className={styles.container}>
       <FramerMotion data={data} threshold={threshold} />
