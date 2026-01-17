@@ -6,7 +6,7 @@ import { useScroll, useSpring, useTransform } from "framer-motion";
  * @returns { md, lg }
  */
 
-const useSpringScroll = (containerRef) => {
+const useSpringScroll = (containerRef: React.RefObject<HTMLElement>) => {
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ["start end", "end start"],
@@ -15,12 +15,12 @@ const useSpringScroll = (containerRef) => {
   const mdRaw = useTransform(
     scrollYProgress,
     [0, 0.4, 0.6, 1],
-    [150, 0, 0, -150]
+    [150, 0, 0, -150],
   );
   const lgRaw = useTransform(
     scrollYProgress,
     [0, 0.4, 0.45, 0.55, 0.6, 1],
-    [250, 60, 10, -10, -60, -250]
+    [250, 60, 10, -10, -60, -250],
   );
 
   const springConfig = { stiffness: 1000, damping: 150, mass: 1 };

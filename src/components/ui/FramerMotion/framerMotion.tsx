@@ -67,7 +67,7 @@ const FramerMotion = ({
     <div className={styles.framerMotion} ref={containerRef}>
       {images.map(({ src, y }, i) => (
         <motion.div
-          key={`i_${i}`}
+          key={`i_${i} ${index}`}
           style={{ y }}
           className={styles.imageContainer}
         >
