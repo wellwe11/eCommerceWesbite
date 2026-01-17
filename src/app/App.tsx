@@ -33,7 +33,7 @@ function App() {
   }, [pathname]);
 
   return (
-    <div>
+    <div className="overflow-hidden">
       <Navbar />
       <main>
         <Outlet />
