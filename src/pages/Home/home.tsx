@@ -7,7 +7,8 @@ const Home = ({ data }: { data: Record<string, HomeSection> }) => {
   /*
    * Research nice welcoming-sections or alternatives
    *** create a introduction-component (something below top-component to introduce user)
-   * create a slider for home
+   **
+   * create a subscribe-section on home
    * Create a instagram/socials section on home
    */
 
