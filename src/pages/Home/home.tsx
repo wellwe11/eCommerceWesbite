@@ -13,6 +13,7 @@ const Home = ({ data }: { data: Record<string, HomeSection> }) => {
    * create a slider for home
    * Create a instagram/socials section on home
    */
+
   return (
     <div>
       <HeroSection />
