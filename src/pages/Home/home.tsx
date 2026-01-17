@@ -5,9 +5,6 @@ import type { HomeSection } from "src/router";
 
 const Home = ({ data }: { data: Record<string, HomeSection> }) => {
   /*
-   * fix button for heroSection (its not central & add navigation)
-   * add navigation to logo
-   * If buttons clicked, but same page, reload the page
    * Research nice welcoming-sections or alternatives
    *** create a introduction-component (something below top-component to introduce user)
    * create a slider for home
