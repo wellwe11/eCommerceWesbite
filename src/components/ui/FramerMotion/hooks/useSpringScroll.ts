@@ -6,7 +6,13 @@ import { useScroll, useSpring, useTransform } from "framer-motion";
  * @returns { md, lg }
  */
 
-const useSpringScroll = (containerRef: React.RefObject<HTMLElement>) => {
+const useSpringScroll = (
+  containerRef: React.RefObject<HTMLElement> | React.RefObject<null>,
+) => {
+  if (!containerRef) {
+    throw new Error("-- useInView -- requires a ref");
+  }
+
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ["start end", "end start"],

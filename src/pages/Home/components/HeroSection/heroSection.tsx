@@ -1,12 +1,12 @@
 import heroImage from "../../resources/imageThree.avif";
 
-const Button = () => {
-  return (
-    <button className="p-3.5 bg-amber-400">
-      <h1></h1>
-    </button>
-  );
-};
+// const Button = () => {
+//   return (
+//     <button className="p-3.5 bg-amber-400">
+//       <h1></h1>
+//     </button>
+//   );
+// };
 
 const HeroSection = () => {
   return (

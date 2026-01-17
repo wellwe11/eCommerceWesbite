@@ -33,7 +33,8 @@ const FramerMotion = ({
   data: HomeSection;
   threshold: number | undefined;
 }) => {
-  const containerRef = useRef(null);
+  const containerRef = useRef<HTMLDivElement | null>(null);
+
   const { md, lg } = useSpringScroll(containerRef);
   const { isIntersecting } = useInView(containerRef, {
     threshold: threshold,
