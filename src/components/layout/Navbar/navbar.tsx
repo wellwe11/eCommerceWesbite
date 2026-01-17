@@ -10,7 +10,7 @@ const Button = ({ children, link }: { children: string; link: string }) => {
       className="cursor-pointer flex-1 flex items-center justify-center hover:bg-gray-50/50 hover:backdrop-blur-xs transition-colors duration 400 ease"
       type="button"
     >
-      <h5 className="">{children}</h5>
+      <h5 className="text-[13px] font-light ">{children}</h5>
     </button>
   );
 };
@@ -29,7 +29,7 @@ const ButtonsContainer = () => {
   ];
 
   return (
-    <div className="flex cursor-pointer w-[clamp(300px,10vw,400px)] h-[clamp(50px,5vw,75px)]">
+    <div className="flex cursor-pointer w-75 h-[clamp(50px,5vw,75px)]">
       {buttons.map(({ link, text }, i) => (
         <Button key={"navButton " + i} link={link}>
           {text}
