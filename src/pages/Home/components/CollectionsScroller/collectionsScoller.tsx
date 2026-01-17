@@ -23,7 +23,7 @@ const CollectionsScoller = ({
   });
 
   return (
-    <div className="grid grid-cols-[1fr_600px_1fr] grid-rows-1 w-screen">
+    <div className="grid grid-cols-[1fr_600px_1fr] grid-rows-1 w-full">
       <div
         ref={containerRef}
         className="col-start-3 row-start-1 row-end-3 h-full text-start relative"

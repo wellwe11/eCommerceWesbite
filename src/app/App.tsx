@@ -33,7 +33,7 @@ function App() {
   }, [pathname]);
 
   return (
-    <div className="">
+    <div className="p-0 m-0 box-border w-full">
       <Navbar />
       <main>
         <Outlet />
