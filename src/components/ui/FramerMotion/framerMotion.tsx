@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 
 import styles from "./framerMotion.module.scss";
 
-import useInView from "../../hooks/useInView.js";
+import useInView from "../../hooks/useInView.ts";
 import useSpringScroll from "./hooks/useSpringScroll.ts";
 import type { HomeSection } from "src/router.tsx";
 
