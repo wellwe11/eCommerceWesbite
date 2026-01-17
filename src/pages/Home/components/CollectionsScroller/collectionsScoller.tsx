@@ -2,7 +2,7 @@ import { useRef } from "react";
 
 import useInView from "../../../../components/hooks/useInView.ts";
 
-import FramerMotionContainer from "@components/ui/FramerMotion/framerMotion.js";
+import FramerMotionContainer from "@components/ui/FramerMotion/framerMotion.tsx";
 
 import useFoundInView from "../../hooks/useFoundInView.ts";
 
