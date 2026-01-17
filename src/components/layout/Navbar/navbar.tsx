@@ -1,14 +1,9 @@
 import Logo from "./logo";
 
-import { useNavigate } from "react-router-dom";
+import useNavigator from "./hooks/useNavigator";
 
 const Button = ({ children, link }: { children: string; link: string }) => {
-  const navigate = useNavigate();
-
-  const handleNavigate = () => {
-    navigate(link);
-  };
-
+  const handleNavigate = useNavigator(link);
   return (
     <button
       onClick={handleNavigate}

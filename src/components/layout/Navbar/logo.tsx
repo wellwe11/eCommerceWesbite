@@ -1,11 +1,7 @@
-import { useNavigate } from "react-router-dom";
+import useNavigator from "./hooks/useNavigator";
 
 const Logo = () => {
-  const navigate = useNavigate();
-
-  const handleNavigate = () => {
-    navigate("/");
-  };
+  const handleNavigate = useNavigator("/");
 
   return (
     <button
