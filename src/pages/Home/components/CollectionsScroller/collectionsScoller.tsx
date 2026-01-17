@@ -1,10 +1,10 @@
 import { useRef } from "react";
 
-import useInView from "../../../../components/hooks/useInView.js";
+import useInView from "../../../../components/hooks/useInView.ts";
 
 import FramerMotionContainer from "@components/ui/FramerMotion/framerMotion.js";
 
-import useFoundInView from "../../hooks/useFoundInView.js";
+import useFoundInView from "../../hooks/useFoundInView.ts";
 
 const CollectionsScoller = ({ data }) => {
   const intersectingRefs = useRef<(HTMLDivElement | null)[]>([]);
