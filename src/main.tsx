@@ -11,13 +11,14 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
     <ReactLenis
       root
       options={{
-        lerp: 0.05,
-        duration: 1,
-        smoothWheel: true,
-        wheelMultiplier: 0.5,
+        lerp: 0.15,
+        wheelMultiplier: 0.45,
+
+        syncTouch: true,
+        touchMultiplier: 0.2,
       }}
     >
       <RouterProvider router={router} />
     </ReactLenis>
-  </StrictMode>
+  </StrictMode>,
 );
