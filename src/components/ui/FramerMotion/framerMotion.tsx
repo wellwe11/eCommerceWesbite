@@ -76,6 +76,7 @@ const FramerMotion = ({
             className={styles.image}
             src={src}
             alt="image"
+            loading="eager"
             decoding="async"
           />
         </motion.div>
