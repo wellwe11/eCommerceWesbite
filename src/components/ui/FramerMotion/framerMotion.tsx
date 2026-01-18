@@ -72,7 +72,12 @@ const FramerMotion = ({
           style={{ y }}
           className={styles.imageContainer}
         >
-          <img className={styles.image} src={src} alt="image" />
+          <img
+            className={styles.image}
+            src={src}
+            alt="image"
+            decoding="async"
+          />
         </motion.div>
       ))}
       <div

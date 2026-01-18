@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React, { useRef } from "react";
 
 import useInView from "../../../../components/hooks/useInView.ts";
 
@@ -71,7 +71,7 @@ const CollectionsContainer = ({
           }}
           className="mt-80 mb-80"
         >
-          <FramerMotionContainer data={obj} threshold={undefined} />
+          <FramerMotionContainer data={obj} threshold={0.7} />
         </div>
       ))}
     </div>
