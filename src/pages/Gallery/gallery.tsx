@@ -9,7 +9,7 @@ const Gallery = ({ data }: { data: ProductData[] }) => {
   const [hasMore, setHasMore] = useState(true);
   const sentinenRef = useRef(null);
 
-  const { isIntersecting } = useInView(sentinenRef, { threshold: 1.0 });
+  const { isIntersecting } = useInView(sentinenRef, { threshold: 0.9 });
 
   useEffect(() => {
     if (isIntersecting && hasMore) {
