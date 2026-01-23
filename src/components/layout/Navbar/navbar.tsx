@@ -29,7 +29,7 @@ const ButtonsContainer = () => {
   ];
 
   return (
-    <div className="flex cursor-pointer w-60 h-[clamp(50px,5vw,75px)]">
+    <div className="flex cursor-pointer w-65 h-[clamp(60px,10vw,85px)]">
       {buttons.map(({ link, text }, i) => (
         <Button key={"navButton " + i} link={link}>
           {text}
@@ -42,7 +42,7 @@ const ButtonsContainer = () => {
 const Navbar = () => {
   return (
     <div className="z-50 w-screen fixed top-0 left-0 flex justify-center">
-      <nav className="px-2 w-[clamp(400px,calc(100vw-10px),1910px)] flex justify-between align-middle">
+      <nav className="w-[clamp(400px,calc(100vw-10px),1910px)] flex justify-between align-middle px-10">
         <Logo />
         <ButtonsContainer />
       </nav>
