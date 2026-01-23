@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import heroImage from "../../resources/imageThree.avif";
 import { useRef } from "react";
-import { useInView } from "framer-motion";
+import { motion, useInView, useScroll, useTransform } from "framer-motion";
 
 const SideText = () => {
   return (
@@ -22,34 +22,35 @@ const HeroText = () => {
 };
 
 const HeroSection = () => {
-  const containerRef = useRef<HTMLElement | null>(null);
+  const containerRef = useRef<HTMLDivElement | null>(null);
 
   const navigate = useNavigate();
   const handleNavigate = () => {
     navigate("/gallery");
   };
 
-  const isInView = useInView(containerRef, {
-    amount: 0.8,
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start end", "end start"],
   });
 
-  const isIntersectingStyle = {
-    opacity: isInView ? "1" : "0",
-    visibility: isInView ? "visible" : "hidden",
-    filter: isInView ? "blur(0px)" : "blur(1px)",
-    transform: `translateY(${isInView ? 0 : 20}px)`,
-    transition: `opacity 0.2s ease, visibility 0.2s ease, transform ${isInView ? "0.1s" : "0.3s"} ease, transform 0.2s ease`,
-  };
+  const opacity = useTransform(scrollYProgress, [0, 0.2, 0.4, 1], [0, 1, 1, 0]);
+  const containerY = useTransform(
+    scrollYProgress,
+    [0, 0.2, 0.5, 1],
+    [50, 0, 0, 50],
+  );
 
   return (
-    <div
-      ref={containerRef}
-      className="w-full h-screen z-30 sticky grid place-items-center overflow-hidden grid-cols-1 grid-rows-1"
-    >
-      <div className="fixed w-full h-full" style={isIntersectingStyle}>
+    <div className="w-full h-screen z-30 sticky grid place-items-center overflow-hidden grid-cols-1 grid-rows-1">
+      <motion.div
+        ref={containerRef}
+        className="fixed w-full h-full"
+        style={{ opacity, y: containerY }}
+      >
         <SideText />
         <HeroText />
-      </div>
+      </motion.div>
       <button
         onClick={handleNavigate}
         className="col-start-1 row-start-1 z-10 bg-gray-300 w-35 h-15 cursor-pointer m-auto"

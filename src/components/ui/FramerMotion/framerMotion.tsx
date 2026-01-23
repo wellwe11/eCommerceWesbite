@@ -1,9 +1,8 @@
 import { useRef } from "react";
-import { motion } from "framer-motion";
+import { motion, useInView } from "framer-motion";
 
 import styles from "./framerMotion.module.scss";
 
-import useInView from "../../hooks/useInView.ts";
 import useSpringScroll from "./hooks/useSpringScroll.ts";
 import type { HomeSection } from "src/router.tsx";
 
@@ -26,19 +25,12 @@ const LongTextContainer = ({ longText }: { longText: string }) => {
   );
 };
 
-const FramerMotion = ({
-  data,
-  threshold = 0.7,
-}: {
-  data: HomeSection;
-  threshold: number | undefined;
-}) => {
+const FramerMotion = ({ data }: { data: HomeSection }) => {
   const containerRef = useRef<HTMLDivElement | null>(null);
 
+  const isInView = useInView(containerRef, { amount: 0.9 });
+
   const { md, lg } = useSpringScroll(containerRef);
-  const { isIntersecting } = useInView(containerRef, {
-    threshold: threshold,
-  });
 
   const {
     index,
@@ -56,9 +48,9 @@ const FramerMotion = ({
   ];
 
   const intersectingStyle: Object = {
-    opacity: isIntersecting ? "1" : "0",
-    visibility: isIntersecting ? "visible" : "hidden",
-    transition: isIntersecting
+    opacity: isInView ? "1" : "0",
+    visibility: isInView ? "visible" : "hidden",
+    transition: isInView
       ? "opacity 0.6s ease, visibility 1s cubic-bezier(0.16, 1, 0.3, 1)"
       : "opacity 0.2s ease, visibility 0.2s cubic-bezier(0.7, 0, 0.84, 0)",
     transform: "translateX(0)",
@@ -100,14 +92,13 @@ const FramerMotion = ({
 
 const FramerMotionContainer = ({
   data,
-  threshold,
 }: {
   data: HomeSection;
   threshold: number | undefined;
 }) => {
   return (
     <div className={styles.container}>
-      <FramerMotion data={data} threshold={threshold} />
+      <FramerMotion data={data} />
     </div>
   );
 };

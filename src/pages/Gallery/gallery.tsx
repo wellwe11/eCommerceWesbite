@@ -1,21 +1,20 @@
 import { useRef, useState, useEffect } from "react";
 import Product from "./components/product";
 import type { ProductData } from "../../app/App";
-
-import useInView from "../../components/hooks/useInView";
+import { motion, useInView } from "framer-motion";
 
 const Gallery = ({ data }: { data: ProductData[] }) => {
   const [items, setItems] = useState(data.slice(0, 9));
   const [hasMore, setHasMore] = useState(true);
   const sentinenRef = useRef(null);
 
-  const { isIntersecting } = useInView(sentinenRef, { threshold: 0.9 });
+  const isInView = useInView(sentinenRef);
 
   useEffect(() => {
-    if (isIntersecting && hasMore) {
+    if (isInView && hasMore) {
       loadMore();
     }
-  }, [isIntersecting]);
+  }, [isInView]);
 
   const loadMore = () => {
     const nextBatch = data.slice(items.length, items.length + 9);
@@ -33,7 +32,7 @@ const Gallery = ({ data }: { data: ProductData[] }) => {
         <Product key={`product_${index}`} data={obj} />
       ))}
 
-      {hasMore && <div ref={sentinenRef} className="h-50 w-full" />}
+      {hasMore && <motion.div ref={sentinenRef} className="h-50 w-full" />}
     </div>
   );
 };

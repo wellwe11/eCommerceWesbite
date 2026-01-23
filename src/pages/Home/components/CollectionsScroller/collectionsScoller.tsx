@@ -1,78 +1,65 @@
-import React, { useRef } from "react";
-
-import useInView from "../../../../components/hooks/useInView.ts";
+import React, { useRef, useState } from "react";
 
 import FramerMotionContainer from "@components/ui/FramerMotion/framerMotion.tsx";
 
-import useFoundInView from "../../hooks/useFoundInView.ts";
 import type { HomeSection } from "src/router.tsx";
+import { motion, useScroll, useTransform } from "framer-motion";
 
 // number on right side which displays currently showing collection (1/2/3...)
-const CollectionNumberCounter = ({
-  intersectingRefs,
-}: {
-  intersectingRefs: React.RefObject<(HTMLDivElement | null)[]>;
-}) => {
-  if (!intersectingRefs) {
-    return;
-  }
-
-  const containerRef = useRef(null);
-
-  const { intersectingEl } = useFoundInView(intersectingRefs);
-
-  const { isIntersecting } = useInView(containerRef, {
-    threshold: 0.1,
+const CollectionNumberCounter = ({ activeCount }: { activeCount: number }) => {
+  const containerRef = useRef<HTMLDivElement | null>(null);
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start end", "end start"],
   });
 
+  const opacity = useTransform(scrollYProgress, [0, 0.2, 0.8, 1], [0, 1, 1, 0]);
+
   return (
-    <div
+    <motion.div
       ref={containerRef}
       className="col-start-3 row-start-1 row-end-3 h-full text-start relative"
+      style={{ opacity }}
     >
-      <div
+      <motion.div
         className="top-[15%] ml-[1vw] fixed h-15 overflow-hidden"
-        style={{
-          opacity: !isIntersecting ? "0" : "1",
-          visibility: !isIntersecting ? "hidden" : "visible",
-          transition: "opacity 0.2s ease, visibility 0.2s ease",
-        }}
+        initial="hidden"
+        whileInView="visible"
       >
         <h3 className="text-6xl font-light">0</h3>
-        <div
+        <motion.div
+          viewport={{ amount: 0.5 }}
           className="ml-9  transition-transform duration-700 ease"
           style={{
-            transform: `translateY(-${(+intersectingEl + 1) * 33}%)`,
+            transform: `translateY(-${(activeCount + 1) * 33}%)`,
           }}
         >
           <h3 className="text-6xl font-light -mt-0.5">1</h3>
           <h3 className="text-6xl font-light -mt-0.5">2</h3>
           <h3 className="text-6xl font-light -mt-0.5">3</h3>
-        </div>
-      </div>
-    </div>
+        </motion.div>
+      </motion.div>
+    </motion.div>
   );
 };
 
 const CollectionsContainer = ({
   data,
-  intersectingRefs,
+  setter,
 }: {
   data: Record<string, HomeSection>;
-  intersectingRefs: React.RefObject<(HTMLDivElement | null)[]>;
+  setter: React.Dispatch<React.SetStateAction<number>>;
 }) => {
   return (
     <div className="row-start-1 row-end-3 col-start-2 w-full h-full flex flex-col items-center">
       {Object.entries(data).map(([entry, obj], i) => (
-        <div
+        <motion.div
           key={`framerContainer_${entry}_${i}`}
-          ref={(el) => {
-            intersectingRefs.current[i] = el;
-          }}
+          onViewportEnter={() => setter(i)}
           className="mt-80 mb-80"
         >
           <FramerMotionContainer data={obj} threshold={0.7} />
-        </div>
+        </motion.div>
       ))}
     </div>
   );
@@ -83,12 +70,12 @@ const CollectionsScoller = ({
 }: {
   data: Record<string, HomeSection>;
 }) => {
-  const intersectingRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const [activeCount, setActiveCount] = useState(0);
 
   return (
     <div className="grid grid-cols-[1fr_600px_1fr] grid-rows-1 w-full">
-      <CollectionNumberCounter intersectingRefs={intersectingRefs} />
-      <CollectionsContainer data={data} intersectingRefs={intersectingRefs} />
+      <CollectionNumberCounter activeCount={activeCount} />
+      <CollectionsContainer data={data} setter={setActiveCount} />
     </div>
   );
 };
