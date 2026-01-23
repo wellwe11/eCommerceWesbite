@@ -37,9 +37,6 @@ html {
     -ms-overflow-style: none;
     scrollbar-width: none;
   }
-
-  @layer base {
-  }
 }
 
 body {
