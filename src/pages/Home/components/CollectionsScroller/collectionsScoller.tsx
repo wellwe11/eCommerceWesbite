@@ -38,16 +38,16 @@ const CollectionNumberCounter = ({
           transition: "opacity 0.2s ease, visibility 0.2s ease",
         }}
       >
-        <h3 className="text-6xl font-extralight">0</h3>
+        <h3 className="text-6xl font-light">0</h3>
         <div
           className="ml-9  transition-transform duration-700 ease"
           style={{
             transform: `translateY(-${(+intersectingEl + 1) * 33}%)`,
           }}
         >
-          <h3 className="text-6xl font-extralight -mt-0.5">1</h3>
-          <h3 className="text-6xl font-extralight -mt-0.5">2</h3>
-          <h3 className="text-6xl font-extralight -mt-0.5">3</h3>
+          <h3 className="text-6xl font-light -mt-0.5">1</h3>
+          <h3 className="text-6xl font-light -mt-0.5">2</h3>
+          <h3 className="text-6xl font-light -mt-0.5">3</h3>
         </div>
       </div>
     </div>
