@@ -57,7 +57,7 @@ const HeroSection = () => {
   );
 
   return (
-    <div className="w-full h-screen z-30 sticky grid place-items-center overflow-hidden grid-cols-1 grid-rows-1">
+    <div className="w-full h-screen z-30 sticky grid place-items-center overflow-hidden grid-cols-1 grid-rows-1 will-change-transform">
       <motion.div
         ref={containerRef}
         className="fixed w-full h-full grid grid-cols-1"
