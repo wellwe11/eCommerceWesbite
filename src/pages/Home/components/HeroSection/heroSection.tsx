@@ -1,11 +1,11 @@
 import { useNavigate } from "react-router-dom";
 import heroImage from "../../resources/imageThree.avif";
 import { useRef } from "react";
-import { motion, useInView, useScroll, useTransform } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
 
 const SideText = () => {
   return (
-    <div className="relative top-[24.5vw] z-10 col-start-1 row-start-1 justify-self-end self-center [writing-mode:vertical-rl] flex items-center gap-5">
+    <div className="p-10 z-10 self-center col-start-1 row-start-1 justify-self-end [writing-mode:vertical-rl] flex items-center gap-5">
       <p className="text-xs">Small uninformative text, minor details</p>
       <h4 className="text-5xl">Big title text</h4>
     </div>
@@ -14,9 +14,11 @@ const SideText = () => {
 
 const HeroText = () => {
   return (
-    <div className="relative bottom-[-10vw] left-[1vw] z-10 col-start-1 row-start-1 justify-self-start self-end">
-      <h1 className="text-9xl font-light">Art,</h1>
-      <h1 className="text-9xl font-light">for you</h1>
+    <div className="relative self-end p-10 z-10 col-start-1 row-start-1 justify-self-start">
+      <h1 className="text-[175px] font-light leading-50">
+        Art,
+        <br /> for you
+      </h1>
     </div>
   );
 };
@@ -45,7 +47,7 @@ const HeroSection = () => {
     <div className="w-full h-screen z-30 sticky grid place-items-center overflow-hidden grid-cols-1 grid-rows-1">
       <motion.div
         ref={containerRef}
-        className="fixed w-full h-full"
+        className="fixed w-full h-full grid grid-cols-1"
         style={{ opacity, y: containerY }}
       >
         <SideText />
