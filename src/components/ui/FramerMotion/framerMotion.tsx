@@ -1,5 +1,5 @@
 import { useRef } from "react";
-import { motion, useInView, useScroll, useTransform } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
 
 import styles from "./framerMotion.module.scss";
 
@@ -36,6 +36,8 @@ const FramerMotion = ({ data }: { data: HomeSection }) => {
     images: imageSources,
   } = data;
 
+  if (!data) return;
+
   const images = [
     { src: imageSources[0], y: 0 },
     { src: imageSources[1], y: lg },
@@ -64,13 +66,7 @@ const FramerMotion = ({ data }: { data: HomeSection }) => {
           style={{ y }}
           className={styles.imageContainer}
         >
-          <img
-            className={styles.image}
-            src={src}
-            alt="image"
-            loading="eager"
-            decoding="async"
-          />
+          <img className={styles.image} src={src} alt="image" />
         </motion.div>
       ))}
       <motion.div
