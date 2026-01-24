@@ -36,31 +36,27 @@ const HeroSection = () => {
     offset: ["start end", "end start"],
   });
 
-  const opacity = useTransform(
-    scrollYProgress,
-    [0, 0.2, 0.5, 0.68],
-    [0, 1, 1, 0],
-  );
+  const opacity = useTransform(scrollYProgress, [0, 0.2, 0.5, 1], [0, 1, 1, 0]);
 
   // SideText
   const containerYOne = useTransform(
     scrollYProgress,
-    [0, 0.4, 0.5, 0.6],
-    [50, 0, 0, 50],
+    [0, 0.3, 0.4, 0.8],
+    [180, 0, 0, 180],
   );
 
   // HeroText
   const containerYTwo = useTransform(
     scrollYProgress,
     [0, 0.2, 0.5, 0.6],
-    [50, 0, 0, 50],
+    [40, 0, 0, 40],
   );
 
   return (
     <div className="w-full h-screen z-30 sticky grid place-items-center overflow-hidden grid-cols-1 grid-rows-1">
       <motion.div
         ref={containerRef}
-        className="absolute w-full h-full grid grid-cols-1"
+        className="absolute w-full h-full grid grid-cols-1 will-change-auto"
         style={{ opacity }}
       >
         <motion.div
