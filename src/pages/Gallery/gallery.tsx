@@ -22,6 +22,16 @@ const LoadMoreEl = ({
   return hasMore && <motion.div ref={sentinenRef} className="h-50 w-full" />;
 };
 
+const Products = ({ data }: { data: ProductData[] }) => {
+  return (
+    <motion.div className="grid grid-cols-[repeat(3,clamp(100px,18vw,350px))] pt-30 justify-center justify-items-center w-full gap-y-7 gap-x-10">
+      {data.map((obj, index) => (
+        <Product key={`product_${index}`} data={obj} />
+      ))}
+    </motion.div>
+  );
+};
+
 const Gallery = ({ data }: { data: ProductData[] }) => {
   const [items, setItems] = useState(data.slice(0, 9));
   const [hasMore, setHasMore] = useState<boolean>(true);
@@ -37,10 +47,8 @@ const Gallery = ({ data }: { data: ProductData[] }) => {
   };
 
   return (
-    <div className="grid grid-cols-[repeat(3,clamp(100px,18vw,350px))] pt-30 justify-center justify-items-center w-full gap-x-10 gap-y-7">
-      {items.map((obj, index) => (
-        <Product key={`product_${index}`} data={obj} />
-      ))}
+    <div className="">
+      <Products data={items} />
 
       <LoadMoreEl setter={loadMore} hasMore={hasMore} />
     </div>
