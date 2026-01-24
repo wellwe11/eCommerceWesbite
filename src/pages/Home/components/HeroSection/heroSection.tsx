@@ -5,7 +5,7 @@ import { motion, useScroll, useTransform } from "framer-motion";
 
 const SideText = () => {
   return (
-    <div className="p-10 z-10 self-center col-start-1 row-start-1 justify-self-end [writing-mode:vertical-rl] flex items-center gap-5">
+    <div className="relative -bottom-15 p-10 z-10 self-center col-start-1 row-start-1 justify-self-end [writing-mode:vertical-rl] flex items-center gap-5">
       <p className="text-xs">Small uninformative text, minor details</p>
       <h4 className="text-5xl">Big title text</h4>
     </div>
