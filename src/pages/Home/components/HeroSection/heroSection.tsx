@@ -36,7 +36,7 @@ const HeroSection = () => {
     offset: ["start end", "end start"],
   });
 
-  const opacity = useTransform(scrollYProgress, [0, 0.2, 0.4, 1], [0, 1, 1, 0]);
+  const opacity = useTransform(scrollYProgress, [0, 0.2, 0.6, 1], [0, 1, 1, 0]);
   const containerY = useTransform(
     scrollYProgress,
     [0, 0.2, 0.5, 1],

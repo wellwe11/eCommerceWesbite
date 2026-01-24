@@ -47,6 +47,7 @@ const FramerMotion = ({ data }: { data: HomeSection }) => {
     },
   ];
 
+  // update this to use framerMotion instead
   const intersectingStyle: Object = {
     opacity: isInView ? "1" : "0",
     visibility: isInView ? "visible" : "hidden",

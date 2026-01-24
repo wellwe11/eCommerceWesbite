@@ -3,18 +3,28 @@ import Product from "./components/product";
 import type { ProductData } from "../../app/App";
 import { motion, useInView } from "framer-motion";
 
-const Gallery = ({ data }: { data: ProductData[] }) => {
-  const [items, setItems] = useState(data.slice(0, 9));
-  const [hasMore, setHasMore] = useState(true);
+const LoadMoreEl = ({
+  setter,
+  hasMore,
+}: {
+  setter: CallableFunction;
+  hasMore: boolean;
+}) => {
   const sentinenRef = useRef(null);
-
   const isInView = useInView(sentinenRef);
 
   useEffect(() => {
     if (isInView && hasMore) {
-      loadMore();
+      setter();
     }
   }, [isInView]);
+
+  return hasMore && <motion.div ref={sentinenRef} className="h-50 w-full" />;
+};
+
+const Gallery = ({ data }: { data: ProductData[] }) => {
+  const [items, setItems] = useState(data.slice(0, 9));
+  const [hasMore, setHasMore] = useState<boolean>(true);
 
   const loadMore = () => {
     const nextBatch = data.slice(items.length, items.length + 9);
@@ -32,7 +42,7 @@ const Gallery = ({ data }: { data: ProductData[] }) => {
         <Product key={`product_${index}`} data={obj} />
       ))}
 
-      {hasMore && <motion.div ref={sentinenRef} className="h-50 w-full" />}
+      <LoadMoreEl setter={loadMore} hasMore={hasMore} />
     </div>
   );
 };
