@@ -1,5 +1,5 @@
 import { useRef } from "react";
-import { motion, useInView } from "framer-motion";
+import { motion, useInView, useScroll, useTransform } from "framer-motion";
 
 import styles from "./framerMotion.module.scss";
 
@@ -28,8 +28,6 @@ const LongTextContainer = ({ longText }: { longText: string }) => {
 const FramerMotion = ({ data }: { data: HomeSection }) => {
   const containerRef = useRef<HTMLDivElement | null>(null);
 
-  const isInView = useInView(containerRef, { amount: 0.9 });
-
   const { md, lg } = useSpringScroll(containerRef);
 
   const {
@@ -47,15 +45,16 @@ const FramerMotion = ({ data }: { data: HomeSection }) => {
     },
   ];
 
-  // update this to use framerMotion instead
-  const intersectingStyle: Object = {
-    opacity: isInView ? "1" : "0",
-    visibility: isInView ? "visible" : "hidden",
-    transition: isInView
-      ? "opacity 0.6s ease, visibility 1s cubic-bezier(0.16, 1, 0.3, 1)"
-      : "opacity 0.2s ease, visibility 0.2s cubic-bezier(0.7, 0, 0.84, 0)",
-    transform: "translateX(0)",
-  };
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start end", "start start", "end end", "end start"],
+  });
+  const opacity = useTransform(
+    scrollYProgress,
+    [0, 0.3, 0.6, 0.9],
+    [0, 1, 1, 0],
+  );
+  const textY = useTransform(scrollYProgress, [0, 0.2], [20, 0]);
 
   return (
     <div className={styles.framerMotion} ref={containerRef}>
@@ -74,19 +73,19 @@ const FramerMotion = ({ data }: { data: HomeSection }) => {
           />
         </motion.div>
       ))}
-      <div
+      <motion.div
         className={`${styles.leftContainer} ${styles.gridTextClass}`}
-        style={intersectingStyle}
+        style={{ opacity, y: textY }}
       >
         <BioContainer bioTitle={title} bio={info} />
-      </div>
+      </motion.div>
 
-      <div
+      <motion.div
         className={`${styles.belowContainer} ${styles.gridTextClass}`}
-        style={intersectingStyle}
+        style={{ opacity }}
       >
         <LongTextContainer longText={bio} />
-      </div>
+      </motion.div>
     </div>
   );
 };

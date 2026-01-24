@@ -1,9 +1,8 @@
 import React, { useRef, useState } from "react";
+import { motion, useScroll, useTransform } from "framer-motion";
+import type { HomeSection } from "src/router.tsx";
 
 import FramerMotionContainer from "@components/ui/FramerMotion/framerMotion.tsx";
-
-import type { HomeSection } from "src/router.tsx";
-import { motion, useScroll, useTransform } from "framer-motion";
 
 // number on right side which displays currently showing collection (1/2/3...)
 const CollectionNumberCounter = ({ activeCount }: { activeCount: number }) => {

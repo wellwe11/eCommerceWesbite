@@ -49,3 +49,8 @@ export default App;
 // Cart page
 // Contact page
 // Footer
+
+// integrate:
+//  tanstack - react-query
+// add axios
+// jotai
