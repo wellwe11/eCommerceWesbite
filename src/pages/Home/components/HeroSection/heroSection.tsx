@@ -38,29 +38,29 @@ const HeroSection = () => {
 
   const opacity = useTransform(
     scrollYProgress,
-    [0, 0.2, 0.6, 0.7],
+    [0, 0.2, 0.5, 0.7],
     [0, 1, 1, 0],
   );
 
   // SideText
   const containerYOne = useTransform(
     scrollYProgress,
-    [0, 0.2, 0.3, 0.7],
+    [0, 0.4, 0.5, 0.6],
     [50, 0, 0, 50],
   );
 
   // HeroText
   const containerYTwo = useTransform(
     scrollYProgress,
-    [0, 0.2, 0.4, 0.7],
+    [0, 0.2, 0.5, 0.6],
     [50, 0, 0, 50],
   );
 
   return (
-    <div className="w-full h-screen z-30 sticky grid place-items-center overflow-hidden grid-cols-1 grid-rows-1 will-change-transform">
+    <div className="w-full h-screen z-30 sticky grid place-items-center overflow-hidden grid-cols-1 grid-rows-1">
       <motion.div
         ref={containerRef}
-        className="fixed w-full h-full grid grid-cols-1"
+        className="absolute w-full h-full grid grid-cols-1"
         style={{ opacity }}
       >
         <motion.div
