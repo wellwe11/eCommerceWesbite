@@ -47,7 +47,8 @@ const Gallery = () => {
     setItems((prev) => prev + 9);
   };
 
-  if (isLoading) return;
+  if (isLoading) return <h1>Loading...</h1>;
+  if (!data) return <h1>Failed to fetch data</h1>;
 
   return (
     <div className="">
