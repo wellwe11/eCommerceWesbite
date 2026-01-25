@@ -36,6 +36,7 @@ const HeroSection = () => {
     offset: ["start end", "end start"],
   });
 
+  // SideText & HeroText
   const opacity = useTransform(
     scrollYProgress,
     [0, 0.45, 0.75, 1],
@@ -45,14 +46,14 @@ const HeroSection = () => {
   // SideText
   const containerYOne = useTransform(
     scrollYProgress,
-    [0, 0.3, 0.4, 0.8],
+    [0, 0.3, 0.4, 1],
     [180, 0, 0, 180],
   );
 
   // HeroText
   const containerYTwo = useTransform(
     scrollYProgress,
-    [0, 0.2, 0.5, 0.6],
+    [0, 0.2, 0.5, 1],
     [40, 0, 0, 40],
   );
 
@@ -65,7 +66,7 @@ const HeroSection = () => {
       >
         <motion.div
           style={{ y: containerYOne }}
-          className="relative -bottom-15 self-center justify-self-end col-start-1 row-start-1"
+          className="relative self-center justify-self-end col-start-1 row-start-1"
         >
           <SideText />
         </motion.div>
