@@ -22,3 +22,7 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
     </ReactLenis>
   </StrictMode>,
 );
+
+// create an atom-state
+// create a 'fetch-api'
+// fetch data with tanstack
