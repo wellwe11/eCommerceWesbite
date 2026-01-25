@@ -12,20 +12,20 @@ const CollectionNumberCounter = ({ activeCount }: { activeCount: number }) => {
     offset: ["start end", "end start"],
   });
 
-  const opacity = useTransform(scrollYProgress, [0, 0.2, 0.8, 1], [0, 1, 1, 0]);
+  const opacity = useTransform(scrollYProgress, [0, 0.1, 0.8, 1], [0, 1, 1, 0]);
 
   return (
     <motion.div
       ref={containerRef}
-      className="col-start-3 row-start-1 row-end-3 h-full text-start relative"
+      className="relative col-start-3 row-start-1 row-end-3 h-full text-start"
       style={{ opacity }}
     >
       <motion.div
-        className="top-[15%] ml-[1vw] fixed h-15 overflow-hidden"
+        className="fixed top-[15%] h-15 overflow-hidden"
         initial="hidden"
         whileInView="visible"
       >
-        <h3 className="text-6xl font-light">0</h3>
+        <h3 className="text-6xl font-heavy">0</h3>
         <motion.div
           viewport={{ amount: 0.5 }}
           className="ml-9  transition-transform duration-700 ease"
@@ -33,9 +33,9 @@ const CollectionNumberCounter = ({ activeCount }: { activeCount: number }) => {
             transform: `translateY(-${(activeCount + 1) * 33}%)`,
           }}
         >
-          <h3 className="text-6xl font-light -mt-0.5">1</h3>
-          <h3 className="text-6xl font-light -mt-0.5">2</h3>
-          <h3 className="text-6xl font-light -mt-0.5">3</h3>
+          <h3 className="text-6xl font-heavy -mt-0.5">1</h3>
+          <h3 className="text-6xl font-heavy -mt-0.5">2</h3>
+          <h3 className="text-6xl font-heavy -mt-0.5">3</h3>
         </motion.div>
       </motion.div>
     </motion.div>
@@ -72,7 +72,7 @@ const CollectionsScoller = ({
   const [activeCount, setActiveCount] = useState(0);
 
   return (
-    <div className="grid grid-cols-[1fr_600px_1fr] grid-rows-1 w-full">
+    <div className="grid grid-cols-[1fr_clamp(calc(30vw+10rem),50%,45vw)_1fr] grid-rows-1 w-full">
       <CollectionNumberCounter activeCount={activeCount} />
       <CollectionsContainer data={data} setter={setActiveCount} />
     </div>

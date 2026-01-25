@@ -40,9 +40,9 @@ const homeData: Record<string, HomeSection> = {
     index: 2,
 
     text: {
-      title: bioTitle,
-      info: info,
-      bio: longText,
+      title: "Something new to add to text so that it looks like it changes.",
+      info: "Information about the specifics for this collection.",
+      bio: "This text is a long longer than the others, because it is going to have some unique information about it which might make someone want to buy it",
     },
     images: [imageTwo, imageThree, imageOne],
   },

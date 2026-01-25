@@ -36,7 +36,11 @@ const HeroSection = () => {
     offset: ["start end", "end start"],
   });
 
-  const opacity = useTransform(scrollYProgress, [0, 0.2, 0.5, 1], [0, 1, 1, 0]);
+  const opacity = useTransform(
+    scrollYProgress,
+    [0, 0.45, 0.75, 1],
+    [0, 1, 1, 0],
+  );
 
   // SideText
   const containerYOne = useTransform(
@@ -53,7 +57,7 @@ const HeroSection = () => {
   );
 
   return (
-    <div className="w-full h-screen z-30 sticky grid place-items-center overflow-hidden grid-cols-1 grid-rows-1">
+    <div className="w-full h-screen z-30 sticky grid place-items-center overflow-hidden grid-cols-1 grid-rows-1 will-change-transform">
       <motion.div
         ref={containerRef}
         className="absolute w-full h-full grid grid-cols-1 will-change-auto"
@@ -72,6 +76,7 @@ const HeroSection = () => {
           <HeroText />
         </motion.div>
       </motion.div>
+
       <button
         onClick={handleNavigate}
         className="col-start-1 row-start-1 z-10 bg-gray-300 w-35 h-15 cursor-pointer m-auto"

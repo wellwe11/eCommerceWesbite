@@ -1,5 +1,5 @@
 import { useRef } from "react";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion, useScroll, useSpring, useTransform } from "framer-motion";
 
 import styles from "./framerMotion.module.scss";
 
@@ -51,12 +51,13 @@ const FramerMotion = ({ data }: { data: HomeSection }) => {
     target: containerRef,
     offset: ["start end", "start start", "end end", "end start"],
   });
-  const opacity = useTransform(
+
+  const rawOpacity = useTransform(
     scrollYProgress,
-    [0, 0.3, 0.6, 0.9],
+    [0, 0.3, 0.8, 1],
     [0, 1, 1, 0],
   );
-  const textY = useTransform(scrollYProgress, [0, 0.2], [20, 0]);
+  const opacity = useSpring(rawOpacity, { stiffness: 100, damping: 20 });
 
   return (
     <div className={styles.framerMotion} ref={containerRef}>
@@ -71,7 +72,7 @@ const FramerMotion = ({ data }: { data: HomeSection }) => {
       ))}
       <motion.div
         className={`${styles.leftContainer} ${styles.gridTextClass}`}
-        style={{ opacity, y: textY }}
+        style={{ opacity }}
       >
         <BioContainer bioTitle={title} bio={info} />
       </motion.div>
