@@ -2,24 +2,20 @@ import { useRef, useState, useEffect } from "react";
 import Product from "./components/product";
 import type { ProductData } from "../../app/App";
 import { motion, useInView } from "framer-motion";
+import { useQuery } from "@tanstack/react-query";
+import fetchGallery from "../../services/api";
 
-const LoadMoreEl = ({
-  setter,
-  hasMore,
-}: {
-  setter: CallableFunction;
-  hasMore: boolean;
-}) => {
+const LoadMoreEl = ({ setter }: { setter: CallableFunction }) => {
   const sentinenRef = useRef(null);
   const isInView = useInView(sentinenRef);
 
   useEffect(() => {
-    if (isInView && hasMore) {
+    if (isInView) {
       setter();
     }
   }, [isInView]);
 
-  return hasMore && <motion.div ref={sentinenRef} className="h-50 w-full" />;
+  return <motion.div ref={sentinenRef} className="h-50 w-full" />;
 };
 
 const Products = ({ data }: { data: ProductData[] }) => {
@@ -32,25 +28,32 @@ const Products = ({ data }: { data: ProductData[] }) => {
   );
 };
 
-const Gallery = ({ data }: { data: ProductData[] }) => {
-  const [items, setItems] = useState(data.slice(0, 9));
-  const [hasMore, setHasMore] = useState<boolean>(true);
+const Gallery = () => {
+  const [items, setItems] = useState(9);
+
+  const { data, isLoading } = useQuery({
+    queryKey: ["gallery"],
+    queryFn: () => fetchGallery("/galleryData.json"),
+
+    select: (data) => ({
+      items: data.slice(0, items),
+      total: data.length,
+    }),
+  });
 
   const loadMore = () => {
-    const nextBatch = data.slice(items.length, items.length + 9);
+    if (!data || !items) return;
 
-    if (nextBatch.length > 0) {
-      setItems((prev) => [...prev, ...nextBatch]);
-    } else {
-      setHasMore(false);
-    }
+    setItems((prev) => prev + 9);
   };
+
+  if (isLoading) return;
 
   return (
     <div className="">
-      <Products data={items} />
+      <Products data={data.items} />
 
-      <LoadMoreEl setter={loadMore} hasMore={hasMore} />
+      {data && items < data.total && <LoadMoreEl setter={loadMore} />}
     </div>
   );
 };

@@ -1,0 +1,352 @@
+[
+  {
+    "name": "Picture in blue",
+    "price": 34.99,
+    "width": 20,
+    "height": 45,
+    "colors": ["blue", "white"],
+    "images": [
+      { "src": "/resources/imageOne.avif", "type": "main" },
+      { "src": "/resources/imageThree.avif", "type": "alternative" },
+      { "src": "/resources/imageTwo.avif", "type": "rest" },
+      { "src": "/resources/imageOne.avif", "type": "rest" },
+      { "src": "/resources/imageTwo.avif", "type": "rest" }
+    ]
+  },
+  {
+    "name": "Picture in blue",
+    "price": 34.99,
+    "width": 20,
+    "height": 45,
+    "colors": ["blue", "white"],
+    "images": [
+      { "src": "/resources/imageOne.avif", "type": "main" },
+      { "src": "/resources/imageThree.avif", "type": "alternative" },
+      { "src": "/resources/imageTwo.avif", "type": "rest" },
+      { "src": "/resources/imageOne.avif", "type": "rest" },
+      { "src": "/resources/imageTwo.avif", "type": "rest" }
+    ]
+  },
+  {
+    "name": "Picture in blue",
+    "price": 34.99,
+    "width": 20,
+    "height": 45,
+    "colors": ["blue", "white"],
+    "images": [
+      { "src": "/resources/imageOne.avif", "type": "main" },
+      { "src": "/resources/imageThree.avif", "type": "alternative" },
+      { "src": "/resources/imageTwo.avif", "type": "rest" },
+      { "src": "/resources/imageOne.avif", "type": "rest" },
+      { "src": "/resources/imageTwo.avif", "type": "rest" }
+    ]
+  },
+  {
+    "name": "Picture in blue",
+    "price": 34.99,
+    "width": 20,
+    "height": 45,
+    "colors": ["blue", "white"],
+    "images": [
+      { "src": "/resources/imageOne.avif", "type": "main" },
+      { "src": "/resources/imageThree.avif", "type": "alternative" },
+      { "src": "/resources/imageTwo.avif", "type": "rest" },
+      { "src": "/resources/imageOne.avif", "type": "rest" },
+      { "src": "/resources/imageTwo.avif", "type": "rest" }
+    ]
+  },
+  {
+    "name": "Picture in blue",
+    "price": 34.99,
+    "width": 20,
+    "height": 45,
+    "colors": ["blue", "white"],
+    "images": [
+      { "src": "/resources/imageOne.avif", "type": "main" },
+      { "src": "/resources/imageThree.avif", "type": "alternative" },
+      { "src": "/resources/imageTwo.avif", "type": "rest" },
+      { "src": "/resources/imageOne.avif", "type": "rest" },
+      { "src": "/resources/imageTwo.avif", "type": "rest" }
+    ]
+  },
+  {
+    "name": "Picture in blue",
+    "price": 34.99,
+    "width": 20,
+    "height": 45,
+    "colors": ["blue", "white"],
+    "images": [
+      { "src": "/resources/imageOne.avif", "type": "main" },
+      { "src": "/resources/imageThree.avif", "type": "alternative" },
+      { "src": "/resources/imageTwo.avif", "type": "rest" },
+      { "src": "/resources/imageOne.avif", "type": "rest" },
+      { "src": "/resources/imageTwo.avif", "type": "rest" }
+    ]
+  },
+  {
+    "name": "Picture in blue",
+    "price": 34.99,
+    "width": 20,
+    "height": 45,
+    "colors": ["blue", "white"],
+    "images": [
+      { "src": "/resources/imageOne.avif", "type": "main" },
+      { "src": "/resources/imageThree.avif", "type": "alternative" },
+      { "src": "/resources/imageTwo.avif", "type": "rest" },
+      { "src": "/resources/imageOne.avif", "type": "rest" },
+      { "src": "/resources/imageTwo.avif", "type": "rest" }
+    ]
+  },
+  {
+    "name": "Picture in blue",
+    "price": 34.99,
+    "width": 20,
+    "height": 45,
+    "colors": ["blue", "white"],
+    "images": [
+      { "src": "/resources/imageOne.avif", "type": "main" },
+      { "src": "/resources/imageThree.avif", "type": "alternative" },
+      { "src": "/resources/imageTwo.avif", "type": "rest" },
+      { "src": "/resources/imageOne.avif", "type": "rest" },
+      { "src": "/resources/imageTwo.avif", "type": "rest" }
+    ]
+  },
+  {
+    "name": "Picture in blue",
+    "price": 34.99,
+    "width": 20,
+    "height": 45,
+    "colors": ["blue", "white"],
+    "images": [
+      { "src": "/resources/imageOne.avif", "type": "main" },
+      { "src": "/resources/imageThree.avif", "type": "alternative" },
+      { "src": "/resources/imageTwo.avif", "type": "rest" },
+      { "src": "/resources/imageOne.avif", "type": "rest" },
+      { "src": "/resources/imageTwo.avif", "type": "rest" }
+    ]
+  },
+  {
+    "name": "Picture in blue",
+    "price": 34.99,
+    "width": 20,
+    "height": 45,
+    "colors": ["blue", "white"],
+    "images": [
+      { "src": "/resources/imageOne.avif", "type": "main" },
+      { "src": "/resources/imageThree.avif", "type": "alternative" },
+      { "src": "/resources/imageTwo.avif", "type": "rest" },
+      { "src": "/resources/imageOne.avif", "type": "rest" },
+      { "src": "/resources/imageTwo.avif", "type": "rest" }
+    ]
+  },
+  {
+    "name": "Picture in blue",
+    "price": 34.99,
+    "width": 20,
+    "height": 45,
+    "colors": ["blue", "white"],
+    "images": [
+      { "src": "/resources/imageOne.avif", "type": "main" },
+      { "src": "/resources/imageThree.avif", "type": "alternative" },
+      { "src": "/resources/imageTwo.avif", "type": "rest" },
+      { "src": "/resources/imageOne.avif", "type": "rest" },
+      { "src": "/resources/imageTwo.avif", "type": "rest" }
+    ]
+  },
+  {
+    "name": "Picture in blue",
+    "price": 34.99,
+    "width": 20,
+    "height": 45,
+    "colors": ["blue", "white"],
+    "images": [
+      { "src": "/resources/imageOne.avif", "type": "main" },
+      { "src": "/resources/imageThree.avif", "type": "alternative" },
+      { "src": "/resources/imageTwo.avif", "type": "rest" },
+      { "src": "/resources/imageOne.avif", "type": "rest" },
+      { "src": "/resources/imageTwo.avif", "type": "rest" }
+    ]
+  },
+  {
+    "name": "Picture in blue",
+    "price": 34.99,
+    "width": 20,
+    "height": 45,
+    "colors": ["blue", "white"],
+    "images": [
+      { "src": "/resources/imageOne.avif", "type": "main" },
+      { "src": "/resources/imageThree.avif", "type": "alternative" },
+      { "src": "/resources/imageTwo.avif", "type": "rest" },
+      { "src": "/resources/imageOne.avif", "type": "rest" },
+      { "src": "/resources/imageTwo.avif", "type": "rest" }
+    ]
+  },
+  {
+    "name": "Picture in blue",
+    "price": 34.99,
+    "width": 20,
+    "height": 45,
+    "colors": ["blue", "white"],
+    "images": [
+      { "src": "/resources/imageOne.avif", "type": "main" },
+      { "src": "/resources/imageThree.avif", "type": "alternative" },
+      { "src": "resources/imageTwo.avif", "type": "rest" },
+      { "src": "/resources/imageOne.avif", "type": "rest" },
+      { "src": "/resources/imageTwo.avif", "type": "rest" }
+    ]
+  },
+  {
+    "name": "Picture in blue",
+    "price": 34.99,
+    "width": 20,
+    "height": 45,
+    "colors": ["blue", "white"],
+    "images": [
+      { "src": "/resources/imageOne.avif", "type": "main" },
+      { "src": "/resources/imageThree.avif", "type": "alternative" },
+      { "src": "/resources/imageTwo.avif", "type": "rest" },
+      { "src": "/resources/imageOne.avif", "type": "rest" },
+      { "src": "/resources/imageTwo.avif", "type": "rest" }
+    ]
+  },
+  {
+    "name": "Picture in blue",
+    "price": 34.99,
+    "width": 20,
+    "height": 45,
+    "colors": ["blue", "white"],
+    "images": [
+      { "src": "/resources/imageOne.avif", "type": "main" },
+      { "src": "/resources/imageThree.avif", "type": "alternative" },
+      { "src": "/resources/imageTwo.avif", "type": "rest" },
+      { "src": "/resources/imageOne.avif", "type": "rest" },
+      { "src": "/resources/imageTwo.avif", "type": "rest" }
+    ]
+  },
+  {
+    "name": "Picture in blue",
+    "price": 34.99,
+    "width": 20,
+    "height": 45,
+    "colors": ["blue", "white"],
+    "images": [
+      { "src": "/resources/imageOne.avif", "type": "main" },
+      { "src": "/resources/imageThree.avif", "type": "alternative" },
+      { "src": "/resources/imageTwo.avif", "type": "rest" },
+      { "src": "/resources/imageOne.avif", "type": "rest" },
+      { "src": "/resources/imageTwo.avif", "type": "rest" }
+    ]
+  },
+  {
+    "name": "Picture in blue",
+    "price": 34.99,
+    "width": 20,
+    "height": 45,
+    "colors": ["blue", "white"],
+    "images": [
+      { "src": "/resources/imageOne.avif", "type": "main" },
+      { "src": "/resources/imageThree.avif", "type": "alternative" },
+      { "src": "/resources/imageTwo.avif", "type": "rest" },
+      { "src": "/resources/imageOne.avif", "type": "rest" },
+      { "src": "/resources/imageTwo.avif", "type": "rest" }
+    ]
+  },
+  {
+    "name": "Picture in blue",
+    "price": 34.99,
+    "width": 20,
+    "height": 45,
+    "colors": ["blue", "white"],
+    "images": [
+      { "src": "/resources/imageOne.avif", "type": "main" },
+      { "src": "/resources/imageThree.avif", "type": "alternative" },
+      { "src": "/resources/imageTwo.avif", "type": "rest" },
+      { "src": "/resources/imageOne.avif", "type": "rest" },
+      { "src": "/resources/imageTwo.avif", "type": "rest" }
+    ]
+  },
+  {
+    "name": "Picture in blue",
+    "price": 34.99,
+    "width": 20,
+    "height": 45,
+    "colors": ["blue", "white"],
+    "images": [
+      { "src": "/resources/imageOne.avif", "type": "main" },
+      { "src": "/resources/imageThree.avif", "type": "alternative" },
+      { "src": "/resources/imageTwo.avif", "type": "rest" },
+      { "src": "/resources/imageOne.avif", "type": "rest" },
+      { "src": "/resources/imageTwo.avif", "type": "rest" }
+    ]
+  },
+  {
+    "name": "Picture in blue",
+    "price": 34.99,
+    "width": 20,
+    "height": 45,
+    "colors": ["blue", "white"],
+    "images": [
+      { "src": "/resources/imageOne.avif", "type": "main" },
+      { "src": "/resources/imageThree.avif", "type": "alternative" },
+      { "src": "/resources/imageTwo.avif", "type": "rest" },
+      { "src": "/resources/imageOne.avif", "type": "rest" },
+      { "src": "/resources/imageTwo.avif", "type": "rest" }
+    ]
+  },
+  {
+    "name": "Picture in blue",
+    "price": 34.99,
+    "width": 20,
+    "height": 45,
+    "colors": ["blue", "white"],
+    "images": [
+      { "src": "/resources/imageOne.avif", "type": "main" },
+      { "src": "/resources/imageThree.avif", "type": "alternative" },
+      { "src": "/resources/imageTwo.avif", "type": "rest" },
+      { "src": "/resources/imageOne.avif", "type": "rest" },
+      { "src": "/resources/imageTwo.avif", "type": "rest" }
+    ]
+  },
+  {
+    "name": "Picture in blue",
+    "price": 34.99,
+    "width": 20,
+    "height": 45,
+    "colors": ["blue", "white"],
+    "images": [
+      { "src": "/resources/imageOne.avif", "type": "main" },
+      { "src": "/resources/imageThree.avif", "type": "alternative" },
+      { "src": "/resources/imageTwo.avif", "type": "rest" },
+      { "src": "/resources/imageOne.avif", "type": "rest" },
+      { "src": "/resources/imageTwo.avif", "type": "rest" }
+    ]
+  },
+  {
+    "name": "Picture in blue",
+    "price": 34.99,
+    "width": 20,
+    "height": 45,
+    "colors": ["blue", "white"],
+    "images": [
+      { "src": "/resources/imageOne.avif", "type": "main" },
+      { "src": "/resources/imageThree.avif", "type": "alternative" },
+      { "src": "/resources/imageTwo.avif", "type": "rest" },
+      { "src": "/resources/imageOne.avif", "type": "rest" },
+      { "src": "/resources/imageTwo.avif", "type": "rest" }
+    ]
+  },
+  {
+    "name": "Picture in blue",
+    "price": 34.99,
+    "width": 20,
+    "height": 45,
+    "colors": ["blue", "white"],
+    "images": [
+      { "src": "/resources/imageOne.avif", "type": "main" },
+      { "src": "/resources/imageThree.avif", "type": "alternative" },
+      { "src": "/resources/imageTwo.avif", "type": "rest" },
+      { "src": "/resources/imageOne.avif", "type": "rest" },
+      { "src": "/resources/imageTwo.avif", "type": "rest" }
+    ]
+  }
+]
