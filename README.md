@@ -13,7 +13,7 @@ An ongoing project, which will be transitioned into an online art-shop.
 
 ## Related projects
 
-[Ellies website](https://github.com/wellwe11/elliesWebsite) - Essentially a prototype to try create basic components for an eCommerce website.
+[Ellies website](https://github.com/wellwe11/elliesWebsite) - Essentially a prototype to try create basic components for a eCommerce website.
 
 ## Tech Stack
 
