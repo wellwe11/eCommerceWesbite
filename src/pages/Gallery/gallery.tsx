@@ -51,7 +51,7 @@ const Gallery = () => {
   if (!data) return <h1>Failed to fetch data</h1>;
 
   return (
-    <div className="">
+    <div>
       <Products data={data.items} />
 
       {data && items < data.total && <LoadMoreEl setter={loadMore} />}

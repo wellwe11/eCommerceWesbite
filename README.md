@@ -1,74 +1,67 @@
-# React + TypeScript + Vite
+# eCommerceWebsite: Art-shop
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+An ongoing project, which will be transitioned into an online art-shop.
 
-Currently, two official plugins are available:
+## TODO
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- Unique product-page
+- Cart-logic
+- Prices and product info
+- API
+- SSR-Logic
+- Contact-page
 
-## React Compiler
+## Related projects
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+[Ellies website](https://github.com/wellwe11/elliesWebsite) - Essentially a prototype to try create basic components for an eCommerce website.
 
-## Expanding the ESLint configuration
+## Tech Stack
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+### Frontend Core
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+- **React 19** (Vite)
+- **TypeScript**
+- **React Router 7**
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+### State & Data Management
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+- **tanStack Query v5**
+- **Zustand & Jotai**
+- **Axios**
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+### Styling & Animation
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+- **Tailwind CSS v4**
+- **GSAP & Framer Motion**
+- **Lenis**
+- **Sass**
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
-# eCommerceWesbite
+### Quality Assurance
+
+- **Vitest**
+- **ESLint**
+
+## Features
+
+- **Smooth product transitioning**
+- **Clean & futuristic product-design**
+- **Easy product-navigation**
+- **Simple layout**
+
+## Getting Started
+
+### 1. Clone the repo
+
+`git clone https://github.com/wellwe11/eCommerceWesbite`
+
+### 2. Install dependencies
+
+`npm install`
+
+### 3. Run the project
+
+`npm run dev`
+
+## Project Context
+
+This is a private project, where I am essentially experimenting with my own approach for a simplistic eCommerce. I enjoy easy-navigation, clean layout, with not too much clutter. This project is simply an attempt for that.
