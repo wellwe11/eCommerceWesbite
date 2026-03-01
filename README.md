@@ -64,4 +64,4 @@ An ongoing project, which will be transitioned into an online art-shop.
 
 ## Project Context
 
-This is a private project, where I am essentially experimenting with my own approach for a simplistic eCommerce. I enjoy easy-navigation, clean layout, with not too much clutter. This project is simply an attempt for that.
+This is a private project, where I am essentially experimenting with my own approach for a simplistic eCommerce. I enjoy easy-navigation, clean layout, with not too much clutter. This project is simply an attempt at that.
