@@ -55,7 +55,7 @@ const CollectionsContainer = ({
         <motion.div
           key={`framerContainer_${entry}_${i}`}
           onViewportEnter={() => setter(i)}
-          className="mt-80 mb-80"
+          className="mt-100 mb-80"
         >
           <FramerMotionContainer data={obj} threshold={0.7} />
         </motion.div>

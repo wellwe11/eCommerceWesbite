@@ -23,6 +23,7 @@ const Home = () => {
 
   if (isLoading) return <h1>loading...</h1>;
 
+  console.log(data);
   return (
     <main className="relative">
       <HeroSection />
