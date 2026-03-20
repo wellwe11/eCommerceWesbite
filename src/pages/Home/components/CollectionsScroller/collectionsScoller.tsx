@@ -1,7 +1,7 @@
 import React, { useRef, useState } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
-import type { HomeSection } from "src/router.tsx";
 
+import type { HomeSection } from "src/router.tsx";
 import FramerMotionContainer from "@components/ui/FramerMotion/framerMotion.tsx";
 
 // number on right side which displays currently showing collection (1/2/3...)
@@ -72,7 +72,7 @@ const CollectionsScoller = ({
   const [activeCount, setActiveCount] = useState(0);
 
   return (
-    <div className="grid grid-cols-[1fr_clamp(calc(30vw+10rem),50%,45vw)_1fr] grid-rows-1 w-full">
+    <div className="grid grid-cols-[1fr_clamp(calc(30vw+10rem),50%,45vw)_1fr] grid-rows-1 w-full overflow-clip">
       <CollectionNumberCounter activeCount={activeCount} />
       <CollectionsContainer data={data} setter={setActiveCount} />
     </div>

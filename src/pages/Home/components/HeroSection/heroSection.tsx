@@ -58,38 +58,40 @@ const HeroSection = () => {
   );
 
   return (
-    <div className="w-full h-screen z-30 sticky grid place-items-center overflow-hidden grid-cols-1 grid-rows-1 will-change-transform">
-      <motion.div
-        ref={containerRef}
-        className="absolute w-full h-full grid grid-cols-1 will-change-auto"
-        style={{ opacity }}
-      >
-        <motion.div
-          style={{ y: containerYOne }}
-          className="relative self-center justify-self-end col-start-1 row-start-1"
-        >
-          <SideText />
-        </motion.div>
-        <motion.div
-          style={{ y: containerYTwo }}
-          className="relative self-end col-start-1 row-start-1"
-        >
-          <HeroText />
-        </motion.div>
-      </motion.div>
-
-      <button
-        onClick={handleNavigate}
-        className="col-start-1 row-start-1 z-10 bg-gray-300 w-35 h-15 cursor-pointer m-auto"
-      >
-        Explore
-      </button>
-
+    <div className="relative w-full h-screen">
       <img
-        className="h-full w-full object-center object-cover col-start-1 row-start-1"
+        className="fixed inset-0 h-full w-full object-cover z-0"
         src={heroImage}
         alt=""
       />
+
+      <div className="w-full h-screen z-30 absolute top-0 grid place-items-center overflow-hidden grid-cols-1 grid-rows-1 will-change-transform">
+        <motion.div
+          ref={containerRef}
+          className="z-10 absolute w-full h-full grid grid-cols-1 will-change-auto"
+          style={{ opacity }}
+        >
+          <motion.div
+            style={{ y: containerYOne }}
+            className="z-10 relative self-center justify-self-end col-start-1 row-start-1"
+          >
+            <SideText />
+          </motion.div>
+          <motion.div
+            style={{ y: containerYTwo }}
+            className="z-10 relative self-end col-start-1 row-start-1"
+          >
+            <HeroText />
+          </motion.div>
+        </motion.div>
+
+        <button
+          onClick={handleNavigate}
+          className="col-start-1 row-start-1 z-10 bg-gray-300 w-35 h-15 cursor-pointer m-auto"
+        >
+          Explore
+        </button>
+      </div>
     </div>
   );
 };
