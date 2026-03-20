@@ -4,6 +4,7 @@ import CollectionsScroller from "./components/CollectionsScroller/collectionsSco
 import { useQuery } from "@tanstack/react-query";
 
 import fetchGallery from "../../services/api";
+import ChangePageSection from "./components/ChangePageSection/changePageSection";
 
 const Home = () => {
   /*
@@ -20,10 +21,11 @@ const Home = () => {
   });
 
   // Update jotai to hold home-page data so that it more easily is passed down with very minial information
+  // Copy zaras page where if you scroll to bottom, a line appears. and when you continue to scroll, it 'fills up'. Once filled, it takes you to gallery
+  // Fix footer
 
   if (isLoading) return <h1>loading...</h1>;
 
-  console.log(data);
   return (
     <main className="relative">
       <HeroSection />
@@ -31,6 +33,7 @@ const Home = () => {
       <section className="relative z-10 bg-white min-h-screen">
         <WelcomeSection />
         <CollectionsScroller data={data} />
+        <ChangePageSection />
       </section>
     </main>
   );
