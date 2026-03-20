@@ -25,9 +25,7 @@ const LineDiv = () => {
 
       if (isAtBottom && e.deltaY > 0 && maxScrollProgress < 100) {
         setMaxScrollProgress((prev) => prev + 5);
-      } else {
-        setMaxScrollProgress(20);
-      }
+      } else setMaxScrollProgress(20);
     };
 
     window.addEventListener("wheel", handleWheel);
@@ -50,7 +48,6 @@ const LineDiv = () => {
           style={{
             originY: 0,
             height,
-            transition: "height 0.2s ease",
           }}
           className="w-full h-full bg-black"
         />

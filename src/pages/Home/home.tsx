@@ -33,6 +33,7 @@ const Home = () => {
       <section className="relative z-10 bg-white min-h-screen">
         <WelcomeSection />
         <CollectionsScroller data={data} />
+
         <ChangePageSection />
       </section>
     </main>

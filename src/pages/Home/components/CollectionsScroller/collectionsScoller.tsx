@@ -17,7 +17,7 @@ const CollectionNumberCounter = ({ activeCount }: { activeCount: number }) => {
   return (
     <motion.div
       ref={containerRef}
-      className="relative col-start-3 row-start-1 row-end-3 h-full text-start"
+      className="relative col-start-3 row-start-1 row-end-3 h-full text-start [clip-path:inset(0_0_0_0)]"
       style={{ opacity }}
     >
       <motion.div
@@ -72,10 +72,14 @@ const CollectionsScoller = ({
   const [activeCount, setActiveCount] = useState(0);
 
   return (
-    <div className="grid grid-cols-[1fr_clamp(calc(30vw+10rem),50%,45vw)_1fr] grid-rows-1 w-full overflow-clip">
+    <motion.div
+      className="grid grid-cols-[1fr_clamp(calc(30vw+10rem),50%,45vw)_1fr] grid-rows-1 w-full overflow-clip"
+      initial={{ opacity: 0 }}
+      whileInView={{ opacity: 1 }}
+    >
       <CollectionNumberCounter activeCount={activeCount} />
       <CollectionsContainer data={data} setter={setActiveCount} />
-    </div>
+    </motion.div>
   );
 };
 
