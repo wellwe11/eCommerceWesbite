@@ -1,7 +1,6 @@
 import HeroSection from "./components/HeroSection/heroSection";
 import WelcomeSection from "./components/WelcomeSection/welcomeSection";
 import CollectionsScroller from "./components/CollectionsScroller/collectionsScoller";
-import type { HomeSection } from "src/router";
 import { useQuery } from "@tanstack/react-query";
 
 import fetchGallery from "../../services/api";

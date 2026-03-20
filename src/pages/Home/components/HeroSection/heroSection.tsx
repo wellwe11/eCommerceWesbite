@@ -58,9 +58,9 @@ const HeroSection = () => {
   );
 
   return (
-    <div className="relative w-full h-screen">
+    <div className="relative w-full h-screen z-10">
       <img
-        className="fixed inset-0 h-full w-full object-cover z-0"
+        className="fixed inset-0 h-full w-full object-cover"
         src={heroImage}
         alt=""
       />
