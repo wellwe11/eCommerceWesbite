@@ -59,8 +59,8 @@ const LineDiv = () => {
 const ChangePageSection = () => {
   return (
     <section className="w-full flex flex-col justify-center items-center py-10 gap-1">
-      <h1>EXPLORE GALLERY</h1>
-      <p>SCROLL DOWN</p>
+      <h1 className="medium-title">EXPLORE GALLERY</h1>
+      <p className="bio-text">SCROLL DOWN</p>
 
       <LineDiv />
     </section>
