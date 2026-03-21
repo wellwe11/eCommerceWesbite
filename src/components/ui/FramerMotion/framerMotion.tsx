@@ -65,6 +65,7 @@ const FramerMotion = ({ data, event }: { data: HomeSection }) => {
           key={`i_${i}`}
           style={{ y, cursor: "pointer" }}
           className={styles.imageContainer}
+          onClick={event}
         >
           <img className={styles.image} src={src} alt="image" />
         </motion.div>
@@ -78,7 +79,7 @@ const FramerMotion = ({ data, event }: { data: HomeSection }) => {
 
       <motion.div
         className={`${styles.belowContainer} ${styles.gridTextClass}`}
-        style={{ opacity, pointerEvents: "auto" }}
+        style={{ opacity }}
       >
         <LongTextContainer longText={bio} />
       </motion.div>
@@ -94,7 +95,7 @@ const FramerMotionContainer = ({
   threshold: number | undefined;
 }) => {
   return (
-    <div className={styles.container} style={{ pointerEvents: "auto" }}>
+    <div className={styles.container}>
       <FramerMotion data={data} event={event} />
     </div>
   );

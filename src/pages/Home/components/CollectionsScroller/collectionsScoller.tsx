@@ -3,6 +3,7 @@ import { motion, useScroll, useTransform } from "framer-motion";
 
 import type { HomeSection } from "src/router.tsx";
 import FramerMotionContainer from "@components/ui/FramerMotion/framerMotion.tsx";
+import useProductSelection from "@/hooks/useProductSelection";
 
 // number on right side which displays currently showing collection (1/2/3...)
 const CollectionNumberCounter = ({ activeCount }: { activeCount: number }) => {
@@ -17,7 +18,7 @@ const CollectionNumberCounter = ({ activeCount }: { activeCount: number }) => {
   return (
     <motion.div
       ref={containerRef}
-      className="relative col-start-3 row-start-1 row-end-3 h-full text-start [clip-path:inset(0_0_0_0)] pointer-events-auto"
+      className="relative col-start-3 row-start-1 row-end-3 h-full text-start [clip-path:inset(0_0_0_0)]"
       style={{ opacity }}
     >
       <motion.div
@@ -49,18 +50,19 @@ const CollectionsContainer = ({
   data: Record<string, HomeSection>;
   setter: React.Dispatch<React.SetStateAction<number>>;
 }) => {
+  const handleNavigateProduct = useProductSelection();
   return (
     <div className="row-start-1 row-end-3 col-start-2 w-full h-full flex flex-col items-center">
       {Object.entries(data).map(([entry, obj], i) => (
         <motion.div
           key={`framerContainer_${entry}_${i}`}
           onViewportEnter={() => setter(i)}
-          className="mt-100 mb-80 pointer-events-auto"
+          className="mt-100 mb-80"
         >
           <FramerMotionContainer
             data={obj}
             threshold={0.7}
-            event={console.log("asd")}
+            event={() => handleNavigateProduct(obj)}
           />
         </motion.div>
       ))}
@@ -77,7 +79,7 @@ const CollectionsScoller = ({
 
   return (
     <motion.div
-      className="grid grid-cols-[1fr_clamp(calc(30vw+10rem),50%,45vw)_1fr] grid-rows-1 w-full overflow-clip pointer-events-auto"
+      className="grid grid-cols-[1fr_clamp(calc(30vw+10rem),50%,45vw)_1fr] grid-rows-1 w-full overflow-clip"
       initial={{ opacity: 0 }}
       whileInView={{ opacity: 1 }}
     >

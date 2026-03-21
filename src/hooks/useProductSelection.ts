@@ -1,6 +1,6 @@
 import { useSetAtom } from "jotai";
 import { useNavigate } from "react-router-dom";
-import { activeProductAtom } from "src/atoms/productAtoms";
+import { activeProductAtom } from "@/atoms/productAtoms";
 
 // Sets atom to currently selected product and navigates to page with product id
 const useProductSelection = () => {
