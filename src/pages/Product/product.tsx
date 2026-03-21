@@ -6,26 +6,14 @@ import { activeProductAtom } from "@/atoms/productAtoms";
 
 import useProductData from "@/hooks/useProductData";
 
-// Create a Grid.
-// 2nd grid container should have information. So thats price, dimensions, colors etc.
-// All other grid containers should be the images of the product.
-
 // Sorter that places bio into 2nd grid-container
 const GridSetup = ({ data }) => {
-  console.log(data);
-
   const images = data.images;
   const imageOne = images[0];
 
   const { colors, height, width, price, name } = data;
   const bio = [colors, height, width, price, name];
   const restImages = images.slice(1);
-
-  console.log(imageOne, restImages);
-
-  // Store imageOne in one container with class flexWrap
-  // Store bio in another container with class flexWrap
-  // Store restImages inside of a map, with each item having class flexWrap
 
   const flexWrap = "w-full h-full overflow-hidden";
 
@@ -40,8 +28,8 @@ const GridSetup = ({ data }) => {
           />
         </div>
         <div className={flexWrap}>
-          {bio.map((item) => (
-            <p>{item}</p>
+          {bio.map((item, i) => (
+            <p key={i}>{item}</p>
           ))}
         </div>
       </div>
@@ -82,7 +70,6 @@ const Product = () => {
 
   return (
     <main>
-      <h1>This is the product page of product {product.id}</h1>
       <GridSetup data={product} />
     </main>
   );
