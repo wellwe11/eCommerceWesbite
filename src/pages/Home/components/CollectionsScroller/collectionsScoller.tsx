@@ -17,7 +17,7 @@ const CollectionNumberCounter = ({ activeCount }: { activeCount: number }) => {
   return (
     <motion.div
       ref={containerRef}
-      className="relative col-start-3 row-start-1 row-end-3 h-full text-start [clip-path:inset(0_0_0_0)]"
+      className="relative col-start-3 row-start-1 row-end-3 h-full text-start [clip-path:inset(0_0_0_0)] pointer-events-auto"
       style={{ opacity }}
     >
       <motion.div
@@ -55,9 +55,13 @@ const CollectionsContainer = ({
         <motion.div
           key={`framerContainer_${entry}_${i}`}
           onViewportEnter={() => setter(i)}
-          className="mt-100 mb-80"
+          className="mt-100 mb-80 pointer-events-auto"
         >
-          <FramerMotionContainer data={obj} threshold={0.7} />
+          <FramerMotionContainer
+            data={obj}
+            threshold={0.7}
+            event={console.log("asd")}
+          />
         </motion.div>
       ))}
     </div>
@@ -73,7 +77,7 @@ const CollectionsScoller = ({
 
   return (
     <motion.div
-      className="grid grid-cols-[1fr_clamp(calc(30vw+10rem),50%,45vw)_1fr] grid-rows-1 w-full overflow-clip"
+      className="grid grid-cols-[1fr_clamp(calc(30vw+10rem),50%,45vw)_1fr] grid-rows-1 w-full overflow-clip pointer-events-auto"
       initial={{ opacity: 0 }}
       whileInView={{ opacity: 1 }}
     >

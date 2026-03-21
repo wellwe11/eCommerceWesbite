@@ -1,9 +1,10 @@
+import { useQuery } from "@tanstack/react-query";
+
+import fetchGallery from "@/services/api";
+
 import HeroSection from "./components/HeroSection/heroSection";
 import WelcomeSection from "./components/WelcomeSection/welcomeSection";
 import CollectionsScroller from "./components/CollectionsScroller/collectionsScoller";
-import { useQuery } from "@tanstack/react-query";
-
-import fetchGallery from "../../services/api";
 import ChangePageSection from "./components/ChangePageSection/changePageSection";
 
 const Home = () => {

@@ -25,7 +25,7 @@ const LongTextContainer = ({ longText }: { longText: string }) => {
   );
 };
 
-const FramerMotion = ({ data }: { data: HomeSection }) => {
+const FramerMotion = ({ data, event }: { data: HomeSection }) => {
   const containerRef = useRef<HTMLDivElement | null>(null);
 
   const { md, lg } = useSpringScroll(containerRef);
@@ -63,7 +63,7 @@ const FramerMotion = ({ data }: { data: HomeSection }) => {
       {images.map(({ src, y }, i) => (
         <motion.div
           key={`i_${i}`}
-          style={{ y }}
+          style={{ y, cursor: "pointer" }}
           className={styles.imageContainer}
         >
           <img className={styles.image} src={src} alt="image" />
@@ -78,7 +78,7 @@ const FramerMotion = ({ data }: { data: HomeSection }) => {
 
       <motion.div
         className={`${styles.belowContainer} ${styles.gridTextClass}`}
-        style={{ opacity }}
+        style={{ opacity, pointerEvents: "auto" }}
       >
         <LongTextContainer longText={bio} />
       </motion.div>
@@ -88,13 +88,14 @@ const FramerMotion = ({ data }: { data: HomeSection }) => {
 
 const FramerMotionContainer = ({
   data,
+  event,
 }: {
   data: HomeSection;
   threshold: number | undefined;
 }) => {
   return (
-    <div className={styles.container}>
-      <FramerMotion data={data} />
+    <div className={styles.container} style={{ pointerEvents: "auto" }}>
+      <FramerMotion data={data} event={event} />
     </div>
   );
 };
