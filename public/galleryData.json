@@ -2,7 +2,7 @@
   {
     "name": "Picture in blue",
     "id": "collection-01",
-    "price": 34.99,
+    "price": 14.99,
     "width": 20,
     "height": 45,
     "colors": ["blue", "white"],
@@ -152,7 +152,7 @@
   {
     "name": "Picture in blue",
     "id": "collection-11",
-    "price": 34.99,
+    "price": 24.99,
     "width": 20,
     "height": 45,
     "colors": ["blue", "white"],
@@ -212,7 +212,7 @@
   {
     "name": "Picture in blue",
     "id": "collection-15",
-    "price": 34.99,
+    "price": 24.99,
     "width": 20,
     "height": 45,
     "colors": ["blue", "white"],
@@ -258,7 +258,7 @@
   {
     "name": "Picture in blue",
     "id": "collection-18",
-    "price": 34.99,
+    "price": 14.99,
     "width": 20,
     "height": 45,
     "colors": ["blue", "white"],
@@ -348,7 +348,7 @@
   {
     "name": "Picture in blue",
     "id": "collection-24",
-    "price": 34.99,
+    "price": 14.99,
     "width": 20,
     "height": 45,
     "colors": ["blue", "white"],

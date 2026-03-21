@@ -57,12 +57,13 @@ const Product = () => {
   const { product, isFetchingNull } = useProductData(id);
 
   // Cleans up atom on unmount
+  // Currently disabled because strict mode forces it to run regardless
   useEffect(() => {
     return () => {
       console.log(
         "Cleaning up Product page. Setting activeProductAtom to null",
       );
-      setAtom(null);
+      // setAtom(null);
     };
   }, [setAtom]);
 
