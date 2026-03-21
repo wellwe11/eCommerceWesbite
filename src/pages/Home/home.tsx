@@ -16,7 +16,7 @@ const Home = () => {
    * Create a instagram/socials section on home
    */
 
-  const { data, isLoading } = useQuery({
+  const { isLoading } = useQuery({
     queryKey: ["home"],
     queryFn: () => fetchGallery("/homeData.json"),
   });
@@ -29,7 +29,7 @@ const Home = () => {
 
       <section className="relative z-10 bg-white min-h-screen">
         <WelcomeSection />
-        <CollectionsScroller data={data} />
+        <CollectionsScroller />
 
         <ChangePageSection />
       </section>

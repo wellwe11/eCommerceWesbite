@@ -1,9 +1,9 @@
-import React, { useRef, useState } from "react";
+import { useRef, useState } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 
-import type { HomeSection } from "src/router.tsx";
 import FramerMotionContainer from "@components/ui/FramerMotion/framerMotion.tsx";
 import useProductSelection from "@/hooks/useProductSelection";
+import { useQueryClient } from "@tanstack/react-query";
 
 // number on right side which displays currently showing collection (1/2/3...)
 const CollectionNumberCounter = ({ activeCount }: { activeCount: number }) => {
@@ -43,20 +43,21 @@ const CollectionNumberCounter = ({ activeCount }: { activeCount: number }) => {
   );
 };
 
-const CollectionsContainer = ({
-  data,
-  setter,
-}: {
-  data: Record<string, HomeSection>;
-  setter: React.Dispatch<React.SetStateAction<number>>;
-}) => {
+const CollectionsContainer = () => {
   const handleNavigateProduct = useProductSelection();
+  const queryClient = useQueryClient();
+
+  const data = queryClient.getQueryData(["home"]);
+
+  if (!data) return;
+
+  const dataArr = !Array.isArray(data) ? Object.values(data) : data;
+
   return (
     <div className="row-start-1 row-end-3 col-start-2 w-full h-full flex flex-col items-center">
-      {Object.entries(data).map(([entry, obj], i) => (
+      {dataArr.map((obj, i) => (
         <motion.div
-          key={`framerContainer_${entry}_${i}`}
-          onViewportEnter={() => setter(i)}
+          key={`framerContainer_${obj?.id}_${i}`}
           className="mt-100 mb-100"
         >
           <FramerMotionContainer
@@ -70,11 +71,7 @@ const CollectionsContainer = ({
   );
 };
 
-const CollectionsScoller = ({
-  data,
-}: {
-  data: Record<string, HomeSection>;
-}) => {
+const CollectionsScoller = () => {
   const [activeCount, setActiveCount] = useState(0);
 
   return (
@@ -84,7 +81,7 @@ const CollectionsScoller = ({
       whileInView={{ opacity: 1 }}
     >
       <CollectionNumberCounter activeCount={activeCount} />
-      <CollectionsContainer data={data} setter={setActiveCount} />
+      <CollectionsContainer setter={setActiveCount} />
     </motion.div>
   );
 };

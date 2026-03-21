@@ -1,8 +1,20 @@
-import { useSetAtom } from "jotai";
-import { activeProductAtom } from "@/atoms/productAtoms";
-import useProductData from "@/hooks/useProductData";
 import { useEffect } from "react";
 import { useParams } from "react-router-dom";
+import { useSetAtom } from "jotai";
+
+import { activeProductAtom } from "@/atoms/productAtoms";
+
+import useProductData from "@/hooks/useProductData";
+
+// Create a Grid.
+// 2nd grid container should have information. So thats price, dimensions, colors etc.
+// All other grid containers should be the images of the product.
+
+// Basic grid
+const GridLayout = () => {};
+
+// Sorter that places bio into 2nd grid-container
+const GridSetup = () => {};
 
 const Product = () => {
   const setAtom = useSetAtom(activeProductAtom);
@@ -16,7 +28,8 @@ const Product = () => {
   }, [setAtom]);
 
   if (!product) return <div>Loading...</div>;
-  // Add logic if user refreshes page
+
+  console.log(product);
 
   return (
     <div>
