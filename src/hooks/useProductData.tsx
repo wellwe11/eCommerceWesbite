@@ -15,7 +15,7 @@ const useProductData = (id: string) => {
   });
 
   return {
-    product: fullData | preview,
+    product: fullData || preview,
     isFetchingNull: isLoading,
   };
 };
