@@ -10,6 +10,8 @@ import useProductData from "@/hooks/useProductData";
 const GridSetup = ({ data }) => {
   const images = data.images;
   const imageOne = images[0];
+  // check so data is correct since it switches between two properties.
+  // Reason is that it laggs on vercel, as if the image doesnt exist for a second
 
   const { colors, height, width, price, name } = data;
   const bio = [colors, height, width, price, name];
@@ -17,12 +19,14 @@ const GridSetup = ({ data }) => {
 
   const flexWrap = "w-full h-full overflow-hidden";
 
+  console.log(imageOne.src || imageOne);
+
   return (
     <div className="flex w-full flex-wrap justify-center items-center gap-y-7">
       <div className="grid grid-cols-[repeat(2,clamp(100px,30vw,400px))] pt-30 justify-center justify-items-center w-full gap-x-10">
         <div className={flexWrap}>
           <img
-            src={imageOne.src}
+            src={imageOne.src || imageOne}
             alt=""
             className="object-center w-[clamp(100px,30vw,400px)] h-full"
           />
@@ -38,7 +42,7 @@ const GridSetup = ({ data }) => {
         {restImages.map((image, i) => (
           <div className={flexWrap} key={i}>
             <img
-              src={image.src}
+              src={image.src || image}
               alt=""
               className="object-center w-full h-full"
             />
