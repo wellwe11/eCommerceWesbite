@@ -20,10 +20,6 @@ const Home = () => {
     queryFn: () => fetchGallery("/homeData.json"),
   });
 
-  // Update jotai to hold home-page data so that it more easily is passed down with very minial information
-  // Copy zaras page where if you scroll to bottom, a line appears. and when you continue to scroll, it 'fills up'. Once filled, it takes you to gallery
-  // Fix footer
-
   if (isLoading) return <h1>loading...</h1>;
 
   return (

@@ -1,6 +1,7 @@
 [
   {
     "name": "Picture in blue",
+    "id": "collection-01",
     "price": 34.99,
     "width": 20,
     "height": 45,
@@ -15,6 +16,7 @@
   },
   {
     "name": "Picture in blue",
+    "id": "collection-02",
     "price": 34.99,
     "width": 20,
     "height": 45,
@@ -29,6 +31,7 @@
   },
   {
     "name": "Picture in blue",
+    "id": "collection-03",
     "price": 34.99,
     "width": 20,
     "height": 45,
@@ -43,6 +46,7 @@
   },
   {
     "name": "Picture in blue",
+    "id": "collection-04",
     "price": 34.99,
     "width": 20,
     "height": 45,
@@ -57,6 +61,7 @@
   },
   {
     "name": "Picture in blue",
+    "id": "collection-05",
     "price": 34.99,
     "width": 20,
     "height": 45,
@@ -71,6 +76,7 @@
   },
   {
     "name": "Picture in blue",
+    "id": "collection-06",
     "price": 34.99,
     "width": 20,
     "height": 45,
@@ -85,6 +91,7 @@
   },
   {
     "name": "Picture in blue",
+    "id": "collection-07",
     "price": 34.99,
     "width": 20,
     "height": 45,
@@ -99,6 +106,7 @@
   },
   {
     "name": "Picture in blue",
+    "id": "collection-08",
     "price": 34.99,
     "width": 20,
     "height": 45,
@@ -113,6 +121,7 @@
   },
   {
     "name": "Picture in blue",
+    "id": "collection-09",
     "price": 34.99,
     "width": 20,
     "height": 45,
@@ -127,6 +136,7 @@
   },
   {
     "name": "Picture in blue",
+    "id": "collection-10",
     "price": 34.99,
     "width": 20,
     "height": 45,
@@ -141,6 +151,7 @@
   },
   {
     "name": "Picture in blue",
+    "id": "collection-11",
     "price": 34.99,
     "width": 20,
     "height": 45,
@@ -155,6 +166,7 @@
   },
   {
     "name": "Picture in blue",
+    "id": "collection-12",
     "price": 34.99,
     "width": 20,
     "height": 45,
@@ -169,6 +181,7 @@
   },
   {
     "name": "Picture in blue",
+    "id": "collection-13",
     "price": 34.99,
     "width": 20,
     "height": 45,
@@ -183,6 +196,7 @@
   },
   {
     "name": "Picture in blue",
+    "id": "collection-14",
     "price": 34.99,
     "width": 20,
     "height": 45,
@@ -197,6 +211,7 @@
   },
   {
     "name": "Picture in blue",
+    "id": "collection-15",
     "price": 34.99,
     "width": 20,
     "height": 45,
@@ -211,6 +226,7 @@
   },
   {
     "name": "Picture in blue",
+    "id": "collection-16",
     "price": 34.99,
     "width": 20,
     "height": 45,
@@ -225,6 +241,8 @@
   },
   {
     "name": "Picture in blue",
+
+    "id": "collection-17",
     "price": 34.99,
     "width": 20,
     "height": 45,
@@ -239,6 +257,7 @@
   },
   {
     "name": "Picture in blue",
+    "id": "collection-18",
     "price": 34.99,
     "width": 20,
     "height": 45,
@@ -253,6 +272,7 @@
   },
   {
     "name": "Picture in blue",
+    "id": "collection-19",
     "price": 34.99,
     "width": 20,
     "height": 45,
@@ -267,6 +287,7 @@
   },
   {
     "name": "Picture in blue",
+    "id": "collection-20",
     "price": 34.99,
     "width": 20,
     "height": 45,
@@ -281,6 +302,7 @@
   },
   {
     "name": "Picture in blue",
+    "id": "collection-21",
     "price": 34.99,
     "width": 20,
     "height": 45,
@@ -295,6 +317,7 @@
   },
   {
     "name": "Picture in blue",
+    "id": "collection-22",
     "price": 34.99,
     "width": 20,
     "height": 45,
@@ -309,6 +332,7 @@
   },
   {
     "name": "Picture in blue",
+    "id": "collection-23",
     "price": 34.99,
     "width": 20,
     "height": 45,
@@ -323,6 +347,7 @@
   },
   {
     "name": "Picture in blue",
+    "id": "collection-24",
     "price": 34.99,
     "width": 20,
     "height": 45,
@@ -337,6 +362,7 @@
   },
   {
     "name": "Picture in blue",
+    "id": "collection-25",
     "price": 34.99,
     "width": 20,
     "height": 45,

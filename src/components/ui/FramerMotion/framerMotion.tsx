@@ -31,7 +31,6 @@ const FramerMotion = ({ data }: { data: HomeSection }) => {
   const { md, lg } = useSpringScroll(containerRef);
 
   const {
-    index,
     text: { title, info, bio },
     images: imageSources,
   } = data;
@@ -63,7 +62,7 @@ const FramerMotion = ({ data }: { data: HomeSection }) => {
     <div className={styles.framerMotion} ref={containerRef}>
       {images.map(({ src, y }, i) => (
         <motion.div
-          key={`i_${i} ${index}`}
+          key={`i_${i}`}
           style={{ y }}
           className={styles.imageContainer}
         >
