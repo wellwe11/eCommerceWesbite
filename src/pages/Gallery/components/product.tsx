@@ -31,11 +31,14 @@ const Details = ({ data }: { data: Omit<ProductData, "images"> }) => {
   );
 };
 
-const Product = ({ data }: { data: ProductData }) => {
+const Product = ({ data, handler }: { data: ProductData }) => {
   const { images, ...details } = data;
 
   return (
-    <div className="max-w-100 cursor-pointer hover:bg-gray-200/50 transition-colors duration-400 ease">
+    <div
+      onClick={handler}
+      className="max-w-100 cursor-pointer hover:bg-gray-200/50 transition-colors duration-400 ease"
+    >
       <Image data={images} />
       <Details data={details} />
     </div>
