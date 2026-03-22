@@ -3,11 +3,16 @@ import heroImage from "../../resources/imageThree.avif";
 import { useRef, useState } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 
-const IndexedImages = ({ arr, offsets }) => {
+const IndexedImages = ({ arr, offsets, setter }) => {
   return (
     <div className="flex justify-between gap-2 items-center h-full">
       {arr.map((image, index) => (
-        <div key={index} className={`w-1/5 ${offsets[index % offsets.length]}`}>
+        <div
+          key={index}
+          className={`w-1/5 ${offsets[index % offsets.length]}`}
+          onMouseEnter={() => setter(index)}
+          onMouseLeave={() => setter(null)}
+        >
           <a>
             <img
               src={image}
@@ -23,6 +28,10 @@ const IndexedImages = ({ arr, offsets }) => {
 
 const HeroImages = () => {
   const [activeIndex, setActiveIndex] = useState(0);
+  const [currentHoverImage, setCurrentHoverImage] = useState<number | null>(
+    null,
+  );
+
   const handleActiveIndex = () =>
     setActiveIndex((prev) => (prev === 0 ? 1 : 0));
 
@@ -49,23 +58,89 @@ const HeroImages = () => {
   // If index image 2 is hovered, display a text at flattedImages index
   // Create a cursor with arrow up or down depending on if we are at activeIndex 0 or 1
 
+  const editorialMetadata = [
+    {
+      pre: "d’stylli",
+      num: "01",
+      post: "vellure-tross r0cco styled by b’narrock",
+    },
+    {
+      pre: "koll-stunn",
+      num: "02",
+      post: "d’epoque r’poublika styled by jerni",
+    },
+    {
+      pre: "d’stylli",
+      num: "03",
+      post: "m’norra vell-fohr f’olline b’narrock",
+    },
+    { pre: "r’poublika apoll-rocc", num: "04", post: "styled by vinnia-fohr" },
+    {
+      pre: "v’benarrock-stunn",
+      num: "05",
+      post: "d’epoque r’poublika 11 r’occo",
+    },
+    {
+      pre: "d’stylli jerni-vellure",
+      num: "06",
+      post: "styled by k’oll b’narrock",
+    },
+    {
+      pre: "m’norra",
+      num: "07",
+      post: "r’poublika v’benarrock styled by tross",
+    },
+    { pre: "d’stylli vinnia-rocc", num: "08", post: "fohrer-apoll r’poublika" },
+    {
+      pre: "b’narrock-fohr styled by",
+      num: "09",
+      post: "jerni d’epoque m’norra",
+    },
+    { pre: "r’poublika", num: "10", post: "k’oll-stunn d’stylli by vinnia-02" },
+  ];
+
   return (
     <div className="h-full py-25 cursor-pointer fixed px-25">
       <div
-        className="fixed z-10 h-full flex flex-col justify-between items-center"
+        className="fixed z-10 h-full flex flex-col justify-between items-center pointer-events-none"
         style={{
           transform: "translate(-50%, -50%)",
           left: "50%",
-          top: `${activeIndex}00%`,
+          top: `${activeIndex * 100}%`,
           height: `calc(100% * 2 - 50px)`,
-          width: "20px",
           transition: "top 0.4s ease",
         }}
-        onClick={handleActiveIndex}
       >
-        {flattedImages.map((_, index) => (
-          <p>{index}</p>
-        ))}
+        <div
+          className="w-10 flex flex-col justify-between items-center cursor-pointer pointer-events-auto"
+          style={{ height: "inherit" }}
+          onClick={handleActiveIndex}
+        >
+          {flattedImages.map((_, index) => (
+            <p
+              key={index}
+              className="flex items-center justify-center tracking-tighter text-[10px] uppercase gap-2 pointer-events-none"
+            >
+              <span
+                style={{ opacity: currentHoverImage === index ? 1 : 0 }}
+                className="block w-100 text-right transition-opacity duration-300 text-nowrap pointer-events-none"
+              >
+                {editorialMetadata[index].pre}
+              </span>
+
+              <span className="shrink-0 font-bold pointer-events-auto">
+                {editorialMetadata[index].num}
+              </span>
+
+              <span
+                style={{ opacity: currentHoverImage === index ? 1 : 0 }}
+                className="block w-100 text-left transition-opacity duration-300 text-nowrap pointer-events-none"
+              >
+                {editorialMetadata[index].post}
+              </span>
+            </p>
+          ))}
+        </div>
       </div>
 
       <div
@@ -77,7 +152,11 @@ const HeroImages = () => {
           pointerEvents: activeIndex === 0 ? "none" : "auto",
         }}
       >
-        <IndexedImages arr={imageArrayOne} offsets={offsetsOne} />
+        <IndexedImages
+          arr={imageArrayOne}
+          offsets={offsetsOne}
+          setter={setCurrentHoverImage}
+        />
       </div>
 
       <div
@@ -89,7 +168,11 @@ const HeroImages = () => {
           pointerEvents: activeIndex === 1 ? "none" : "auto",
         }}
       >
-        <IndexedImages arr={imageArrayTwo} offsets={offsetsTwo} />
+        <IndexedImages
+          arr={imageArrayTwo}
+          offsets={offsetsTwo}
+          setter={setCurrentHoverImage}
+        />
       </div>
     </div>
   );
