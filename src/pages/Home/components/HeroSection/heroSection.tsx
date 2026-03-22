@@ -74,16 +74,16 @@ const NumberText = ({ obj, condition }) => {
     <p className="flex items-center justify-center tracking-tighter text-[10px] uppercase gap-2 pointer-events-none">
       <span
         style={{ opacity: condition ? 1 : 0 }}
-        className="block w-100 text-right transition-opacity duration-300 text-nowrap pointer-events-none"
+        className="block w-100 text-right transition-opacity duration-300 text-nowrap pointer-events-none font-extralight"
       >
         {obj.pre}
       </span>
 
-      <span className="shrink-0 font-bold pointer-events-auto">{obj.num}</span>
+      <span className="shrink-0 font-light pointer-events-auto">{obj.num}</span>
 
       <span
         style={{ opacity: condition ? 1 : 0 }}
-        className="block w-100 text-left transition-opacity duration-300 text-nowrap pointer-events-none italic"
+        className="block w-100 text-left transition-opacity duration-300 text-nowrap pointer-events-none italic font-extralight"
       >
         {obj.post}
       </span>
@@ -137,7 +137,7 @@ const HeroImages = ({ setter }) => {
       x: "-translate-x-15",
     },
     {
-      y: "translate-y-20",
+      y: "translate-y-90",
       x: "translate-x-10",
     },
     {
@@ -363,7 +363,7 @@ const HeroSection = () => {
   const [activeImage, setActiveImage] = useState(null);
 
   return (
-    <div className="mt-10 relative w-full h-screen z-10">
+    <div className="relative w-full h-screen z-10">
       {/* <img
         className="fixed inset-0 h-full w-full object-cover"
         src={activeImage || ""}
@@ -371,7 +371,7 @@ const HeroSection = () => {
       /> */}
 
       <HeroImages setter={setActiveImage} />
-      <TextsWrapper />
+      {/* <TextsWrapper /> */}
     </div>
   );
 };

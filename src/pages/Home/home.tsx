@@ -9,11 +9,9 @@ import ChangePageSection from "./components/ChangePageSection/changePageSection"
 
 const Home = () => {
   /*
-   * Research nice welcoming-sections or alternatives
-   *** create a introduction-component (something below top-component to introduce user)
-   **
    * create a subscribe-section on home
    * Create a instagram/socials section on home
+   * Fix EXPLORE GALLERY for touch-pads. It works way to aggressively when not using a mouse-scroll.
    */
 
   const { isLoading } = useQuery({

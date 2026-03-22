@@ -13,8 +13,6 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
       options={{
         lerp: 0.3,
         wheelMultiplier: 0.45,
-
-        syncTouch: true,
         touchMultiplier: 0.2,
       }}
     >
