@@ -96,6 +96,7 @@ const HeroImages = ({ setter }) => {
   const [currentHoverImage, setCurrentHoverImage] = useState<number | null>(
     null,
   );
+  const [customCursorVisible, setCustomerCuorsorVisible] = useState(true);
 
   const handleActiveIndex = () =>
     setActiveIndex((prev) => (prev === 0 ? 1 : 0));
@@ -193,11 +194,15 @@ const HeroImages = ({ setter }) => {
   return (
     <div
       className="h-full w-full fixed cursor-none"
+      onMouseEnter={() => setCustomerCuorsorVisible(true)}
+      onMouseLeave={() => setCustomerCuorsorVisible(false)}
       onClick={(e) => {
         !currentHoverImage && handleActiveIndex(e);
       }}
     >
-      {!currentHoverImage && <CustomCursor activeIndex={activeIndex} />}
+      {!currentHoverImage && customCursorVisible && (
+        <CustomCursor activeIndex={activeIndex} />
+      )}
       <div
         className="fixed z-10 h-full flex flex-col justify-between items-center pointer-events-none"
         style={{
@@ -358,7 +363,7 @@ const HeroSection = () => {
   const [activeImage, setActiveImage] = useState(null);
 
   return (
-    <div className="relative w-full h-screen z-10">
+    <div className="mt-10 relative w-full h-screen z-10">
       {/* <img
         className="fixed inset-0 h-full w-full object-cover"
         src={activeImage || ""}
