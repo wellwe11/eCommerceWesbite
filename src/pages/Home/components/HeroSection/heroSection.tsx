@@ -171,7 +171,13 @@ const HeroImages = () => {
         <IndexedImages
           arr={imageArrayTwo}
           offsets={offsetsTwo}
-          setter={setCurrentHoverImage}
+          setter={(n) => {
+            if (n === null) {
+              setCurrentHoverImage(null);
+            } else {
+              setCurrentHoverImage(n + 5);
+            }
+          }}
         />
       </div>
     </div>
