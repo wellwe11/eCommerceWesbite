@@ -11,7 +11,7 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
     <ReactLenis
       root
       options={{
-        lerp: 0.15,
+        lerp: 0.3,
         wheelMultiplier: 0.45,
 
         syncTouch: true,

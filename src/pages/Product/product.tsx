@@ -10,8 +10,6 @@ import useProductData from "@/hooks/useProductData";
 const GridSetup = ({ data }) => {
   const images = data.images;
   const imageOne = images[0];
-  // check so data is correct since it switches between two properties.
-  // Reason is that it laggs on vercel, as if the image doesnt exist for a second
 
   const { colors, height, width, price, name } = data;
   const bio = [colors, height, width, price, name];

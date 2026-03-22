@@ -43,7 +43,7 @@ const CollectionNumberCounter = ({ activeCount }: { activeCount: number }) => {
   );
 };
 
-const CollectionsContainer = () => {
+const CollectionsContainer = ({ setter }) => {
   const handleNavigateProduct = useProductSelection();
   const queryClient = useQueryClient();
 
@@ -59,6 +59,7 @@ const CollectionsContainer = () => {
         <motion.div
           key={`framerContainer_${obj?.id}_${i}`}
           className="mt-100 mb-100"
+          whileInView={() => setter(i)}
         >
           <FramerMotionContainer
             data={obj}

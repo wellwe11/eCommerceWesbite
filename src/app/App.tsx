@@ -9,6 +9,11 @@ import "./App.css";
 import Navbar from "../components/layout/Navbar/navbar.tsx";
 import Footer from "@components/layout/Footer/footer.tsx";
 
+// Fix footer
+// Work on product page
+// Create a new hero-image
+// Work on the explore button
+
 export type ProductImage = {
   src: string;
   type?: string;

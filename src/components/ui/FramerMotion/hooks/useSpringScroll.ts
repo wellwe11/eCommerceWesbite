@@ -29,7 +29,7 @@ const useSpringScroll = (
     [250, 60, 10, -10, -60, -250],
   );
 
-  const springConfig = { stiffness: 1000, damping: 150, mass: 1 };
+  const springConfig = { stiffness: 2000, damping: 75, mass: 1 };
 
   const md = useSpring(mdRaw, springConfig);
   const lg = useSpring(lgRaw, springConfig);

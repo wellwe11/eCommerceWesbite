@@ -3,6 +3,58 @@ import heroImage from "../../resources/imageThree.avif";
 import { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 
+// 2 containers, that are stacked on each other.
+// Inside each container, have 5 div containers. Flex them so they are beside each other with a gap-2 or 5.
+// Each container has 1 image.
+// Each div should have a grid-layout that is 4x6 (24 squares)
+// Simply place the images
+
+const HeroImages = () => {
+  const imageArrayOne = [heroImage, heroImage, heroImage, heroImage, heroImage];
+  const imageArrayTwo = [heroImage, heroImage, heroImage, heroImage, heroImage];
+
+  const offsetsOne = [
+    "-translate-y-40",
+    "translate-y-30",
+    "-translate-y-4",
+    "translate-y-54",
+    "-translate-y-24",
+    "translate-y-12",
+  ];
+
+  const offsetsTwo = [
+    "-translate-y-40",
+    "translate-y-30",
+    "-translate-y-4",
+    "translate-y-54",
+    "-translate-y-24",
+    "translate-y-12",
+  ];
+
+  return (
+    <div className="h-full py-25 cursor-pointer fixed">
+      <div className="flex justify-between gap-2 items-center h-full">
+        {imageArrayOne.map((image, index) => (
+          <div
+            key={index}
+            className={`w-1/5 ${offsetsOne[index % offsetsOne.length]}`}
+          >
+            <a>
+              <img
+                src={image}
+                alt=""
+                className="hover:grayscale group-hover:invert"
+              />
+            </a>
+          </div>
+        ))}
+      </div>
+
+      <div></div>
+    </div>
+  );
+};
+
 const SideText = () => {
   return (
     <div className="p-10 z-10 [writing-mode:vertical-rl] flex items-center gap-5">
@@ -23,7 +75,7 @@ const HeroText = () => {
   );
 };
 
-const HeroSection = () => {
+const TextsWrapper = () => {
   const containerRef = useRef<HTMLDivElement | null>(null);
 
   const navigate = useNavigate();
@@ -58,40 +110,47 @@ const HeroSection = () => {
   );
 
   return (
-    <div className="relative w-full h-screen z-10">
-      <img
+    <div className="w-full h-screen z-30 absolute top-0 grid place-items-center overflow-hidden grid-cols-1 grid-rows-1 will-change-transform pointer-events-none">
+      <motion.div
+        ref={containerRef}
+        className="z-10 absolute w-full h-full grid grid-cols-1 will-change-auto"
+        style={{ opacity }}
+      >
+        <motion.div
+          style={{ y: containerYOne }}
+          className="z-10 relative self-center justify-self-end col-start-1 row-start-1"
+        >
+          <SideText />
+        </motion.div>
+        <motion.div
+          style={{ y: containerYTwo }}
+          className="z-10 relative self-end col-start-1 row-start-1"
+        >
+          <HeroText />
+        </motion.div>
+      </motion.div>
+
+      {/* <button
+        onClick={handleNavigate}
+        className="col-start-1 row-start-1 z-10 bg-gray-300 w-35 h-15 cursor-pointer m-auto"
+      >
+        Explore
+      </button> */}
+    </div>
+  );
+};
+
+const HeroSection = () => {
+  return (
+    <div className="relative w-full h-screen z-10 ">
+      {/* <img
         className="fixed inset-0 h-full w-full object-cover"
         src={heroImage}
         alt=""
-      />
+      /> */}
 
-      <div className="w-full h-screen z-30 absolute top-0 grid place-items-center overflow-hidden grid-cols-1 grid-rows-1 will-change-transform">
-        <motion.div
-          ref={containerRef}
-          className="z-10 absolute w-full h-full grid grid-cols-1 will-change-auto"
-          style={{ opacity }}
-        >
-          <motion.div
-            style={{ y: containerYOne }}
-            className="z-10 relative self-center justify-self-end col-start-1 row-start-1"
-          >
-            <SideText />
-          </motion.div>
-          <motion.div
-            style={{ y: containerYTwo }}
-            className="z-10 relative self-end col-start-1 row-start-1"
-          >
-            <HeroText />
-          </motion.div>
-        </motion.div>
-
-        <button
-          onClick={handleNavigate}
-          className="col-start-1 row-start-1 z-10 bg-gray-300 w-35 h-15 cursor-pointer m-auto"
-        >
-          Explore
-        </button>
-      </div>
+      <HeroImages />
+      <TextsWrapper />
     </div>
   );
 };
