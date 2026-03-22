@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import heroImage from "../../resources/imageThree.avif";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 
 // 2 containers, that are stacked on each other.
@@ -10,6 +10,10 @@ import { motion, useScroll, useTransform } from "framer-motion";
 // Simply place the images
 
 const HeroImages = () => {
+  const [activeIndex, setActiveIndex] = useState(0);
+  const handleActiveIndex = () =>
+    setActiveIndex((prev) => (prev === 0 ? 1 : 0));
+
   const imageArrayOne = [heroImage, heroImage, heroImage, heroImage, heroImage];
   const imageArrayTwo = [heroImage, heroImage, heroImage, heroImage, heroImage];
 
@@ -31,8 +35,25 @@ const HeroImages = () => {
     "translate-y-12",
   ];
 
+  const flattedImages = [imageArrayOne, imageArrayTwo].flat();
+
   return (
     <div className="h-full py-25 cursor-pointer fixed">
+      <div
+        className="fixed z-10 h-full flex flex-col justify-between"
+        style={{
+          transform: "translate(-50%, -50%)",
+          left: "50%",
+          top: `${activeIndex}00%`,
+          height: `calc(100% * 2 - 50px)`,
+        }}
+        onClick={handleActiveIndex}
+      >
+        {flattedImages.map((_, index) => (
+          <p>{index}</p>
+        ))}
+      </div>
+
       <div className="flex justify-between gap-2 items-center h-full">
         {imageArrayOne.map((image, index) => (
           <div
