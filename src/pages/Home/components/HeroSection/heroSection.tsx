@@ -25,8 +25,11 @@ const CustomCursor = React.memo(({ activeIndex }) => {
       className="fixed top-0 left-0 pointer-events-none z-999999"
       style={{ x: mouseX, y: mouseY }}
     >
-      <motion.div
-        animate={{ rotate: activeIndex === 1 ? -90 : 90 }}
+      <div
+        style={{
+          transform: `rotate(${activeIndex === 1 ? -90 : 90}deg)`,
+          transition: "transform 0.1s ease",
+        }}
         className="flex items-center justify-center -translate-x-1/2 -translate-y-1/2"
       >
         <svg width="30" height="30" viewBox="0 0 24 24" fill="none">
@@ -38,7 +41,7 @@ const CustomCursor = React.memo(({ activeIndex }) => {
             strokeLinejoin="miter"
           />
         </svg>
-      </motion.div>
+      </div>
     </motion.div>
   );
 });
