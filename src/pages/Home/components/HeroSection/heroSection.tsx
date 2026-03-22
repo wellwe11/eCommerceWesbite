@@ -1,36 +1,45 @@
 import { useNavigate } from "react-router-dom";
 import heroImage from "../../resources/imageThree.avif";
 import React, { useEffect, useRef, useState } from "react";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion, useMotionValue, useScroll, useTransform } from "framer-motion";
 
 const CustomCursor = React.memo(({ activeIndex }) => {
-  const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
+  const mouseX = useMotionValue(0);
+  const mouseY = useMotionValue(0);
 
   useEffect(() => {
-    const handleMouseMove = (e) => {
-      setMousePos({ x: e.clientX, y: e.clientY });
+    const handleMove = (e) => {
+      mouseX.set(e.clientX);
+      mouseY.set(e.clientY);
     };
-    window.addEventListener("mousemove", handleMouseMove);
-    return () => window.removeEventListener("mousemove", handleMouseMove);
-  }, []);
+
+    window.addEventListener("mousemove", handleMove);
+
+    return () => {
+      window.removeEventListener("mousemove", handleMove);
+    };
+  }, [mouseX, mouseY]);
 
   return (
-    <div
-      className="fixed pointer-events-none z-[9999]"
-      style={{
-        left: mousePos.x,
-        top: mousePos.y,
-        transform: `translate(-50%, -50%) rotate(${activeIndex === 0 ? "-90deg" : "90deg"})`,
-      }}
+    <motion.div
+      className="fixed top-0 left-0 pointer-events-none z-999999"
+      style={{ x: mouseX, y: mouseY }}
     >
-      <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-        <path
-          d="M4 12H20M20 12L15 7M20 12L15 17"
-          stroke="black"
-          strokeWidth="1"
-        />
-      </svg>
-    </div>
+      <motion.div
+        animate={{ rotate: activeIndex === 1 ? -90 : 90 }}
+        className="flex items-center justify-center -translate-x-1/2 -translate-y-1/2"
+      >
+        <svg width="30" height="30" viewBox="0 0 24 24" fill="none">
+          <path
+            d="M4 12H20M20 12L15 7M20 12L15 17"
+            stroke="black"
+            strokeWidth="1"
+            strokeLinecap="square"
+            strokeLinejoin="miter"
+          />
+        </svg>
+      </motion.div>
+    </motion.div>
   );
 });
 
@@ -54,6 +63,28 @@ const IndexedImages = ({ arr, offsets, setter }) => {
         </div>
       ))}
     </div>
+  );
+};
+
+const NumberText = ({ obj, condition }) => {
+  return (
+    <p className="flex items-center justify-center tracking-tighter text-[10px] uppercase gap-2 pointer-events-none">
+      <span
+        style={{ opacity: condition ? 1 : 0 }}
+        className="block w-100 text-right transition-opacity duration-300 text-nowrap pointer-events-none"
+      >
+        {obj.pre}
+      </span>
+
+      <span className="shrink-0 font-bold pointer-events-auto">{obj.num}</span>
+
+      <span
+        style={{ opacity: condition ? 1 : 0 }}
+        className="block w-100 text-left transition-opacity duration-300 text-nowrap pointer-events-none italic"
+      >
+        {obj.post}
+      </span>
+    </p>
   );
 };
 
@@ -115,10 +146,6 @@ const HeroImages = ({ setter }) => {
     },
   ];
 
-  const flattedImages = [imageArrayOne, imageArrayTwo].flat();
-  // If index image 2 is hovered, display a text at flattedImages index
-  // Create a cursor with arrow up or down depending on if we are at activeIndex 0 or 1
-
   const editorialMetadata = [
     {
       pre: "d’stylli",
@@ -178,29 +205,12 @@ const HeroImages = ({ setter }) => {
           transition: "top 0.4s ease",
         }}
       >
-        {flattedImages.map((_, index) => (
-          <p
+        {editorialMetadata.map((obj, index) => (
+          <NumberText
             key={index}
-            className="flex items-center justify-center tracking-tighter text-[10px] uppercase gap-2 pointer-events-none"
-          >
-            <span
-              style={{ opacity: currentHoverImage === index ? 1 : 0 }}
-              className="block w-100 text-right transition-opacity duration-300 text-nowrap pointer-events-none"
-            >
-              {editorialMetadata[index].pre}
-            </span>
-
-            <span className="shrink-0 font-bold pointer-events-auto">
-              {editorialMetadata[index].num}
-            </span>
-
-            <span
-              style={{ opacity: currentHoverImage === index ? 1 : 0 }}
-              className="block w-100 text-left transition-opacity duration-300 text-nowrap pointer-events-none italic"
-            >
-              {editorialMetadata[index].post}
-            </span>
-          </p>
+            obj={obj}
+            condition={currentHoverImage === index}
+          />
         ))}
       </div>
 
