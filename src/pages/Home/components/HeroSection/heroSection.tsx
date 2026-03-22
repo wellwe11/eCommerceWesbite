@@ -1,7 +1,38 @@
 import { useNavigate } from "react-router-dom";
 import heroImage from "../../resources/imageThree.avif";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
+
+const CustomCursor = ({ activeIndex }) => {
+  const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
+
+  useEffect(() => {
+    const handleMouseMove = (e) => {
+      setMousePos({ x: e.clientX, y: e.clientY });
+    };
+    window.addEventListener("mousemove", handleMouseMove);
+    return () => window.removeEventListener("mousemove", handleMouseMove);
+  }, []);
+
+  return (
+    <div
+      className="fixed pointer-events-none z-[9999]"
+      style={{
+        left: mousePos.x,
+        top: mousePos.y,
+        transform: `translate(-50%, -50%) rotate(${activeIndex === 0 ? "-90deg" : "90deg"})`,
+      }}
+    >
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+        <path
+          d="M4 12H20M20 12L15 7M20 12L15 17"
+          stroke="black"
+          strokeWidth="1"
+        />
+      </svg>
+    </div>
+  );
+};
 
 const IndexedImages = ({ arr, offsets, setter }) => {
   return (
@@ -130,7 +161,13 @@ const HeroImages = ({ setter }) => {
   ];
 
   return (
-    <div className="h-full w-full fixed">
+    <div
+      className="h-full w-full fixed cursor-none"
+      onClick={(e) => {
+        !currentHoverImage && handleActiveIndex(e);
+      }}
+    >
+      {!currentHoverImage && <CustomCursor activeIndex={activeIndex} />}
       <div
         className="fixed z-10 h-full flex flex-col justify-between items-center pointer-events-none"
         style={{
@@ -141,36 +178,30 @@ const HeroImages = ({ setter }) => {
           transition: "top 0.4s ease",
         }}
       >
-        <div
-          className="w-10 flex flex-col justify-between items-center cursor-pointer pointer-events-auto"
-          style={{ height: "inherit" }}
-          onClick={handleActiveIndex}
-        >
-          {flattedImages.map((_, index) => (
-            <p
-              key={index}
-              className="flex items-center justify-center tracking-tighter text-[10px] uppercase gap-2 pointer-events-none"
+        {flattedImages.map((_, index) => (
+          <p
+            key={index}
+            className="flex items-center justify-center tracking-tighter text-[10px] uppercase gap-2 pointer-events-none"
+          >
+            <span
+              style={{ opacity: currentHoverImage === index ? 1 : 0 }}
+              className="block w-100 text-right transition-opacity duration-300 text-nowrap pointer-events-none"
             >
-              <span
-                style={{ opacity: currentHoverImage === index ? 1 : 0 }}
-                className="block w-100 text-right transition-opacity duration-300 text-nowrap pointer-events-none"
-              >
-                {editorialMetadata[index].pre}
-              </span>
+              {editorialMetadata[index].pre}
+            </span>
 
-              <span className="shrink-0 font-bold pointer-events-auto">
-                {editorialMetadata[index].num}
-              </span>
+            <span className="shrink-0 font-bold pointer-events-auto">
+              {editorialMetadata[index].num}
+            </span>
 
-              <span
-                style={{ opacity: currentHoverImage === index ? 1 : 0 }}
-                className="block w-100 text-left transition-opacity duration-300 text-nowrap pointer-events-none italic"
-              >
-                {editorialMetadata[index].post}
-              </span>
-            </p>
-          ))}
-        </div>
+            <span
+              style={{ opacity: currentHoverImage === index ? 1 : 0 }}
+              className="block w-100 text-left transition-opacity duration-300 text-nowrap pointer-events-none italic"
+            >
+              {editorialMetadata[index].post}
+            </span>
+          </p>
+        ))}
       </div>
 
       <div
@@ -314,7 +345,7 @@ const HeroSection = () => {
   const [activeImage, setActiveImage] = useState(null);
 
   return (
-    <div className="relative w-full h-screen z-10 ">
+    <div className="relative w-full h-screen z-10">
       {/* <img
         className="fixed inset-0 h-full w-full object-cover"
         src={activeImage || ""}
