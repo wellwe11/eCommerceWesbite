@@ -9,7 +9,7 @@ const IndexedImages = ({ arr, offsets, setter }) => {
       {arr.map((image, index) => (
         <div
           key={index}
-          className={`w-1/5 ${offsets[index % offsets.length]}`}
+          className={`w-1/5 ${offsets[index % offsets.length].y} ${offsets[index % offsets.length].x} cursor-pointer`}
           onMouseEnter={() => setter(index)}
           onMouseLeave={() => setter(null)}
         >
@@ -39,19 +39,49 @@ const HeroImages = () => {
   const imageArrayTwo = [heroImage, heroImage, heroImage, heroImage, heroImage];
 
   const offsetsOne = [
-    "translate-y-10",
-    "translate-y-80",
-    "-translate-y-4",
-    "translate-y-100",
-    "translate-y-24",
+    {
+      y: "translate-y-10",
+      x: "translate-x-15",
+    },
+    {
+      y: "translate-y-80",
+      x: "-translate-x-15",
+    },
+    {
+      y: "-translate-y-4",
+      x: "-translate-x-20",
+    },
+    {
+      y: "translate-y-100",
+      x: "translate-x-15",
+    },
+    {
+      y: "translate-y-24",
+      x: "-translate-x-2",
+    },
   ];
 
   const offsetsTwo = [
-    "translate-y-104",
-    "-translate-y-10",
-    "translate-y-54",
-    "-translate-y-4",
-    "translate-y-106",
+    {
+      y: "translate-y-104",
+      x: "translate-x-5",
+    },
+    {
+      y: "translate-y-10",
+      x: "-translate-x-15",
+    },
+    {
+      y: "translate-y-20",
+      x: "translate-x-10",
+    },
+    {
+      y: "translate-y-4",
+      x: "translate-x-15",
+    },
+    {
+      y: "translate-y-106",
+      x: "-translate-x-17",
+    },
   ];
 
   const flattedImages = [imageArrayOne, imageArrayTwo].flat();
@@ -100,7 +130,7 @@ const HeroImages = () => {
   ];
 
   return (
-    <div className="h-full py-25 cursor-pointer fixed px-25">
+    <div className="h-full w-full fixed">
       <div
         className="fixed z-10 h-full flex flex-col justify-between items-center pointer-events-none"
         style={{
@@ -144,12 +174,13 @@ const HeroImages = () => {
       </div>
 
       <div
-        className="fixed"
+        className="fixed p-20"
         style={{
-          opacity: activeIndex === 1 ? 1 : 0.05,
-          transition: "opacity 0.5s ease",
-          transitionDelay: "0.5s",
+          opacity: activeIndex === 1 ? 1 : 0.035,
+          transition: "opacity 0.5s ease, filter 1s ease",
+          filter: activeIndex === 1 ? "blur(0px)" : "blur(1px)",
           pointerEvents: activeIndex === 0 ? "none" : "auto",
+          transitionDelay: activeIndex === 1 ? "0.8s" : "0.15s",
         }}
       >
         <IndexedImages
@@ -160,12 +191,13 @@ const HeroImages = () => {
       </div>
 
       <div
-        className="fixed"
+        className="fixed p-20"
         style={{
-          opacity: activeIndex === 1 ? 0.05 : 1,
-          transition: "opacity 0.5s ease",
-          transitionDelay: "0.5s",
+          opacity: activeIndex === 1 ? 0.035 : 1,
+          filter: activeIndex === 1 ? "blur(1px)" : "blur(0px)",
+          transition: "opacity 0.5s ease, filter 1s ease",
           pointerEvents: activeIndex === 1 ? "none" : "auto",
+          transitionDelay: activeIndex === 0 ? "0.8s" : "0.15s",
         }}
       >
         <IndexedImages
