@@ -1,9 +1,9 @@
 import { useNavigate } from "react-router-dom";
 import heroImage from "../../resources/imageThree.avif";
-import { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 
-const CustomCursor = ({ activeIndex }) => {
+const CustomCursor = React.memo(({ activeIndex }) => {
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
 
   useEffect(() => {
@@ -32,7 +32,7 @@ const CustomCursor = ({ activeIndex }) => {
       </svg>
     </div>
   );
-};
+});
 
 const IndexedImages = ({ arr, offsets, setter }) => {
   return (
