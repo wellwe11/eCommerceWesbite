@@ -10,8 +10,8 @@ const IndexedImages = ({ arr, offsets, setter }) => {
         <div
           key={index}
           className={`w-1/5 ${offsets[index % offsets.length].y} ${offsets[index % offsets.length].x} cursor-pointer`}
-          onMouseEnter={() => setter(index)}
-          onMouseLeave={() => setter(null)}
+          onMouseEnter={() => setter({ index, image })}
+          onMouseLeave={() => setter({ index: null, image })}
         >
           <a>
             <img
@@ -26,7 +26,7 @@ const IndexedImages = ({ arr, offsets, setter }) => {
   );
 };
 
-const HeroImages = () => {
+const HeroImages = ({ setter }) => {
   const [activeIndex, setActiveIndex] = useState(0);
   const [currentHoverImage, setCurrentHoverImage] = useState<number | null>(
     null,
@@ -164,7 +164,7 @@ const HeroImages = () => {
 
               <span
                 style={{ opacity: currentHoverImage === index ? 1 : 0 }}
-                className="block w-100 text-left transition-opacity duration-300 text-nowrap pointer-events-none"
+                className="block w-100 text-left transition-opacity duration-300 text-nowrap pointer-events-none italic"
               >
                 {editorialMetadata[index].post}
               </span>
@@ -186,7 +186,14 @@ const HeroImages = () => {
         <IndexedImages
           arr={imageArrayOne}
           offsets={offsetsOne}
-          setter={setCurrentHoverImage}
+          setter={({ index, image }) => {
+            setCurrentHoverImage(index);
+            setter(image);
+
+            if (index === null) {
+              setter(null);
+            }
+          }}
         />
       </div>
 
@@ -203,11 +210,13 @@ const HeroImages = () => {
         <IndexedImages
           arr={imageArrayTwo}
           offsets={offsetsTwo}
-          setter={(n) => {
-            if (n === null) {
+          setter={({ index, image }) => {
+            if (index === null) {
               setCurrentHoverImage(null);
+              setter(null);
             } else {
-              setCurrentHoverImage(n + 5);
+              setter(image);
+              setCurrentHoverImage(index + 5);
             }
           }}
         />
@@ -302,15 +311,17 @@ const TextsWrapper = () => {
 };
 
 const HeroSection = () => {
+  const [activeImage, setActiveImage] = useState(null);
+
   return (
     <div className="relative w-full h-screen z-10 ">
       {/* <img
         className="fixed inset-0 h-full w-full object-cover"
-        src={heroImage}
+        src={activeImage || ""}
         alt=""
       /> */}
 
-      <HeroImages />
+      <HeroImages setter={setActiveImage} />
       <TextsWrapper />
     </div>
   );
