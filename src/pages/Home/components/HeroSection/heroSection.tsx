@@ -3,11 +3,23 @@ import heroImage from "../../resources/imageThree.avif";
 import { useRef, useState } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 
-// 2 containers, that are stacked on each other.
-// Inside each container, have 5 div containers. Flex them so they are beside each other with a gap-2 or 5.
-// Each container has 1 image.
-// Each div should have a grid-layout that is 4x6 (24 squares)
-// Simply place the images
+const IndexedImages = ({ arr, offsets }) => {
+  return (
+    <div className="flex justify-between gap-2 items-center h-full">
+      {arr.map((image, index) => (
+        <div key={index} className={`w-1/5 ${offsets[index % offsets.length]}`}>
+          <a>
+            <img
+              src={image}
+              alt=""
+              className="hover:grayscale group-hover:invert"
+            />
+          </a>
+        </div>
+      ))}
+    </div>
+  );
+};
 
 const HeroImages = () => {
   const [activeIndex, setActiveIndex] = useState(0);
@@ -18,34 +30,36 @@ const HeroImages = () => {
   const imageArrayTwo = [heroImage, heroImage, heroImage, heroImage, heroImage];
 
   const offsetsOne = [
-    "-translate-y-40",
-    "translate-y-30",
+    "translate-y-10",
+    "translate-y-80",
     "-translate-y-4",
-    "translate-y-54",
-    "-translate-y-24",
-    "translate-y-12",
+    "translate-y-100",
+    "translate-y-24",
   ];
 
   const offsetsTwo = [
-    "-translate-y-40",
-    "translate-y-30",
-    "-translate-y-4",
+    "translate-y-104",
+    "-translate-y-10",
     "translate-y-54",
-    "-translate-y-24",
-    "translate-y-12",
+    "-translate-y-4",
+    "translate-y-106",
   ];
 
   const flattedImages = [imageArrayOne, imageArrayTwo].flat();
+  // If index image 2 is hovered, display a text at flattedImages index
+  // Create a cursor with arrow up or down depending on if we are at activeIndex 0 or 1
 
   return (
-    <div className="h-full py-25 cursor-pointer fixed">
+    <div className="h-full py-25 cursor-pointer fixed px-25">
       <div
-        className="fixed z-10 h-full flex flex-col justify-between"
+        className="fixed z-10 h-full flex flex-col justify-between items-center"
         style={{
           transform: "translate(-50%, -50%)",
           left: "50%",
           top: `${activeIndex}00%`,
           height: `calc(100% * 2 - 50px)`,
+          width: "20px",
+          transition: "top 0.4s ease",
         }}
         onClick={handleActiveIndex}
       >
@@ -54,24 +68,29 @@ const HeroImages = () => {
         ))}
       </div>
 
-      <div className="flex justify-between gap-2 items-center h-full">
-        {imageArrayOne.map((image, index) => (
-          <div
-            key={index}
-            className={`w-1/5 ${offsetsOne[index % offsetsOne.length]}`}
-          >
-            <a>
-              <img
-                src={image}
-                alt=""
-                className="hover:grayscale group-hover:invert"
-              />
-            </a>
-          </div>
-        ))}
+      <div
+        className="fixed"
+        style={{
+          opacity: activeIndex === 1 ? 1 : 0.05,
+          transition: "opacity 0.5s ease",
+          transitionDelay: "0.5s",
+          pointerEvents: activeIndex === 0 ? "none" : "auto",
+        }}
+      >
+        <IndexedImages arr={imageArrayOne} offsets={offsetsOne} />
       </div>
 
-      <div></div>
+      <div
+        className="fixed"
+        style={{
+          opacity: activeIndex === 1 ? 0.05 : 1,
+          transition: "opacity 0.5s ease",
+          transitionDelay: "0.5s",
+          pointerEvents: activeIndex === 1 ? "none" : "auto",
+        }}
+      >
+        <IndexedImages arr={imageArrayTwo} offsets={offsetsTwo} />
+      </div>
     </div>
   );
 };

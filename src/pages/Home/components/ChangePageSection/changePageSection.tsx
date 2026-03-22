@@ -1,10 +1,14 @@
-import useNavigator from "@components/layout/Navbar/hooks/useNavigator";
-import { useScroll, motion, useTransform } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
+import { useScroll, motion, useTransform } from "framer-motion";
+import { useQueryClient } from "@tanstack/react-query";
+
+import useNavigator from "@components/layout/Navbar/hooks/useNavigator";
+import fetchGallery from "@/services/api";
 
 const LineDiv = () => {
   const lineRef = useRef(null);
   const [maxScrollProgress, setMaxScrollProgress] = useState(20);
+  const queryClient = useQueryClient();
   const handleNavigate = useNavigator("/gallery");
 
   const { scrollYProgress } = useScroll({
@@ -35,7 +39,18 @@ const LineDiv = () => {
 
   useEffect(() => {
     if (maxScrollProgress < 100) return;
-    handleNavigate();
+
+    const awaitFetchNavigate = async () => {
+      await queryClient.prefetchQuery({
+        queryKey: ["gallery"],
+        queryFn: () => fetchGallery("/galleryData.json"),
+        staleTime: 60000,
+      });
+
+      handleNavigate();
+    };
+
+    awaitFetchNavigate();
   }, [maxScrollProgress]);
 
   return (
