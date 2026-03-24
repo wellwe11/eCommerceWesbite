@@ -156,7 +156,7 @@ const HeroImages = ({ setter }) => {
 
   const offsetsTwo = [
     {
-      y: "translate-y-54",
+      y: "translate-y-40",
       x: "-translate-x-5",
     },
     {
@@ -164,7 +164,7 @@ const HeroImages = ({ setter }) => {
       x: "-translate-x-0",
     },
     {
-      y: "translate-y-50",
+      y: "translate-y-25",
       x: "translate-x-0",
     },
     {
@@ -172,8 +172,8 @@ const HeroImages = ({ setter }) => {
       x: "translate-x-15",
     },
     {
-      y: "translate-y-56",
-      x: "-translate-x-0",
+      y: "-translate-y-16",
+      x: "-translate-x-10",
     },
   ];
 
@@ -252,7 +252,7 @@ const HeroImages = ({ setter }) => {
       <div
         className="fixed p-20"
         style={{
-          opacity: activeIndex === 1 ? 1 : 0.035,
+          opacity: activeIndex === 1 ? 1 : 0.015,
           transition: "opacity 0.5s ease, filter 1s ease",
           filter: activeIndex === 1 ? "blur(0px)" : "blur(1px)",
           pointerEvents: activeIndex === 0 ? "none" : "auto",
@@ -276,7 +276,7 @@ const HeroImages = ({ setter }) => {
       <div
         className="fixed p-20"
         style={{
-          opacity: activeIndex === 1 ? 0.035 : 1,
+          opacity: activeIndex === 1 ? 0.015 : 1,
           filter: activeIndex === 1 ? "blur(1px)" : "blur(0px)",
           transition: "opacity 0.5s ease, filter 1s ease",
           pointerEvents: activeIndex === 1 ? "none" : "auto",

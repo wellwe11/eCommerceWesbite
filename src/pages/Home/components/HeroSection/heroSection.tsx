@@ -6,7 +6,10 @@ import HeroImages from "./heroImages";
 
 const SideText = () => {
   return (
-    <div className="p-10 z-10 [writing-mode:vertical-rl] flex items-center gap-5">
+    <div
+      className="p-10 z-10 [writing-mode:vertical-rl] flex items-center gap-5"
+      style={{ fontVariationSettings: "'wght' 100" }}
+    >
       <p className="text-xs">Small uninformative text, minor details</p>
       <h4 className="text-5xl">Big title text</h4>
     </div>
@@ -27,8 +30,8 @@ const HeroText = () => {
         <br />
         <span className="italic">
           For editorial and commercial inquries please contact
-          <button className="cursor-pointer hover:font-medium ml-1 pointer-events-auto">
-            robin1ryan@hotmail.com.
+          <button className="cursor-pointer ml-1 pointer-events-auto hover:underline decoration-gray-400">
+            robin1ryan@hotmail.com
           </button>
         </span>
       </p>
