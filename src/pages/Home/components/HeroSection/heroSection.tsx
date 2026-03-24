@@ -7,7 +7,7 @@ import HeroImages from "./heroImages";
 const SideText = () => {
   return (
     <div
-      className="p-10 z-10 [writing-mode:vertical-rl] flex items-center gap-5"
+      className="p-5 z-10 [writing-mode:vertical-rl] flex items-center gap-5"
       style={{ fontVariationSettings: "'wght' 100" }}
     >
       <p className="text-xs">Small uninformative text, minor details</p>
@@ -24,8 +24,8 @@ const HeroText = () => {
         style={{ fontVariationSettings: "'wght' 150" }}
       >
         Code is a silent medium. Data is a living ink. I create high-fidelity
-        experiences that breathe, react, and resonate—transforming the static
-        web into a moving canvas.
+        experiences that breathe, react, and transforming the static web into a
+        moving canvas.
         <br />
         <br />
         <span className="italic">

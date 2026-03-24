@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import imageOne from "/resources/imageOne.avif";
-import imageTwo from "/resources/imageThree.avif";
+import imageTwo from "/resources/imageTwo.avif";
 import imageThree from "/resources/imageThree.avif";
 
 import imageFour from "/resources/imageFour.png";
@@ -55,27 +55,24 @@ const CustomCursor = React.memo(({ activeIndex }) => {
   );
 });
 
-const IndexedImages = ({ arr, offsets, setter }) => {
+const IndexedImages = ({ arr, setter, activeIndex }) => {
   return (
-    <div className="flex justify-between gap-2 items-center h-full">
+    <div className="w-220 h-125 relative">
       {arr.map((image, index) => (
         <div
           key={index}
-          className={`w-1/5 ${offsets[index % offsets.length].y} ${offsets[index % offsets.length].x} cursor-pointer`}
           onMouseEnter={() => setter({ index, image })}
           onMouseLeave={() => setter({ index: null, image })}
+          className="hover:cursor-pointer absolute left-0 top-0"
           style={{
-            imageRendering: "pixelated",
-            width: "250px",
-            height: "auto",
-            imageResolution: "920px",
+            opacity: index === activeIndex ? 1 : 0,
           }}
         >
           <a>
             <img
               src={image}
               alt=""
-              className="hover:grayscale group-hover:invert"
+              className="hover:grayscale group-hover:invert object-contain"
             />
           </a>
         </div>
@@ -89,7 +86,7 @@ const NumberText = ({ obj, condition }) => {
     <p className="flex items-center justify-center tracking-tighter text-[10px] uppercase gap-2 pointer-events-none">
       <span
         style={{ opacity: condition ? 1 : 0 }}
-        className="block w-100 text-right transition-opacity duration-300 text-nowrap pointer-events-none font-extralight"
+        className="block w-fit text-right transition-opacity duration-300 text-nowrap pointer-events-none font-extralight"
       >
         {obj.pre}
       </span>
@@ -98,7 +95,7 @@ const NumberText = ({ obj, condition }) => {
 
       <span
         style={{ opacity: condition ? 1 : 0 }}
-        className="block w-100 text-left transition-opacity duration-300 text-nowrap pointer-events-none italic font-extralight"
+        className="block w-fit text-left transition-opacity duration-300 text-nowrap pointer-events-none italic font-extralight"
       >
         {obj.post}
       </span>
@@ -119,40 +116,11 @@ const HeroImages = ({ setter }) => {
     navigate("/gallery");
   };
 
-  const handleActiveIndex = () =>
-    setActiveIndex((prev) => (prev === 0 ? 1 : 0));
+  const handleActiveIndex = () => {
+    setActiveIndex((prev) => (prev + 1 >= imageArray.length ? 0 : prev + 1));
+  };
 
-  const imageArrayOne = [
-    imageOne,
-    imageSeven,
-    imageThree,
-    imageFour,
-    imageFive,
-  ];
-  const imageArrayTwo = [imageTwo, imageEight, imageSeven, imageTwo, imageSix];
-
-  const offsetsOne = [
-    {
-      y: "translate-y-10",
-      x: "-translate-x-15",
-    },
-    {
-      y: "translate-y-80",
-      x: "-translate-x-10",
-    },
-    {
-      y: "-translate-y-4",
-      x: "-translate-x-0",
-    },
-    {
-      y: "translate-y-100",
-      x: "-translate-x-5",
-    },
-    {
-      y: "translate-y-05",
-      x: "-translate-x-2",
-    },
-  ];
+  const imageArray = [imageSeven, imageSix, imageFour, imageFive];
 
   const offsetsTwo = [
     {
@@ -194,28 +162,6 @@ const HeroImages = ({ setter }) => {
       post: "m’norra vell-fohr f’olline b’narrock",
     },
     { pre: "r’poublika apoll-rocc", num: "04", post: "styled by vinnia-fohr" },
-    {
-      pre: "v’benarrock-stunn",
-      num: "05",
-      post: "d’epoque r’poublika 11 r’occo",
-    },
-    {
-      pre: "d’stylli jerni-vellure",
-      num: "06",
-      post: "styled by k’oll b’narrock",
-    },
-    {
-      pre: "m’norra",
-      num: "07",
-      post: "r’poublika v’benarrock styled by tross",
-    },
-    { pre: "d’stylli vinnia-rocc", num: "08", post: "fohrer-apoll r’poublika" },
-    {
-      pre: "b’narrock-fohr styled by",
-      num: "09",
-      post: "jerni d’epoque m’norra",
-    },
-    { pre: "r’poublika", num: "10", post: "k’oll-stunn d’stylli by vinnia-02" },
   ];
 
   return (
@@ -231,68 +177,38 @@ const HeroImages = ({ setter }) => {
         <CustomCursor activeIndex={activeIndex} />
       )}
       <div
-        className="fixed z-10 h-full flex flex-col justify-between items-center pointer-events-none"
+        className="fixed z-10 h-full flex justify-between items-center pointer-events-none py-10"
         style={{
           transform: "translate(-50%, -50%)",
           left: "50%",
-          top: `${activeIndex * 100}%`,
-          height: `calc(100% * 2 - 50px)`,
+          top: "50%",
+          height: "100%",
           transition: "top 0.4s ease",
         }}
       >
         {editorialMetadata.map((obj, index) => (
-          <NumberText
-            key={index}
-            obj={obj}
-            condition={currentHoverImage === index}
-          />
+          <NumberText key={index} obj={obj} condition={activeIndex === index} />
         ))}
       </div>
 
       <div
-        className="fixed p-20"
+        className="fixed"
         style={{
-          opacity: activeIndex === 1 ? 1 : 0.015,
-          transition: "opacity 0.5s ease, filter 1s ease",
-          filter: activeIndex === 1 ? "blur(0px)" : "blur(1px)",
-          pointerEvents: activeIndex === 0 ? "none" : "auto",
-          transitionDelay: activeIndex === 1 ? "0.8s" : "0.15s",
+          left: "50%",
+          top: "50%",
+          transform: "translate(-50%, -50%)",
         }}
       >
         <IndexedImages
-          arr={imageArrayOne}
-          offsets={offsetsOne}
-          setter={({ index, image }) => {
-            setCurrentHoverImage(index);
-            setter(image);
-
-            if (index === null) {
-              setter(null);
-            }
-          }}
-        />
-      </div>
-
-      <div
-        className="fixed p-20"
-        style={{
-          opacity: activeIndex === 1 ? 0.015 : 1,
-          filter: activeIndex === 1 ? "blur(1px)" : "blur(0px)",
-          transition: "opacity 0.5s ease, filter 1s ease",
-          pointerEvents: activeIndex === 1 ? "none" : "auto",
-          transitionDelay: activeIndex === 0 ? "0.8s" : "0.15s",
-        }}
-      >
-        <IndexedImages
-          arr={imageArrayTwo}
-          offsets={offsetsTwo}
+          arr={imageArray}
+          activeIndex={activeIndex}
           setter={({ index, image }) => {
             if (index === null) {
               setCurrentHoverImage(null);
               setter(null);
             } else {
               setter(image);
-              setCurrentHoverImage(index + 5);
+              setCurrentHoverImage(index);
             }
           }}
         />
