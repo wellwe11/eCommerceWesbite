@@ -2,15 +2,10 @@ import { motion, useMotionValue } from "framer-motion";
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-import imageOne from "/resources/imageOne.avif";
-import imageTwo from "/resources/imageTwo.avif";
-import imageThree from "/resources/imageThree.avif";
-
-import imageFour from "/resources/imageFour.png";
-import imageFive from "/resources/imageFive.png";
-import imageSix from "/resources/imageSix.png";
-import imageSeven from "/resources/imageSeven.png";
-import imageEight from "/resources/imageEight.png";
+import imageOne from "/resources/brutalismTest/artist1_1.jpg";
+import imageTwo from "/resources/brutalismTest/artist3_1.webp";
+import imageThree from "/resources/brutalismTest/artist2_1.avif";
+import imageFour from "/resources/brutalismTest/artist8_2.jpg";
 
 const CustomCursor = React.memo(({ activeIndex }) => {
   const mouseX = useMotionValue(0);
@@ -57,22 +52,24 @@ const CustomCursor = React.memo(({ activeIndex }) => {
 
 const IndexedImages = ({ arr, setter, activeIndex }) => {
   return (
-    <div className="w-220 h-125 relative">
+    <div className="w-90 h-160 relative">
       {arr.map((image, index) => (
         <div
           key={index}
           onMouseEnter={() => setter({ index, image })}
           onMouseLeave={() => setter({ index: null, image })}
-          className="hover:cursor-pointer absolute left-0 top-0"
+          className="absolute inset-0 hover:cursor-pointer"
           style={{
             opacity: index === activeIndex ? 1 : 0,
+            pointerEvents: index === activeIndex ? "auto" : "none",
+            transition: "opacity 0.2s ease-in-out",
           }}
         >
-          <a>
+          <a className="block w-full h-full" key={index}>
             <img
               src={image}
               alt=""
-              className="hover:grayscale group-hover:invert object-contain"
+              className="w-full h-full object-scale-down hover:grayscale"
             />
           </a>
         </div>
@@ -81,12 +78,15 @@ const IndexedImages = ({ arr, setter, activeIndex }) => {
   );
 };
 
-const NumberText = ({ obj, condition }) => {
+const NumberText = ({ obj, opacityCondition, colorCondition }) => {
   return (
-    <p className="flex items-center justify-center tracking-tighter text-[10px] uppercase gap-2 pointer-events-none">
+    <p
+      className="flex items-center justify-center tracking-tighter text-[10px] uppercase gap-2 pointer-events-none mix-blend-difference"
+      style={{ color: colorCondition ? "white" : "black" }}
+    >
       <span
-        style={{ opacity: condition ? 1 : 0 }}
-        className="block w-fit text-right transition-opacity duration-300 text-nowrap pointer-events-none font-extralight"
+        style={{ opacity: opacityCondition ? 1 : 0 }}
+        className="block w-30 text-right transition-opacity duration-300 text-nowrap pointer-events-none font-extralight"
       >
         {obj.pre}
       </span>
@@ -94,8 +94,8 @@ const NumberText = ({ obj, condition }) => {
       <span className="shrink-0 font-light pointer-events-auto">{obj.num}</span>
 
       <span
-        style={{ opacity: condition ? 1 : 0 }}
-        className="block w-fit text-left transition-opacity duration-300 text-nowrap pointer-events-none italic font-extralight"
+        style={{ opacity: opacityCondition ? 1 : 0 }}
+        className="block w-30 text-left transition-opacity duration-300 text-nowrap pointer-events-none italic font-extralight"
       >
         {obj.post}
       </span>
@@ -120,7 +120,7 @@ const HeroImages = ({ setter }) => {
     setActiveIndex((prev) => (prev + 1 >= imageArray.length ? 0 : prev + 1));
   };
 
-  const imageArray = [imageSeven, imageSix, imageFour, imageFive];
+  const imageArray = [imageOne, imageTwo, imageThree, imageFour];
 
   const offsetsTwo = [
     {
@@ -166,7 +166,7 @@ const HeroImages = ({ setter }) => {
 
   return (
     <div
-      className="h-full w-full fixed cursor-none"
+      className="h-full w-full fixed cursor-none isolate"
       onMouseEnter={() => setCustomerCuorsorVisible(true)}
       onMouseLeave={() => setCustomerCuorsorVisible(false)}
       onClick={(e) => {
@@ -177,17 +177,22 @@ const HeroImages = ({ setter }) => {
         <CustomCursor activeIndex={activeIndex} />
       )}
       <div
-        className="fixed z-10 h-full flex justify-between items-center pointer-events-none py-10"
+        className="fixed z-10 h-full flex justify-between items-center pointer-events-none py-20 hover:text-white"
         style={{
           transform: "translate(-50%, -50%)",
           left: "50%",
-          top: "50%",
+          top: "65%",
           height: "100%",
           transition: "top 0.4s ease",
         }}
       >
         {editorialMetadata.map((obj, index) => (
-          <NumberText key={index} obj={obj} condition={activeIndex === index} />
+          <NumberText
+            key={index}
+            obj={obj}
+            opacityCondition={activeIndex === index}
+            colorCondition={currentHoverImage}
+          />
         ))}
       </div>
 

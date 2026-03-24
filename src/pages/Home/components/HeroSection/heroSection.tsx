@@ -93,13 +93,6 @@ const TextsWrapper = () => {
           <HeroText />
         </motion.div>
       </motion.div>
-
-      {/* <button
-        onClick={handleNavigate}
-        className="col-start-1 row-start-1 z-10 bg-gray-300 w-35 h-15 cursor-pointer m-auto"
-      >
-        Explore
-      </button> */}
     </div>
   );
 };
@@ -109,11 +102,11 @@ const HeroSection = () => {
 
   return (
     <div className="relative w-full h-screen z-10">
-      {/* <img
+      <img
         className="fixed inset-0 h-full w-full object-cover"
         src={activeImage || ""}
         alt=""
-      /> */}
+      />
 
       <HeroImages setter={setActiveImage} />
       <TextsWrapper />
