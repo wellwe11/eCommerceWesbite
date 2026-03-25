@@ -8,7 +8,6 @@ import imageThree from "/resources/brutalismTest/artist2_1.avif";
 import imageFour from "/resources/brutalismTest/artist8_2.jpg";
 
 /** Fix CustomCursor
- * Should point left and right. Needs to be left if user is on left side of screen. Right on right side of screen.
  * Increase activeIndex if on right side of screen. Decrease on left side.
  * Pointer when hovering numbers.
  */
@@ -27,9 +26,6 @@ const CustomCursor = React.memo(() => {
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
   const [mouseDirection, setMouseDirection] = useState(0);
-
-  // get mointor width
-  // check if e.clientX > monWidth / 2
 
   useEffect(() => {
     const monitorWidth = window.screen.width;
@@ -58,6 +54,7 @@ const CustomCursor = React.memo(() => {
     <motion.div
       className="fixed top-0 left-0 pointer-events-none z-999999"
       style={{ x: mouseX, y: mouseY }}
+      onMouseDownCapture={() => console.log("asd")}
     >
       <div
         style={{
@@ -108,9 +105,17 @@ const IndexedImages = ({ arr, setter, activeIndex }) => {
   );
 };
 
-const NumberText = ({ obj, opacityCondition, colorCondition }) => {
-  const opacity = opacityCondition ? 1 : 0;
+// For when im home: Add the handler to parent component, then pass it to customCursor to avoid calculation inside of effect. Also, increase/decrease activeIndex.
+const DirectionContainers = ({ handler }) => {
+  return (
+    <div className=" h-screen w-screen fixed flex">
+      <div className="w-full h-full flex-1" onClick={() => handler(+1)} />
+      <div className="w-full h-full flex-1" onClick={() => handler(-1)} />
+    </div>
+  );
+};
 
+const NumberText = ({ obj, opacityCondition }) => {
   return (
     <p className="flex items-center justify-center tracking-tighter text-[10px] uppercase gap-2 pointer-events-none  text-white">
       <span
@@ -150,34 +155,19 @@ const HeroImages = () => {
     navigate("/gallery");
   };
 
-  const handleActiveIndex = () => {
+  const handleIncreaseIndex = () => {
     setActiveIndex((prev) => (prev + 1 >= imageArray.length ? 0 : prev + 1));
   };
 
-  const imageArray = [imageOne, imageTwo, imageThree, imageFour];
+  console.log(activeIndex);
 
-  const offsetsTwo = [
-    {
-      y: "translate-y-40",
-      x: "-translate-x-5",
-    },
-    {
-      y: "-translate-y-5",
-      x: "-translate-x-0",
-    },
-    {
-      y: "translate-y-25",
-      x: "translate-x-0",
-    },
-    {
-      y: "translate-y-100",
-      x: "translate-x-15",
-    },
-    {
-      y: "-translate-y-16",
-      x: "-translate-x-10",
-    },
-  ];
+  const handleDecreaseIndex = () => {
+    setActiveIndex((prev) =>
+      prev - 1 >= 0 ? prev - 1 : imageArray.length - 1,
+    );
+  };
+
+  const imageArray = [imageOne, imageTwo, imageThree, imageFour];
 
   const editorialMetadata = [
     {
@@ -203,16 +193,25 @@ const HeroImages = () => {
       className="h-full w-full fixed cursor-none inset-0"
       onMouseEnter={() => setCustomerCuorsorVisible(true)}
       onMouseLeave={() => setCustomerCuorsorVisible(false)}
-      onClick={(e) => {
-        !currentHoverImage && handleActiveIndex(e);
-      }}
     >
       <div className="fixed inset-0 flex flex-col items-center justify-center bg-white">
         <img
           className="fixed inset-0 h-full w-full object-cover"
-          src={activeImage || ""}
+          src={activeImage || null}
           alt=""
         />
+        <DirectionContainers
+          handler={(e) => {
+            if (!currentHoverImage) {
+              if (e > 0) {
+                handleDecreaseIndex();
+              } else {
+                handleIncreaseIndex();
+              }
+            }
+          }}
+        />
+
         <div className="relative w-90 h-160">
           <IndexedImages
             arr={imageArray}
@@ -242,7 +241,6 @@ const HeroImages = () => {
               key={index}
               obj={obj}
               opacityCondition={activeIndex === index}
-              colorCondition={currentHoverImage}
             />
           ))}
         </div>
