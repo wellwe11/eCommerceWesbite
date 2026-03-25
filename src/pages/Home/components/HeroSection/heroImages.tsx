@@ -79,23 +79,26 @@ const IndexedImages = ({ arr, setter, activeIndex }) => {
 };
 
 const NumberText = ({ obj, opacityCondition, colorCondition }) => {
+  const opacity = opacityCondition ? 1 : 0;
+
   return (
-    <p
-      className="flex items-center justify-center tracking-tighter text-[10px] uppercase gap-2 pointer-events-none mix-blend-difference"
-      style={{ color: colorCondition ? "white" : "black" }}
-    >
+    <p className="flex items-center justify-center tracking-tighter text-[10px] uppercase gap-2 pointer-events-none  text-white">
       <span
-        style={{ opacity: opacityCondition ? 1 : 0 }}
-        className="block w-30 text-right transition-opacity duration-300 text-nowrap pointer-events-none font-extralight"
+        className={`block w-30 text-right text-nowrap pointer-events-none font-extralight mix-blend-difference  ${
+          opacityCondition ? "visible" : "invisible"
+        }`}
       >
         {obj.pre}
       </span>
 
-      <span className="shrink-0 font-light pointer-events-auto">{obj.num}</span>
+      <span className="shrink-0 font-light pointer-events-auto mix-blend-difference">
+        {obj.num}
+      </span>
 
       <span
-        style={{ opacity: opacityCondition ? 1 : 0 }}
-        className="block w-30 text-left transition-opacity duration-300 text-nowrap pointer-events-none italic font-extralight"
+        className={`block w-30 text-left text-nowrap pointer-events-none italic font-extralight mix-blend-difference  ${
+          opacityCondition ? "visible" : "invisible"
+        }`}
       >
         {obj.post}
       </span>
@@ -103,11 +106,12 @@ const NumberText = ({ obj, opacityCondition, colorCondition }) => {
   );
 };
 
-const HeroImages = ({ setter }) => {
+const HeroImages = () => {
   const [activeIndex, setActiveIndex] = useState(0);
   const [currentHoverImage, setCurrentHoverImage] = useState<number | null>(
     null,
   );
+  const [activeImage, setActiveImage] = useState(null);
   const [customCursorVisible, setCustomerCuorsorVisible] = useState(false);
 
   const navigate = useNavigate();
@@ -166,59 +170,59 @@ const HeroImages = ({ setter }) => {
 
   return (
     <div
-      className="h-full w-full fixed cursor-none isolate"
+      className="h-full w-full fixed cursor-none inset-0"
       onMouseEnter={() => setCustomerCuorsorVisible(true)}
       onMouseLeave={() => setCustomerCuorsorVisible(false)}
       onClick={(e) => {
         !currentHoverImage && handleActiveIndex(e);
       }}
     >
+      <div className="fixed inset-0 flex flex-col items-center justify-center bg-white">
+        <img
+          className="fixed inset-0 h-full w-full object-cover"
+          src={activeImage || ""}
+          alt=""
+        />
+        <div className="relative w-90 h-160">
+          <IndexedImages
+            arr={imageArray}
+            activeIndex={activeIndex}
+            setter={({ index, image }) => {
+              if (index === null) {
+                setCurrentHoverImage(null);
+                setActiveImage(null);
+              } else {
+                setActiveImage(image);
+                setCurrentHoverImage(index);
+              }
+            }}
+          />
+        </div>
+
+        <div
+          className="absolute inset-x-0 flex justify-between items-center pointer-events-none px-8"
+          style={{
+            top: "10%",
+            height: "100%",
+            transition: "top 0.4s ease",
+          }}
+        >
+          {editorialMetadata.map((obj, index) => (
+            <NumberText
+              key={index}
+              obj={obj}
+              opacityCondition={activeIndex === index}
+              colorCondition={currentHoverImage}
+            />
+          ))}
+        </div>
+      </div>
+
       {!currentHoverImage && customCursorVisible && (
         <CustomCursor activeIndex={activeIndex} />
       )}
-      <div
-        className="fixed z-10 h-full flex justify-between items-center pointer-events-none py-20 hover:text-white"
-        style={{
-          transform: "translate(-50%, -50%)",
-          left: "50%",
-          top: "65%",
-          height: "100%",
-          transition: "top 0.4s ease",
-        }}
-      >
-        {editorialMetadata.map((obj, index) => (
-          <NumberText
-            key={index}
-            obj={obj}
-            opacityCondition={activeIndex === index}
-            colorCondition={currentHoverImage}
-          />
-        ))}
-      </div>
-
-      <div
-        className="fixed"
-        style={{
-          left: "50%",
-          top: "50%",
-          transform: "translate(-50%, -50%)",
-        }}
-      >
-        <IndexedImages
-          arr={imageArray}
-          activeIndex={activeIndex}
-          setter={({ index, image }) => {
-            if (index === null) {
-              setCurrentHoverImage(null);
-              setter(null);
-            } else {
-              setter(image);
-              setCurrentHoverImage(index);
-            }
-          }}
-        />
-      </div>
     </div>
   );
 };
+
 export default HeroImages;

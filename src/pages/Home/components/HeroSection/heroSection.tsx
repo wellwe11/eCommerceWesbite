@@ -98,17 +98,9 @@ const TextsWrapper = () => {
 };
 
 const HeroSection = () => {
-  const [activeImage, setActiveImage] = useState(null);
-
   return (
     <div className="relative w-full h-screen z-10">
-      <img
-        className="fixed inset-0 h-full w-full object-cover"
-        src={activeImage || ""}
-        alt=""
-      />
-
-      <HeroImages setter={setActiveImage} />
+      <HeroImages />
       <TextsWrapper />
     </div>
   );
