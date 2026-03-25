@@ -7,11 +7,9 @@ import imageTwo from "/resources/brutalismTest/artist3_1.webp";
 import imageThree from "/resources/brutalismTest/artist2_1.avif";
 import imageFour from "/resources/brutalismTest/artist8_2.jpg";
 
-/** Create an image Component.
- * This component changes image depending on activeIndex
- * If user hovers the image in center, it will display the image, with a smooth transition, and scroll towards the direction of the mouse.
- * This means, the big image will anvigate towards the mouses location on the small image.
- */
+// Make all texts in hero-section "mix-blend-difference"
+// navigate to collection when user clicks smaller image
+// Smoothly show the image when user hovers. Add a delay if user hovers in/out to stop image from staggering its appearance when user is close to the edge.
 
 const CustomCursor = React.memo(() => {
   const mouseX = useMotionValue(0);
@@ -67,14 +65,12 @@ const CustomCursor = React.memo(() => {
   );
 });
 
-const IndexedImages = ({ arr, setter, activeIndex }) => {
+const IndexedImages = ({ arr, activeIndex }) => {
   return (
-    <div className="w-90 h-160 relative">
+    <div className="w-full h-full relative">
       {arr.map((image, index) => (
         <div
           key={index}
-          onMouseEnter={() => setter({ index, image })}
-          onMouseLeave={() => setter({ index: null, image })}
           className="absolute inset-0 hover:cursor-pointer"
           style={{
             opacity: index === activeIndex ? 1 : 0,
@@ -140,10 +136,10 @@ const BackgroundImage = ({
   setCurrentHoverImage,
   imageArray,
   activeIndex,
-  setActiveImage,
 }) => {
   const bigImageRef = useRef(null);
   const smallImageRef = useRef(null);
+  const [isHover, setIsHover] = useState(false);
 
   const x = useMotionValue(0);
   const y = useMotionValue(0);
@@ -180,37 +176,33 @@ const BackgroundImage = ({
 
   return (
     <div className="relative">
-      {src && (
-        <motion.img
-          ref={bigImageRef}
-          className="fixed inset-0 h-full w-full object-cover scale-150 origin-center"
-          src={src || null}
-          alt=""
-          style={{
-            x: smoothX,
-            y: smoothY,
-          }}
-        />
-      )}
+      <motion.img
+        ref={bigImageRef}
+        className="fixed inset-0 h-full w-full object-cover scale-150 origin-center pointer-events-none"
+        src={src || null}
+        alt=""
+        style={{
+          x: smoothX,
+          y: smoothY,
+          opacity: isHover ? 1 : 0,
+          transition: "opacity 0.4s ease",
+        }}
+      />
 
       <div
         ref={smallImageRef}
-        className="relative w-90 h-160"
-        onMouseEnter={() => setCurrentHoverImage(true)}
-        onMouseLeave={() => setCurrentHoverImage(false)}
+        className="relative w-90 h-160 p-10"
+        onMouseEnter={() => {
+          setCurrentHoverImage(true);
+          setIsHover(true);
+        }}
+        onMouseLeave={() => {
+          setIsHover(false);
+          setCurrentHoverImage(false);
+        }}
         onMouseMove={handleMouseMove}
       >
-        <IndexedImages
-          arr={imageArray}
-          activeIndex={activeIndex}
-          setter={({ index, image }) => {
-            if (index === null) {
-              setActiveImage(null);
-            } else {
-              setActiveImage(image);
-            }
-          }}
-        />
+        <IndexedImages arr={imageArray} activeIndex={activeIndex} />
       </div>
     </div>
   );
@@ -221,8 +213,11 @@ const HeroImages = () => {
   const [currentHoverImage, setCurrentHoverImage] = useState<boolean | null>(
     false,
   );
-  const [activeImage, setActiveImage] = useState(null);
+
   const [customCursorVisible, setCustomerCuorsorVisible] = useState(false);
+
+  const imageArray = [imageOne, imageTwo, imageThree, imageFour];
+  const currentImage = imageArray[activeIndex];
 
   const navigate = useNavigate();
 
@@ -231,16 +226,14 @@ const HeroImages = () => {
   };
 
   const handleIncreaseIndex = () => {
-    setActiveIndex((prev) => (prev + 1 >= imageArray.length ? 0 : prev + 1));
+    const nextIndex = (activeIndex + 1) % imageArray.length;
+    setActiveIndex(nextIndex);
   };
 
   const handleDecreaseIndex = () => {
-    setActiveIndex((prev) =>
-      prev - 1 >= 0 ? prev - 1 : imageArray.length - 1,
-    );
+    const prevIndex = (activeIndex - 1 + imageArray.length) % imageArray.length;
+    setActiveIndex(prevIndex);
   };
-
-  const imageArray = [imageOne, imageTwo, imageThree, imageFour];
 
   const editorialMetadata = [
     {
@@ -279,13 +272,11 @@ const HeroImages = () => {
             }
           }}
         />
-
         <BackgroundImage
-          src={activeImage}
+          src={currentImage}
           setCurrentHoverImage={setCurrentHoverImage}
           imageArray={imageArray}
           activeIndex={activeIndex}
-          setActiveImage={setActiveImage}
         />
 
         <div
@@ -301,7 +292,9 @@ const HeroImages = () => {
               key={index}
               obj={obj}
               opacityCondition={activeIndex === index}
-              numberClicker={() => setActiveIndex(index)}
+              numberClicker={() => {
+                setActiveIndex(index);
+              }}
               numberHover={(e) => {
                 if (e) {
                   setCurrentHoverImage(true);
