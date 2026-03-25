@@ -7,15 +7,6 @@ import imageTwo from "/resources/brutalismTest/artist3_1.webp";
 import imageThree from "/resources/brutalismTest/artist2_1.avif";
 import imageFour from "/resources/brutalismTest/artist8_2.jpg";
 
-/** Fix CustomCursor
- * Increase activeIndex if on right side of screen. Decrease on left side.
- * Pointer when hovering numbers.
- */
-
-/** ActiveIndex
- * Set activeIndex to current image if user clicks one of the numbers
- */
-
 /** Create an image Component.
  * This component changes image depending on activeIndex
  * If user hovers the image in center, it will display the image, with a smooth transition, and scroll towards the direction of the mouse.
@@ -54,7 +45,6 @@ const CustomCursor = React.memo(() => {
     <motion.div
       className="fixed top-0 left-0 pointer-events-none z-999999"
       style={{ x: mouseX, y: mouseY }}
-      onMouseDownCapture={() => console.log("asd")}
     >
       <div
         style={{
@@ -115,7 +105,7 @@ const DirectionContainers = ({ handler }) => {
   );
 };
 
-const NumberText = ({ obj, opacityCondition }) => {
+const NumberText = ({ obj, opacityCondition, numberHover, numberClicker }) => {
   return (
     <p className="flex items-center justify-center tracking-tighter text-[10px] uppercase gap-2 pointer-events-none  text-white">
       <span
@@ -126,7 +116,12 @@ const NumberText = ({ obj, opacityCondition }) => {
         {obj.pre}
       </span>
 
-      <span className="shrink-0 font-light pointer-events-auto mix-blend-difference">
+      <span
+        className="shrink-0 font-light pointer-events-auto mix-blend-difference cursor-pointer"
+        onMouseEnter={() => numberHover(true)}
+        onMouseLeave={() => numberHover(false)}
+        onClick={numberClicker}
+      >
         {obj.num}
       </span>
 
@@ -143,8 +138,8 @@ const NumberText = ({ obj, opacityCondition }) => {
 
 const HeroImages = () => {
   const [activeIndex, setActiveIndex] = useState(0);
-  const [currentHoverImage, setCurrentHoverImage] = useState<number | null>(
-    null,
+  const [currentHoverImage, setCurrentHoverImage] = useState<boolean | null>(
+    false,
   );
   const [activeImage, setActiveImage] = useState(null);
   const [customCursorVisible, setCustomerCuorsorVisible] = useState(false);
@@ -158,8 +153,6 @@ const HeroImages = () => {
   const handleIncreaseIndex = () => {
     setActiveIndex((prev) => (prev + 1 >= imageArray.length ? 0 : prev + 1));
   };
-
-  console.log(activeIndex);
 
   const handleDecreaseIndex = () => {
     setActiveIndex((prev) =>
@@ -212,17 +205,19 @@ const HeroImages = () => {
           }}
         />
 
-        <div className="relative w-90 h-160">
+        <div
+          className="relative w-90 h-160"
+          onMouseEnter={() => setCurrentHoverImage(true)}
+          onMouseLeave={() => setCurrentHoverImage(false)}
+        >
           <IndexedImages
             arr={imageArray}
             activeIndex={activeIndex}
             setter={({ index, image }) => {
               if (index === null) {
-                setCurrentHoverImage(null);
                 setActiveImage(null);
               } else {
                 setActiveImage(image);
-                setCurrentHoverImage(index);
               }
             }}
           />
@@ -241,6 +236,14 @@ const HeroImages = () => {
               key={index}
               obj={obj}
               opacityCondition={activeIndex === index}
+              numberClicker={() => setActiveIndex(index)}
+              numberHover={(e) => {
+                if (e) {
+                  setCurrentHoverImage(true);
+                } else {
+                  setCurrentHoverImage(false);
+                }
+              }}
             />
           ))}
         </div>
