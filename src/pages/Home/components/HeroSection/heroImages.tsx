@@ -9,7 +9,6 @@ import imageFour from "/resources/brutalismTest/artist8_2.jpg";
 
 // Make all texts in hero-section "mix-blend-difference"
 // navigate to collection when user clicks smaller image
-// Smoothly show the image when user hovers. Add a delay if user hovers in/out to stop image from staggering its appearance when user is close to the edge.
 
 const CustomCursor = React.memo(() => {
   const mouseX = useMotionValue(0);
@@ -67,11 +66,11 @@ const CustomCursor = React.memo(() => {
 
 const IndexedImages = ({ arr, activeIndex }) => {
   return (
-    <div className="w-full h-full relative">
+    <div className="w-full h-full">
       {arr.map((image, index) => (
         <div
           key={index}
-          className="absolute inset-0 hover:cursor-pointer"
+          className="absolute inset-0 hover:cursor-pointer w-full h-full"
           style={{
             opacity: index === activeIndex ? 1 : 0,
             pointerEvents: index === activeIndex ? "auto" : "none",
@@ -82,7 +81,7 @@ const IndexedImages = ({ arr, activeIndex }) => {
             <img
               src={image}
               alt=""
-              className="w-full h-full object-scale-down hover:grayscale"
+              className="object-scale-down hover:grayscale w-full h-full"
             />
           </a>
         </div>
@@ -147,6 +146,7 @@ const BackgroundImage = ({
   const springConfig = { damping: 100, stiffness: 200, mass: 1 };
   const smoothX = useSpring(x, springConfig);
   const smoothY = useSpring(y, springConfig);
+
   const handleMouseMove = (e) => {
     if (!smallImageRef.current) return;
 
@@ -160,7 +160,7 @@ const BackgroundImage = ({
     const mouseX = (e.clientX - sILeft) / sIWidth;
     const mouseY = (e.clientY - sITop) / sIHeight;
 
-    const scale = 1.4;
+    const scale = 1.35;
     const vpW = window.innerWidth;
     const vpH = window.innerHeight;
 
@@ -168,7 +168,7 @@ const BackgroundImage = ({
     const overflowY = (vpH * scale - vpH) / 2;
 
     const rawX = -(mouseX - 0.5) * overflowX * 2;
-    const rawY = -(mouseY - 0.5) * overflowY * 2;
+    const rawY = -(mouseY - 0.5) * overflowY * 8;
 
     x.set(Math.max(-overflowX, Math.min(overflowX, rawX)));
     y.set(Math.max(-overflowY, Math.min(overflowY, rawY)));
@@ -178,7 +178,7 @@ const BackgroundImage = ({
     <div className="relative">
       <motion.img
         ref={bigImageRef}
-        className="fixed inset-0 h-full w-full object-cover scale-150 origin-center pointer-events-none"
+        className="fixed inset-0 h-max w-max object-cover scale-150 origin-center pointer-events-none"
         src={src || null}
         alt=""
         style={{
@@ -191,13 +191,15 @@ const BackgroundImage = ({
 
       <div
         ref={smallImageRef}
-        className="relative w-90 h-160 p-10"
+        className="relative w-110 h-150"
         onMouseEnter={() => {
           setCurrentHoverImage(true);
           setIsHover(true);
         }}
         onMouseLeave={() => {
-          setIsHover(false);
+          setTimeout(() => {
+            setIsHover(false);
+          }, 200);
           setCurrentHoverImage(false);
         }}
         onMouseMove={handleMouseMove}
@@ -272,6 +274,7 @@ const HeroImages = () => {
             }
           }}
         />
+
         <BackgroundImage
           src={currentImage}
           setCurrentHoverImage={setCurrentHoverImage}

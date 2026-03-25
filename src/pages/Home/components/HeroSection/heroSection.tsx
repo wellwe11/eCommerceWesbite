@@ -1,26 +1,38 @@
 import { useNavigate } from "react-router-dom";
-import heroImage from "../../resources/imageThree.avif";
-import { useRef, useState } from "react";
+import { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import HeroImages from "./heroImages";
 
-const SideText = () => {
+const SideText = ({ opacity, y }) => {
   return (
-    <div
-      className="p-5 z-10 [writing-mode:vertical-rl] flex items-center gap-5"
+    <motion.div
+      style={{ y }}
+      className="p-5 [writing-mode:vertical-rl] flex items-center gap-5"
       style={{ fontVariationSettings: "'wght' 100" }}
     >
-      <p className="text-xs">Small uninformative text, minor details</p>
-      <h4 className="text-5xl">Big title text</h4>
-    </div>
+      <motion.p
+        style={{ opacity }}
+        className="text-xs mix-blend-difference text-white"
+      >
+        Small uninformative text, minor details
+      </motion.p>
+
+      <motion.h4
+        style={{ opacity }}
+        className="text-5xl mix-blend-difference text-white"
+      >
+        Big title text
+      </motion.h4>
+    </motion.div>
   );
 };
 
-const HeroText = () => {
+const HeroText = ({ y }) => {
   return (
-    <div className="p-10 z-100000 justify-self-start w-80">
-      <p
-        className="text-[12px] leading-5"
+    <motion.div className="p-10 justify-self-start w-80">
+      <motion.p
+        style={{ y }}
+        className="text-[12px] leading-5 mix-blend-difference text-white"
         style={{ fontVariationSettings: "'wght' 150" }}
       >
         Code is a silent medium. Data is a living ink. I create high-fidelity
@@ -34,8 +46,8 @@ const HeroText = () => {
             robin1ryan@hotmail.com
           </button>
         </span>
-      </p>
-    </div>
+      </motion.p>
+    </motion.div>
   );
 };
 
@@ -69,30 +81,23 @@ const TextsWrapper = () => {
   // HeroText
   const containerYTwo = useTransform(
     scrollYProgress,
-    [0, 0.2, 0.5, 1],
+    [0, 1, 0.5, 1],
     [40, 0, 0, 40],
   );
 
   return (
-    <div className="w-full h-screen z-30 absolute top-0 grid place-items-center overflow-hidden grid-cols-1 grid-rows-1 will-change-transform pointer-events-none">
-      <motion.div
+    <div className="w-full h-screen absolute top-0 grid place-items-center overflow-hidden grid-cols-1 grid-rows-1 pointer-events-none">
+      <div
         ref={containerRef}
-        className="z-10 absolute w-full h-full grid grid-cols-1 will-change-auto"
-        style={{ opacity }}
+        className="absolute w-full h-full grid grid-cols-1 "
       >
-        <motion.div
-          style={{ y: containerYOne }}
-          className="z-10 relative self-center justify-self-end col-start-1 row-start-1"
-        >
-          <SideText />
-        </motion.div>
-        <motion.div
-          style={{ y: containerYTwo }}
-          className="z-10 relative self-end col-start-1 row-start-1"
-        >
-          <HeroText />
-        </motion.div>
-      </motion.div>
+        <div className="relative self-center justify-self-end col-start-1 row-start-1">
+          <SideText y={containerYOne} opacity={opacity} />
+        </div>
+        <div className=" relative self-end col-start-1 row-start-1">
+          <HeroText y={containerYTwo} />
+        </div>
+      </div>
     </div>
   );
 };
