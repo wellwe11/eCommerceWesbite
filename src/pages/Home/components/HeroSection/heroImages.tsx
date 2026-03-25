@@ -7,14 +7,44 @@ import imageTwo from "/resources/brutalismTest/artist3_1.webp";
 import imageThree from "/resources/brutalismTest/artist2_1.avif";
 import imageFour from "/resources/brutalismTest/artist8_2.jpg";
 
-const CustomCursor = React.memo(({ activeIndex }) => {
+/** Fix CustomCursor
+ * Should point left and right. Needs to be left if user is on left side of screen. Right on right side of screen.
+ * Increase activeIndex if on right side of screen. Decrease on left side.
+ * Pointer when hovering numbers.
+ */
+
+/** ActiveIndex
+ * Set activeIndex to current image if user clicks one of the numbers
+ */
+
+/** Create an image Component.
+ * This component changes image depending on activeIndex
+ * If user hovers the image in center, it will display the image, with a smooth transition, and scroll towards the direction of the mouse.
+ * This means, the big image will anvigate towards the mouses location on the small image.
+ */
+
+const CustomCursor = React.memo(() => {
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
+  const [mouseDirection, setMouseDirection] = useState(0);
+
+  // get mointor width
+  // check if e.clientX > monWidth / 2
 
   useEffect(() => {
+    const monitorWidth = window.screen.width;
+
     const handleMove = (e) => {
       mouseX.set(e.clientX);
       mouseY.set(e.clientY);
+
+      if (mouseDirection === 0 && e.clientX < monitorWidth / 2) {
+        setMouseDirection(180);
+      }
+
+      if (mouseDirection === 180 && e.clientX > monitorWidth / 2) {
+        setMouseDirection(0);
+      }
     };
 
     window.addEventListener("mousemove", handleMove);
@@ -22,7 +52,7 @@ const CustomCursor = React.memo(({ activeIndex }) => {
     return () => {
       window.removeEventListener("mousemove", handleMove);
     };
-  }, [mouseX, mouseY]);
+  }, [mouseX, mouseY, mouseDirection]);
 
   return (
     <motion.div
@@ -31,7 +61,7 @@ const CustomCursor = React.memo(({ activeIndex }) => {
     >
       <div
         style={{
-          transform: `rotate(${activeIndex === 1 ? -90 : 90}deg)`,
+          transform: `rotate(${mouseDirection}deg)`,
           transition: "transform 0.1s ease",
         }}
         className="flex items-center justify-center -translate-x-1/2 -translate-y-1/2"
@@ -218,9 +248,7 @@ const HeroImages = () => {
         </div>
       </div>
 
-      {!currentHoverImage && customCursorVisible && (
-        <CustomCursor activeIndex={activeIndex} />
-      )}
+      {!currentHoverImage && customCursorVisible && <CustomCursor />}
     </div>
   );
 };
