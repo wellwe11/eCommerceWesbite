@@ -1,5 +1,5 @@
-import { motion, useMotionValue } from "framer-motion";
-import React, { useEffect, useState } from "react";
+import { motion, useMotionValue, useSpring } from "framer-motion";
+import React, { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import imageOne from "/resources/brutalismTest/artist1_1.jpg";
@@ -95,7 +95,6 @@ const IndexedImages = ({ arr, setter, activeIndex }) => {
   );
 };
 
-// For when im home: Add the handler to parent component, then pass it to customCursor to avoid calculation inside of effect. Also, increase/decrease activeIndex.
 const DirectionContainers = ({ handler }) => {
   return (
     <div className=" h-screen w-screen fixed flex">
@@ -133,6 +132,87 @@ const NumberText = ({ obj, opacityCondition, numberHover, numberClicker }) => {
         {obj.post}
       </span>
     </p>
+  );
+};
+
+const BackgroundImage = ({
+  src,
+  setCurrentHoverImage,
+  imageArray,
+  activeIndex,
+  setActiveImage,
+}) => {
+  const bigImageRef = useRef(null);
+  const smallImageRef = useRef(null);
+
+  const x = useMotionValue(0);
+  const y = useMotionValue(0);
+
+  const springConfig = { damping: 100, stiffness: 200, mass: 1 };
+  const smoothX = useSpring(x, springConfig);
+  const smoothY = useSpring(y, springConfig);
+  const handleMouseMove = (e) => {
+    if (!smallImageRef.current) return;
+
+    const {
+      left: sILeft,
+      top: sITop,
+      width: sIWidth,
+      height: sIHeight,
+    } = smallImageRef.current.getBoundingClientRect();
+
+    const mouseX = (e.clientX - sILeft) / sIWidth;
+    const mouseY = (e.clientY - sITop) / sIHeight;
+
+    const scale = 1.4;
+    const vpW = window.innerWidth;
+    const vpH = window.innerHeight;
+
+    const overflowX = (vpW * scale - vpW) / 2;
+    const overflowY = (vpH * scale - vpH) / 2;
+
+    const rawX = -(mouseX - 0.5) * overflowX * 2;
+    const rawY = -(mouseY - 0.5) * overflowY * 2;
+
+    x.set(Math.max(-overflowX, Math.min(overflowX, rawX)));
+    y.set(Math.max(-overflowY, Math.min(overflowY, rawY)));
+  };
+
+  return (
+    <div className="relative">
+      {src && (
+        <motion.img
+          ref={bigImageRef}
+          className="fixed inset-0 h-full w-full object-cover scale-150 origin-center"
+          src={src || null}
+          alt=""
+          style={{
+            x: smoothX,
+            y: smoothY,
+          }}
+        />
+      )}
+
+      <div
+        ref={smallImageRef}
+        className="relative w-90 h-160"
+        onMouseEnter={() => setCurrentHoverImage(true)}
+        onMouseLeave={() => setCurrentHoverImage(false)}
+        onMouseMove={handleMouseMove}
+      >
+        <IndexedImages
+          arr={imageArray}
+          activeIndex={activeIndex}
+          setter={({ index, image }) => {
+            if (index === null) {
+              setActiveImage(null);
+            } else {
+              setActiveImage(image);
+            }
+          }}
+        />
+      </div>
+    </div>
   );
 };
 
@@ -188,11 +268,6 @@ const HeroImages = () => {
       onMouseLeave={() => setCustomerCuorsorVisible(false)}
     >
       <div className="fixed inset-0 flex flex-col items-center justify-center bg-white">
-        <img
-          className="fixed inset-0 h-full w-full object-cover"
-          src={activeImage || null}
-          alt=""
-        />
         <DirectionContainers
           handler={(e) => {
             if (!currentHoverImage) {
@@ -205,23 +280,13 @@ const HeroImages = () => {
           }}
         />
 
-        <div
-          className="relative w-90 h-160"
-          onMouseEnter={() => setCurrentHoverImage(true)}
-          onMouseLeave={() => setCurrentHoverImage(false)}
-        >
-          <IndexedImages
-            arr={imageArray}
-            activeIndex={activeIndex}
-            setter={({ index, image }) => {
-              if (index === null) {
-                setActiveImage(null);
-              } else {
-                setActiveImage(image);
-              }
-            }}
-          />
-        </div>
+        <BackgroundImage
+          src={activeImage}
+          setCurrentHoverImage={setCurrentHoverImage}
+          imageArray={imageArray}
+          activeIndex={activeIndex}
+          setActiveImage={setActiveImage}
+        />
 
         <div
           className="absolute inset-x-0 flex justify-between items-center pointer-events-none px-8"
