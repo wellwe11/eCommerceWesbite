@@ -160,7 +160,7 @@ const BackgroundImage = ({
     const mouseX = (e.clientX - sILeft) / sIWidth;
     const mouseY = (e.clientY - sITop) / sIHeight;
 
-    const scale = 1.35;
+    const scale = 1.34;
     const vpW = window.innerWidth;
     const vpH = window.innerHeight;
 
@@ -168,7 +168,7 @@ const BackgroundImage = ({
     const overflowY = (vpH * scale - vpH) / 2;
 
     const rawX = -(mouseX - 0.5) * overflowX * 2;
-    const rawY = -(mouseY - 0.5) * overflowY * 8;
+    const rawY = -(mouseY - 0.5) * overflowY * 2;
 
     x.set(Math.max(-overflowX, Math.min(overflowX, rawX)));
     y.set(Math.max(-overflowY, Math.min(overflowY, rawY)));
@@ -178,7 +178,7 @@ const BackgroundImage = ({
     <div className="relative">
       <motion.img
         ref={bigImageRef}
-        className="fixed inset-0 h-max w-max object-cover scale-150 origin-center pointer-events-none"
+        className="fixed inset-0 h-full w-full object-cover scale-150 origin-center pointer-events-none"
         src={src || null}
         alt=""
         style={{
