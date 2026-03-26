@@ -20,6 +20,7 @@ const artists = [
     collections: [
       {
         item: 23123,
+        name: "some name",
         image: "src/asdasd",
         restImages: ["src/asd", "src/hbwd", "src/12esa", "src/sdamk"],
         price: 24.99,
@@ -33,6 +34,7 @@ const artists = [
       },
       {
         item: 3242,
+        name: "this is called this",
         image: "src/as234asd",
         restImages: ["src/asfd", "src/hd", "src/1sswa", "src/samkaa"],
         price: 24.99,
@@ -50,10 +52,12 @@ const artists = [
 ];
 * Please read:
 * The reason for this structure is because on product-page, we are stating which specific collection this currently is from the artist, which year it is.
+* Also, hero-section holds Artist name AND item-name
 * Technically, if this page was to ever launch, you could insert new data based off of artist, and it would naturally find it's index. Like so, you can directly order art based off off creator
 * This allows for easy future sorting-methods as well.
 * This also is good because I am not building the page based off of collections. It is simply 1 art-peice, and then other images of that same item.
 * Then you can show items made by same artist below the artist as well, or something similar. 
+* 
  */
 
 export type ProductImage = {

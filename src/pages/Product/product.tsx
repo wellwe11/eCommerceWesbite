@@ -7,6 +7,7 @@ import { activeProductAtom } from "@/atoms/productAtoms";
 import useProductData from "@/hooks/useProductData";
 import CustomCursor from "@components/ui/customCursor";
 
+// When user has not moved mouse for about 2 seconds, remove texts & cursor, so the image sits by itself (ofc with navbar active)
 // Next is to create a section for product-info, such as price, dimensions, colors etc.
 
 const DirectionContainers = ({ handler }) => {
@@ -59,7 +60,7 @@ const GridSetup = ({ data }) => {
             }}
           />
         </div>
-        <div className="h-screen py-15">
+        <div className="h-screen py-5">
           <img
             className="h-full w-auto object-contain block"
             src={imageArray[activeIndex].src}
@@ -93,7 +94,7 @@ const GridSetup = ({ data }) => {
         <div>
           <p className="mix-blend-difference text-white">
             GRID {activeIndex < 10 ? 0 : ""}
-            {activeIndex} - 0{imageArray.length}
+            {activeIndex + 1} - 0{imageArray.length + 1}
           </p>
         </div>
       </div>
