@@ -18,7 +18,7 @@ const CollectionNumberCounter = ({ activeCount }: { activeCount: number }) => {
   return (
     <motion.div
       ref={containerRef}
-      className="relative col-start-3 row-start-1 row-end-3 h-full text-start [clip-path:inset(0_0_0_0)]"
+      className="relative col-start-3 row-start-1 row-end-3 h-full text-start [clip-path:inset(0_0_0_0)] ml-2"
       style={{ opacity }}
     >
       <motion.div

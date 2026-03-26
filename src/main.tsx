@@ -11,9 +11,9 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
     <ReactLenis
       root
       options={{
-        lerp: 0.3,
-        wheelMultiplier: 0.45,
-        touchMultiplier: 0.2,
+        duration: 0.5,
+        easing: (t) => 1 - Math.pow(1 - t, 5),
+        wheelMultiplier: 0.7,
       }}
     >
       <RouterProvider router={router} />

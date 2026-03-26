@@ -7,9 +7,6 @@ import imageTwo from "/resources/brutalismTest/artist3_1.webp";
 import imageThree from "/resources/brutalismTest/artist2_1.avif";
 import imageFour from "/resources/brutalismTest/artist8_2.jpg";
 
-// Make all texts in hero-section "mix-blend-difference"
-// navigate to collection when user clicks smaller image
-
 const CustomCursor = React.memo(() => {
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
@@ -223,6 +220,8 @@ const HeroImages = () => {
 
   const navigate = useNavigate();
 
+  // navigate to collection when user clicks smaller image
+  // Will update once I have a full object with correct images, id's etc.
   const handleNavigate = () => {
     navigate("/gallery");
   };
