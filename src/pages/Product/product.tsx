@@ -11,7 +11,7 @@ import CustomCursor from "@components/ui/customCursor";
 
 const DirectionContainers = ({ handler }) => {
   return (
-    <div className=" h-screen w-screen fixed flex">
+    <div className=" h-screen w-screen flex">
       <div className="w-full h-full flex-1" onClick={() => handler(+1)} />
       <div className="w-full h-full flex-1" onClick={() => handler(-1)} />
     </div>
@@ -34,20 +34,18 @@ const GridSetup = ({ data }) => {
     setActiveIndex(prevIndex);
   };
 
-  console.log(activeIndex);
-
   const { colors, height, width, price, name } = data;
   const bio = [colors, height, width, price, name];
 
   return (
-    <div className="">
+    <div>
       {/**Will abstract. This is the 'head' section */}
       <section
-        className="cursor-none w-full flex justify-center"
+        className="relative cursor-none w-full flex justify-center"
         onMouseEnter={() => setDisplayCustomCursor(true)}
         onMouseLeave={() => setDisplayCustomCursor(false)}
       >
-        <div className="fixed inset-0 flex flex-col items-center justify-center">
+        <div className="absolute inset-0 flex flex-col items-center justify-center">
           <DirectionContainers
             handler={(e) => {
               if (displayCustomCursor) {
@@ -69,36 +67,19 @@ const GridSetup = ({ data }) => {
         </div>
         {displayCustomCursor && <CustomCursor />}
       </section>
+
+      <section className="flex justify-center gap-15 h-45 z-200">
+        {imageArray.map((obj, index) => (
+          <img
+            src={obj.src}
+            alt=""
+            key={index}
+            className="cursor-pointer"
+            onClick={() => setActiveIndex(index)}
+          />
+        ))}
+      </section>
     </div>
-    // <div className="flex w-full flex-wrap justify-center items-center gap-y-7">
-
-    //   <div className="grid grid-cols-[repeat(2,clamp(100px,30vw,400px))] pt-30 justify-center justify-items-center w-full gap-x-10">
-    //     <div className={flexWrap}>
-    //       <img
-    //         src={imageOne.src || imageOne}
-    //         alt=""
-    //         className="object-center w-[clamp(100px,30vw,400px)] h-full"
-    //       />
-    //     </div>
-    //     <div className={flexWrap}>
-    //       {bio.map((item, i) => (
-    //         <p key={i}>{item}</p>
-    //       ))}
-    //     </div>
-    //   </div>
-
-    //   <div className="grid grid-cols-[repeat(2,clamp(100px,30vw,400px))] justify-center justify-items-center w-full gap-y-7 gap-x-10">
-    //     {restImages.map((image, i) => (
-    //       <div className={flexWrap} key={i}>
-    //         <img
-    //           src={image.src || image}
-    //           alt=""
-    //           className="object-center w-full h-full"
-    //         />
-    //       </div>
-    //     ))}
-    //   </div>
-    // </div>
   );
 };
 
