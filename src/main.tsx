@@ -11,7 +11,7 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
     <ReactLenis
       root
       options={{
-        duration: 0.5,
+        duration: 0.48,
         easing: (t) => 1 - Math.pow(1 - t, 5),
         wheelMultiplier: 0.7,
       }}
