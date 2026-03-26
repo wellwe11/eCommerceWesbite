@@ -7,8 +7,6 @@ import { activeProductAtom } from "@/atoms/productAtoms";
 import useProductData from "@/hooks/useProductData";
 import CustomCursor from "@components/ui/customCursor";
 
-// Beyond noise        Issue 3 styled by Sarah Richardson     2024                          GRID 0-9
-
 const DirectionContainers = ({ handler }) => {
   return (
     <div className=" h-screen w-screen flex">
@@ -35,11 +33,12 @@ const GridSetup = ({ data }) => {
   };
 
   const { colors, height, width, price, name } = data;
-  const bio = [colors, height, width, price, name];
+
+  // Name of collection, amount of art from a specific artist, year of release
+  // GRID - current index out of max index
 
   return (
-    <div>
-      {/**Will abstract. This is the 'head' section */}
+    <div className="relative">
       <section
         className="relative cursor-none w-full flex justify-center"
         onMouseEnter={() => setDisplayCustomCursor(true)}
@@ -58,7 +57,7 @@ const GridSetup = ({ data }) => {
             }}
           />
         </div>
-        <div className="h-screen py-5">
+        <div className="h-screen py-15">
           <img
             className="h-full w-auto object-contain block"
             src={imageArray[activeIndex].src}
@@ -68,7 +67,7 @@ const GridSetup = ({ data }) => {
         {displayCustomCursor && <CustomCursor />}
       </section>
 
-      <section className="flex justify-center gap-15 h-45 z-200">
+      <section className="flex justify-center gap-15 h-45">
         {imageArray.map((obj, index) => (
           <img
             src={obj.src}
@@ -79,6 +78,23 @@ const GridSetup = ({ data }) => {
           />
         ))}
       </section>
+
+      <div className="bio-title absolute top-[40%] inset-x-0 flex justify-between w-full px-10">
+        <div className="flex gap-10">
+          <p className="mix-blend-difference text-white">2024</p>
+          <p className="mix-blend-difference text-white">
+            Issue 3 styled by Sarah Richardson
+          </p>
+          <p className="bio-title mix-blend-difference text-white">{name}</p>
+        </div>
+
+        <div>
+          <p className="mix-blend-difference text-white">
+            GRID {activeIndex < 10 ? 0 : ""}
+            {activeIndex} - 0{imageArray.length}
+          </p>
+        </div>
+      </div>
     </div>
   );
 };
