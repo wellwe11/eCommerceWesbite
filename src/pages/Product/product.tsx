@@ -7,6 +7,8 @@ import { activeProductAtom } from "@/atoms/productAtoms";
 import useProductData from "@/hooks/useProductData";
 import CustomCursor from "@components/ui/customCursor";
 
+// Next is to create a section for product-info, such as price, dimensions, colors etc.
+
 const DirectionContainers = ({ handler }) => {
   return (
     <div className=" h-screen w-screen flex">
