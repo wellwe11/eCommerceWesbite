@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useParams } from "react-router-dom";
 import { useSetAtom } from "jotai";
 
@@ -24,6 +24,26 @@ const GridSetup = ({ data }) => {
   const imageArray = data.images;
   const [displayCustomCursor, setDisplayCustomCursor] = useState(false);
   const [activeIndex, setActiveIndex] = useState(0);
+  const [mouseMove, setMouseMove] = useState(true);
+  const timerRef = useRef(null);
+
+  const handleMouseMove = () => {
+    if (timerRef.current) {
+      clearTimeout(timerRef.current);
+    }
+
+    if (!mouseMove) {
+      setMouseMove(true);
+    }
+
+    timerRef.current = setTimeout(() => setMouseMove(false), 2000);
+  };
+
+  useEffect(() => {
+    return () => {
+      if (timerRef.current) clearTimeout(timerRef.current);
+    };
+  }, []);
 
   const handleIncreaseIndex = () => {
     const nextIndex = (activeIndex + 1) % imageArray.length;
@@ -39,9 +59,10 @@ const GridSetup = ({ data }) => {
 
   // Name of collection, amount of art from a specific artist, year of release
   // GRID - current index out of max index
+  // FIX TIMEOUT FUNCTION IT NEEDS TO SMOOTHLY TRANSITION
 
   return (
-    <div className="relative">
+    <div onMouseMove={handleMouseMove} className="relative">
       <section
         className="relative cursor-none w-full flex justify-center"
         onMouseEnter={() => setDisplayCustomCursor(true)}
@@ -82,17 +103,29 @@ const GridSetup = ({ data }) => {
         ))}
       </section>
 
-      <div className="bio-title absolute top-[40%] inset-x-0 flex justify-between w-full px-10">
+      <div className="bio-title pointer-events-none absolute top-[40%] inset-x-0 flex justify-between w-full px-10 transition-opacity duration-700 ease-in-out">
         <div className="flex gap-10">
-          <p className="mix-blend-difference text-white">2024</p>
-          <p className="mix-blend-difference text-white">
+          <p
+            className={`mix-blend-difference text-white transition-opacity duration-300 ease-in-out ${mouseMove ? "opacity-100" : "opacity-0"}`}
+          >
+            2024
+          </p>
+          <p
+            className={`mix-blend-difference text-white transition-opacity duration-300 ease-in-out ${mouseMove ? "opacity-100" : "opacity-0"}`}
+          >
             Issue 3 styled by Sarah Richardson
           </p>
-          <p className="bio-title mix-blend-difference text-white">{name}</p>
+          <p
+            className={`bio-title mix-blend-difference text-white transition-opacity duration-300 ease-in-out ${mouseMove ? "opacity-100" : "opacity-0"}`}
+          >
+            {name}
+          </p>
         </div>
 
         <div>
-          <p className="mix-blend-difference text-white">
+          <p
+            className={`mix-blend-difference text-white transition-opacity duration-300 ease-in-out ${mouseMove ? "opacity-100" : "opacity-0"}`}
+          >
             GRID {activeIndex < 10 ? 0 : ""}
             {activeIndex + 1} - 0{imageArray.length + 1}
           </p>
