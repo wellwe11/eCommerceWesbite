@@ -21,33 +21,33 @@ const DirectionContainers = ({ handler }) => {
   );
 };
 
-const CenteredText = ({ mouseMove, activeIndex, imageArrayLength, name }) => {
+const CenteredText = ({
+  activeIndex,
+  imageArrayLength,
+  name,
+  mouseMoveClass,
+}) => {
+  // Will update and fix so that its fetched instead of being local
+  const localText = {
+    year: 2024,
+    issue: "Issue 3 styled by Sarah Richardson",
+    name,
+  };
+
   return (
-    <div className="bio-title pointer-events-none absolute top-[40%] inset-x-0 flex justify-between w-full px-10 transition-opacity duration-700 ease-in-out">
+    <div className="bio-title pointer-events-none absolute top-[40%] inset-x-0 flex justify-between w-full px-10">
       <div className="flex gap-10">
-        <p
-          className={`mix-blend-difference text-white transition-opacity duration-300 ease-in-out ${mouseMove ? "opacity-100" : "opacity-0"}`}
-        >
-          2024
-        </p>
-        <p
-          className={`mix-blend-difference text-white transition-opacity duration-300 ease-in-out ${mouseMove ? "opacity-100" : "opacity-0"}`}
-        >
-          Issue 3 styled by Sarah Richardson
-        </p>
-        <p
-          className={`bio-title mix-blend-difference text-white transition-opacity duration-300 ease-in-out ${mouseMove ? "opacity-100" : "opacity-0"}`}
-        >
-          {name}
-        </p>
+        {Object.values(localText).map((text) => (
+          <p className={`mix-blend-difference text-white ${mouseMoveClass}`}>
+            {text}
+          </p>
+        ))}
       </div>
 
       <div>
-        <p
-          className={`mix-blend-difference text-white transition-opacity duration-300 ease-in-out ${mouseMove ? "opacity-100" : "opacity-0"}`}
-        >
+        <p className={`mix-blend-difference text-white ${mouseMoveClass}`}>
           GRID {activeIndex < 10 ? 0 : ""}
-          {activeIndex + 1} - 0{imageArrayLength + 1}
+          {activeIndex + 1} - 0{imageArrayLength}
         </p>
       </div>
     </div>
@@ -64,6 +64,8 @@ const GridSetup = ({ data }) => {
   const imageArray = data.images;
   const imageArrayLength = imageArray.length;
   const { colors, height, width, price, name } = data;
+
+  const mouseMoveClass = `transition-opacity duration-300 ease-in-out ${mouseMove ? "opacity-100" : "opacity-0"}`;
 
   const handleMouseMove = () => {
     if (timerRef.current) {
@@ -121,9 +123,7 @@ const GridSetup = ({ data }) => {
           />
         </div>
         {displayCustomCursor && (
-          <div
-            className={`transition-opacity duration-300 ease-in-out ${mouseMove ? "opacity-100" : "opacity-0"}`}
-          >
+          <div className={mouseMoveClass}>
             <CustomCursor />
           </div>
         )}
@@ -142,6 +142,7 @@ const GridSetup = ({ data }) => {
       </section>
 
       <CenteredText
+        mouseMoveClass={mouseMoveClass}
         mouseMove={mouseMove}
         activeIndex={activeIndex}
         imageArrayLength={imageArrayLength}
