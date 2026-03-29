@@ -88,7 +88,11 @@ const GridSetup = ({ data }) => {
             alt=""
           />
         </div>
-        {displayCustomCursor && <CustomCursor />}
+        <div
+          className={`transition-opacity duration-300 ease-in-out ${mouseMove ? "opacity-100" : "opacity-0"}`}
+        >
+          {displayCustomCursor && <CustomCursor />}
+        </div>
       </section>
 
       <section className="flex justify-center gap-15 h-45">
