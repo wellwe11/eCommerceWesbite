@@ -7,8 +7,10 @@ import { activeProductAtom } from "@/atoms/productAtoms";
 import useProductData from "@/hooks/useProductData";
 import CustomCursor from "@components/ui/customCursor";
 
-// When user has not moved mouse for about 2 seconds, remove texts & cursor, so the image sits by itself (ofc with navbar active)
 // Next is to create a section for product-info, such as price, dimensions, colors etc.
+
+// Create a class for the transitions of mouse and texts to minimise code
+// Seperate components and isolate them from each other
 
 const DirectionContainers = ({ handler }) => {
   return (
@@ -22,7 +24,7 @@ const DirectionContainers = ({ handler }) => {
 // Sorter that places bio into 2nd grid-container
 const GridSetup = ({ data }) => {
   const imageArray = data.images;
-  const [displayCustomCursor, setDisplayCustomCursor] = useState(false);
+  const [displayCustomCursor, setDisplayCustomCursor] = useState(true);
   const [activeIndex, setActiveIndex] = useState(0);
   const [mouseMove, setMouseMove] = useState(true);
   const timerRef = useRef(null);
@@ -88,11 +90,13 @@ const GridSetup = ({ data }) => {
             alt=""
           />
         </div>
-        <div
-          className={`transition-opacity duration-300 ease-in-out ${mouseMove ? "opacity-100" : "opacity-0"}`}
-        >
-          {displayCustomCursor && <CustomCursor />}
-        </div>
+        {displayCustomCursor && (
+          <div
+            className={`transition-opacity duration-300 ease-in-out ${mouseMove ? "opacity-100" : "opacity-0"}`}
+          >
+            <CustomCursor />
+          </div>
+        )}
       </section>
 
       <section className="flex justify-center gap-15 h-45">
