@@ -21,13 +21,49 @@ const DirectionContainers = ({ handler }) => {
   );
 };
 
+const CenteredText = ({ mouseMove, activeIndex, imageArrayLength, name }) => {
+  return (
+    <div className="bio-title pointer-events-none absolute top-[40%] inset-x-0 flex justify-between w-full px-10 transition-opacity duration-700 ease-in-out">
+      <div className="flex gap-10">
+        <p
+          className={`mix-blend-difference text-white transition-opacity duration-300 ease-in-out ${mouseMove ? "opacity-100" : "opacity-0"}`}
+        >
+          2024
+        </p>
+        <p
+          className={`mix-blend-difference text-white transition-opacity duration-300 ease-in-out ${mouseMove ? "opacity-100" : "opacity-0"}`}
+        >
+          Issue 3 styled by Sarah Richardson
+        </p>
+        <p
+          className={`bio-title mix-blend-difference text-white transition-opacity duration-300 ease-in-out ${mouseMove ? "opacity-100" : "opacity-0"}`}
+        >
+          {name}
+        </p>
+      </div>
+
+      <div>
+        <p
+          className={`mix-blend-difference text-white transition-opacity duration-300 ease-in-out ${mouseMove ? "opacity-100" : "opacity-0"}`}
+        >
+          GRID {activeIndex < 10 ? 0 : ""}
+          {activeIndex + 1} - 0{imageArrayLength + 1}
+        </p>
+      </div>
+    </div>
+  );
+};
+
 // Sorter that places bio into 2nd grid-container
 const GridSetup = ({ data }) => {
-  const imageArray = data.images;
   const [displayCustomCursor, setDisplayCustomCursor] = useState(true);
   const [activeIndex, setActiveIndex] = useState(0);
   const [mouseMove, setMouseMove] = useState(true);
   const timerRef = useRef(null);
+
+  const imageArray = data.images;
+  const imageArrayLength = imageArray.length;
+  const { colors, height, width, price, name } = data;
 
   const handleMouseMove = () => {
     if (timerRef.current) {
@@ -56,12 +92,6 @@ const GridSetup = ({ data }) => {
     const prevIndex = (activeIndex - 1 + imageArray.length) % imageArray.length;
     setActiveIndex(prevIndex);
   };
-
-  const { colors, height, width, price, name } = data;
-
-  // Name of collection, amount of art from a specific artist, year of release
-  // GRID - current index out of max index
-  // FIX TIMEOUT FUNCTION IT NEEDS TO SMOOTHLY TRANSITION
 
   return (
     <div onMouseMove={handleMouseMove} className="relative">
@@ -111,34 +141,12 @@ const GridSetup = ({ data }) => {
         ))}
       </section>
 
-      <div className="bio-title pointer-events-none absolute top-[40%] inset-x-0 flex justify-between w-full px-10 transition-opacity duration-700 ease-in-out">
-        <div className="flex gap-10">
-          <p
-            className={`mix-blend-difference text-white transition-opacity duration-300 ease-in-out ${mouseMove ? "opacity-100" : "opacity-0"}`}
-          >
-            2024
-          </p>
-          <p
-            className={`mix-blend-difference text-white transition-opacity duration-300 ease-in-out ${mouseMove ? "opacity-100" : "opacity-0"}`}
-          >
-            Issue 3 styled by Sarah Richardson
-          </p>
-          <p
-            className={`bio-title mix-blend-difference text-white transition-opacity duration-300 ease-in-out ${mouseMove ? "opacity-100" : "opacity-0"}`}
-          >
-            {name}
-          </p>
-        </div>
-
-        <div>
-          <p
-            className={`mix-blend-difference text-white transition-opacity duration-300 ease-in-out ${mouseMove ? "opacity-100" : "opacity-0"}`}
-          >
-            GRID {activeIndex < 10 ? 0 : ""}
-            {activeIndex + 1} - 0{imageArray.length + 1}
-          </p>
-        </div>
-      </div>
+      <CenteredText
+        mouseMove={mouseMove}
+        activeIndex={activeIndex}
+        imageArrayLength={imageArrayLength}
+        name={name}
+      />
     </div>
   );
 };
