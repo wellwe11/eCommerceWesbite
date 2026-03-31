@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { useParams } from "react-router-dom";
 import { useSetAtom } from "jotai";
 
@@ -6,6 +6,7 @@ import { activeProductAtom } from "@/atoms/productAtoms";
 
 import useProductData from "@/hooks/useProductData";
 import CustomCursor from "@components/ui/customCursor";
+import debounce from "@/functions/debounce";
 
 // Next is to create a section for product-info, such as price, dimensions, colors etc.
 
@@ -37,8 +38,11 @@ const CenteredText = ({
   return (
     <div className="bio-title pointer-events-none absolute top-[40%] inset-x-0 flex justify-between w-full px-10">
       <div className="flex gap-10">
-        {Object.values(localText).map((text) => (
-          <p className={`mix-blend-difference text-white ${mouseMoveClass}`}>
+        {Object.values(localText).map((text, index) => (
+          <p
+            key={index}
+            className={`mix-blend-difference text-white ${mouseMoveClass}`}
+          >
             {text}
           </p>
         ))}
@@ -59,7 +63,6 @@ const GridSetup = ({ data }) => {
   const [displayCustomCursor, setDisplayCustomCursor] = useState(true);
   const [activeIndex, setActiveIndex] = useState(0);
   const [mouseMove, setMouseMove] = useState(true);
-  const timerRef = useRef(null);
 
   const imageArray = data.images;
   const imageArrayLength = imageArray.length;
@@ -67,23 +70,18 @@ const GridSetup = ({ data }) => {
 
   const mouseMoveClass = `transition-opacity duration-300 ease-in-out ${mouseMove ? "opacity-100" : "opacity-0"}`;
 
+  const debounceMouseMove = useMemo(
+    () =>
+      debounce(() => {
+        setMouseMove(false);
+      }, 2000),
+    [],
+  );
+
   const handleMouseMove = () => {
-    if (timerRef.current) {
-      clearTimeout(timerRef.current);
-    }
-
-    if (!mouseMove) {
-      setMouseMove(true);
-    }
-
-    timerRef.current = setTimeout(() => setMouseMove(false), 2000);
+    setMouseMove(true);
+    debounceMouseMove();
   };
-
-  useEffect(() => {
-    return () => {
-      if (timerRef.current) clearTimeout(timerRef.current);
-    };
-  }, []);
 
   const handleIncreaseIndex = () => {
     const nextIndex = (activeIndex + 1) % imageArray.length;
