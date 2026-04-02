@@ -7,7 +7,7 @@ import imageTwo from "/resources/brutalismTest/artist3_1.webp";
 import imageThree from "/resources/brutalismTest/Murat_Pak/artist2_1.avif";
 import imageFour from "/resources/brutalismTest/artist8_2.jpg";
 
-import CustomCursor from "@components/ui/customCursor";
+import CustomCursor from "@components/ui/customCursor/customCursor";
 
 const IndexedImages = ({ arr, activeIndex }) => {
   return (

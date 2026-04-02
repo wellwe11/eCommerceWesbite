@@ -1,26 +1,13 @@
-import { Link } from "react-router-dom";
+import LinkWrapper from "@components/ui/Link/link";
 
 const Logo = () => {
   return (
-    <Link
+    <LinkWrapper
       to="/"
-      aria-label="Home logo"
-      className="flex items-center justify-center cursor-pointer pointer-events-auto"
+      classes="flex items-center justify-center cursor-pointer pointer-events-auto"
     >
       <h1 className="text-5xl">Art & Co.</h1>
-    </Link>
-  );
-};
-
-const Button = ({ children, link }: { children: string; link: string }) => {
-  return (
-    <Link
-      to={link}
-      className="cursor-pointer flex-1 flex items-center justify-center hover:bg-gray-50/50 hover:backdrop-blur-xs transition-colors duration 400 ease pointer-events-auto"
-      type="button"
-    >
-      <h5 className="text-[13px] font-light ">{children}</h5>
-    </Link>
+    </LinkWrapper>
   );
 };
 
@@ -40,9 +27,13 @@ const ButtonsContainer = () => {
   return (
     <div className="flex cursor-pointer w-65 h-[clamp(60px,10vw,85px)] pointer-events-auto">
       {buttons.map(({ link, text }, i) => (
-        <Button key={"navButton " + i} link={link}>
-          {text}
-        </Button>
+        <LinkWrapper
+          to={link}
+          classes="cursor-pointer flex-1 flex items-center justify-center hover:bg-gray-50/50 hover:backdrop-blur-xs transition-colors duration 400 ease pointer-events-auto"
+          key={text + i}
+        >
+          <h5 className="text-[13px] font-light ">{text}</h5>
+        </LinkWrapper>
       ))}
     </div>
   );
