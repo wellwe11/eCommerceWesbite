@@ -38,7 +38,7 @@ An ongoing project, which will be transitioned into an online art-shop.
 
 ### Quality Assurance
 
-- **Vitest**
+- **Vitest** - Tests are built on a principe of 'Colocation', meaning they're individually added to their related files.
 - **ESLint**
 
 ## Features
