@@ -2,10 +2,9 @@ import { useRef, useState, useEffect } from "react";
 import Product from "./components/product";
 import type { ProductData } from "../../app/App";
 import { motion, useInView } from "framer-motion";
-import { useQuery } from "@tanstack/react-query";
-import fetchGallery from "../../services/api";
 
 import LinkWrapper from "@components/ui/Link/link";
+import useGalleryData from "@/hooks/useGallery/useGallery";
 
 const LoadMoreEl = ({ setter }: { setter: CallableFunction }) => {
   const sentinenRef = useRef(null);
@@ -35,15 +34,7 @@ const Products = ({ data }: { data: ProductData[] }) => {
 const Gallery = () => {
   const [items, setItems] = useState(9);
 
-  const { data, isLoading } = useQuery({
-    queryKey: ["gallery"],
-    queryFn: () => fetchGallery("/galleryData.json"),
-
-    select: (data) => ({
-      items: data.slice(0, items),
-      total: data.length,
-    }),
-  });
+  const { data, isLoading } = useGalleryData(items);
 
   const loadMore = () => {
     if (!data || !items) return;

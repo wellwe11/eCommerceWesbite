@@ -1,7 +1,7 @@
 import axios from "axios";
 import type { ProductData } from "src/app/App";
 
-const fetchGallery = async (path: string): Promise<ProductData[]> => {
+const fetchData = async (path: string): Promise<ProductData[]> => {
   try {
     const { data } = await axios.get<ProductData[]>(path);
     return data;
@@ -10,4 +10,4 @@ const fetchGallery = async (path: string): Promise<ProductData[]> => {
   }
 };
 
-export default fetchGallery;
+export default fetchData;
