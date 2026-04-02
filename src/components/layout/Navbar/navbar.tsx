@@ -1,17 +1,16 @@
 import Logo from "./logo";
 
-import useNavigator from "./hooks/useNavigator";
+import { Link } from "react-router-dom";
 
 const Button = ({ children, link }: { children: string; link: string }) => {
-  const handleNavigate = useNavigator(link);
   return (
-    <button
-      onClick={handleNavigate}
+    <Link
+      to={link}
       className="cursor-pointer flex-1 flex items-center justify-center hover:bg-gray-50/50 hover:backdrop-blur-xs transition-colors duration 400 ease pointer-events-auto"
       type="button"
     >
       <h5 className="text-[13px] font-light ">{children}</h5>
-    </button>
+    </Link>
   );
 };
 
