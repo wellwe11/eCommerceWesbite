@@ -2,11 +2,9 @@ import { useRef, useState } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 
 import FramerMotionContainer from "@components/ui/FramerMotion/framerMotion.tsx";
-import useProductSelection from "@/hooks/useProductSelection/useProductSelection";
+
 import { useQueryClient } from "@tanstack/react-query";
 import LinkWrapper from "@components/ui/Link/link";
-import { useSetAtom } from "jotai";
-import { activeProductAtom } from "@/atoms/productAtoms";
 
 // number on right side which displays currently showing collection (1/2/3...)
 const CollectionNumberCounter = ({ activeCount }: { activeCount: number }) => {
@@ -47,11 +45,9 @@ const CollectionNumberCounter = ({ activeCount }: { activeCount: number }) => {
 };
 
 const CollectionsContainer = ({ setter }) => {
-  const handleNavigateProduct = useProductSelection();
   const queryClient = useQueryClient();
 
   const data = queryClient.getQueryData(["home"]);
-  const setProduct = useSetAtom(activeProductAtom);
 
   if (!data) return;
 
@@ -65,10 +61,7 @@ const CollectionsContainer = ({ setter }) => {
           className="mt-100 mb-100"
           whileInView={() => setter(i)}
         >
-          <LinkWrapper
-            to={`/product/${obj.id}`}
-            onClick={() => setProduct(obj)}
-          >
+          <LinkWrapper to={`/product/${obj.id}`} product={obj}>
             <FramerMotionContainer data={obj} threshold={0.7} />
           </LinkWrapper>
         </motion.div>

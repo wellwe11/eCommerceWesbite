@@ -4,7 +4,8 @@ import type { ProductData } from "../../app/App";
 import { motion, useInView } from "framer-motion";
 import { useQuery } from "@tanstack/react-query";
 import fetchGallery from "../../services/api";
-import useProductSelection from "@/hooks/useProductSelection/useProductSelection";
+
+import LinkWrapper from "@components/ui/Link/link";
 
 const LoadMoreEl = ({ setter }: { setter: CallableFunction }) => {
   const sentinenRef = useRef(null);
@@ -20,15 +21,12 @@ const LoadMoreEl = ({ setter }: { setter: CallableFunction }) => {
 };
 
 const Products = ({ data }: { data: ProductData[] }) => {
-  const handlerNavigateProduct = useProductSelection();
   return (
     <motion.div className="grid grid-cols-[repeat(3,clamp(100px,18vw,350px))] pt-30 justify-center justify-items-center w-full gap-y-7 gap-x-10">
       {data.map((obj, index) => (
-        <Product
-          key={`product_${index}`}
-          data={obj}
-          handler={() => handlerNavigateProduct(obj)}
-        />
+        <LinkWrapper product={obj} to={`/product/${obj.id}`}>
+          <Product key={`product_${index}`} data={obj} />
+        </LinkWrapper>
       ))}
     </motion.div>
   );
