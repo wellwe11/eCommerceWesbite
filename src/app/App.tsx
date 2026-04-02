@@ -13,7 +13,6 @@ import Footer from "@components/layout/Footer/footer.tsx";
 // Footer
 // hooks/
 // functions/
-// Create an abstract component which takes children and links to somewhere. Then use an isolated test for it. Use this everywhere, so nav, home, gallery, footer etc.
 
 /** Fetched object
  * Because we have a lot of information, I need to structure the objects based off of artists, rather my initial idea which was based off of collections.
