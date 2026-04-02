@@ -1,5 +1,5 @@
 import axios from "axios";
-import type { ProductData } from "src/app/App";
+import type { ProductData } from "@/types/product";
 
 const fetchData = async (path: string): Promise<ProductData[]> => {
   try {
