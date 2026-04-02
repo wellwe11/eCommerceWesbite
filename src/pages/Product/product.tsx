@@ -157,6 +157,8 @@ const Product = () => {
   // Fetches placeholder data and updated data, caches it as 'product'
   const { product, isFetchingNull } = useProductData(id);
 
+  console.log(product);
+
   // Cleans up atom on unmount
   // Currently disabled because strict mode forces it to run regardless
   useEffect(() => {

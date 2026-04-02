@@ -13,4 +13,5 @@ it("renders correct navigation structure", () => {
   expect(screen.getByText(/home/i)).toBeDefined();
   expect(screen.getByText(/gallery/i)).toBeDefined();
   expect(screen.getByText(/contact/i)).toBeDefined();
+  expect(screen.getByText(/contact/i)).toBeDefined();
 });
