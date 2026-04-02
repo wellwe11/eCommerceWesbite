@@ -2,7 +2,7 @@ import { useRef, useState } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 
 import FramerMotionContainer from "@components/ui/FramerMotion/framerMotion.tsx";
-import useProductSelection from "@/hooks/useProductSelection";
+import useProductSelection from "@/hooks/useProductSelection/useProductSelection";
 import { useQueryClient } from "@tanstack/react-query";
 
 // number on right side which displays currently showing collection (1/2/3...)

@@ -4,7 +4,7 @@ import type { ProductData } from "../../app/App";
 import { motion, useInView } from "framer-motion";
 import { useQuery } from "@tanstack/react-query";
 import fetchGallery from "../../services/api";
-import useProductSelection from "@/hooks/useProductSelection";
+import useProductSelection from "@/hooks/useProductSelection/useProductSelection";
 
 const LoadMoreEl = ({ setter }: { setter: CallableFunction }) => {
   const sentinenRef = useRef(null);

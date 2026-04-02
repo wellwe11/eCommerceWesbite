@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { useScroll, motion, useTransform } from "framer-motion";
 import { useQueryClient } from "@tanstack/react-query";
 
-import useNavigator from "@components/layout/Navbar/hooks/useNavigator";
+import useNavigator from "@/hooks/useNavigator/useNavigator";
 import fetchGallery from "@/services/api";
 
 const LineDiv = () => {
