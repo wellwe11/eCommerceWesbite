@@ -15,56 +15,22 @@ import Footer from "@/components/layout/Footer/footer.tsx";
 // Footer
 // functions/
 
-/** Fetched object
- * Because we have a lot of information, I need to structure the objects based off of artists, rather my initial idea which was based off of collections.
- * Example:
- * 
-const artists = [
-  {
-    artist: "Some artist",
-    artistId: 1231233,
-    collections: [
-      {
-        item: 23123,
-        name: "some name",
-        image: "src/asdasd",
-        restImages: ["src/asd", "src/hbwd", "src/12esa", "src/sdamk"],
-        price: 24.99,
-        currency: "Euro",
-        released: 2024,
-        dimensions: {
-          width: 130,
-          height: 240,
-          type: "metric", // For imperial, 1inch = 2.54cm
-        },
-      },
-      {
-        item: 3242,
-        name: "this is called this",
-        image: "src/as234asd",
-        restImages: ["src/asfd", "src/hd", "src/1sswa", "src/samkaa"],
-        price: 24.99,
-        currency: "Euro",
-        released: 2023,
-        dimensions: {
-          width: 110,
-          height: 210,
-          type: "metric",
-        },
-      },
-    ],
-  },
-  // ..... and then continue
-];
-* Please read:
-* The reason for this structure is because on product-page, we are stating which specific collection this currently is from the artist, which year it is.
-* Also, hero-section holds Artist name AND item-name
-* Technically, if this page was to ever launch, you could insert new data based off of artist, and it would naturally find it's index. Like so, you can directly order art based off off creator
-* This allows for easy future sorting-methods as well.
-* This also is good because I am not building the page based off of collections. It is simply 1 art-peice, and then other images of that same item.
-* Then you can show items made by same artist below the artist as well, or something similar. 
-* 
- */
+// For next time:
+// Create a hash-map that collects data from artistsData and ImagesData. Then sort it in an API file for front-page and gallery.
+// Use tanstack for caching the data through their custom hooks
+// its fun to think about architecture but building a planet full of tools for such a small project makes no sense
+
+const useArtistGallery = (artistId) => {
+  return useQuery({
+    queryKey: ["artist", artistId],
+    queryFn: async () => {
+      // We are fetching a real, physical file from our public folder
+      const response = await fetch(`/api/artists/${artistId}.json`);
+      if (!response.ok) throw new Error("Artist not found");
+      return response.json();
+    },
+  });
+};
 
 const queryClient = new QueryClient();
 

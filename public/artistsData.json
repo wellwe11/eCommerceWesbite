@@ -1,0 +1,86 @@
+[
+  {
+    "id": 0,
+    "name": "franco grignani",
+    "slug": "franco-grignani",
+    "born": "1908",
+    "deceased": "1999"
+  },
+  {
+    "id": 1,
+    "name": "herbert bayer",
+    "slug": "herbert-bayer",
+    "born": "1900",
+    "deceased": "1985"
+  },
+  {
+    "id": 2,
+    "name": "joost schmidt",
+    "slug": "joost-schmidt",
+    "born": "1893",
+    "deceased": "1948"
+  },
+  {
+    "id": 3,
+    "name": "josef müller-brockmann",
+    "slug": "josef-muller-brockmann",
+    "born": "1914",
+    "deceased": "1996"
+  },
+  {
+    "id": 4,
+    "name": "jurriaan schrofer",
+    "slug": "jurriaan-schrofer",
+    "born": "1926",
+    "deceased": "1990"
+  },
+  {
+    "id": 5,
+    "name": "karl gerstner",
+    "slug": "karl-gerstner",
+    "born": "1930",
+    "deceased": "2017"
+  },
+  {
+    "id": 6,
+    "name": "kunel gaur",
+    "slug": "kunel-gaur",
+    "born": "1982",
+    "deceased": null
+  },
+  {
+    "id": 7,
+    "name": "laszlo moholy-nagy",
+    "slug": "laszlo-moholy-nagy",
+    "born": "1895",
+    "deceased": "1946"
+  },
+  {
+    "id": 8,
+    "name": "mihail mihaylov",
+    "slug": "mihail-mihaylov",
+    "born": "1978",
+    "deceased": null
+  },
+  {
+    "id": 9,
+    "name": "murat pak",
+    "slug": "murat-pak",
+    "born": "unknown",
+    "deceased": null
+  },
+  {
+    "id": 10,
+    "name": "studio dumbar",
+    "slug": "studio-dumbar",
+    "born": "1977",
+    "deceased": null
+  },
+  {
+    "id": 11,
+    "name": "wim crouwel",
+    "slug": "wim-crouwel",
+    "born": "1928",
+    "deceased": "2019"
+  }
+]

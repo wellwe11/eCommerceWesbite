@@ -1,0 +1,14 @@
+[
+  { "id": 100, "artist_id": 0, "name": "congiunzioni evolutive" },
+  { "id": 101, "artist_id": 1, "name": "bauhaus typography" },
+  { "id": 102, "artist_id": 2, "name": "exhibition geometry" },
+  { "id": 103, "artist_id": 3, "name": "swiss grid systems" },
+  { "id": 104, "artist_id": 4, "name": "modular structures" },
+  { "id": 105, "artist_id": 5, "name": "programmatic art" },
+  { "id": 106, "artist_id": 6, "name": "brutalist logic" },
+  { "id": 107, "artist_id": 7, "name": "light-space modulators" },
+  { "id": 108, "artist_id": 8, "name": "contemporary forms" },
+  { "id": 109, "artist_id": 9, "name": "digital sovereignity" },
+  { "id": 110, "artist_id": 10, "name": "kinetic identities" },
+  { "id": 111, "artist_id": 11, "name": "new alphabet series" }
+]
