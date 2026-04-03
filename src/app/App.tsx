@@ -4,7 +4,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { useLenis } from "lenis/react";
 
-import "@/App.css";
+import "./App.css";
 
 import Navbar from "@/components/layout/Navbar/navbar.tsx";
 import Footer from "@/components/layout/Footer/footer.tsx";
