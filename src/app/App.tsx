@@ -4,10 +4,10 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { useLenis } from "lenis/react";
 
-import "./App.css";
+import "@/App.css";
 
-import Navbar from "../components/layout/Navbar/navbar.tsx";
-import Footer from "@components/layout/Footer/footer.tsx";
+import Navbar from "@/components/layout/Navbar/navbar.tsx";
+import Footer from "@/components/layout/Footer/footer.tsx";
 
 // Add tests to:
 // Footer
@@ -53,7 +53,7 @@ const artists = [
       },
     ],
   },
-  // ..... and the continue
+  // ..... and then continue
 ];
 * Please read:
 * The reason for this structure is because on product-page, we are stating which specific collection this currently is from the artist, which year it is.

@@ -2,9 +2,9 @@ import { useRef } from "react";
 import { motion, useScroll, useSpring, useTransform } from "framer-motion";
 
 import styles from "./framerMotion.module.scss";
-
 import useSpringScroll from "./hooks/useSpringScroll.ts";
-import type { HomeSection } from "src/router.tsx";
+
+import type { HomeSection } from "@/router.tsx";
 
 const BioContainer = ({ bioTitle, bio }: { bioTitle: string; bio: string }) => {
   return (

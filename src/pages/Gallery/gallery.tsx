@@ -1,9 +1,9 @@
 import { useRef, useState, useEffect } from "react";
 import Product from "./components/product";
-import type { ProductData } from "../../app/App";
+import type { ProductData } from "@/types/product";
 import { motion, useInView } from "framer-motion";
 
-import LinkWrapper from "@components/ui/Link/link";
+import LinkWrapper from "@/components/ui/Link/link";
 import useGalleryData from "@/hooks/useGallery/useGallery";
 
 const LoadMoreEl = ({ setter }: { setter: CallableFunction }) => {

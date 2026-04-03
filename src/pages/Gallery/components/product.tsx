@@ -1,4 +1,4 @@
-import type { ProductData, ProductImage } from "../../../app/App";
+import type { ProductData, ProductImage } from "@/types/product";
 
 const Image = ({ data }: { data: ProductImage[] }) => {
   const mappedImages = new Map();

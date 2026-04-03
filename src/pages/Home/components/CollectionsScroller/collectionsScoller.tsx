@@ -1,10 +1,10 @@
 import { useRef, useState } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 
-import FramerMotionContainer from "@components/ui/FramerMotion/framerMotion.tsx";
-
 import { useQueryClient } from "@tanstack/react-query";
-import LinkWrapper from "@components/ui/Link/link";
+
+import FramerMotionContainer from "@/components/ui/FramerMotion/framerMotion.tsx";
+import LinkWrapper from "@/components/ui/Link/link";
 
 // number on right side which displays currently showing collection (1/2/3...)
 const CollectionNumberCounter = ({ activeCount }: { activeCount: number }) => {

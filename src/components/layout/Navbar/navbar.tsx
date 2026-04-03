@@ -1,4 +1,4 @@
-import LinkWrapper from "@components/ui/Link/link";
+import LinkWrapper from "@/components/ui/Link/link";
 
 const Logo = () => {
   return (

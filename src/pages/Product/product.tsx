@@ -5,7 +5,7 @@ import { useSetAtom } from "jotai";
 import { activeProductAtom } from "@/atoms/productAtoms";
 
 import useProductData from "@/hooks/useProductData/useProductData";
-import CustomCursor from "@components/ui/customCursor/customCursor";
+import CustomCursor from "@/components/ui/customCursor/customCursor";
 import debounce from "@/functions/debounce/debounce";
 
 // Next is to create a section for product-info, such as price, dimensions, colors etc.
