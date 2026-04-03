@@ -1,16 +1,16 @@
 import { waitFor } from "@testing-library/react";
-import { vi, describe, it, expect } from "vitest";
+import { describe, expect, it, vi } from "vitest";
 
 import fetchData from "@/services/api";
 import { renderWithClient } from "@/tests/utils/queryClient_provider_utils";
-import useGalleryData from "./useGallery";
+import useHomeData from "./useHome";
 
 vi.mock("@/services/api", () => ({
   default: vi.fn(),
 }));
 
-describe("useGalleryData", () => {
-  it("should fetch and slice data based on limit", async () => {
+describe("useHomeData", () => {
+  it("should fetch data for homepage", async () => {
     const mockData = [
       { id: 1, name: "Img 1" },
       { id: 2, name: "Img 2" },
@@ -19,14 +19,13 @@ describe("useGalleryData", () => {
 
     vi.mocked(fetchData).mockResolvedValue(mockData); // Currently error because of type: Will fix.
 
-    const { result } = renderWithClient(() => useGalleryData(2));
+    const { result } = renderWithClient(() => useHomeData());
 
     expect(result.current.isLoading).toBe(true);
 
     await waitFor(() => expect(result.current.isSuccess).toBe(true));
 
-    expect(result.current.data?.items).toHaveLength(2);
-    expect(result.current.data?.total).toBe(3);
-    expect(result.current.data?.items[0].name).toBe("Img 1");
+    expect(result.current.data).toHaveLength(3);
+    expect(result.current.data[0].name).toBe("Img 1");
   });
 });
