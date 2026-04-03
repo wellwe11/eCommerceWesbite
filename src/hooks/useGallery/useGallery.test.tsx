@@ -1,24 +1,13 @@
 import fetchData from "@/services/api";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { renderHook, waitFor } from "@testing-library/react";
+import { waitFor } from "@testing-library/react";
 
 import { vi, describe, it, expect } from "vitest";
 import useGalleryData from "./useGallery";
+import { renderWithClient } from "@/tests/utils/queryClient_provider_utils";
 
 vi.mock("@/services/api", () => ({
   default: vi.fn(),
 }));
-
-const createWrapper = () => {
-  const queryClient = new QueryClient({
-    defaultOptions: {
-      queries: { retry: false }, // Saves time during tests
-    },
-  });
-  return ({ children }: { children: React.ReactNode }) => (
-    <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
-  );
-};
 
 describe("useGalleryData", () => {
   it("should fetch and slice data based on limit", async () => {
@@ -28,11 +17,9 @@ describe("useGalleryData", () => {
       { id: 3, name: "Img 3" },
     ];
 
-    vi.mocked(fetchData).mockResolvedValue(mockData);
+    vi.mocked(fetchData).mockResolvedValue(mockData); // Currently error because of type: Will fix.
 
-    const { result } = renderHook(() => useGalleryData(2), {
-      wrapper: createWrapper(),
-    });
+    const { result } = renderWithClient(() => useGalleryData(2));
 
     expect(result.current.isLoading).toBe(true);
 
