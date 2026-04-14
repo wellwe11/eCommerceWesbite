@@ -11,9 +11,7 @@ export const api = {
       return this.createHashMap(data, "id");
     });
 
-    const imagesPromise = fetchData("/imagesData.json").then((data) => {
-      return data;
-    });
+    const imagesPromise = fetchData("/imagesData.json");
 
     const [artistsHash, imagesData] = await Promise.all([
       artistPromise,
