@@ -6,34 +6,33 @@ import createHashMap from "@/functions/createHashMap/createHashMap";
 // import collections from "./collectionsData.json";
 // import images from "./imagesData.json";
 
-export const api = {
-  sortByArtist: async function () {
-    const artistPromise = fetchData("/artistsData.json").then((data) => {
-      console.log(data);
-      return createHashMap(data, "id", { art: [] });
-    });
+export const sortByArtist = async () => {
+  const artistPromise = fetchData("/artistsData.json").then((data) => {
+    console.log(data);
+    return createHashMap(data, "id", () => ({ art: [] }));
+  });
 
-    const imagesPromise = fetchData("/imagesData.json");
+  const imagesPromise = fetchData("/imagesData.json");
 
-    const [artistsHash, imagesData] = await Promise.all([
-      artistPromise,
-      imagesPromise,
-    ]);
+  const [artistsHash, imagesData] = await Promise.all([
+    artistPromise,
+    imagesPromise,
+  ]);
 
-    if (!artistsHash || !imagesData) return;
+  if (!artistsHash || !imagesData) return;
 
-    console.log(artistsHash);
+  imagesData.forEach((obj) => {
+    const id = obj.artist_id;
+    console.log(id);
+    const artist = artistsHash.get(id);
+    console.log(artist);
 
-    imagesData.forEach((obj) => {
-      const artist = artistsHash.get(obj?.artist_id);
+    if (artist) {
+      artist.art.push(obj);
+    }
+  });
 
-      if (artist) {
-        artist.art.push(obj);
-      }
-    });
-
-    return Array.from(artistsHash.values());
-  },
+  return Array.from(artistsHash.values());
 };
 
 const fetchData = async (path: string): Promise<ProductData[]> => {

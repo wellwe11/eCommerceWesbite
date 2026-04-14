@@ -10,7 +10,7 @@ import "./App.css";
 
 import Navbar from "@/components/layout/Navbar/navbar.tsx";
 import Footer from "@/components/layout/Footer/footer.tsx";
-import { api } from "@/services/api";
+import { sortByArtist } from "@/services/api";
 
 // Add tests to:
 // Footer
@@ -27,7 +27,7 @@ function App() {
     lenis?.scrollTo(0, { immediate: true });
 
     const someFn = async () => {
-      const data = await api.sortByArtist();
+      const data = await sortByArtist();
       console.log(data);
     };
 
