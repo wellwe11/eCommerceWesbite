@@ -10,27 +10,11 @@ import "./App.css";
 
 import Navbar from "@/components/layout/Navbar/navbar.tsx";
 import Footer from "@/components/layout/Footer/footer.tsx";
+import { api } from "@/services/api";
 
 // Add tests to:
 // Footer
 // functions/
-
-// For next time:
-// Create a hash-map that collects data from artistsData and ImagesData. Then sort it in an API file for front-page and gallery.
-// Use tanstack for caching the data through their custom hooks
-// its fun to think about architecture but building a planet full of tools for such a small project makes no sense
-
-const useArtistGallery = (artistId) => {
-  return useQuery({
-    queryKey: ["artist", artistId],
-    queryFn: async () => {
-      // We are fetching a real, physical file from our public folder
-      const response = await fetch(`/api/artists/${artistId}.json`);
-      if (!response.ok) throw new Error("Artist not found");
-      return response.json();
-    },
-  });
-};
 
 const queryClient = new QueryClient();
 
@@ -41,6 +25,13 @@ function App() {
 
   useEffect(() => {
     lenis?.scrollTo(0, { immediate: true });
+
+    const someFn = async () => {
+      const data = await api.sortByArtist();
+      console.log(data);
+    };
+
+    someFn();
   }, [pathname]);
 
   return (
