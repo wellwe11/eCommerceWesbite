@@ -1,5 +1,6 @@
 import axios from "axios";
 import type { ProductData } from "@/types/product";
+import createHashMap from "@/functions/createHashMap/createHashMap";
 
 // import artists from "./artistsData.json";
 // import collections from "./collectionsData.json";
@@ -8,7 +9,8 @@ import type { ProductData } from "@/types/product";
 export const api = {
   sortByArtist: async function () {
     const artistPromise = fetchData("/artistsData.json").then((data) => {
-      return this.createHashMap(data, "id");
+      console.log(data);
+      return createHashMap(data, "id", { art: [] });
     });
 
     const imagesPromise = fetchData("/imagesData.json");
@@ -20,6 +22,8 @@ export const api = {
 
     if (!artistsHash || !imagesData) return;
 
+    console.log(artistsHash);
+
     imagesData.forEach((obj) => {
       const artist = artistsHash.get(obj?.artist_id);
 
@@ -29,20 +33,6 @@ export const api = {
     });
 
     return Array.from(artistsHash.values());
-  },
-
-  createHashMap: (data, sortBy) => {
-    const artistMap = new Map();
-
-    data.forEach((obj) => {
-      const id = obj[sortBy];
-
-      if (!artistMap.has(id)) {
-        artistMap.set(id, { ...obj, art: [] });
-      }
-    });
-
-    return artistMap;
   },
 };
 
