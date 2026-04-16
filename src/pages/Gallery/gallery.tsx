@@ -4,7 +4,7 @@ import type { ProductData } from "@/types/product";
 import { motion, useInView } from "framer-motion";
 
 import LinkWrapper from "@/components/ui/Link/link";
-import useGalleryData from "@/hooks/useGallery/useGallery";
+import { useGlobalProducts } from "@/hooks/useGlobalData/useGlobalData";
 
 const LoadMoreEl = ({ setter }: { setter: CallableFunction }) => {
   const sentinenRef = useRef(null);
@@ -34,7 +34,10 @@ const Products = ({ data }: { data: ProductData[] }) => {
 const Gallery = () => {
   const [items, setItems] = useState(9);
 
-  const { data, isLoading } = useGalleryData(items);
+  const { data } = useGlobalProducts(({ imagesData }) =>
+    imagesData.slice(0, items),
+  );
+  console.log(data);
 
   const loadMore = () => {
     if (!data || !items) return;
@@ -42,14 +45,13 @@ const Gallery = () => {
     setItems((prev) => prev + 9);
   };
 
-  if (isLoading) return <h1>Loading...</h1>;
-  if (!data) return <h1>Failed to fetch data</h1>;
+  if (!data) return;
 
   return (
     <div>
-      <Products data={data.items} />
+      <Products data={data} />
 
-      {data && items < data.total && <LoadMoreEl setter={loadMore} />}
+      {/* {data && items < data.total && <LoadMoreEl setter={loadMore} />} */}
     </div>
   );
 };

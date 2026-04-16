@@ -10,11 +10,11 @@ import "./App.css";
 
 import Navbar from "@/components/layout/Navbar/navbar.tsx";
 import Footer from "@/components/layout/Footer/footer.tsx";
-import { sortByArtist } from "@/services/api";
+import { sortByArtist, sortForHomePage } from "@/services/api";
 
-// Add tests to:
-// Footer
-// functions/
+// Vanilla data, which is cached goes to gallery.
+// Home-data is for home-page
+// SortedByArtist is for when user clicks a specific art-piece
 
 const queryClient = new QueryClient();
 
@@ -25,13 +25,6 @@ function App() {
 
   useEffect(() => {
     lenis?.scrollTo(0, { immediate: true });
-
-    const someFn = async () => {
-      const data = await sortByArtist();
-      console.log(data);
-    };
-
-    someFn();
   }, [pathname]);
 
   return (

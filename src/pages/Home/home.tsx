@@ -3,6 +3,8 @@ import WelcomeSection from "./components/WelcomeSection/welcomeSection";
 import CollectionsScroller from "./components/CollectionsScroller/collectionsScoller";
 import ChangePageSection from "./components/ChangePageSection/changePageSection";
 import useHomeData from "@/hooks/useHome/useHome";
+import { useGlobalProducts } from "@/hooks/useGlobalData/useGlobalData";
+import { sortForHomePage } from "@/services/api";
 
 const Home = () => {
   /*
@@ -11,9 +13,11 @@ const Home = () => {
    * Fix EXPLORE GALLERY for touch-pads. It works way to aggressively when not using a mouse-scroll.
    */
 
-  const { isLoading } = useHomeData();
+  const { data: sortedByArtistData } = useGlobalProducts(
+    ({ _, sortedByArtistData }) => sortForHomePage(sortedByArtistData),
+  );
 
-  if (isLoading) return <h1>loading...</h1>;
+  console.log(sortedByArtistData);
 
   return (
     <main className="relative">

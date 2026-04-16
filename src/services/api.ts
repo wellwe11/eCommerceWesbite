@@ -2,13 +2,31 @@ import axios from "axios";
 import type { ProductData } from "@/types/product";
 import createHashMap from "@/functions/createHashMap/createHashMap";
 
-// import artists from "./artistsData.json";
-// import collections from "./collectionsData.json";
-// import images from "./imagesData.json";
+// This function assumes that data is already sorted by artist
+export const sortForHomePage = (data) => {
+  const heroSectionData = data.slice(0, 5).map((obj) => {
+    const {
+      name: artistName,
+      art: [{ name: artName, src, id } = {}],
+    } = obj;
+
+    return { artName, src, artistName, id };
+  });
+
+  const collectionScrollerData = data.slice(5, 8).map((obj) => {
+    return {
+      name: obj.name,
+      bio_art: obj.bio_art,
+      bio_life: obj.bio_life,
+      art: obj.art.slice(0, 3).map(({ name, src }) => ({ name, src })),
+    };
+  });
+
+  return { heroSectionData, collectionScrollerData };
+};
 
 export const sortByArtist = async () => {
   const artistPromise = fetchData("/artistsData.json").then((data) => {
-    console.log(data);
     return createHashMap(data, "id", () => ({ art: [] }));
   });
 
@@ -23,16 +41,17 @@ export const sortByArtist = async () => {
 
   imagesData.forEach((obj) => {
     const id = obj.artist_id;
-    console.log(id);
+
     const artist = artistsHash.get(id);
-    console.log(artist);
 
     if (artist) {
       artist.art.push(obj);
     }
   });
 
-  return Array.from(artistsHash.values());
+  const sortedByArtistData = Array.from(artistsHash.values());
+
+  return { imagesData, sortedByArtistData };
 };
 
 const fetchData = async (path: string): Promise<ProductData[]> => {
