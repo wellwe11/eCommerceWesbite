@@ -2,10 +2,10 @@ import { motion, useMotionValue, useSpring } from "framer-motion";
 import { useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-import imageOne from "/resources/brutalismTest/Joost_Schmidt/artist1_1.jpg";
-import imageTwo from "/resources/brutalismTest/artist3_1.webp";
-import imageThree from "/resources/brutalismTest/Murat_Pak/artist2_1.avif";
-import imageFour from "/resources/brutalismTest/artist8_2.jpg";
+// import imageOne from "/resources/brutalismTest/Joost_Schmidt/artist1_1.jpg";
+// import imageTwo from "/resources/brutalismTest/artist3_1.webp";
+// import imageThree from "/resources/brutalismTest/Murat_Pak/artist2_1.avif";
+// import imageFour from "/resources/brutalismTest/artist8_2.jpg";
 
 import CustomCursor from "@/components/ui/customCursor/customCursor";
 
@@ -162,9 +162,6 @@ const HeroImages = () => {
   );
 
   const [customCursorVisible, setCustomerCuorsorVisible] = useState(false);
-
-  const imageArray = [imageOne, imageTwo, imageThree, imageFour];
-  const currentImage = imageArray[activeIndex];
 
   const navigate = useNavigate();
 

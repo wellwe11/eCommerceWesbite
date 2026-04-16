@@ -2,7 +2,7 @@ import HeroSection from "./components/HeroSection/heroSection";
 import WelcomeSection from "./components/WelcomeSection/welcomeSection";
 import CollectionsScroller from "./components/CollectionsScroller/collectionsScoller";
 import ChangePageSection from "./components/ChangePageSection/changePageSection";
-import useHomeData from "@/hooks/useHome/useHome";
+
 import { useGlobalProducts } from "@/hooks/useGlobalData/useGlobalData";
 import { sortForHomePage } from "@/services/api";
 

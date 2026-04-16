@@ -23,8 +23,12 @@ const Products = ({ data }: { data: ProductData[] }) => {
   return (
     <motion.div className="grid grid-cols-[repeat(3,clamp(100px,18vw,350px))] pt-30 justify-center justify-items-center w-full gap-y-7 gap-x-10">
       {data.map((obj, index) => (
-        <LinkWrapper product={obj} to={`/product/${obj.id}`}>
-          <Product key={`product_${index}`} data={obj} />
+        <LinkWrapper
+          key={`product_${index}`}
+          product={obj}
+          to={`/product/${obj.id}`}
+        >
+          <Product data={obj} />
         </LinkWrapper>
       ))}
     </motion.div>
@@ -37,7 +41,6 @@ const Gallery = () => {
   const { data } = useGlobalProducts(({ imagesData }) =>
     imagesData.slice(0, items),
   );
-  console.log(data);
 
   const loadMore = () => {
     if (!data || !items) return;
@@ -47,11 +50,12 @@ const Gallery = () => {
 
   if (!data) return;
 
+  console.log(data);
+
   return (
     <div>
       <Products data={data} />
-
-      {/* {data && items < data.total && <LoadMoreEl setter={loadMore} />} */}
+      {data && items <= data.length && <LoadMoreEl setter={loadMore} />}
     </div>
   );
 };

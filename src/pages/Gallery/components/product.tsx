@@ -1,19 +1,4 @@
-import type { ProductData, ProductImage } from "@/types/product";
-
-const Image = ({ data }: { data: ProductImage[] }) => {
-  const mappedImages = new Map();
-  data.forEach((d) => {
-    if (mappedImages.has(d.type)) {
-      mappedImages.get(d.type).push(d);
-    } else {
-      mappedImages.set(d.type, [d]);
-    }
-  });
-
-  const mainImage = mappedImages.get("main")[0].src;
-
-  return <img src={mainImage} />;
-};
+import type { ProductData } from "@/types/product";
 
 const Details = ({ data }: { data: Omit<ProductData, "images"> }) => {
   const { name, price, width, height } = data;
@@ -32,14 +17,15 @@ const Details = ({ data }: { data: Omit<ProductData, "images"> }) => {
 };
 
 const Product = ({ data, handler }: { data: ProductData }) => {
-  const { images, ...details } = data;
+  const { src, name, price, year, width, height } = data;
+  const details = { name, price, year, width, height };
 
   return (
     <div
       onClick={handler}
       className="max-w-100 cursor-pointer hover:bg-gray-200/50 transition-colors duration-400 ease"
     >
-      <Image data={images} />
+      <img src={src} />
       <Details data={details} />
     </div>
   );
