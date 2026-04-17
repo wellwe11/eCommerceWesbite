@@ -102,10 +102,10 @@ const TextsWrapper = () => {
   );
 };
 
-const HeroSection = () => {
+const HeroSection = ({ data }) => {
   return (
     <div className="relative w-full h-screen z-10">
-      <HeroImages />
+      <HeroImages data={data} />
       <TextsWrapper />
     </div>
   );

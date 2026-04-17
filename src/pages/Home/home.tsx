@@ -17,15 +17,18 @@ const Home = () => {
     ({ _, sortedByArtistData }) => sortForHomePage(sortedByArtistData),
   );
 
-  console.log(sortedByArtistData);
+  if (!sortedByArtistData) return;
+
+  const heroData = sortedByArtistData.heroSectionData;
+  const scrollerData = sortedByArtistData.collectionScrollerData;
 
   return (
     <main className="relative">
-      <HeroSection />
+      <HeroSection data={heroData} />
 
       <section className="relative z-10 bg-white min-h-screen">
         <WelcomeSection />
-        <CollectionsScroller />
+        <CollectionsScroller data={scrollerData} />
 
         <ChangePageSection />
       </section>

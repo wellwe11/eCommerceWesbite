@@ -2,11 +2,6 @@ import { motion, useMotionValue, useSpring } from "framer-motion";
 import { useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-// import imageOne from "/resources/brutalismTest/Joost_Schmidt/artist1_1.jpg";
-// import imageTwo from "/resources/brutalismTest/artist3_1.webp";
-// import imageThree from "/resources/brutalismTest/Murat_Pak/artist2_1.avif";
-// import imageFour from "/resources/brutalismTest/artist8_2.jpg";
-
 import CustomCursor from "@/components/ui/customCursor/customCursor";
 
 const IndexedImages = ({ arr, activeIndex }) => {
@@ -48,7 +43,7 @@ const NumberText = ({ obj, opacityCondition, numberHover, numberClicker }) => {
   return (
     <p className="flex items-center justify-center tracking-tighter text-[10px] uppercase gap-2 pointer-events-none  text-white">
       <span
-        className={`block w-30 text-right text-nowrap pointer-events-none font-extralight mix-blend-difference  ${
+        className={`block min-w-30 text-right text-nowrap pointer-events-none font-extralight mix-blend-difference  ${
           opacityCondition ? "visible" : "invisible"
         }`}
       >
@@ -65,7 +60,7 @@ const NumberText = ({ obj, opacityCondition, numberHover, numberClicker }) => {
       </span>
 
       <span
-        className={`block w-30 text-left text-nowrap pointer-events-none italic font-extralight mix-blend-difference  ${
+        className={`block min-w-30 text-left text-nowrap pointer-events-none italic font-extralight mix-blend-difference  ${
           opacityCondition ? "visible" : "invisible"
         }`}
       >
@@ -155,13 +150,21 @@ const BackgroundImage = ({
   );
 };
 
-const HeroImages = () => {
+const HeroImages = ({ data }) => {
   const [activeIndex, setActiveIndex] = useState(0);
   const [currentHoverImage, setCurrentHoverImage] = useState<boolean | null>(
     false,
   );
-
   const [customCursorVisible, setCustomerCuorsorVisible] = useState(false);
+
+  const imagesArray = data.map(({ src }) => src);
+
+  const editorialMetadata = data.map(({ artName, artistName }, index) => ({
+    pre: artName,
+    num: `0${index + 1}`,
+    post: `by ${artistName}`,
+  }));
+  const currentImage = imagesArray[activeIndex];
 
   const navigate = useNavigate();
 
@@ -172,33 +175,14 @@ const HeroImages = () => {
   };
 
   const handleIncreaseIndex = () => {
-    const nextIndex = (activeIndex + 1) % imageArray.length;
+    const nextIndex = (activeIndex + 1) % data.length;
     setActiveIndex(nextIndex);
   };
 
   const handleDecreaseIndex = () => {
-    const prevIndex = (activeIndex - 1 + imageArray.length) % imageArray.length;
+    const prevIndex = (activeIndex - 1 + data.length) % data.length;
     setActiveIndex(prevIndex);
   };
-
-  const editorialMetadata = [
-    {
-      pre: "d’stylli",
-      num: "01",
-      post: "vellure-tross r0cco styled by b’narrock",
-    },
-    {
-      pre: "koll-stunn",
-      num: "02",
-      post: "d’epoque r’poublika styled by jerni",
-    },
-    {
-      pre: "d’stylli",
-      num: "03",
-      post: "m’norra vell-fohr f’olline b’narrock",
-    },
-    { pre: "r’poublika apoll-rocc", num: "04", post: "styled by vinnia-fohr" },
-  ];
 
   return (
     <div
@@ -222,7 +206,7 @@ const HeroImages = () => {
         <BackgroundImage
           src={currentImage}
           setCurrentHoverImage={setCurrentHoverImage}
-          imageArray={imageArray}
+          imageArray={imagesArray}
           activeIndex={activeIndex}
         />
 
