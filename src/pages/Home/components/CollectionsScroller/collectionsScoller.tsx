@@ -44,14 +44,11 @@ const CollectionNumberCounter = ({ activeCount }: { activeCount: number }) => {
   );
 };
 
-const CollectionsContainer = ({ setter }) => {
-  const queryClient = useQueryClient();
-
-  const data = queryClient.getQueryData(["home"]);
-
+const CollectionsContainer = ({ setter, data }) => {
   if (!data) return;
 
   const dataArr = !Array.isArray(data) ? Object.values(data) : data;
+  console.log(dataArr);
 
   return (
     <div className="row-start-1 row-end-3 col-start-2 w-full h-full flex flex-col items-center">
@@ -70,7 +67,7 @@ const CollectionsContainer = ({ setter }) => {
   );
 };
 
-const CollectionsScoller = () => {
+const CollectionsScoller = ({ data }) => {
   const [activeCount, setActiveCount] = useState(0);
 
   return (
@@ -80,7 +77,7 @@ const CollectionsScoller = () => {
       whileInView={{ opacity: 1 }}
     >
       <CollectionNumberCounter activeCount={activeCount} />
-      <CollectionsContainer setter={setActiveCount} />
+      <CollectionsContainer data={data} setter={setActiveCount} />
     </motion.div>
   );
 };

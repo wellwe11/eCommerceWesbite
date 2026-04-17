@@ -29,21 +29,17 @@ const FramerMotion = ({ data }: { data: HomeSection }) => {
   const containerRef = useRef<HTMLDivElement | null>(null);
 
   const { md, lg } = useSpringScroll(containerRef);
+  console.log(data);
 
-  const {
-    text: { title, info, bio },
-    images: imageSources,
-  } = data;
+  const { art, bio_art, bio_life, name } = data;
+  const imageSources = art.map(({ src }) => src);
 
   if (!data) return;
 
   const images = [
     { src: imageSources[0], y: 0 },
     { src: imageSources[1], y: lg },
-    {
-      src: imageSources[2],
-      y: md,
-    },
+    { src: imageSources[2], y: md },
   ];
 
   const { scrollYProgress } = useScroll({
@@ -73,14 +69,14 @@ const FramerMotion = ({ data }: { data: HomeSection }) => {
         className={`${styles.leftContainer} ${styles.gridTextClass}`}
         style={{ opacity }}
       >
-        <BioContainer bioTitle={title} bio={info} />
+        <BioContainer bioTitle={name} bio={bio_life} />
       </motion.div>
 
       <motion.div
         className={`${styles.belowContainer} ${styles.gridTextClass}`}
         style={{ opacity }}
       >
-        <LongTextContainer longText={bio} />
+        <LongTextContainer longText={bio_art} />
       </motion.div>
     </div>
   );
