@@ -13,14 +13,14 @@ const Home = () => {
    * Fix EXPLORE GALLERY for touch-pads. It works way to aggressively when not using a mouse-scroll.
    */
 
-  const { data: sortedByArtistData } = useGlobalProducts(
-    ({ _, sortedByArtistData }) => sortForHomePage(sortedByArtistData),
+  const { data: artistsHash } = useGlobalProducts(({ _, artistsHash }) =>
+    sortForHomePage(Array.from(artistsHash.values())),
   );
 
-  if (!sortedByArtistData) return;
+  if (!artistsHash) return;
 
-  const heroData = sortedByArtistData.heroSectionData;
-  const scrollerData = sortedByArtistData.collectionScrollerData;
+  const heroData = artistsHash.heroSectionData;
+  const scrollerData = artistsHash.collectionScrollerData;
 
   return (
     <main className="relative">

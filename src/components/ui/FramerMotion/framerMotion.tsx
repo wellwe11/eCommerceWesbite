@@ -29,7 +29,6 @@ const FramerMotion = ({ data }: { data: HomeSection }) => {
   const containerRef = useRef<HTMLDivElement | null>(null);
 
   const { md, lg } = useSpringScroll(containerRef);
-  console.log(data);
 
   const { art, bio_art, bio_life, name } = data;
   const imageSources = art.map(({ src }) => src);

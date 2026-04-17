@@ -39,7 +39,7 @@ const Gallery = () => {
   const [items, setItems] = useState(9);
 
   const { data } = useGlobalProducts(({ imagesData }) =>
-    imagesData.slice(0, items),
+    Array.from(imagesData.values()).slice(0, items),
   );
 
   const loadMore = () => {
@@ -49,8 +49,6 @@ const Gallery = () => {
   };
 
   if (!data) return;
-
-  console.log(data);
 
   return (
     <div>

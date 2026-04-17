@@ -10,11 +10,6 @@ import "./App.css";
 
 import Navbar from "@/components/layout/Navbar/navbar.tsx";
 import Footer from "@/components/layout/Footer/footer.tsx";
-import { sortByArtist, sortForHomePage } from "@/services/api";
-
-// Vanilla data, which is cached goes to gallery.
-// Home-data is for home-page
-// SortedByArtist is for when user clicks a specific art-piece
 
 const queryClient = new QueryClient();
 

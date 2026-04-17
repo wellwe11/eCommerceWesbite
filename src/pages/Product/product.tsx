@@ -64,9 +64,8 @@ const GridSetup = ({ data }) => {
   const [activeIndex, setActiveIndex] = useState(0);
   const [mouseMove, setMouseMove] = useState(true);
 
-  const imageArray = data.images;
-  const imageArrayLength = imageArray.length;
-  const { colors, height, width, price, name } = data;
+  // const imageArray = data.images;
+  // const { colors, height, width, price, name } = data;
 
   const mouseMoveClass = `transition-opacity duration-300 ease-in-out ${mouseMove ? "opacity-100" : "opacity-0"}`;
 
@@ -138,14 +137,14 @@ const GridSetup = ({ data }) => {
           />
         ))}
       </section>
-
+      {/* 
       <CenteredText
         mouseMoveClass={mouseMoveClass}
         mouseMove={mouseMove}
         activeIndex={activeIndex}
         imageArrayLength={imageArrayLength}
         name={name}
-      />
+      /> */}
     </div>
   );
 };
@@ -155,9 +154,8 @@ const Product = () => {
   const { id } = useParams();
 
   // Fetches placeholder data and updated data, caches it as 'product'
-  const { product, isFetchingNull } = useProductData(id);
-
-  console.log(product);
+  const data = useProductData(id);
+  console.log(data);
 
   // Cleans up atom on unmount
   // Currently disabled because strict mode forces it to run regardless
@@ -170,13 +168,9 @@ const Product = () => {
     };
   }, [setAtom]);
 
-  if (!product) return <div>Loading...</div>;
+  if (!data) return <div>Loading...</div>;
 
-  return (
-    <main>
-      <GridSetup data={product} />
-    </main>
-  );
+  return <main>{/* <GridSetup data={product} /> */}</main>;
 };
 
 export default Product;

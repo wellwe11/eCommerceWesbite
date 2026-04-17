@@ -30,7 +30,9 @@ export const sortByArtist = async () => {
     return createHashMap(data, "id", () => ({ art: [] }));
   });
 
-  const imagesPromise = fetchData("/imagesData.json");
+  const imagesPromise = fetchData("/imagesData.json").then((data) => {
+    return createHashMap(data, "id");
+  });
 
   const [artistsHash, imagesData] = await Promise.all([
     artistPromise,
@@ -49,9 +51,7 @@ export const sortByArtist = async () => {
     }
   });
 
-  const sortedByArtistData = Array.from(artistsHash.values());
-
-  return { imagesData, sortedByArtistData };
+  return { imagesData, artistsHash };
 };
 
 const fetchData = async (path: string): Promise<ProductData[]> => {
