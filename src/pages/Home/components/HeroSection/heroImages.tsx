@@ -1,6 +1,5 @@
 import { motion, useMotionValue, useSpring } from "framer-motion";
 import { useRef, useState } from "react";
-import { useNavigate } from "react-router-dom";
 
 import CustomCursor from "@/components/ui/customCursor/customCursor";
 import LinkWrapper from "@/components/ui/Link/link";
@@ -14,10 +13,12 @@ import {
 const IndexedImages = () => {
   const activeIndex = useAtomValue(handleCountAtom);
   const arr = useAtomValue(handleHeroDataAtom);
+  const activeProduct = useAtomValue(handleActiveArtAtom);
 
+  console.log(arr);
   return (
     <div className="w-full h-full">
-      {arr.map(({ src }, index) => (
+      {arr.map(({ src, id }, index) => (
         <div
           key={index}
           className="absolute inset-0 hover:cursor-pointer w-full h-full"
@@ -27,7 +28,7 @@ const IndexedImages = () => {
             transition: "opacity 0.2s ease-in-out",
           }}
         >
-          <LinkWrapper to={""}>
+          <LinkWrapper to={`/product/${id}`} product={activeProduct}>
             <img
               src={src}
               alt=""
@@ -160,7 +161,6 @@ const BackgroundImage = ({ setCurrentHoverImage }) => {
 
 const HeroImages = () => {
   const data = useAtomValue(handleHeroDataAtom);
-  const navigate = useNavigate();
 
   const [activeIndex, setActiveIndex] = useAtom(handleCountAtom);
 
