@@ -11,6 +11,7 @@ import {
   activeArtObj,
   handleActiveArtistAtom,
   handleArtAtom,
+  setCountAtom,
 } from "@/atoms/activeArtistAtom";
 
 // Next is to create a section for product-info, such as price, dimensions, colors etc.
@@ -71,11 +72,8 @@ const GridSetup = () => {
   // Handler for which atom is currently active
   const updateArtObjIndex = useSetAtom(handleActiveArtistAtom);
 
-  // Atom set from another page which holds initial object
-  const pre_rendered_artObj = useAtomValue(activeArtObj);
   // The active object based on index
-  const artObj = useAtomValue(activeProductAtom);
-  const data = artObj || pre_rendered_artObj;
+  const data = useAtomValue(activeArtObj);
 
   const mouseMoveClass = `transition-opacity duration-300 ease-in-out ${mouseMove ? "opacity-100" : "opacity-0"}`;
 
@@ -92,6 +90,18 @@ const GridSetup = () => {
     debounceMouseMove();
   };
 
+  const handleMouseClick = (e) => {
+    {
+      if (displayCustomCursor) {
+        if (e > 0) {
+          updateArtObjIndex("inc");
+        } else {
+          updateArtObjIndex("dec");
+        }
+      }
+    }
+  };
+
   if (!data) return;
 
   return (
@@ -102,17 +112,7 @@ const GridSetup = () => {
         onMouseLeave={() => setDisplayCustomCursor(false)}
       >
         <div className="absolute inset-0 flex flex-col items-center justify-center">
-          <DirectionContainers
-            handler={(e) => {
-              if (displayCustomCursor) {
-                if (e > 0) {
-                  updateArtObjIndex("inc");
-                } else {
-                  updateArtObjIndex("dec");
-                }
-              }
-            }}
-          />
+          <DirectionContainers handler={handleMouseClick} />
         </div>
         <div className="h-screen py-5">
           <img
@@ -140,15 +140,13 @@ const GridSetup = () => {
 };
 
 const Product = () => {
-  // WILL CHANGE
-  // Create a generic navigation-function that takes in an object, and sets atom to obj. THEN navigates
-  const setAtom = useAtomValue(activeProductAtom);
-
+  const baseAtom = useAtomValue(activeProductAtom);
   const { id } = useParams();
 
   // Fetches placeholder data and updated data, caches it as 'product'
   const data = useProductData(id);
 
+  const setCount = useSetAtom(setCountAtom);
   const setArtArray = useSetAtom(handleArtAtom);
 
   useEffect(() => {
@@ -157,19 +155,15 @@ const Product = () => {
 
     if (artistsArtObj) {
       setArtArray(artistsArtObj);
+
+      if (baseAtom) {
+        const initialIndex = +artistsArtObj.findIndex(
+          (obj) => obj?.id === baseAtom?.id,
+        );
+        setCount(initialIndex);
+      }
     }
   }, [data]);
-
-  // Cleans up atom on unmount
-  // Currently disabled because strict mode forces it to run regardless
-  useEffect(() => {
-    return () => {
-      console.log(
-        "Cleaning up Product page. Setting activeProductAtom to null",
-      );
-      // setAtom(null);
-    };
-  }, [setAtom]);
 
   if (!data) return <div>Loading...</div>;
 
