@@ -36,5 +36,7 @@ function App() {
 
 export default App;
 
-// update changePageSection fetch
-// Add Jotai to prop-drilling components such as collectionsScroller etc.
+// Go around code and look for nested prop-drilling and replace it with custom jotai-atoms
+// fix home-page link to product
+// Fix product-page so it displays correct information
+// !! FIX !! Currently, all atoms need checks for when index is navigating. It continues -1, -2, and further than arrays length

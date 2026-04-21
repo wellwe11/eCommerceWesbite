@@ -5,6 +5,12 @@ import ChangePageSection from "./components/ChangePageSection/changePageSection"
 
 import { useGlobalProducts } from "@/hooks/useGlobalData/useGlobalData";
 import { sortForHomePage } from "@/services/api";
+import { useSetAtom } from "jotai";
+import {
+  handleActiveArtAtom,
+  handleHeroDataAtom,
+} from "@/atoms/home/heroImages";
+import { useEffect } from "react";
 
 const Home = () => {
   /*
@@ -17,14 +23,23 @@ const Home = () => {
     sortForHomePage(Array.from(artistsHash.values())),
   );
 
+  const handleHeroData = useSetAtom(handleHeroDataAtom);
+  const handleActiveArtistAtom = useSetAtom(handleActiveArtAtom);
+
+  useEffect(() => {
+    if (!artistsHash) return;
+
+    handleHeroData(artistsHash.heroSectionData);
+    handleActiveArtistAtom(artistsHash.heroSectionData[0]);
+  }, [artistsHash]);
+
   if (!artistsHash) return;
 
-  const heroData = artistsHash.heroSectionData;
   const scrollerData = artistsHash.collectionScrollerData;
 
   return (
     <main className="relative">
-      <HeroSection data={heroData} />
+      <HeroSection />
 
       <section className="relative z-10 bg-white min-h-screen">
         <WelcomeSection />

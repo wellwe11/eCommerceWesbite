@@ -46,8 +46,8 @@ const CollectionsContainer = ({ setter, data }) => {
   if (!data) return;
 
   const dataArr = !Array.isArray(data) ? Object.values(data) : data;
-  console.log(dataArr);
 
+  console.log(dataArr);
   return (
     <div className="row-start-1 row-end-3 col-start-2 w-full h-full flex flex-col items-center">
       {dataArr.map((obj, i) => (
@@ -56,9 +56,7 @@ const CollectionsContainer = ({ setter, data }) => {
           className="mt-100 mb-100"
           whileInView={() => setter(i)}
         >
-          <LinkWrapper to={`/product/${obj.id}`} product={obj}>
-            <FramerMotionContainer data={obj} threshold={0.7} />
-          </LinkWrapper>
+          <FramerMotionContainer data={obj} threshold={0.7} />
         </motion.div>
       ))}
     </div>

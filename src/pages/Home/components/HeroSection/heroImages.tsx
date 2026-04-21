@@ -3,6 +3,13 @@ import { useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import CustomCursor from "@/components/ui/customCursor/customCursor";
+import LinkWrapper from "@/components/ui/Link/link";
+import { useAtom, useAtomValue, useSetAtom } from "jotai";
+import {
+  handleActiveArtAtom,
+  handleCountAtom,
+  handleHeroDataAtom,
+} from "@/atoms/home/heroImages";
 
 const IndexedImages = ({ arr, activeIndex }) => {
   return (
@@ -17,13 +24,13 @@ const IndexedImages = ({ arr, activeIndex }) => {
             transition: "opacity 0.2s ease-in-out",
           }}
         >
-          <a className="block w-full h-full" key={index}>
+          <LinkWrapper to={""}>
             <img
               src={image}
               alt=""
               className="object-scale-down hover:grayscale w-full h-full"
             />
-          </a>
+          </LinkWrapper>
         </div>
       ))}
     </div>
@@ -150,13 +157,20 @@ const BackgroundImage = ({
   );
 };
 
-const HeroImages = ({ data }) => {
-  const [activeIndex, setActiveIndex] = useState(0);
+const HeroImages = () => {
+  const data = useAtomValue(handleHeroDataAtom);
+  const navigate = useNavigate();
+
+  const [activeIndex, setActiveIndex] = useAtom(handleCountAtom);
+  const currentImage = useAtomValue(handleActiveArtAtom);
+
   const [currentHoverImage, setCurrentHoverImage] = useState<boolean | null>(
     false,
   );
+
   const [customCursorVisible, setCustomerCuorsorVisible] = useState(false);
 
+  if (!data) return;
   const imagesArray = data.map(({ src }) => src);
 
   const editorialMetadata = data.map(({ artName, artistName }, index) => ({
@@ -164,24 +178,15 @@ const HeroImages = ({ data }) => {
     num: `0${index + 1}`,
     post: `by ${artistName}`,
   }));
-  const currentImage = imagesArray[activeIndex];
 
-  const navigate = useNavigate();
-
-  // navigate to collection when user clicks smaller image
-  // Will update once I have a full object with correct images, id's etc.
-  const handleNavigate = () => {
-    navigate("/gallery");
-  };
-
-  const handleIncreaseIndex = () => {
-    const nextIndex = (activeIndex + 1) % data.length;
-    setActiveIndex(nextIndex);
-  };
-
-  const handleDecreaseIndex = () => {
-    const prevIndex = (activeIndex - 1 + data.length) % data.length;
-    setActiveIndex(prevIndex);
+  const handleIndex = (e) => {
+    if (!currentHoverImage) {
+      if (e > 0) {
+        setActiveIndex("dec");
+      } else {
+        setActiveIndex("inc");
+      }
+    }
   };
 
   return (
@@ -191,17 +196,7 @@ const HeroImages = ({ data }) => {
       onMouseLeave={() => setCustomerCuorsorVisible(false)}
     >
       <div className="fixed inset-0 flex flex-col items-center justify-center bg-white">
-        <DirectionContainers
-          handler={(e) => {
-            if (!currentHoverImage) {
-              if (e > 0) {
-                handleDecreaseIndex();
-              } else {
-                handleIncreaseIndex();
-              }
-            }
-          }}
-        />
+        <DirectionContainers handler={handleIndex} />
 
         <BackgroundImage
           src={currentImage}

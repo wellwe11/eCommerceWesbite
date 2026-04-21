@@ -1,5 +1,5 @@
 import { atom } from "jotai";
-import { activeProductAtom } from "./productAtoms";
+import { activeProductAtom } from "../productAtoms";
 
 // Holds the array of all art-objects
 const artAtom = atom([]);
@@ -40,10 +40,12 @@ export const activeArtObj = atom((get) => {
 export const handleActiveArtistAtom = atom(
   (get) => get(countAtom),
   (get, set, action) => {
+    const length = get(artAtom).length;
+
     if (action === "inc") {
-      set(countAtom, get(countAtom) + 1);
+      set(countAtom, (get(countAtom) - 1 + length) % length);
     } else if (action === "dec") {
-      set(countAtom, get(countAtom) - 1);
+      set(countAtom, (get(countAtom) + 1) % length);
     } else if (action === "reset") {
       set(countAtom, 0);
     }

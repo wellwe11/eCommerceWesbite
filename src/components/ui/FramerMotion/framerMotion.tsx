@@ -5,6 +5,7 @@ import styles from "./framerMotion.module.scss";
 import useSpringScroll from "./hooks/useSpringScroll.ts";
 
 import type { HomeSection } from "@/router.tsx";
+import LinkWrapper from "../Link/link.tsx";
 
 const BioContainer = ({ bioTitle, bio }: { bioTitle: string; bio: string }) => {
   return (
@@ -61,7 +62,9 @@ const FramerMotion = ({ data }: { data: HomeSection }) => {
           style={{ y, cursor: "pointer" }}
           className={styles.imageContainer}
         >
-          <img className={styles.image} src={src} alt="image" />
+          <LinkWrapper to={`/product/${data.art[i].id}`} product={data.art[i]}>
+            <img className={styles.image} src={src} alt="image" />
+          </LinkWrapper>
         </motion.div>
       ))}
       <motion.div

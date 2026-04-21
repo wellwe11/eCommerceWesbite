@@ -11,7 +11,7 @@ import {
   handleArtAtom,
   handleArtistAtom,
   setCountAtom,
-} from "@/atoms/activeArtistAtom";
+} from "@/atoms/product/activeArtistAtom";
 
 // Next is to create a section for product-info, such as price, dimensions, colors etc.
 

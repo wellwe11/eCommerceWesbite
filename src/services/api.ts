@@ -18,7 +18,7 @@ export const sortForHomePage = (data) => {
       name: obj.name,
       bio_art: obj.bio_art,
       bio_life: obj.bio_life,
-      art: obj.art.slice(0, 3).map(({ name, src }) => ({ name, src })),
+      art: obj.art.slice(0, 3).map(({ name, src, id }) => ({ name, src, id })),
     };
   });
 
