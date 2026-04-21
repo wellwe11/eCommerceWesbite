@@ -1,8 +1,6 @@
 import { useRef, useState } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 
-import { useQueryClient } from "@tanstack/react-query";
-
 import FramerMotionContainer from "@/components/ui/FramerMotion/framerMotion.tsx";
 import LinkWrapper from "@/components/ui/Link/link";
 

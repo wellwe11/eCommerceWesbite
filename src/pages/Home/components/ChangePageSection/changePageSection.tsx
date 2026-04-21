@@ -40,6 +40,7 @@ const LineDiv = () => {
   useEffect(() => {
     if (maxScrollProgress < 100) return;
 
+    // fix for new data
     const awaitFetchNavigate = async () => {
       await queryClient.prefetchQuery({
         queryKey: ["gallery"],

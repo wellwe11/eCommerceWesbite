@@ -1,12 +1,17 @@
 import { useEffect, useMemo, useState } from "react";
 import { useParams } from "react-router-dom";
-import { useSetAtom } from "jotai";
+import { useAtom, useAtomValue, useSetAtom } from "jotai";
 
 import { activeProductAtom } from "@/atoms/productAtoms";
 
 import useProductData from "@/hooks/useProductData/useProductData";
 import CustomCursor from "@/components/ui/customCursor/customCursor";
 import debounce from "@/functions/debounce/debounce";
+import {
+  activeArtObj,
+  handleActiveArtistAtom,
+  handleArtAtom,
+} from "@/atoms/activeArtistAtom";
 
 // Next is to create a section for product-info, such as price, dimensions, colors etc.
 
@@ -59,13 +64,18 @@ const CenteredText = ({
 };
 
 // Sorter that places bio into 2nd grid-container
-const GridSetup = ({ data }) => {
+const GridSetup = () => {
   const [displayCustomCursor, setDisplayCustomCursor] = useState(true);
-  const [activeIndex, setActiveIndex] = useState(0);
   const [mouseMove, setMouseMove] = useState(true);
 
-  // const imageArray = data.images;
-  // const { colors, height, width, price, name } = data;
+  // Handler for which atom is currently active
+  const updateArtObjIndex = useSetAtom(handleActiveArtistAtom);
+
+  // Atom set from another page which holds initial object
+  const pre_rendered_artObj = useAtomValue(activeArtObj);
+  // The active object based on index
+  const artObj = useAtomValue(activeProductAtom);
+  const data = artObj || pre_rendered_artObj;
 
   const mouseMoveClass = `transition-opacity duration-300 ease-in-out ${mouseMove ? "opacity-100" : "opacity-0"}`;
 
@@ -82,15 +92,7 @@ const GridSetup = ({ data }) => {
     debounceMouseMove();
   };
 
-  const handleIncreaseIndex = () => {
-    const nextIndex = (activeIndex + 1) % imageArray.length;
-    setActiveIndex(nextIndex);
-  };
-
-  const handleDecreaseIndex = () => {
-    const prevIndex = (activeIndex - 1 + imageArray.length) % imageArray.length;
-    setActiveIndex(prevIndex);
-  };
+  if (!data) return;
 
   return (
     <div onMouseMove={handleMouseMove} className="relative">
@@ -104,9 +106,9 @@ const GridSetup = ({ data }) => {
             handler={(e) => {
               if (displayCustomCursor) {
                 if (e > 0) {
-                  handleDecreaseIndex();
+                  updateArtObjIndex("inc");
                 } else {
-                  handleIncreaseIndex();
+                  updateArtObjIndex("dec");
                 }
               }
             }}
@@ -115,7 +117,7 @@ const GridSetup = ({ data }) => {
         <div className="h-screen py-5">
           <img
             className="h-full w-auto object-contain block"
-            src={imageArray[activeIndex].src}
+            src={data.src}
             alt=""
           />
         </div>
@@ -126,23 +128,11 @@ const GridSetup = ({ data }) => {
         )}
       </section>
 
-      <section className="flex justify-center gap-15 h-45">
-        {imageArray.map((obj, index) => (
-          <img
-            src={obj.src}
-            alt=""
-            key={index}
-            className="cursor-pointer"
-            onClick={() => setActiveIndex(index)}
-          />
-        ))}
-      </section>
-      {/* 
-      <CenteredText
+      {/* <CenteredText
         mouseMoveClass={mouseMoveClass}
         mouseMove={mouseMove}
         activeIndex={activeIndex}
-        imageArrayLength={imageArrayLength}
+        imageArrayLength={amountOfProducts}
         name={name}
       /> */}
     </div>
@@ -150,12 +140,25 @@ const GridSetup = ({ data }) => {
 };
 
 const Product = () => {
-  const setAtom = useSetAtom(activeProductAtom);
+  // WILL CHANGE
+  // Create a generic navigation-function that takes in an object, and sets atom to obj. THEN navigates
+  const setAtom = useAtomValue(activeProductAtom);
+
   const { id } = useParams();
 
   // Fetches placeholder data and updated data, caches it as 'product'
   const data = useProductData(id);
-  console.log(data);
+
+  const setArtArray = useSetAtom(handleArtAtom);
+
+  useEffect(() => {
+    if (!data) return;
+    const artistsArtObj = data.artistObj.art;
+
+    if (artistsArtObj) {
+      setArtArray(artistsArtObj);
+    }
+  }, [data]);
 
   // Cleans up atom on unmount
   // Currently disabled because strict mode forces it to run regardless
@@ -170,7 +173,11 @@ const Product = () => {
 
   if (!data) return <div>Loading...</div>;
 
-  return <main>{/* <GridSetup data={product} /> */}</main>;
+  return (
+    <main>
+      <GridSetup />
+    </main>
+  );
 };
 
 export default Product;

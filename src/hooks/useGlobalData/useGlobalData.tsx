@@ -6,7 +6,6 @@ export const useGlobalProducts = (selectFn) => {
     queryKey: ["products"],
     queryFn: sortByArtist,
     select: selectFn,
-    staleTime: 0,
-    gcTime: 0,
+    staleTime: Infinity,
   });
 };

@@ -35,3 +35,6 @@ function App() {
 }
 
 export default App;
+
+// update changePageSection fetch
+// Add Jotai to prop-drilling components such as collectionsScroller etc.
