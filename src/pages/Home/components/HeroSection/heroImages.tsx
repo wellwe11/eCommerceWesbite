@@ -4,17 +4,20 @@ import { useNavigate } from "react-router-dom";
 
 import CustomCursor from "@/components/ui/customCursor/customCursor";
 import LinkWrapper from "@/components/ui/Link/link";
-import { useAtom, useAtomValue, useSetAtom } from "jotai";
+import { useAtom, useAtomValue } from "jotai";
 import {
   handleActiveArtAtom,
   handleCountAtom,
   handleHeroDataAtom,
 } from "@/atoms/home/heroImages";
 
-const IndexedImages = ({ arr, activeIndex }) => {
+const IndexedImages = () => {
+  const activeIndex = useAtomValue(handleCountAtom);
+  const arr = useAtomValue(handleHeroDataAtom);
+
   return (
     <div className="w-full h-full">
-      {arr.map((image, index) => (
+      {arr.map(({ src }, index) => (
         <div
           key={index}
           className="absolute inset-0 hover:cursor-pointer w-full h-full"
@@ -26,7 +29,7 @@ const IndexedImages = ({ arr, activeIndex }) => {
         >
           <LinkWrapper to={""}>
             <img
-              src={image}
+              src={src}
               alt=""
               className="object-scale-down hover:grayscale w-full h-full"
             />
@@ -77,15 +80,13 @@ const NumberText = ({ obj, opacityCondition, numberHover, numberClicker }) => {
   );
 };
 
-const BackgroundImage = ({
-  src,
-  setCurrentHoverImage,
-  imageArray,
-  activeIndex,
-}) => {
+const BackgroundImage = ({ setCurrentHoverImage }) => {
   const bigImageRef = useRef(null);
   const smallImageRef = useRef(null);
   const [isHover, setIsHover] = useState(false);
+
+  const activeArtObj = useAtomValue(handleActiveArtAtom);
+  const src = activeArtObj.src;
 
   const x = useMotionValue(0);
   const y = useMotionValue(0);
@@ -151,7 +152,7 @@ const BackgroundImage = ({
         }}
         onMouseMove={handleMouseMove}
       >
-        <IndexedImages arr={imageArray} activeIndex={activeIndex} />
+        <IndexedImages />
       </div>
     </div>
   );
@@ -162,7 +163,6 @@ const HeroImages = () => {
   const navigate = useNavigate();
 
   const [activeIndex, setActiveIndex] = useAtom(handleCountAtom);
-  const currentImage = useAtomValue(handleActiveArtAtom);
 
   const [currentHoverImage, setCurrentHoverImage] = useState<boolean | null>(
     false,
@@ -171,7 +171,6 @@ const HeroImages = () => {
   const [customCursorVisible, setCustomerCuorsorVisible] = useState(false);
 
   if (!data) return;
-  const imagesArray = data.map(({ src }) => src);
 
   const editorialMetadata = data.map(({ artName, artistName }, index) => ({
     pre: artName,
@@ -198,12 +197,7 @@ const HeroImages = () => {
       <div className="fixed inset-0 flex flex-col items-center justify-center bg-white">
         <DirectionContainers handler={handleIndex} />
 
-        <BackgroundImage
-          src={currentImage}
-          setCurrentHoverImage={setCurrentHoverImage}
-          imageArray={imagesArray}
-          activeIndex={activeIndex}
-        />
+        <BackgroundImage setCurrentHoverImage={setCurrentHoverImage} />
 
         <div
           className="absolute inset-x-0 flex justify-between items-center pointer-events-none px-8"
