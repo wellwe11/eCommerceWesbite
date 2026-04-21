@@ -1,5 +1,5 @@
 import { useSetAtom } from "jotai";
-import { Link, type LinkProps } from "react-router-dom";
+import { Link, useNavigate, type LinkProps } from "react-router-dom";
 import { activeProductAtom } from "@/atoms/productAtoms";
 
 interface LinkInterface extends LinkProps {
@@ -17,11 +17,16 @@ const LinkWrapper = ({
   ...props
 }: LinkInterface) => {
   const setProduct = useSetAtom(activeProductAtom);
+  const navigate = useNavigate();
 
-  const handleClick = () => {
+  const handleClick = (e) => {
+    e.preventDefault();
+
     if (product) {
       setProduct(product);
     }
+
+    navigate(to);
   };
 
   return (

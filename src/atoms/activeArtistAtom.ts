@@ -4,8 +4,17 @@ import { activeProductAtom } from "./productAtoms";
 // Holds the array of all art-objects
 const artAtom = atom([]);
 
+const artistAtom = atom(null);
+
 // Index of which current art-index is active
 const countAtom = atom(null);
+
+export const handleArtistAtom = atom(
+  (get) => get(artistAtom),
+  (_get, set, newArtist) => {
+    set(artistAtom, newArtist);
+  },
+);
 
 export const setCountAtom = atom(null, (_get, set, val) => {
   set(countAtom, +val);
@@ -21,7 +30,6 @@ export const handleArtAtom = atom(
 
 export const activeArtObj = atom((get) => {
   const baseAtom = get(activeProductAtom);
-  if (!baseAtom) return null;
 
   const list = get(artAtom);
   const index = get(countAtom);
@@ -29,13 +37,15 @@ export const activeArtObj = atom((get) => {
   return list[index] || baseAtom;
 });
 
-export const handleActiveArtistAtom = atom(null, (get, set, action) => {
-  console.log(get(countAtom));
-  if (action === "inc") {
-    set(countAtom, get(countAtom) + 1);
-  } else if (action === "dec") {
-    set(countAtom, get(countAtom) - 1);
-  } else if (action === "reset") {
-    set(countAtom, 0);
-  }
-});
+export const handleActiveArtistAtom = atom(
+  (get) => get(countAtom),
+  (get, set, action) => {
+    if (action === "inc") {
+      set(countAtom, get(countAtom) + 1);
+    } else if (action === "dec") {
+      set(countAtom, get(countAtom) - 1);
+    } else if (action === "reset") {
+      set(countAtom, 0);
+    }
+  },
+);

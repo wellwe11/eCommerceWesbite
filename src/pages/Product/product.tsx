@@ -2,8 +2,6 @@ import { useEffect, useMemo, useState } from "react";
 import { useParams } from "react-router-dom";
 import { useAtom, useAtomValue, useSetAtom } from "jotai";
 
-import { activeProductAtom } from "@/atoms/productAtoms";
-
 import useProductData from "@/hooks/useProductData/useProductData";
 import CustomCursor from "@/components/ui/customCursor/customCursor";
 import debounce from "@/functions/debounce/debounce";
@@ -11,6 +9,7 @@ import {
   activeArtObj,
   handleActiveArtistAtom,
   handleArtAtom,
+  handleArtistAtom,
   setCountAtom,
 } from "@/atoms/activeArtistAtom";
 
@@ -70,7 +69,9 @@ const GridSetup = () => {
   const [mouseMove, setMouseMove] = useState(true);
 
   // Handler for which atom is currently active
-  const updateArtObjIndex = useSetAtom(handleActiveArtistAtom);
+  const [activeArtObjIndex, updateArtObjIndex] = useAtom(
+    handleActiveArtistAtom,
+  );
 
   // The active object based on index
   const data = useAtomValue(activeArtObj);
@@ -104,6 +105,8 @@ const GridSetup = () => {
 
   if (!data) return;
 
+  const { name, collectionId } = data;
+
   return (
     <div onMouseMove={handleMouseMove} className="relative">
       <section
@@ -128,19 +131,18 @@ const GridSetup = () => {
         )}
       </section>
 
-      {/* <CenteredText
+      <CenteredText
         mouseMoveClass={mouseMoveClass}
         mouseMove={mouseMove}
-        activeIndex={activeIndex}
-        imageArrayLength={amountOfProducts}
+        activeIndex={activeArtObjIndex}
+        imageArrayLength={data.length}
         name={name}
-      /> */}
+      />
     </div>
   );
 };
 
 const Product = () => {
-  const baseAtom = useAtomValue(activeProductAtom);
   const { id } = useParams();
 
   // Fetches placeholder data and updated data, caches it as 'product'
@@ -148,21 +150,18 @@ const Product = () => {
 
   const setCount = useSetAtom(setCountAtom);
   const setArtArray = useSetAtom(handleArtAtom);
+  const setArtist = useSetAtom(handleArtistAtom);
 
   useEffect(() => {
     if (!data) return;
-    const artistsArtObj = data.artistObj.art;
 
-    if (artistsArtObj) {
-      setArtArray(artistsArtObj);
+    const { art, ...artistData } = data.artistObj;
 
-      if (baseAtom) {
-        const initialIndex = +artistsArtObj.findIndex(
-          (obj) => obj?.id === baseAtom?.id,
-        );
-        setCount(initialIndex);
-      }
-    }
+    setArtist(artistData);
+    setArtArray(art);
+
+    const initialIndex = art.findIndex((obj) => obj?.id == id);
+    setCount(initialIndex);
   }, [data]);
 
   if (!data) return <div>Loading...</div>;
