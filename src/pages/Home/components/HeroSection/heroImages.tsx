@@ -3,43 +3,13 @@ import { useRef, useState } from "react";
 
 import CustomCursor from "@/components/ui/customCursor/customCursor";
 import LinkWrapper from "@/components/ui/Link/link";
-import { useAtom, useAtomValue } from "jotai";
+import { useAtom, useAtomValue, useSetAtom } from "jotai";
 import {
   handleActiveArtAtom,
   handleCountAtom,
   handleHeroDataAtom,
 } from "@/atoms/home/heroImages";
-
-const IndexedImages = () => {
-  const activeIndex = useAtomValue(handleCountAtom);
-  const arr = useAtomValue(handleHeroDataAtom);
-  const activeProduct = useAtomValue(handleActiveArtAtom);
-
-  console.log(arr);
-  return (
-    <div className="w-full h-full">
-      {arr.map(({ src, id }, index) => (
-        <div
-          key={index}
-          className="absolute inset-0 hover:cursor-pointer w-full h-full"
-          style={{
-            opacity: index === activeIndex ? 1 : 0,
-            pointerEvents: index === activeIndex ? "auto" : "none",
-            transition: "opacity 0.2s ease-in-out",
-          }}
-        >
-          <LinkWrapper to={`/product/${id}`} product={activeProduct}>
-            <img
-              src={src}
-              alt=""
-              className="object-scale-down hover:grayscale w-full h-full"
-            />
-          </LinkWrapper>
-        </div>
-      ))}
-    </div>
-  );
-};
+import handleCustomCursor from "@/atoms/customCursor/customCursor";
 
 const DirectionContainers = ({ handler }) => {
   return (
@@ -50,41 +20,65 @@ const DirectionContainers = ({ handler }) => {
   );
 };
 
-const NumberText = ({ obj, opacityCondition, numberHover, numberClicker }) => {
+const EditorialData = () => {
+  const [activeIndex, setActiveIndex] = useAtom(handleCountAtom);
+  const handleCursor = useSetAtom(handleCustomCursor);
+  const arr = useAtomValue(handleHeroDataAtom);
+
   return (
-    <p className="flex items-center justify-center tracking-tighter text-[10px] uppercase gap-2 pointer-events-none  text-white">
-      <span
-        className={`block min-w-30 text-right text-nowrap pointer-events-none font-extralight mix-blend-difference  ${
-          opacityCondition ? "visible" : "invisible"
-        }`}
-      >
-        {obj.pre}
-      </span>
+    <div
+      className="absolute inset-x-0 flex justify-between items-center pointer-events-none px-8"
+      style={{
+        top: "10%",
+        height: "100%",
+        transition: "top 0.4s ease",
+      }}
+    >
+      {arr.map((obj, index) => {
+        const { artName, artistName } = obj;
+        return (
+          <p
+            key={index}
+            className="flex items-center justify-center tracking-tighter text-[10px] uppercase gap-2 pointer-events-none  text-white"
+            onClick={() => setActiveIndex(index)}
+            onMouseEnter={() => handleCursor(false)}
+            onMouseLeave={() => handleCursor(true)}
+          >
+            <span
+              className={`block min-w-30 text-right text-nowrap pointer-events-none font-extralight mix-blend-difference  ${
+                index === activeIndex ? "visible" : "invisible"
+              }`}
+            >
+              {artName}
+            </span>
 
-      <span
-        className="shrink-0 font-light pointer-events-auto mix-blend-difference cursor-pointer"
-        onMouseEnter={() => numberHover(true)}
-        onMouseLeave={() => numberHover(false)}
-        onClick={numberClicker}
-      >
-        {obj.num}
-      </span>
+            <span className="shrink-0 font-light pointer-events-auto mix-blend-difference cursor-pointer">
+              0{index + 1}
+            </span>
 
-      <span
-        className={`block min-w-30 text-left text-nowrap pointer-events-none italic font-extralight mix-blend-difference  ${
-          opacityCondition ? "visible" : "invisible"
-        }`}
-      >
-        {obj.post}
-      </span>
-    </p>
+            <span
+              className={`block min-w-30 text-left text-nowrap pointer-events-none italic font-extralight mix-blend-difference  ${
+                index === activeIndex ? "visible" : "invisible"
+              }`}
+            >
+              {artistName}
+            </span>
+          </p>
+        );
+      })}
+    </div>
   );
 };
 
-const BackgroundImage = ({ setCurrentHoverImage }) => {
+const BackgroundImage = () => {
   const bigImageRef = useRef(null);
   const smallImageRef = useRef(null);
   const [isHover, setIsHover] = useState(false);
+
+  const activeIndex = useAtomValue(handleCountAtom);
+  const arr = useAtomValue(handleHeroDataAtom);
+  const activeProduct = useAtomValue(handleActiveArtAtom);
+  const handleCursor = useSetAtom(handleCustomCursor);
 
   const activeArtObj = useAtomValue(handleActiveArtAtom);
   const src = activeArtObj.src;
@@ -142,18 +136,37 @@ const BackgroundImage = ({ setCurrentHoverImage }) => {
         ref={smallImageRef}
         className="relative w-110 h-150"
         onMouseEnter={() => {
-          setCurrentHoverImage(true);
           setIsHover(true);
+          handleCursor(false);
         }}
         onMouseLeave={() => {
           setTimeout(() => {
             setIsHover(false);
           }, 200);
-          setCurrentHoverImage(false);
+
+          handleCursor(true);
         }}
         onMouseMove={handleMouseMove}
       >
-        <IndexedImages />
+        {arr.map(({ src, id }, index) => (
+          <div
+            key={index}
+            className="absolute inset-0 hover:cursor-pointer w-full h-full"
+            style={{
+              opacity: index === activeIndex ? 1 : 0,
+              pointerEvents: index === activeIndex ? "auto" : "none",
+              transition: "opacity 0.2s ease-in-out",
+            }}
+          >
+            <LinkWrapper to={`/product/${id}`} product={activeProduct}>
+              <img
+                src={src}
+                alt=""
+                className="object-scale-down hover:grayscale w-full h-full"
+              />
+            </LinkWrapper>
+          </div>
+        ))}
       </div>
     </div>
   );
@@ -162,72 +175,33 @@ const BackgroundImage = ({ setCurrentHoverImage }) => {
 const HeroImages = () => {
   const data = useAtomValue(handleHeroDataAtom);
 
-  const [activeIndex, setActiveIndex] = useAtom(handleCountAtom);
-
-  const [currentHoverImage, setCurrentHoverImage] = useState<boolean | null>(
-    false,
-  );
-
-  const [customCursorVisible, setCustomerCuorsorVisible] = useState(false);
+  const setActiveIndex = useSetAtom(handleCountAtom);
+  const handleCursor = useSetAtom(handleCustomCursor);
 
   if (!data) return;
 
-  const editorialMetadata = data.map(({ artName, artistName }, index) => ({
-    pre: artName,
-    num: `0${index + 1}`,
-    post: `by ${artistName}`,
-  }));
-
   const handleIndex = (e) => {
-    if (!currentHoverImage) {
-      if (e > 0) {
-        setActiveIndex("dec");
-      } else {
-        setActiveIndex("inc");
-      }
+    if (e > 0) {
+      setActiveIndex("dec");
+    } else {
+      setActiveIndex("inc");
     }
   };
 
   return (
     <div
       className="h-full w-full fixed cursor-none inset-0"
-      onMouseEnter={() => setCustomerCuorsorVisible(true)}
-      onMouseLeave={() => setCustomerCuorsorVisible(false)}
+      onMouseEnter={() => handleCursor(true)}
+      onMouseLeave={() => handleCursor(false)}
     >
       <div className="fixed inset-0 flex flex-col items-center justify-center bg-white">
         <DirectionContainers handler={handleIndex} />
+        <BackgroundImage />
 
-        <BackgroundImage setCurrentHoverImage={setCurrentHoverImage} />
-
-        <div
-          className="absolute inset-x-0 flex justify-between items-center pointer-events-none px-8"
-          style={{
-            top: "10%",
-            height: "100%",
-            transition: "top 0.4s ease",
-          }}
-        >
-          {editorialMetadata.map((obj, index) => (
-            <NumberText
-              key={index}
-              obj={obj}
-              opacityCondition={activeIndex === index}
-              numberClicker={() => {
-                setActiveIndex(index);
-              }}
-              numberHover={(e) => {
-                if (e) {
-                  setCurrentHoverImage(true);
-                } else {
-                  setCurrentHoverImage(false);
-                }
-              }}
-            />
-          ))}
-        </div>
+        <EditorialData />
       </div>
 
-      {!currentHoverImage && customCursorVisible && <CustomCursor />}
+      <CustomCursor />
     </div>
   );
 };
