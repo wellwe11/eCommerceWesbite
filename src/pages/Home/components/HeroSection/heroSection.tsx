@@ -1,4 +1,3 @@
-import { useNavigate } from "react-router-dom";
 import { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import HeroImages from "./heroImages";
@@ -53,11 +52,6 @@ const HeroText = ({ y }) => {
 
 const TextsWrapper = () => {
   const containerRef = useRef<HTMLDivElement | null>(null);
-
-  const navigate = useNavigate();
-  const handleNavigate = () => {
-    navigate("/gallery");
-  };
 
   const { scrollYProgress } = useScroll({
     target: containerRef,

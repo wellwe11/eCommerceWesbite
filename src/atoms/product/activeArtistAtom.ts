@@ -51,3 +51,10 @@ export const handleActiveArtistAtom = atom(
     }
   },
 );
+
+const displayGridAtom = atom(false);
+
+export const handleDisplayGridAtom = atom(
+  (get) => get(displayGridAtom),
+  (_get, set, arg) => set(displayGridAtom, arg),
+);

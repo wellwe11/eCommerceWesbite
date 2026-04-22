@@ -1,4 +1,4 @@
-import { Activity, useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo } from "react";
 import { useParams } from "react-router-dom";
 import { useAtom, useAtomValue, useSetAtom } from "jotai";
 
@@ -10,14 +10,13 @@ import {
   handleActiveArtistAtom,
   handleArtAtom,
   handleArtistAtom,
+  handleDisplayGridAtom,
   setCountAtom,
 } from "@/atoms/product/activeArtistAtom";
 import handleCustomCursor from "@/atoms/customCursor/customCursor";
 
-// Next is to create a section for product-info, such as price, dimensions, colors etc.
-
-// Create a class for the transitions of mouse and texts to minimise code
-// Seperate components and isolate them from each other
+// Scrolling down should show basic info about this piece such as price, dimensions, etc.
+// Hovering the text in the middle should show a grid of other art from arist, together with a grid from index 0 - arr.length
 
 const DirectionContainers = () => {
   const updateArtObjIndex = useSetAtom(handleActiveArtistAtom);
@@ -36,57 +35,83 @@ const DirectionContainers = () => {
   );
 };
 
-const CenteredText = ({ name }) => {
-  // Will update and fix so that its fetched instead of being local
-  const localText = {
-    year: 2024,
-    issue: "Issue 3 styled by Sarah Richardson",
-    name,
-  };
-
-  const displayCursor = useAtomValue(handleCustomCursor);
+const CenteredText = () => {
+  const [displayCursor, handleCursor] = useAtom(handleCustomCursor);
   const activeIndex = useAtomValue(handleActiveArtistAtom);
+  const setCount = useSetAtom(setCountAtom);
   const artArray = useAtomValue(handleArtAtom);
   const activeArt = useAtomValue(activeArtObj);
   const activeArtist = useAtomValue(handleArtistAtom);
+  const [displayGrid, setDisplayGrid] = useAtom(handleDisplayGridAtom);
+
+  if (!activeArtist) return;
 
   const { year, name: artName } = activeArt;
   const { name: artistName } = activeArtist;
 
-  const text = `Issue ${artName} by ${artistName} - ${year}`;
+  const text = `Issue ${artName}\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0 by ${artistName}\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0 ${year}`;
+  const gridText = `GRID \u00A0\u00A0\u00A0 ${artArray.length < 10 ? 0 : ""}${activeIndex + 1} - 0${artArray.length}`;
 
   return (
-    <Activity mode={displayCursor ? "visible" : "hidden"}>
-      <div className="bio-title pointer-events-none absolute top-[40%] inset-x-0 flex justify-between w-full px-10">
-        <div className="flex gap-10">
-          <p className={`mix-blend-difference text-white pointer-events-none`}>
-            {text}
-          </p>
-        </div>
+    <div
+      className="bio-title absolute top-[40%] inset-x-0 flex justify-between w-full px-10"
+      onMouseEnter={() => {
+        setDisplayGrid(true);
+        handleCursor(false);
+      }}
+      onMouseLeave={() => {
+        setDisplayGrid(false);
+        handleCursor(true);
+      }}
+    >
+      {!displayGrid && (
+        <>
+          <div className="flex gap-10">
+            <p
+              className={`mix-blend-difference text-white pointer-events-none transition-opacity duration-[400ms] ease-in-out ${
+                displayCursor ? "opacity-100" : "opacity-0"
+              }`}
+            >
+              {text}
+            </p>
+          </div>
 
-        <div>
-          <p className={`mix-blend-difference text-white pointer-events-none`}>
-            GRID {artArray.length < 10 ? 0 : ""}
-            {activeIndex + 1} - 0{artArray.length}
-          </p>
-        </div>
-      </div>
-    </Activity>
+          <div>
+            <p
+              className={`mix-blend-difference text-white pointer-events-none transition-opacity duration-[400ms] ease-in-out ${
+                displayCursor ? "opacity-100" : "opacity-0"
+              }`}
+            >
+              {gridText}
+            </p>
+          </div>
+        </>
+      )}
+
+      {displayGrid &&
+        artArray.map((obj, index) => (
+          <div
+            className="w-full"
+            key={index}
+            onClick={() => {
+              setCount(index);
+              setDisplayGrid(false);
+            }}
+          >
+            <p className="cursor-pointer">{index + 1}</p>
+          </div>
+        ))}
+    </div>
   );
 };
 
 // Sorter that places bio into 2nd grid-container
 const GridSetup = () => {
-  // Handler for which atom is currently active
-  const [activeArtObjIndex, updateArtObjIndex] = useAtom(
-    handleActiveArtistAtom,
-  );
   const handleCursor = useSetAtom(handleCustomCursor);
+  const [displayGrid, setDisplayGrid] = useAtom(handleDisplayGridAtom);
 
   // The active object based on index
   const data = useAtomValue(activeArtObj);
-
-  // const mouseMoveClass = `transition-opacity duration-300 ease-in-out ${mouseMove ? "opacity-100" : "opacity-0"}`;
 
   const debounceMouseMove = useMemo(
     () =>
@@ -103,21 +128,20 @@ const GridSetup = () => {
 
   if (!data) return;
 
-  const { name, collectionId } = data;
-
   return (
-    <div onMouseMove={handleMouseMove} className="relative">
+    <div onMouseEnter={handleMouseMove} className="relative">
       <section
         className="relative cursor-none w-full flex justify-center"
         onMouseEnter={() => handleCursor(true)}
         onMouseLeave={() => handleCursor(false)}
+        onClick={() => handleCursor(true)}
       >
         <div className="absolute inset-0 flex flex-col items-center justify-center">
           <DirectionContainers />
         </div>
         <div className="h-screen py-5">
           <img
-            className="h-full w-auto object-contain block"
+            className={`h-full w-auto object-contain block ${displayGrid ? "opacity-10" : "opacity-100"}`}
             src={data.src}
             alt=""
           />
@@ -126,11 +150,7 @@ const GridSetup = () => {
         <CustomCursor />
       </section>
 
-      <CenteredText
-        activeIndex={activeArtObjIndex}
-        imageArrayLength={data.length}
-        name={name}
-      />
+      <CenteredText />
     </div>
   );
 };
@@ -160,7 +180,7 @@ const Product = () => {
   if (!data) return <div>Loading...</div>;
 
   return (
-    <main>
+    <main className="relative">
       <GridSetup />
     </main>
   );

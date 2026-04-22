@@ -40,3 +40,5 @@ export default App;
 // fix home-page link to product
 // Style product-page
 // memo heroImages becasue they re-render like crazy
+// on home-page: Once user has scrolled 50% of the scroll-meeter, 'dehydrate' the atoms that use the data for gallery so it pre-calculates the data
+// abstract classes so that I have generic text-types etc. For example, all capital-letters, the text size, width etc.

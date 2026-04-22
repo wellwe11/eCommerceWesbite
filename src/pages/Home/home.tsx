@@ -1,3 +1,6 @@
+import { useEffect } from "react";
+import { useSetAtom } from "jotai";
+
 import HeroSection from "./components/HeroSection/heroSection";
 import WelcomeSection from "./components/WelcomeSection/welcomeSection";
 import CollectionsScroller from "./components/CollectionsScroller/collectionsScoller";
@@ -5,12 +8,10 @@ import ChangePageSection from "./components/ChangePageSection/changePageSection"
 
 import { useGlobalProducts } from "@/hooks/useGlobalData/useGlobalData";
 import { sortForHomePage } from "@/services/api";
-import { useSetAtom } from "jotai";
 import {
   handleActiveArtAtom,
   handleHeroDataAtom,
 } from "@/atoms/home/heroImages";
-import { useEffect } from "react";
 
 const Home = () => {
   /*
