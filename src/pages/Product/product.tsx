@@ -38,6 +38,7 @@ const DirectionContainers = () => {
 const CenteredText = () => {
   const [displayCursor, handleCursor] = useAtom(handleCustomCursor);
   const activeIndex = useAtomValue(handleActiveArtistAtom);
+  console.log(activeIndex);
   const setCount = useSetAtom(setCountAtom);
   const artArray = useAtomValue(handleArtAtom);
   const activeArt = useAtomValue(activeArtObj);
@@ -54,19 +55,21 @@ const CenteredText = () => {
 
   return (
     <div
-      className="bio-title absolute top-[40%] inset-x-0 flex justify-between w-full px-10"
-      onMouseEnter={() => {
-        setDisplayGrid(true);
-        handleCursor(false);
-      }}
+      className="bio-title absolute top-0 inset-x-0 h-full w-full flex justify-center items-center pointer-events-none"
       onMouseLeave={() => {
         setDisplayGrid(false);
         handleCursor(true);
       }}
     >
       {!displayGrid && (
-        <>
-          <div className="flex gap-10">
+        <div className="flex justify-between w-full px-10 pointer-events-auto">
+          <div
+            className="flex gap-10"
+            onMouseEnter={() => {
+              setDisplayGrid(true);
+              handleCursor(false);
+            }}
+          >
             <p
               className={`mix-blend-difference text-white pointer-events-none transition-opacity duration-[400ms] ease-in-out ${
                 displayCursor ? "opacity-100" : "opacity-0"
@@ -76,7 +79,12 @@ const CenteredText = () => {
             </p>
           </div>
 
-          <div>
+          <div
+            onMouseEnter={() => {
+              setDisplayGrid(true);
+              handleCursor(false);
+            }}
+          >
             <p
               className={`mix-blend-difference text-white pointer-events-none transition-opacity duration-[400ms] ease-in-out ${
                 displayCursor ? "opacity-100" : "opacity-0"
@@ -85,22 +93,41 @@ const CenteredText = () => {
               {gridText}
             </p>
           </div>
-        </>
+        </div>
       )}
 
-      {displayGrid &&
-        artArray.map((obj, index) => (
-          <div
-            className="w-full"
-            key={index}
-            onClick={() => {
-              setCount(index);
-              setDisplayGrid(false);
-            }}
-          >
-            <p className="cursor-pointer">{index + 1}</p>
-          </div>
-        ))}
+      {displayGrid && (
+        <div
+          className="flex justify-between w-full px-10 pointer-events-auto"
+          onMouseLeave={() => {
+            handleCursor(true);
+            setDisplayGrid(false);
+          }}
+        >
+          {artArray.map((obj, index) => (
+            <div
+              key={index}
+              className="group w-full h-full flex justify-center items-center"
+            >
+              <img
+                src={obj.src}
+                alt=""
+                className="opacity-0 group-hover:opacity-100 transition-opacity duration-200 ease absolute top-25 w-25"
+              />
+              <div
+                className="w-full text-center"
+                onClick={() => {
+                  setCount(index);
+                  setDisplayGrid(false);
+                  handleCursor(true);
+                }}
+              >
+                <p className="cursor-pointer w-full">{index + 1}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      )}
     </div>
   );
 };
@@ -122,35 +149,38 @@ const GridSetup = () => {
   );
 
   const handleMouseMove = () => {
-    handleCursor(true);
-    debounceMouseMove();
+    if (!displayGrid) {
+      handleCursor(true);
+      debounceMouseMove();
+    } else {
+      handleCursor(false);
+    }
   };
 
   if (!data) return;
 
   return (
-    <div onMouseEnter={handleMouseMove} className="relative">
+    <div onMouseMove={handleMouseMove} className="relative cursor-none">
       <section
-        className="relative cursor-none w-full flex justify-center"
+        className="relative w-full flex justify-center"
         onMouseEnter={() => handleCursor(true)}
         onMouseLeave={() => handleCursor(false)}
         onClick={() => handleCursor(true)}
       >
-        <div className="absolute inset-0 flex flex-col items-center justify-center">
-          <DirectionContainers />
-        </div>
         <div className="h-screen py-5">
           <img
-            className={`h-full w-auto object-contain block ${displayGrid ? "opacity-10" : "opacity-100"}`}
+            className={`h-full w-auto object-contain block ${displayGrid ? "opacity-10" : "opacity-100"} transition-opacity duration-200 ease`}
             src={data.src}
             alt=""
           />
         </div>
-
-        <CustomCursor />
       </section>
 
+      <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-auto">
+        <DirectionContainers />
+      </div>
       <CenteredText />
+      <CustomCursor />
     </div>
   );
 };
