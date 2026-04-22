@@ -16,7 +16,8 @@ import {
 import handleCustomCursor from "@/atoms/customCursor/customCursor";
 
 // Scrolling down should show basic info about this piece such as price, dimensions, etc.
-// Hovering the text in the middle should show a grid of other art from arist, together with a grid from index 0 - arr.length
+// Add padding to middle-section so its easier for user to hover and select other images
+// navigate to another product-page when user clicks another item (set jotai-context to this obj before loading new page. Use custom <navLink> or whatever i called it)
 
 const DirectionContainers = () => {
   const updateArtObjIndex = useSetAtom(handleActiveArtistAtom);
@@ -62,7 +63,7 @@ const CenteredText = () => {
       }}
     >
       {!displayGrid && (
-        <div className="flex justify-between w-full px-10 pointer-events-auto">
+        <div className="flex justify-between w-full px-10 pointer-events-auto p-5">
           <div
             className="flex gap-10"
             onMouseEnter={() => {
@@ -122,7 +123,7 @@ const CenteredText = () => {
                   handleCursor(true);
                 }}
               >
-                <p className="cursor-pointer w-full">{index + 1}</p>
+                <p className="cursor-pointer w-full p-5">{index + 1}</p>
               </div>
             </div>
           ))}
@@ -160,11 +161,13 @@ const GridSetup = () => {
   if (!data) return;
 
   return (
-    <div onMouseMove={handleMouseMove} className="relative cursor-none">
+    <div
+      className="relative cursor-none"
+      onMouseMove={handleMouseMove}
+      onMouseLeave={() => handleCursor(false)}
+    >
       <section
         className="relative w-full flex justify-center"
-        onMouseEnter={() => handleCursor(true)}
-        onMouseLeave={() => handleCursor(false)}
         onClick={() => handleCursor(true)}
       >
         <div className="h-screen py-5">
