@@ -6,15 +6,15 @@ const artAtom = atom([]);
 
 const artistAtom = atom(null);
 
-// Index of which current art-index is active
-const countAtom = atom(null);
-
 export const handleArtistAtom = atom(
   (get) => get(artistAtom),
   (_get, set, newArtist) => {
     set(artistAtom, newArtist);
   },
 );
+
+// Index of which current art-index is active
+const countAtom = atom(null);
 
 export const setCountAtom = atom(null, (_get, set, val) => {
   set(countAtom, +val);

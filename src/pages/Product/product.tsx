@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from "react";
+import { Activity, useEffect, useMemo, useState } from "react";
 import { useParams } from "react-router-dom";
 import { useAtom, useAtomValue, useSetAtom } from "jotai";
 
@@ -12,27 +12,31 @@ import {
   handleArtistAtom,
   setCountAtom,
 } from "@/atoms/product/activeArtistAtom";
+import handleCustomCursor from "@/atoms/customCursor/customCursor";
 
 // Next is to create a section for product-info, such as price, dimensions, colors etc.
 
 // Create a class for the transitions of mouse and texts to minimise code
 // Seperate components and isolate them from each other
 
-const DirectionContainers = ({ handler }) => {
+const DirectionContainers = () => {
+  const updateArtObjIndex = useSetAtom(handleActiveArtistAtom);
+
   return (
     <div className=" h-screen w-screen flex">
-      <div className="w-full h-full flex-1" onClick={() => handler(+1)} />
-      <div className="w-full h-full flex-1" onClick={() => handler(-1)} />
+      <div
+        className="w-full h-full flex-1"
+        onClick={() => updateArtObjIndex("inc")}
+      />
+      <div
+        className="w-full h-full flex-1"
+        onClick={() => updateArtObjIndex("dec")}
+      />
     </div>
   );
 };
 
-const CenteredText = ({
-  activeIndex,
-  imageArrayLength,
-  name,
-  mouseMoveClass,
-}) => {
+const CenteredText = ({ name }) => {
   // Will update and fix so that its fetched instead of being local
   const localText = {
     year: 2024,
@@ -40,67 +44,61 @@ const CenteredText = ({
     name,
   };
 
+  const displayCursor = useAtomValue(handleCustomCursor);
+  const activeIndex = useAtomValue(handleActiveArtistAtom);
+  const artArray = useAtomValue(handleArtAtom);
+  const activeArt = useAtomValue(activeArtObj);
+  const activeArtist = useAtomValue(handleArtistAtom);
+
+  const { year, name: artName } = activeArt;
+  const { name: artistName } = activeArtist;
+
+  const text = `Issue ${artName} by ${artistName} - ${year}`;
+
   return (
-    <div className="bio-title pointer-events-none absolute top-[40%] inset-x-0 flex justify-between w-full px-10">
-      <div className="flex gap-10">
-        {Object.values(localText).map((text, index) => (
-          <p
-            key={index}
-            className={`mix-blend-difference text-white ${mouseMoveClass}`}
-          >
+    <Activity mode={displayCursor ? "visible" : "hidden"}>
+      <div className="bio-title pointer-events-none absolute top-[40%] inset-x-0 flex justify-between w-full px-10">
+        <div className="flex gap-10">
+          <p className={`mix-blend-difference text-white pointer-events-none`}>
             {text}
           </p>
-        ))}
-      </div>
+        </div>
 
-      <div>
-        <p className={`mix-blend-difference text-white ${mouseMoveClass}`}>
-          GRID {activeIndex < 10 ? 0 : ""}
-          {activeIndex + 1} - 0{imageArrayLength}
-        </p>
+        <div>
+          <p className={`mix-blend-difference text-white pointer-events-none`}>
+            GRID {artArray.length < 10 ? 0 : ""}
+            {activeIndex + 1} - 0{artArray.length}
+          </p>
+        </div>
       </div>
-    </div>
+    </Activity>
   );
 };
 
 // Sorter that places bio into 2nd grid-container
 const GridSetup = () => {
-  const [displayCustomCursor, setDisplayCustomCursor] = useState(true);
-  const [mouseMove, setMouseMove] = useState(true);
-
   // Handler for which atom is currently active
   const [activeArtObjIndex, updateArtObjIndex] = useAtom(
     handleActiveArtistAtom,
   );
+  const handleCursor = useSetAtom(handleCustomCursor);
 
   // The active object based on index
   const data = useAtomValue(activeArtObj);
 
-  const mouseMoveClass = `transition-opacity duration-300 ease-in-out ${mouseMove ? "opacity-100" : "opacity-0"}`;
+  // const mouseMoveClass = `transition-opacity duration-300 ease-in-out ${mouseMove ? "opacity-100" : "opacity-0"}`;
 
   const debounceMouseMove = useMemo(
     () =>
       debounce(() => {
-        setMouseMove(false);
+        handleCursor(false);
       }, 2000),
     [],
   );
 
   const handleMouseMove = () => {
-    setMouseMove(true);
+    handleCursor(true);
     debounceMouseMove();
-  };
-
-  const handleMouseClick = (e) => {
-    {
-      if (displayCustomCursor) {
-        if (e > 0) {
-          updateArtObjIndex("inc");
-        } else {
-          updateArtObjIndex("dec");
-        }
-      }
-    }
   };
 
   if (!data) return;
@@ -111,11 +109,11 @@ const GridSetup = () => {
     <div onMouseMove={handleMouseMove} className="relative">
       <section
         className="relative cursor-none w-full flex justify-center"
-        onMouseEnter={() => setDisplayCustomCursor(true)}
-        onMouseLeave={() => setDisplayCustomCursor(false)}
+        onMouseEnter={() => handleCursor(true)}
+        onMouseLeave={() => handleCursor(false)}
       >
         <div className="absolute inset-0 flex flex-col items-center justify-center">
-          <DirectionContainers handler={handleMouseClick} />
+          <DirectionContainers />
         </div>
         <div className="h-screen py-5">
           <img
@@ -124,16 +122,11 @@ const GridSetup = () => {
             alt=""
           />
         </div>
-        {displayCustomCursor && (
-          <div className={mouseMoveClass}>
-            <CustomCursor />
-          </div>
-        )}
+
+        <CustomCursor />
       </section>
 
       <CenteredText
-        mouseMoveClass={mouseMoveClass}
-        mouseMove={mouseMove}
         activeIndex={activeArtObjIndex}
         imageArrayLength={data.length}
         name={name}
