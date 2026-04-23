@@ -31,7 +31,7 @@ const LinkWrapper = ({
 
   return (
     <Link className={classes} onClick={handleClick} to={to} {...props}>
-      {children}
+      {children ? children : ""}
     </Link>
   );
 };

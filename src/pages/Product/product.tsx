@@ -21,17 +21,42 @@ import LinkWrapper from "@/components/ui/Link/link";
 // add debouncer to display middle-text
 
 const DirectionContainers = () => {
-  const updateArtObjIndex = useSetAtom(handleActiveArtistAtom);
+  const artArray = useAtomValue(handleArtAtom);
+  const activeArt = useAtomValue(activeArtObj);
+  const id = +activeArt?.id;
+
+  const getPath = (direction) => {
+    let nextIndex;
+
+    if (direction === "next") {
+      if (id + 1 <= +artArray[artArray.length - 1].id) {
+        nextIndex = id + 1;
+      } else {
+        nextIndex = artArray[0]?.id;
+      }
+    } else if (direction === "prev") {
+      if (id - 1 >= artArray[0]?.id) {
+        nextIndex = id - 1;
+      } else {
+        nextIndex = +artArray[artArray.length - 1]?.id;
+      }
+    }
+
+    return `/product/${nextIndex}`;
+  };
 
   return (
     <div className=" h-screen w-screen flex">
-      <div
-        className="w-full h-full flex-1"
-        onClick={() => updateArtObjIndex("inc")}
+      <LinkWrapper
+        classes="w-full h-full flex-1"
+        to={getPath("prev")}
+        // product={activeArt}
       />
-      <div
-        className="w-full h-full flex-1"
-        onClick={() => updateArtObjIndex("dec")}
+
+      <LinkWrapper
+        classes="w-full h-full flex-1"
+        to={getPath("next")}
+        // product={activeArt}
       />
     </div>
   );
@@ -50,26 +75,6 @@ const CenteredText = () => {
 
   const { year, name: artName } = activeArt;
   const { name: artistName } = activeArtist;
-
-  const text = (
-    <div className="flex gap-10">
-      <span>
-        Issue <span className="italic">{artName}</span>
-      </span>
-      <span>by {artistName}</span>
-      <span>{year}</span>
-    </div>
-  );
-
-  const gridText = (
-    <div className="flex gap-5">
-      <span>GRID</span>
-      <span>
-        {artArray.length < 10 ? 0 : ""}
-        {activeIndex + 1} - 0{artArray.length}
-      </span>
-    </div>
-  );
 
   return (
     <div
@@ -92,11 +97,15 @@ const CenteredText = () => {
             onMouseEnter={() => handleCursor(false)}
           >
             <p
-              className={`mix-blend-difference text-white pointer-events-none transition-opacity duration-[400ms] ease-in-out ${
+              className={`mix-blend-difference text-white pointer-events-none transition-opacity duration-[400ms] ease-in-out flex gap-5 ${
                 displayCursor ? "opacity-100" : "opacity-0"
               }`}
             >
-              {text}
+              <span>
+                Issue <span className="italic">{artName}</span>
+              </span>
+              <span>by {artistName}</span>
+              <span>{year}</span>
             </p>
           </div>
 
@@ -110,11 +119,15 @@ const CenteredText = () => {
             onMouseEnter={() => handleCursor(false)}
           >
             <p
-              className={`mix-blend-difference text-white pointer-events-none transition-opacity duration-[400ms] ease-in-out ${
+              className={`mix-blend-difference text-white pointer-events-none transition-opacity duration-[400ms] ease-in-out flex gap-5 ${
                 displayCursor ? "opacity-100" : "opacity-0"
               }`}
             >
-              {gridText}
+              <span>GRID</span>
+              <span>
+                {artArray.length < 10 ? 0 : ""}
+                {activeIndex + 1} - 0{artArray.length}
+              </span>
             </p>
           </div>
         </div>
