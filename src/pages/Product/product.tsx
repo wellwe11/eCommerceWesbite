@@ -46,7 +46,7 @@ const DirectionContainers = () => {
   };
 
   return (
-    <div className=" h-screen w-screen flex">
+    <div className="h-screen w-screen flex">
       <LinkWrapper
         classes="w-full h-full flex-1 cursor-none"
         to={getPath("prev")}
@@ -240,6 +240,10 @@ const Product = () => {
     const initialIndex = art.findIndex((obj) => obj?.id == id);
     setCount(initialIndex);
   }, [data]);
+
+  useEffect(() => {
+    handleCursor(true);
+  }, []);
 
   if (!data) return <div>Loading...</div>;
 
