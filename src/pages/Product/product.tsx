@@ -241,10 +241,6 @@ const Product = () => {
     setCount(initialIndex);
   }, [data]);
 
-  useEffect(() => {
-    handleCursor(true);
-  }, []);
-
   if (!data) return <div>Loading...</div>;
 
   return (
@@ -261,7 +257,7 @@ const Product = () => {
         </div>
 
         <CenteredText />
-        <CustomCursor />
+        <CustomCursor displayOnload={true} />
       </div>
     </main>
   );

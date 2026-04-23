@@ -1,17 +1,19 @@
 import React, { Activity, useEffect, useState } from "react";
 import { motion, useMotionValue } from "framer-motion";
-import { useAtomValue } from "jotai";
+import { useAtom } from "jotai";
 
 import handleCustomCursor from "@/atoms/customCursor/customCursor";
 
-const CustomCursor = React.memo(() => {
+const CustomCursor = React.memo(({ displayOnload = false }) => {
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
   const [mouseDirection, setMouseDirection] = useState(0);
-  const displayCursor = useAtomValue(handleCustomCursor);
+  const [displayCursor, handleDisplayCursor] = useAtom(handleCustomCursor);
 
   useEffect(() => {
     const monitorWidth = window.screen.width;
+
+    handleDisplayCursor(displayOnload);
 
     const handleMove = (e) => {
       mouseX.set(e.clientX);
