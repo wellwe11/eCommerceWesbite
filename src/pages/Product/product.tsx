@@ -29,7 +29,7 @@ const DirectionContainers = () => {
     let nextIndex;
 
     if (direction === "next") {
-      if (id + 1 <= +artArray[artArray.length - 1].id) {
+      if (id + 1 <= +artArray[artArray.length - 1]?.id) {
         nextIndex = id + 1;
       } else {
         nextIndex = artArray[0]?.id;
@@ -48,15 +48,12 @@ const DirectionContainers = () => {
   return (
     <div className=" h-screen w-screen flex">
       <LinkWrapper
-        classes="w-full h-full flex-1"
+        classes="w-full h-full flex-1 cursor-none"
         to={getPath("prev")}
-        // product={activeArt}
       />
-
       <LinkWrapper
-        classes="w-full h-full flex-1"
+        classes="w-full h-full flex-1 cursor-none"
         to={getPath("next")}
-        // product={activeArt}
       />
     </div>
   );
@@ -85,9 +82,9 @@ const CenteredText = () => {
       }}
     >
       {!displayGrid && (
-        <div className="flex justify-between w-full px-10 pointer-events-auto p-5">
+        <div className="flex justify-between w-full px-10 p-5">
           <div
-            className="flex gap-10"
+            className="flex gap-10 pointer-events-auto"
             onMouseMove={() => {
               if (displayCursor) {
                 setDisplayGrid(true);
@@ -110,6 +107,7 @@ const CenteredText = () => {
           </div>
 
           <div
+            className="pointer-events-auto"
             onMouseMove={() => {
               if (displayCursor) {
                 setDisplayGrid(true);
@@ -258,8 +256,8 @@ const Product = () => {
           <DirectionContainers />
         </div>
 
-        <CustomCursor />
         <CenteredText />
+        <CustomCursor />
       </div>
     </main>
   );
