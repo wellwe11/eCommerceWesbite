@@ -19,16 +19,12 @@ import LinkWrapper from "@/components/ui/Link/link";
 // navigate to another product-page when user clicks another item (set jotai-context to this obj before loading new page. Use custom <navLink> or whatever i called it)
 // Scrolling down should show basic info about this piece such as price, dimensions, etc. This should be inside of GridSetup so that router navigates correctly to new info
 // add debouncer to display middle-text
-// fix cursor
 
 const DirectionContainers = () => {
   const updateArtObjIndex = useSetAtom(handleActiveArtistAtom);
-  const [displayCursor, handleCursor] = useAtom(handleCustomCursor);
+
   return (
-    <div
-      className=" h-screen w-screen flex"
-      onMouseEnter={() => handleCursor(true)}
-    >
+    <div className=" h-screen w-screen flex">
       <div
         className="w-full h-full flex-1"
         onClick={() => updateArtObjIndex("inc")}
@@ -165,7 +161,7 @@ const CenteredText = () => {
 // Sorter that places bio into 2nd grid-container
 export const GridSetup = () => {
   const handleCursor = useSetAtom(handleCustomCursor);
-  const [displayGrid, setDisplayGrid] = useAtom(handleDisplayGridAtom);
+  const displayGrid = useAtomValue(handleDisplayGridAtom);
 
   // The active object based on index
   const data = useAtomValue(activeArtObj);
@@ -216,6 +212,7 @@ const Product = () => {
 
   // Fetches placeholder data and updated data, caches it as 'product'
   const data = useProductData(id);
+  const handleCursor = useSetAtom(handleCustomCursor);
 
   const setCount = useSetAtom(setCountAtom);
   const setArtArray = useSetAtom(handleArtAtom);
@@ -236,7 +233,11 @@ const Product = () => {
   if (!data) return <div>Loading...</div>;
 
   return (
-    <main className="relative">
+    <main
+      className="relative"
+      onMouseLeave={() => handleCursor(false)}
+      onMouseEnter={() => handleCursor(true)}
+    >
       <Outlet />
 
       <div className="cursor-none">
