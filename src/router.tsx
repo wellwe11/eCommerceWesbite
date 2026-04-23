@@ -4,7 +4,7 @@ import App from "@/app/App";
 import Home from "@/pages/Home/home";
 import Gallery from "@/pages/Gallery/gallery";
 import Contact from "@/pages/Contact/contact";
-import Product from "@/pages/Product/product";
+import Product, { GridSetup } from "@/pages/Product/product";
 
 const router = createBrowserRouter([
   {
@@ -14,7 +14,11 @@ const router = createBrowserRouter([
       { index: true, element: <Home /> },
       { path: "gallery", element: <Gallery /> },
       { path: "contact", element: <Contact /> },
-      { path: "product/:id", element: <Product /> },
+      {
+        path: "product/:id",
+        element: <Product />,
+        children: [{ index: true, element: <GridSetup /> }],
+      },
     ],
   },
 ]);

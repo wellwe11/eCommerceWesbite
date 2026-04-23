@@ -1,5 +1,5 @@
 import { useEffect, useMemo } from "react";
-import { useParams } from "react-router-dom";
+import { Outlet, useParams } from "react-router-dom";
 import { useAtom, useAtomValue, useSetAtom } from "jotai";
 
 import useProductData from "@/hooks/useProductData/useProductData";
@@ -14,16 +14,21 @@ import {
   setCountAtom,
 } from "@/atoms/product/activeArtistAtom";
 import handleCustomCursor from "@/atoms/customCursor/customCursor";
+import LinkWrapper from "@/components/ui/Link/link";
 
-// Scrolling down should show basic info about this piece such as price, dimensions, etc.
-// Add padding to middle-section so its easier for user to hover and select other images
 // navigate to another product-page when user clicks another item (set jotai-context to this obj before loading new page. Use custom <navLink> or whatever i called it)
+// Scrolling down should show basic info about this piece such as price, dimensions, etc. This should be inside of GridSetup so that router navigates correctly to new info
+// add debouncer to display middle-text
+// fix cursor
 
 const DirectionContainers = () => {
   const updateArtObjIndex = useSetAtom(handleActiveArtistAtom);
-
+  const [displayCursor, handleCursor] = useAtom(handleCustomCursor);
   return (
-    <div className=" h-screen w-screen flex">
+    <div
+      className=" h-screen w-screen flex"
+      onMouseEnter={() => handleCursor(true)}
+    >
       <div
         className="w-full h-full flex-1"
         onClick={() => updateArtObjIndex("inc")}
@@ -39,7 +44,6 @@ const DirectionContainers = () => {
 const CenteredText = () => {
   const [displayCursor, handleCursor] = useAtom(handleCustomCursor);
   const activeIndex = useAtomValue(handleActiveArtistAtom);
-  console.log(activeIndex);
   const setCount = useSetAtom(setCountAtom);
   const artArray = useAtomValue(handleArtAtom);
   const activeArt = useAtomValue(activeArtObj);
@@ -51,8 +55,25 @@ const CenteredText = () => {
   const { year, name: artName } = activeArt;
   const { name: artistName } = activeArtist;
 
-  const text = `Issue ${artName}\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0 by ${artistName}\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0 ${year}`;
-  const gridText = `GRID \u00A0\u00A0\u00A0 ${artArray.length < 10 ? 0 : ""}${activeIndex + 1} - 0${artArray.length}`;
+  const text = (
+    <div className="flex gap-10">
+      <span>
+        Issue <span className="italic">{artName}</span>
+      </span>
+      <span>by {artistName}</span>
+      <span>{year}</span>
+    </div>
+  );
+
+  const gridText = (
+    <div className="flex gap-5">
+      <span>GRID</span>
+      <span>
+        {artArray.length < 10 ? 0 : ""}
+        {activeIndex + 1} - 0{artArray.length}
+      </span>
+    </div>
+  );
 
   return (
     <div
@@ -66,10 +87,13 @@ const CenteredText = () => {
         <div className="flex justify-between w-full px-10 pointer-events-auto p-5">
           <div
             className="flex gap-10"
-            onMouseEnter={() => {
-              setDisplayGrid(true);
-              handleCursor(false);
+            onMouseMove={() => {
+              if (displayCursor) {
+                setDisplayGrid(true);
+              }
             }}
+            onMouseLeave={() => handleCursor(true)}
+            onMouseEnter={() => handleCursor(false)}
           >
             <p
               className={`mix-blend-difference text-white pointer-events-none transition-opacity duration-[400ms] ease-in-out ${
@@ -81,10 +105,13 @@ const CenteredText = () => {
           </div>
 
           <div
-            onMouseEnter={() => {
-              setDisplayGrid(true);
-              handleCursor(false);
+            onMouseMove={() => {
+              if (displayCursor) {
+                setDisplayGrid(true);
+              }
             }}
+            onMouseLeave={() => handleCursor(true)}
+            onMouseEnter={() => handleCursor(false)}
           >
             <p
               className={`mix-blend-difference text-white pointer-events-none transition-opacity duration-[400ms] ease-in-out ${
@@ -120,10 +147,12 @@ const CenteredText = () => {
                 onClick={() => {
                   setCount(index);
                   setDisplayGrid(false);
-                  handleCursor(true);
+                  handleCursor(false);
                 }}
               >
-                <p className="cursor-pointer w-full p-5">{index + 1}</p>
+                <LinkWrapper to={`/product/${obj.id}`}>
+                  <p className="cursor-pointer w-full p-5">{index + 1}</p>
+                </LinkWrapper>
               </div>
             </div>
           ))}
@@ -134,7 +163,7 @@ const CenteredText = () => {
 };
 
 // Sorter that places bio into 2nd grid-container
-const GridSetup = () => {
+export const GridSetup = () => {
   const handleCursor = useSetAtom(handleCustomCursor);
   const [displayGrid, setDisplayGrid] = useAtom(handleDisplayGridAtom);
 
@@ -162,9 +191,9 @@ const GridSetup = () => {
 
   return (
     <div
-      className="relative cursor-none"
+      className="relative"
       onMouseMove={handleMouseMove}
-      onMouseLeave={() => handleCursor(false)}
+      onMouseLeave={handleMouseMove}
     >
       <section
         className="relative w-full flex justify-center"
@@ -178,12 +207,6 @@ const GridSetup = () => {
           />
         </div>
       </section>
-
-      <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-auto">
-        <DirectionContainers />
-      </div>
-      <CenteredText />
-      <CustomCursor />
     </div>
   );
 };
@@ -214,7 +237,16 @@ const Product = () => {
 
   return (
     <main className="relative">
-      <GridSetup />
+      <Outlet />
+
+      <div className="cursor-none">
+        <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-auto">
+          <DirectionContainers />
+        </div>
+
+        <CustomCursor />
+        <CenteredText />
+      </div>
     </main>
   );
 };
