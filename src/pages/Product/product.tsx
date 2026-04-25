@@ -173,6 +173,10 @@ const Product = () => {
   const handleCursor = useSetAtom(handleCustomCursor);
   const displayGrid = useAtomValue(handleDisplayGridAtom);
 
+  const setCount = useSetAtom(setCountAtom);
+  const setArtArray = useSetAtom(handleArtAtom);
+  const setArtist = useSetAtom(handleArtistAtom);
+
   const debounceMouseMove = useMemo(
     () =>
       debounce(() => {
@@ -189,10 +193,6 @@ const Product = () => {
       handleCursor(false);
     }
   };
-
-  const setCount = useSetAtom(setCountAtom);
-  const setArtArray = useSetAtom(handleArtAtom);
-  const setArtist = useSetAtom(handleArtistAtom);
 
   useEffect(() => {
     if (!data) return;
@@ -212,7 +212,11 @@ const Product = () => {
     <main className="relative">
       <Outlet />
 
-      <div className="cursor-none" onMouseMove={handleMouseMove}>
+      <div
+        className="cursor-none"
+        onMouseMove={handleMouseMove}
+        onMouseLeave={() => handleCursor(false)}
+      >
         <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-auto">
           <DirectionContainers />
         </div>
