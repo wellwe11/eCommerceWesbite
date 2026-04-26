@@ -113,7 +113,7 @@ const CenteredText = () => {
       onClick={() => setDisplayGrid(false)}
     >
       {!displayGrid && (
-        <div className="flex justify-between w-full px-10 p-5">
+        <div className="flex justify-between w-full py-5">
           <div className="flex gap-10 pointer-events-auto">
             <p
               className={`mix-blend-difference text-white pointer-events-none transition-opacity duration-[400ms] ease-in-out flex gap-5 ${
@@ -183,7 +183,7 @@ export const GridSetup = () => {
       <section className="relative w-full flex justify-center">
         <div className="h-screen py-5">
           <img
-            className={`h-full w-auto object-contain block ${displayGrid ? "opacity-10" : "opacity-100"} transition-opacity duration-200 ease`}
+            className={`h-full w-auto object-contain block ${displayGrid ? "opacity-10 blur-md" : "opacity-100"} transition-opacity duration-200 ease`}
             src={data.src}
             alt=""
           />
