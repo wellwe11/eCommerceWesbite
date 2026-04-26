@@ -41,7 +41,7 @@ const ButtonsContainer = () => {
 
 const Navbar = () => {
   return (
-    <nav className="z-50 fixed top-0 left-0 pointer-events-none w-[clamp(400px,calc(100vw-10px),1910px)] flex justify-between align-middle px-10">
+    <nav className="monitor-width fixed top-0 left-0 right-0 mx-auto z-50 pointer-events-none flex justify-between align-middle">
       <Logo />
       <ButtonsContainer />
     </nav>

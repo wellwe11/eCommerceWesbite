@@ -24,11 +24,14 @@ function App() {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <Navbar />
+      <div className="monitor-width">
+        <Navbar />
 
-      <Outlet />
+        <Outlet />
 
-      <Footer />
+        <Footer />
+      </div>
+
       <ReactQueryDevtools initialIsOpen={false} />
     </QueryClientProvider>
   );
