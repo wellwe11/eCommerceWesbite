@@ -16,9 +16,26 @@ export const handleArtistAtom = atom(
 // Index of which current art-index is active
 const countAtom = atom(null);
 
+// To manually control the count
 export const setCountAtom = atom(null, (_get, set, val) => {
   set(countAtom, +val);
 });
+
+// Automatically updates the count
+export const handleActiveArtistAtom = atom(
+  (get) => get(countAtom),
+  (get, set, action) => {
+    const length = get(artAtom).length;
+
+    if (action === "inc") {
+      set(countAtom, (get(countAtom) - 1 + length) % length);
+    } else if (action === "dec") {
+      set(countAtom, (get(countAtom) + 1) % length);
+    } else if (action === "reset") {
+      set(countAtom, 0);
+    }
+  },
+);
 
 // Retrieve array or update array
 export const handleArtAtom = atom(
@@ -36,21 +53,6 @@ export const activeArtObj = atom((get) => {
 
   return list[index] || baseAtom;
 });
-
-export const handleActiveArtistAtom = atom(
-  (get) => get(countAtom),
-  (get, set, action) => {
-    const length = get(artAtom).length;
-
-    if (action === "inc") {
-      set(countAtom, (get(countAtom) - 1 + length) % length);
-    } else if (action === "dec") {
-      set(countAtom, (get(countAtom) + 1) % length);
-    } else if (action === "reset") {
-      set(countAtom, 0);
-    }
-  },
-);
 
 const displayGridAtom = atom(false);
 

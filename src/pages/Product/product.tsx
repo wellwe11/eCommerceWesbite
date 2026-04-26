@@ -16,7 +16,21 @@ import {
 import handleCustomCursor from "@/atoms/customCursor/customCursor";
 import LinkWrapper from "@/components/ui/Link/link";
 
-// Scrolling down should show basic info about this piece such as price, dimensions, etc. This should be inside of GridSetup so that router navigates correctly to new info
+const createDebounce = (fn) => debounce(fn, 2000);
+
+// DirectionsContainer
+// Generates a new link to navigate to another product
+const getPath = (arr, currentIndex, direction) => {
+  let newIndex;
+
+  if (direction === "inc") {
+    newIndex = arr[(currentIndex + 1) % arr.length].id;
+  } else if (direction === "dec") {
+    newIndex = arr[(currentIndex - 1 + arr.length) % arr.length]?.id;
+  }
+
+  return `/product/${newIndex}`;
+};
 
 const ExtendedProductInfo = () => {
   const activeArtist = useAtomValue(handleArtistAtom);
@@ -30,12 +44,13 @@ const ExtendedProductInfo = () => {
   const artist = [artistName, `${born} - ${deceased}`, bio_art];
   const art = [artName, year, `${height} x ${width}`, price];
 
-  console.log(artist, art);
   return (
     <div className="flex flex-col gap-10">
       <div>
         {artist.map((val, i) => (
-          <p key={i}>{val}</p>
+          <p key={i} className="capitalize">
+            {val}
+          </p>
         ))}
       </div>
 
@@ -43,7 +58,9 @@ const ExtendedProductInfo = () => {
 
       <div>
         {art.map((val, i) => (
-          <p key={i}>{val}</p>
+          <p key={i} className="">
+            {val}
+          </p>
         ))}
       </div>
     </div>
@@ -55,35 +72,21 @@ const DirectionContainers = () => {
   const activeArt = useAtomValue(activeArtObj);
   const id = +activeArt?.id;
 
-  const getPath = (direction) => {
-    let nextIndex;
+  if (!artArray || !id) return;
 
-    if (direction === "next") {
-      if (id + 1 <= +artArray[artArray.length - 1]?.id) {
-        nextIndex = id + 1;
-      } else {
-        nextIndex = artArray[0]?.id;
-      }
-    } else if (direction === "prev") {
-      if (id - 1 >= artArray[0]?.id) {
-        nextIndex = id - 1;
-      } else {
-        nextIndex = +artArray[artArray.length - 1]?.id;
-      }
-    }
+  const currentIndex = artArray?.findIndex((item) => +item?.id === id);
 
-    return `/product/${nextIndex}`;
-  };
+  if (currentIndex != 0 && !currentIndex) return;
 
   return (
     <div className="h-full w-full flex">
       <LinkWrapper
         classes="w-full h-full flex-1 cursor-none"
-        to={getPath("prev")}
+        to={getPath(artArray, currentIndex, "dec")}
       />
       <LinkWrapper
         classes="w-full h-full flex-1 cursor-none"
-        to={getPath("next")}
+        to={getPath(artArray, currentIndex, "inc")}
       />
     </div>
   );
@@ -210,10 +213,7 @@ const Product = () => {
   const setArtist = useSetAtom(handleArtistAtom);
 
   const debounceMouseMove = useMemo(
-    () =>
-      debounce(() => {
-        handleCursor(false);
-      }, 2000),
+    () => createDebounce(() => handleCursor(false)),
     [],
   );
 
