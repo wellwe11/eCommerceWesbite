@@ -4,7 +4,7 @@ const Details = ({ data }: { data: Omit<ProductData, "images"> }) => {
   const { name, price, width, height } = data;
 
   return (
-    <div className="flex justify-between py-1">
+    <div className="flex justify-between">
       <div>
         <p className="bio-text">{name}</p>
       </div>
@@ -23,9 +23,9 @@ const Product = ({ data, handler }: { data: ProductData }) => {
   return (
     <div
       onClick={handler}
-      className="max-w-100 cursor-pointer hover:bg-gray-200/50 transition-colors duration-400 ease"
+      className="flex flex-col justify-center cursor-pointer hover:bg-gray-200/50 transition-colors duration-400 ease w-full h-75"
     >
-      <img src={src} />
+      <img src={src} className="w-full h-[90%] object-cover block" alt="" />
       <Details data={details} />
     </div>
   );

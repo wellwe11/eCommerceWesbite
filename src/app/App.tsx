@@ -46,3 +46,8 @@ export default App;
 // on home-page: Once user has scrolled 50% of the scroll-meeter, 'dehydrate' the atoms that use the data for gallery so it pre-calculates the data
 // abstract classes so that I have generic text-types etc. For example, all capital-letters, the text size, width etc.
 // randomise order for art on gallery
+
+// Fix accessibility
+// Fix Testing
+// Fix CSS classes & abstract it
+// Add a loader to gallery when fetching more products

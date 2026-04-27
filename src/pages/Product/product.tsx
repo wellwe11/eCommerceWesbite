@@ -24,7 +24,7 @@ const getPath = (arr, currentIndex, direction) => {
   let newIndex;
 
   if (direction === "inc") {
-    newIndex = arr[(currentIndex + 1) % arr.length].id;
+    newIndex = arr[(currentIndex + 1) % arr.length]?.id;
   } else if (direction === "dec") {
     newIndex = arr[(currentIndex - 1 + arr.length) % arr.length]?.id;
   }
@@ -72,11 +72,7 @@ const DirectionContainers = () => {
   const activeArt = useAtomValue(activeArtObj);
   const id = +activeArt?.id;
 
-  if (!artArray || !id) return;
-
   const currentIndex = artArray?.findIndex((item) => +item?.id === id);
-
-  if (currentIndex != 0 && !currentIndex) return;
 
   return (
     <div className="h-full w-full flex">
@@ -182,7 +178,7 @@ export const GridSetup = () => {
   if (!data) return;
 
   return (
-    <div>
+    <div className="relative">
       <section className="relative w-full flex justify-center">
         <div className="h-screen py-5">
           <img
@@ -206,6 +202,7 @@ const Product = () => {
   // Fetches placeholder data and updated data, caches it as 'product'
   const data = useProductData(id);
   const handleCursor = useSetAtom(handleCustomCursor);
+
   const displayGrid = useAtomValue(handleDisplayGridAtom);
 
   const setCount = useSetAtom(setCountAtom);

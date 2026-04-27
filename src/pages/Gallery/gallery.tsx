@@ -21,9 +21,10 @@ const LoadMoreEl = ({ setter }: { setter: CallableFunction }) => {
 
 const Products = ({ data }: { data: ProductData[] }) => {
   return (
-    <motion.div className="grid grid-cols-[repeat(3,clamp(100px,18vw,350px))] pt-30 justify-center justify-items-center w-full gap-y-7 gap-x-10">
+    <motion.div className="grid grid-cols-[repeat(3,clamp(100px,18vw,350px))] pt-30 justify-center justify-items-center gap-y-7 gap-x-10">
       {data.map((obj, index) => (
         <LinkWrapper
+          classes="w-full"
           key={`product_${index}`}
           product={obj}
           to={`/product/${obj.id}`}
