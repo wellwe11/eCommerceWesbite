@@ -50,49 +50,70 @@ const ExtendedProductInfo = () => {
     literature,
   } = activeArt;
 
+  const productInfo = {
+    title: `${artName}, ${year}`,
+    info: [description, `${width} x ${height} cm`, `${price} €`],
+  };
+
+  const extendedInfo = [
+    { title: "exhibitions", info: exhibitions },
+    { title: "literature", info: literature },
+  ];
+
   return (
-    <div className="flex flex-col gap-10">
+    <div className="flex flex-col gap-10 w-fit">
+      <div className="border-t border-gray-200" />
       <ul className="flex flex-col">
         <li>
-          <span className="text-[length:var(--font-size-xx-big)] font-extralight uppercase">
+          <span className="large-text font-extralight uppercase">
             {artistName}
           </span>
-          <span className="text-[length:var(--font-size-medium)] font-extralight uppercase pl-2">
+          <span className="medium-text font-extralight uppercase pl-2">
             {country},
           </span>
         </li>
 
         <li>
-          <span className="text-[length:var(--font-size-medium)] font-extralight">
+          <span className="small-text font-extralight">
             {born} {deceased ? "- " + deceased : ""}
           </span>
         </li>
       </ul>
 
-      <ul className="flex flex-col">
-        <li>
-          <span>{artName}</span>
-          <span>{year}</span>
-        </li>
-        <li>{description}</li>
-        <li>
-          <span>{width}</span>x<span>{height}</span>
-          <li>{price}</li>
-          <li>
-            <span>Exhibitions</span>
-            {exhibitions.map((e, i) => (
-              <span key={i}>{e}</span>
-            ))}
-          </li>
-          <li>
-            <span>Literature</span>
-            {literature.map((e, i) => (
-              <span key={i}>{e}</span>
-            ))}
-          </li>
-        </li>
-      </ul>
+      <ul className="flex flex-col gap-5">
+        <li className="flex flex-col gap-1">
+          <li className="medium-text uppercase">{productInfo.title}</li>
 
+          {productInfo.info.map((text, i) => (
+            <li className="small-text font-extralight">{text}</li>
+          ))}
+        </li>
+
+        <button className="w-fit p-3 cursor-pointer flex-1 flex items-center justify-center bg-gray-100/100 hover:bg-gray-50/50 hover:backdrop-blur-xs transition-colors duration 400 ease pointer-events-auto">
+          <p className="medium-text font-extralight">Add to cart</p>
+        </button>
+
+        {extendedInfo.map(({ title, info }, index) => (
+          <li key={index} className="flex flex-col">
+            <span className="medium-text uppercase font-extralight">
+              {title}
+            </span>
+
+            <div className="flex">
+              {info.map((e, i) => (
+                <span key={i} className="small-text font-extralight">
+                  {e}
+                  {i !== info.length - 1 ? (
+                    <span className="text-gray-400 px-1">│</span>
+                  ) : (
+                    ""
+                  )}
+                </span>
+              ))}
+            </div>
+          </li>
+        ))}
+      </ul>
       <div className="border-b border-gray-200" />
     </div>
   );

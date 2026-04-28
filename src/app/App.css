@@ -39,10 +39,10 @@
 
   --animate-fade-in: fade-in 0.5s ease-out;
 
-  --font-size-xx-small: 8px;
-  --font-size-x-small: 11px;
-  --font-size-small: 13px;
-  --font-size-medium: 18px;
+  --font-size-xx-small: var(--size-100);
+  --font-size-x-small: var(--size-200);
+  --font-size-small: var(--size-300);
+  --font-size-medium: var(--size-400);
   --font-size-big: 24px;
   --font-size-x-big: 28px;
   --font-size-xx-big: 32px;
@@ -89,34 +89,43 @@
   .smaller-text {
     @apply leading-relaxed text-gray-600 font-normal antialiased;
     font-variation-settings: "wght" 300;
-    font-size: var(--font-size-xx-small);
+    font-size: var(--size-100);
   }
 
   .bio-text {
     @apply leading-relaxed text-gray-600 font-normal antialiased;
     font-variation-settings: "wght" 300;
-    font-size: var(--font-size-x-small);
+    font-size: var(--size-200);
   }
 
   .bio-title {
     @apply leading-relaxed text-gray-700 font-normal antialiased;
     font-variation-settings: "wght" 300;
-    font-size: var(--font-size-small);
+    font-size: var(--size-300);
   }
 
-  .medium-title {
+  .small-text {
+    @apply leading-relaxed text-gray-700 font-normal antialiased;
     font-variation-settings: "wght" 300;
-    font-size: var(--font-size-big);
+    font-size: var(--size-300);
   }
 
-  .large-title {
+  .medium-text {
+    @apply leading-relaxed text-gray-700 font-normal antialiased;
     font-variation-settings: "wght" 300;
-    font-size: var(--font-size-big);
+    font-size: var(--size-400);
   }
 
-  .xLarge-title {
+  .large-text {
+    @apply leading-relaxed text-gray-700 font-normal antialiased;
     font-variation-settings: "wght" 300;
-    font-size: var(--font-size-xx-big);
+    font-size: var(--size-500);
+  }
+
+  .xLarge-text {
+    @apply leading-relaxed text-gray-700 font-normal antialiased;
+    font-variation-settings: "wght" 300;
+    font-size: var(--size-600);
   }
 
   .container-tight {
