@@ -5,6 +5,7 @@
     "slug": "franco-grignani",
     "born": "1908",
     "deceased": "1999",
+    "country": "Italy",
     "bio_art": "Master of optical illusions and kinetic art, focusing on mathematical precision.",
     "bio_life": "Italian architect and designer famous for creating the Woolmark logo."
   },
@@ -14,6 +15,7 @@
     "slug": "herbert-bayer",
     "born": "1900",
     "deceased": "1985",
+    "country": "Austria",
     "bio_art": "A Bauhaus pioneer who defined functionalism through geometry and universal typography.",
     "bio_life": "Austrian-born polymath who shaped American modernism after teaching at the Bauhaus."
   },
@@ -23,6 +25,7 @@
     "slug": "joost-schmidt",
     "born": "1893",
     "deceased": "1948",
+    "country": "Germany",
     "bio_art": "Expert in three-dimensional typography and Bauhaus exhibition design.",
     "bio_life": "Bauhaus teacher who survived WWI to modernize graphic design education."
   },
@@ -32,6 +35,7 @@
     "slug": "josef-muller-brockmann",
     "born": "1914",
     "deceased": "1996",
+    "country": "Switzerland",
     "bio_art": "The father of the Grid System, emphasizing objective and rational layout.",
     "bio_life": "Leading Swiss designer whose philosophy defined International Typographic Style."
   },
@@ -41,6 +45,7 @@
     "slug": "jurriaan-schrofer",
     "born": "1926",
     "deceased": "1990",
+    "country": "Netherlands",
     "bio_art": "Pioneered experimental typography and complex photographic patterns.",
     "bio_life": "Influential Dutch designer known for his work with Total Design."
   },
@@ -50,6 +55,7 @@
     "slug": "karl-gerstner",
     "born": "1930",
     "deceased": "2017",
+    "country": "Switzerland",
     "bio_art": "Innovated 'Programmed Design,' using algorithms and logic for visual art.",
     "bio_life": "Swiss designer and author who merged advertising with mathematical art."
   },
@@ -59,6 +65,7 @@
     "slug": "kunel-gaur",
     "born": "1982",
     "deceased": null,
+    "country": "India",
     "bio_art": "Creates brutalist, monochrome works that deconstruct brand identities.",
     "bio_life": "Modern Indian creative director and artist exploring functional minimalism."
   },
@@ -68,6 +75,7 @@
     "slug": "laszlo-moholy-nagy",
     "born": "1895",
     "deceased": "1946",
+    "country": "Hungary",
     "bio_art": "Visionary who used light and motion as mediums, redefining art through technology.",
     "bio_life": "Hungarian professor who founded the New Bauhaus in Chicago after fleeing Germany."
   },
@@ -77,6 +85,7 @@
     "slug": "mihail-mihaylov",
     "born": "1978",
     "deceased": null,
+    "country": "Bulgaria",
     "bio_art": "Explores the relationship between human existence and mundane objects through drawing.",
     "bio_life": "Bulgarian contemporary artist known for his detailed, performative art practice."
   },
@@ -86,6 +95,7 @@
     "slug": "murat-pak",
     "born": "unknown",
     "deceased": null,
+    "country": "Unknown",
     "bio_art": "Anonymous digital artist pushing the boundaries of NFTs and generative code.",
     "bio_life": "A leading figure in crypto-art, known for the Archillect AI and conceptual tokens."
   },
@@ -95,6 +105,7 @@
     "slug": "studio-dumbar",
     "born": "1977",
     "deceased": null,
+    "country": "Netherlands",
     "bio_art": "Focuses on motion-driven identity and bold, expressive typography.",
     "bio_life": "A world-renowned Dutch agency founded by Gert Dumbar, specializing in visual identity."
   },
@@ -104,6 +115,7 @@
     "slug": "wim-crouwel",
     "born": "1928",
     "deceased": "2019",
+    "country": "Netherlands",
     "bio_art": "Known as 'Gridnik' for his rigorous use of grids and computer-friendly fonts.",
     "bio_life": "Dutch design icon who co-founded Total Design and directed the Stedelijk Museum."
   }

@@ -46,6 +46,8 @@ export default App;
 // on home-page: Once user has scrolled 50% of the scroll-meeter, 'dehydrate' the atoms that use the data for gallery so it pre-calculates the data
 // abstract classes so that I have generic text-types etc. For example, all capital-letters, the text size, width etc.
 // randomise order for art on gallery
+// FIX custom mouse: Currently, whenever it is disabled, it stops moving. This is bad, because it cuases the cursor to snap once it appears aagain. Make it so it follows while inactive, but is simply not visible. And add a 'disable' option so it can be turned off if it completely leaves its container
+// Seperate DATA so that art-piece data like description, exhibitions etc. are in collectionsData, and prices etc. are in imagesData
 
 // Fix accessibility
 // Fix Testing

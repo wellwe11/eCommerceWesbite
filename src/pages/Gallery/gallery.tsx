@@ -39,6 +39,9 @@ const Products = ({ data }: { data: ProductData[] }) => {
 const Gallery = () => {
   const [items, setItems] = useState(9);
 
+  // For future:
+  // When I have an API, TanStack Query offers 'infinite scroll queries'. Should use this instead
+  // This also allows me to 'save' previous page. So when user goes back from product-page, I can still to the correct section.
   const { data } = useGlobalProducts(({ imagesData }) =>
     Array.from(imagesData.values()).slice(0, items),
   );

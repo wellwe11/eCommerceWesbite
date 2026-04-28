@@ -38,31 +38,62 @@ const ExtendedProductInfo = () => {
 
   if (!activeArtist || !activeArt) return;
 
-  const { name: artistName, born, deceased, bio_art } = activeArtist;
-  const { name: artName, height, width, price, year } = activeArt;
-
-  const artist = [artistName, `${born} - ${deceased}`, bio_art];
-  const art = [artName, year, `${height} x ${width}`, price];
+  const { name: artistName, born, deceased, country } = activeArtist;
+  const {
+    name: artName,
+    year,
+    description,
+    height,
+    width,
+    price,
+    exhibitions,
+    literature,
+  } = activeArt;
 
   return (
     <div className="flex flex-col gap-10">
-      <div>
-        {artist.map((val, i) => (
-          <p key={i} className="capitalize">
-            {val}
-          </p>
-        ))}
-      </div>
+      <ul className="flex flex-col">
+        <li>
+          <span className="text-[length:var(--font-size-xx-big)] font-extralight uppercase">
+            {artistName}
+          </span>
+          <span className="text-[length:var(--font-size-medium)] font-extralight uppercase pl-2">
+            {country},
+          </span>
+        </li>
+
+        <li>
+          <span className="text-[length:var(--font-size-medium)] font-extralight">
+            {born} {deceased ? "- " + deceased : ""}
+          </span>
+        </li>
+      </ul>
+
+      <ul className="flex flex-col">
+        <li>
+          <span>{artName}</span>
+          <span>{year}</span>
+        </li>
+        <li>{description}</li>
+        <li>
+          <span>{width}</span>x<span>{height}</span>
+          <li>{price}</li>
+          <li>
+            <span>Exhibitions</span>
+            {exhibitions.map((e, i) => (
+              <span key={i}>{e}</span>
+            ))}
+          </li>
+          <li>
+            <span>Literature</span>
+            {literature.map((e, i) => (
+              <span key={i}>{e}</span>
+            ))}
+          </li>
+        </li>
+      </ul>
 
       <div className="border-b border-gray-200" />
-
-      <div>
-        {art.map((val, i) => (
-          <p key={i} className="">
-            {val}
-          </p>
-        ))}
-      </div>
     </div>
   );
 };
@@ -157,7 +188,7 @@ const CenteredText = () => {
               />
               <div className="w-full text-center">
                 <LinkWrapper to={`/product/${obj.id}`}>
-                  <p className="cursor-pointer w-full p-5">{index + 1}</p>
+                  <p className="cursor-pointer w-full p-5 py-15">{index + 1}</p>
                 </LinkWrapper>
               </div>
             </div>

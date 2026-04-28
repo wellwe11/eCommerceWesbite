@@ -9,7 +9,17 @@
     "price": "24.99",
     "currency": "euro",
     "width": 50,
-    "height": 50
+    "height": 50,
+    "description": "An exploration of optical vibration and geometric movement through contrasting linear patterns.",
+    "exhibitions": [
+      "Rotonda della Besana, Milan",
+      "Victoria and Albert Museum, London",
+      "m.a.x. museo, Chiasso"
+    ],
+    "literature": [
+      "Franco Grignani: Pittura, Sperimentale, Grafica",
+      "Grignani: Ricerca Visiva"
+    ]
   },
   {
     "id": 501,
@@ -21,7 +31,17 @@
     "price": "24.99",
     "currency": "euro",
     "width": 50,
-    "height": 50
+    "height": 50,
+    "description": "A study on the distortion of grids to simulate three-dimensional spatial depth.",
+    "exhibitions": [
+      "Venice Biennale 1972",
+      "Stedelijk Museum, Amsterdam",
+      "MoMA, New York"
+    ],
+    "literature": [
+      "L'Annuncio Pubblicitario",
+      "A History of Graphic Design (Meggs)"
+    ]
   },
   {
     "id": 502,
@@ -33,7 +53,14 @@
     "price": "24.99",
     "currency": "euro",
     "width": 50,
-    "height": 50
+    "height": 50,
+    "description": "Complexity created through overlapping geometric layers and refractive visual effects.",
+    "exhibitions": [
+      "Exhibition Design Group Show, Milan",
+      "Museum of Modern Art, Warsaw",
+      "Estorick Collection, London"
+    ],
+    "literature": ["Grignani: Una vita per la grafica", "Experimental Graphics"]
   },
   {
     "id": 503,
@@ -45,7 +72,17 @@
     "price": "24.99",
     "currency": "euro",
     "width": 50,
-    "height": 50
+    "height": 50,
+    "description": "A psychological exploration of spherical volume through flat monochromatic lines.",
+    "exhibitions": [
+      "m.a.x. museo Retrospective",
+      "Triennale di Milano",
+      "Palazzo delle Esposizioni, Rome"
+    ],
+    "literature": [
+      "Graphic Design: A Concise History",
+      "Franco Grignani Archive"
+    ]
   },
   {
     "id": 504,
@@ -57,7 +94,14 @@
     "price": "24.99",
     "currency": "euro",
     "width": 50,
-    "height": 50
+    "height": 50,
+    "description": "A high-frequency optical study utilizing fine-line repetition to generate flicker effects.",
+    "exhibitions": [
+      "Galleria d'Arte Moderna, Milan",
+      "Museum für Gestaltung Zürich",
+      "ICA, London"
+    ],
+    "literature": ["Grignani: Pittura", "The Power of the Poster"]
   },
   {
     "id": 505,
@@ -69,7 +113,14 @@
     "price": "24.99",
     "currency": "euro",
     "width": 50,
-    "height": 50
+    "height": 50,
+    "description": "An investigation of kinetic energy through radial expansion of linear elements.",
+    "exhibitions": [
+      "Biennale di Venezia",
+      "Palazzo Reale, Milan",
+      "Museum of Fine Arts, Budapest"
+    ],
+    "literature": ["L’immagine aziendale", "Op Art (Thames & Hudson)"]
   },
   {
     "id": 506,
@@ -81,7 +132,10 @@
     "price": "24.99",
     "currency": "euro",
     "width": 50,
-    "height": 50
+    "height": 50,
+    "description": "Vortex-like composition that challenges human visual perception and focus.",
+    "exhibitions": ["Rotonda della Besana", "Art Basel 1974", "m.a.x. museo"],
+    "literature": ["Franco Grignani: Opere Scelte", "Eye Magazine Archive"]
   },
   {
     "id": 507,
@@ -93,7 +147,14 @@
     "price": "24.99",
     "currency": "euro",
     "width": 50,
-    "height": 50
+    "height": 50,
+    "description": "A summary piece showcasing Grignani’s theories on experimental graphic communication.",
+    "exhibitions": [
+      "Milan Design Week",
+      "MoMA Archives",
+      "Centro Culturale Chiasso"
+    ],
+    "literature": ["Grignani: Maestro del Design", "Domus Magazine Features"]
   },
   {
     "id": 508,
@@ -105,7 +166,17 @@
     "price": "38.50",
     "currency": "euro",
     "width": 40,
-    "height": 60
+    "height": 60,
+    "description": "Surrealist advertising work combining photography and bold typographic elements.",
+    "exhibitions": [
+      "Resnick Center for Herbert Bayer Studies",
+      "Denver Art Museum",
+      "Santa Barbara Museum of Art"
+    ],
+    "literature": [
+      "Herbert Bayer: Visual Communication",
+      "Concept of a Visualist"
+    ]
   },
   {
     "id": 509,
@@ -117,7 +188,17 @@
     "price": "38.50",
     "currency": "euro",
     "width": 40,
-    "height": 60
+    "height": 60,
+    "description": "A photomontage masterpiece exploring human anatomy through a surrealist lens.",
+    "exhibitions": [
+      "The Art Institute of Chicago",
+      "MoMA: Bauhaus 1919-1933",
+      "Guggenheim Museum"
+    ],
+    "literature": [
+      "Herbert Bayer: The Complete Work",
+      "Bauhaus: 1919-1933 (MoMA)"
+    ]
   },
   {
     "id": 510,
@@ -129,7 +210,17 @@
     "price": "38.50",
     "currency": "euro",
     "width": 40,
-    "height": 60
+    "height": 60,
+    "description": "Iconic magazine cover design applying Bauhaus principles to commercial fashion media.",
+    "exhibitions": [
+      "Victoria and Albert Museum",
+      "Metropolitan Museum of Art",
+      "Resnick Center"
+    ],
+    "literature": [
+      "Bayer: Painter, Designer, Architect",
+      "Fashioning the Modern"
+    ]
   },
   {
     "id": 511,
@@ -141,7 +232,17 @@
     "price": "38.50",
     "currency": "euro",
     "width": 40,
-    "height": 60
+    "height": 60,
+    "description": "A seminal poster from the first Bauhaus exhibition in Weimar, defining a new visual era.",
+    "exhibitions": [
+      "Bauhaus-Archiv, Berlin",
+      "MoMA, New York",
+      "Harvard Art Museums"
+    ],
+    "literature": [
+      "The Bauhaus: 1919-1933 (Whitford)",
+      "Bayer: A Total Work of Art"
+    ]
   },
   {
     "id": 512,
@@ -153,7 +254,14 @@
     "price": "38.50",
     "currency": "euro",
     "width": 40,
-    "height": 60
+    "height": 60,
+    "description": "A modernist promotional poster for the National Security Agency exhibition in Washington.",
+    "exhibitions": [
+      "Denver Art Museum Retrospective",
+      "Resnick Center",
+      "Whitney Museum"
+    ],
+    "literature": ["Herbert Bayer: American Years", "Information Design"]
   },
   {
     "id": 513,
@@ -165,7 +273,14 @@
     "price": "38.50",
     "currency": "euro",
     "width": 40,
-    "height": 60
+    "height": 60,
+    "description": "A sleek, modernist ad campaign for the famous Italian typewriter, focusing on ease and form.",
+    "exhibitions": [
+      "Olivetti Showroom, New York",
+      "MoMA: Design for Living",
+      "Design Museum London"
+    ],
+    "literature": ["Olivetti: A Century of Design", "Bayer: Corporate Identity"]
   },
   {
     "id": 514,
@@ -177,7 +292,14 @@
     "price": "38.50",
     "currency": "euro",
     "width": 40,
-    "height": 60
+    "height": 60,
+    "description": "Magazine cover that defined the aesthetic of the sophisticated New Woman in Germany.",
+    "exhibitions": [
+      "Bauhaus-Archiv Berlin",
+      "Museum of Applied Arts, Vienna",
+      "Resnick Gallery"
+    ],
+    "literature": ["Die Neue Linie 1929-1943", "Bauhaus Typography"]
   },
   {
     "id": 515,
@@ -189,7 +311,14 @@
     "price": "38.50",
     "currency": "euro",
     "width": 40,
-    "height": 60
+    "height": 60,
+    "description": "A later painting exploring the vibration of color through stacked geometric bands.",
+    "exhibitions": [
+      "Denver Art Museum",
+      "Aspen Institute",
+      "Santa Barbara Museum of Art"
+    ],
+    "literature": ["Bayer: The Late Years", "Color Theory in Bauhaus Art"]
   },
   {
     "id": 516,
@@ -201,7 +330,17 @@
     "price": "45.00",
     "currency": "euro",
     "width": 50,
-    "height": 70
+    "height": 70,
+    "description": "A definitive poster using geometric primitives to advertise the first Bauhaus exhibition.",
+    "exhibitions": [
+      "Staatliches Bauhaus Exhibition 1923",
+      "MoMA, New York",
+      "Tate Modern"
+    ],
+    "literature": [
+      "Joost Schmidt: Maestro del Bauhaus",
+      "Bauhaus Poster Collection"
+    ]
   },
   {
     "id": 517,
@@ -213,7 +352,14 @@
     "price": "45.00",
     "currency": "euro",
     "width": 50,
-    "height": 70
+    "height": 70,
+    "description": "An exercise in balance and asymmetry using purely typographic elements and red accents.",
+    "exhibitions": [
+      "Bauhaus-Archiv Berlin",
+      "V&A Museum",
+      "Kröller-Müller Museum"
+    ],
+    "literature": ["Schmidt: Schrift und Satz", "New Typography Pioneers"]
   },
   {
     "id": 518,
@@ -225,7 +371,14 @@
     "price": "45.00",
     "currency": "euro",
     "width": 50,
-    "height": 70
+    "height": 70,
+    "description": "Promotional poster following the school's move to Dessau, featuring architectural geometry.",
+    "exhibitions": [
+      "MoMA",
+      "Harvard Busch-Reisinger Museum",
+      "Bauhaus Dessau Foundation"
+    ],
+    "literature": ["The Bauhaus: Dessau Years", "Typography as Art"]
   },
   {
     "id": 519,
@@ -237,7 +390,14 @@
     "price": "45.00",
     "currency": "euro",
     "width": 50,
-    "height": 70
+    "height": 70,
+    "description": "The primary official poster for the 1923 Weimar show, emphasizing the circle and line.",
+    "exhibitions": [
+      "1923 Bauhaus Week",
+      "Bauhaus-Archiv",
+      "Musée d'Art Moderne de Paris"
+    ],
+    "literature": ["Siebenbrodt: Bauhaus", "Graphic Design: A History"]
   },
   {
     "id": 520,
@@ -249,7 +409,14 @@
     "price": "45.00",
     "currency": "euro",
     "width": 50,
-    "height": 70
+    "height": 70,
+    "description": "A color variation of the 1923 poster exploring the impact of primary yellow backgrounds.",
+    "exhibitions": [
+      "Guggenheim Museum",
+      "Resnick Center",
+      "Museum of Applied Arts, Cologne"
+    ],
+    "literature": ["Joost Schmidt: Teacher at the Bauhaus", "Color in Design"]
   },
   {
     "id": 521,
@@ -261,7 +428,14 @@
     "price": "45.00",
     "currency": "euro",
     "width": 50,
-    "height": 70
+    "height": 70,
+    "description": "Experimental theater design exploring mechanical movement and constructivist space.",
+    "exhibitions": [
+      "Bauhaus Dessau Theater",
+      "Pompidou Center",
+      "MoMA New York"
+    ],
+    "literature": ["The Bauhaus Stage", "Constructivism in Germany"]
   },
   {
     "id": 522,
@@ -273,7 +447,14 @@
     "price": "45.00",
     "currency": "euro",
     "width": 50,
-    "height": 70
+    "height": 70,
+    "description": "Technical poster demonstrating the efficiency of modern offset printing through bold blocks.",
+    "exhibitions": [
+      "Berlin Graphic Arts Fair",
+      "Bauhaus-Archiv",
+      "Sprengel Museum"
+    ],
+    "literature": ["Schmidt: Printing and Calligraphy", "Mastering the Grid"]
   },
   {
     "id": 523,
@@ -285,7 +466,14 @@
     "price": "45.00",
     "currency": "euro",
     "width": 50,
-    "height": 70
+    "height": 70,
+    "description": "A study of typography integrated with metalwork and industrial craft themes.",
+    "exhibitions": [
+      "Weimar Craft Fair",
+      "V&A Museum",
+      "Pinakothek der Moderne"
+    ],
+    "literature": ["Bauhaus: Art as Life", "Schmidt: The Complete Portfolio"]
   },
   {
     "id": 524,
@@ -297,7 +485,14 @@
     "price": "45.00",
     "currency": "euro",
     "width": 50,
-    "height": 70
+    "height": 70,
+    "description": "A non-objective study in form balance and spatial rhythm.",
+    "exhibitions": [
+      "Staatliches Bauhaus",
+      "Ghent Design Museum",
+      "Dallas Museum of Art"
+    ],
+    "literature": ["Abstract Art at the Bauhaus", "Joost Schmidt Archives"]
   },
   {
     "id": 525,
@@ -309,7 +504,18 @@
     "price": "55.00",
     "currency": "euro",
     "width": 60,
-    "height": 60
+    "height": 60,
+    "description": "The quintessential Swiss Style poster using semi-circles to represent musical rhythm.",
+    "exhibitions": [
+      "Museum für Gestaltung Zürich",
+      "MoMA",
+      "Pompidou Center",
+      "Stedelijk Museum"
+    ],
+    "literature": [
+      "Grid Systems in Graphic Design",
+      "Poster Collection: Müller-Brockmann"
+    ]
   },
   {
     "id": 526,
@@ -321,7 +527,13 @@
     "price": "55.00",
     "currency": "euro",
     "width": 60,
-    "height": 60
+    "height": 60,
+    "description": "Part of a concert series representing orchestral sound through abstract green forms.",
+    "exhibitions": ["Tonhalle Zürich", "Design Museum London", "MoMA"],
+    "literature": [
+      "History of the Swiss Poster",
+      "The Graphic Artist and His Problems"
+    ]
   },
   {
     "id": 527,
@@ -333,7 +545,17 @@
     "price": "55.00",
     "currency": "euro",
     "width": 60,
-    "height": 60
+    "height": 60,
+    "description": "A dynamic red-themed composition for the Musica Viva concert series.",
+    "exhibitions": [
+      "Zürich Town Hall",
+      "Cooper Hewitt",
+      "Art Institute of Chicago"
+    ],
+    "literature": [
+      "Josef Müller-Brockmann: Pioneer of Swiss Graphic Design",
+      "Neue Grafik"
+    ]
   },
   {
     "id": 528,
@@ -345,7 +567,14 @@
     "price": "55.00",
     "currency": "euro",
     "width": 60,
-    "height": 60
+    "height": 60,
+    "description": "Visualizing contemporary music via interlocking yellow geometric shapes.",
+    "exhibitions": [
+      "Swiss Design Biennial",
+      "MoMA",
+      "Museum of Modern Art, Gunma"
+    ],
+    "literature": ["Grid Systems", "Poster Collection 25"]
   },
   {
     "id": 529,
@@ -357,7 +586,13 @@
     "price": "55.00",
     "currency": "euro",
     "width": 60,
-    "height": 60
+    "height": 60,
+    "description": "A masterclass in grid usage for exhibition promotion, using typography as image.",
+    "exhibitions": ["Kunstgewerbemuseum Zürich", "MoMA", "V&A"],
+    "literature": [
+      "The Graphic Artist and his Design Problems",
+      "Meggs' History"
+    ]
   },
   {
     "id": 530,
@@ -369,7 +604,17 @@
     "price": "55.00",
     "currency": "euro",
     "width": 60,
-    "height": 60
+    "height": 60,
+    "description": "A public safety poster utilizing objective photography and clear, impactful typography.",
+    "exhibitions": [
+      "Automobile Club of Switzerland",
+      "Design Museum London",
+      "Stedelijk"
+    ],
+    "literature": [
+      "History of International Poster Design",
+      "Swiss Graphic Design"
+    ]
   },
   {
     "id": 531,
@@ -381,7 +626,13 @@
     "price": "55.00",
     "currency": "euro",
     "width": 60,
-    "height": 60
+    "height": 60,
+    "description": "Modernist advertising for the Swiss Automobile Club focusing on speed and safety.",
+    "exhibitions": ["Swiss National Exhibition", "MoMA", "Pompidou"],
+    "literature": [
+      "Pioneers of Modern Graphic Design",
+      "Josef Müller-Brockmann Retrospective"
+    ]
   },
   {
     "id": 532,
@@ -393,7 +644,14 @@
     "price": "55.00",
     "currency": "euro",
     "width": 60,
-    "height": 60
+    "height": 60,
+    "description": "A geometric exercise in creating deep perspective using vanishing points and grids.",
+    "exhibitions": [
+      "Zürich Design Fair",
+      "Harvard Art Museums",
+      "Museum für Gestaltung"
+    ],
+    "literature": ["Grid Systems", "The Swiss Grid Theory"]
   },
   {
     "id": 533,
@@ -405,7 +663,17 @@
     "price": "32.00",
     "currency": "euro",
     "width": 45,
-    "height": 45
+    "height": 45,
+    "description": "Early experiment in 'type-as-image' for the Total Design firm.",
+    "exhibitions": [
+      "Stedelijk Museum Amsterdam",
+      "Design Museum London",
+      "MoMA"
+    ],
+    "literature": [
+      "Jurriaan Schrofer: Restless Typographer",
+      "Total Design: 1963-1991"
+    ]
   },
   {
     "id": 534,
@@ -417,7 +685,14 @@
     "price": "32.00",
     "currency": "euro",
     "width": 45,
-    "height": 45
+    "height": 45,
+    "description": "A study of algorithmic repetition and the breakdown of traditional letterforms.",
+    "exhibitions": [
+      "Museum of Decorative Arts, Prague",
+      "Stedelijk",
+      "Dutch Design Week"
+    ],
+    "literature": ["Schrofer: Typogram", "Dutch Graphic Design Pioneers"]
   },
   {
     "id": 535,
@@ -429,7 +704,14 @@
     "price": "32.00",
     "currency": "euro",
     "width": 45,
-    "height": 45
+    "height": 45,
+    "description": "Complex typographic overlay designed for the Dutch National Library.",
+    "exhibitions": [
+      "Stedelijk Museum",
+      "Biennial of Graphic Design Brno",
+      "Middelburg Design Center"
+    ],
+    "literature": ["Jurriaan Schrofer Archive", "Lust for Life Catalog"]
   },
   {
     "id": 536,
@@ -441,7 +723,14 @@
     "price": "32.00",
     "currency": "euro",
     "width": 45,
-    "height": 45
+    "height": 45,
+    "description": "Repetitive glyphs creating a visual texture that blurs readability.",
+    "exhibitions": [
+      "Total Design Retrospective",
+      "Museum Boijmans Van Beuningen",
+      "Design Reviewed"
+    ],
+    "literature": ["The Art of Typography", "Dutch Design History"]
   },
   {
     "id": 537,
@@ -453,7 +742,14 @@
     "price": "32.00",
     "currency": "euro",
     "width": 45,
-    "height": 45
+    "height": 45,
+    "description": "Personal identity work exploring the fluidity of modular letter construction.",
+    "exhibitions": [
+      "Breda Graphic Design Museum",
+      "Pompidou Center",
+      "Gerrit Rietveld Academie"
+    ],
+    "literature": ["Jurriaan Schrofer: Works", "Designing for the Stedelijk"]
   },
   {
     "id": 538,
@@ -465,7 +761,17 @@
     "price": "32.00",
     "currency": "euro",
     "width": 45,
-    "height": 45
+    "height": 45,
+    "description": "Controlled randomness in screenprinting, exploring kinetic optical shifts.",
+    "exhibitions": [
+      "Art Basel",
+      "Stedelijk Museum Amsterdam",
+      "Milan Design Triennale"
+    ],
+    "literature": [
+      "Schrofer: Computer-aided Design",
+      "Modernist Dutch Graphics"
+    ]
   },
   {
     "id": 539,
@@ -477,7 +783,13 @@
     "price": "32.00",
     "currency": "euro",
     "width": 45,
-    "height": 45
+    "height": 45,
+    "description": "Type built from a limited set of geometric modules, ahead of digital pixel systems.",
+    "exhibitions": ["Design Museum Breda", "V&A", "Walker Art Center"],
+    "literature": [
+      "Jurriaan Schrofer: Restless Typographer",
+      "Typography: A Global History"
+    ]
   },
   {
     "id": 540,
@@ -489,7 +801,10 @@
     "price": "32.00",
     "currency": "euro",
     "width": 45,
-    "height": 45
+    "height": 45,
+    "description": "Graphic interpretation of geographic data and topographic lines.",
+    "exhibitions": ["Dutch Design Awards", "Stedelijk Museum", "Middelburg"],
+    "literature": ["Information Graphics: Schrofer", "The Map as Art"]
   },
   {
     "id": 541,
@@ -501,7 +816,10 @@
     "price": "32.00",
     "currency": "euro",
     "width": 45,
-    "height": 45
+    "height": 45,
+    "description": "A study on transparency and moiré effects through layered screenprints.",
+    "exhibitions": ["Museum of the Image", "Tate Modern", "MoMA"],
+    "literature": ["Visual Perception in Print", "Total Design Catalog"]
   },
   {
     "id": 542,
@@ -513,7 +831,13 @@
     "price": "49.99",
     "currency": "euro",
     "width": 50,
-    "height": 50
+    "height": 50,
+    "description": "Pioneering use of a modular grid for editorial layout, revolutionizing magazine design.",
+    "exhibitions": ["MoMA, New York", "Kunstmuseum Basel", "Cooper Hewitt"],
+    "literature": [
+      "Designing Programmes",
+      "Karl Gerstner: Review of 5x10 Years"
+    ]
   },
   {
     "id": 543,
@@ -525,7 +849,14 @@
     "price": "49.99",
     "currency": "euro",
     "width": 50,
-    "height": 50
+    "height": 50,
+    "description": "Scientific exploration of color intervals and gradual tonal shifts.",
+    "exhibitions": [
+      "Op-Art-Galeria, Esslingen",
+      "Museum of Design Zurich",
+      "Staatsgalerie Stuttgart"
+    ],
+    "literature": ["The Forms of Color", "Designing Programmes"]
   },
   {
     "id": 544,
@@ -537,7 +868,10 @@
     "price": "49.99",
     "currency": "euro",
     "width": 50,
-    "height": 50
+    "height": 50,
+    "description": "Environmental graphics project applying grid systems to interior physical space.",
+    "exhibitions": ["Triennale di Milano", "MoMA Archives", "ZKM Karlsruhe"],
+    "literature": ["Designing Programmes", "Graphic Design History"]
   },
   {
     "id": 545,
@@ -549,7 +883,14 @@
     "price": "49.99",
     "currency": "euro",
     "width": 50,
-    "height": 50
+    "height": 50,
+    "description": "Pure theoretical layout grid that became the foundation for modern Swiss typography.",
+    "exhibitions": [
+      "Museum für Gestaltung",
+      "Pompidou Center",
+      "Bauhaus-Archiv"
+    ],
+    "literature": ["Grid Systems", "The Swiss School"]
   },
   {
     "id": 546,
@@ -561,7 +902,10 @@
     "price": "49.99",
     "currency": "euro",
     "width": 50,
-    "height": 50
+    "height": 50,
+    "description": "Part of a lifelong series on systematic color algorithms and geometric permutations.",
+    "exhibitions": ["Art Basel 1970", "Marlborough Gallery", "Guggenheim"],
+    "literature": ["Karl Gerstner: Review of 5x10 Years", "The Forms of Color"]
   },
   {
     "id": 547,
@@ -573,7 +917,14 @@
     "price": "21.50",
     "currency": "euro",
     "width": 70,
-    "height": 100
+    "height": 100,
+    "description": "Raw, industrial-inspired digital composition focusing on the weight of typographic forms.",
+    "exhibitions": [
+      "Method Delhi Solo Show",
+      "India Art Fair 2024",
+      "Asia Now Paris"
+    ],
+    "literature": ["Signs of Life Catalog", "Method Gallery Profile"]
   },
   {
     "id": 548,
@@ -585,7 +936,17 @@
     "price": "21.50",
     "currency": "euro",
     "width": 70,
-    "height": 100
+    "height": 100,
+    "description": "A monochromatic study of urban textures and functional design codes.",
+    "exhibitions": [
+      "Method Kala Ghoda, Mumbai",
+      "The Other Art Fair Brooklyn",
+      "Abri Mars New York"
+    ],
+    "literature": [
+      "Systems India Art Fair Catalog",
+      "Digital Brutalism (Medium)"
+    ]
   },
   {
     "id": 549,
@@ -597,7 +958,17 @@
     "price": "21.50",
     "currency": "euro",
     "width": 70,
-    "height": 100
+    "height": 100,
+    "description": "Exploring the intersection of architectural sensibility and graphic signage.",
+    "exhibitions": [
+      "Toronto Artist Project",
+      "Method Gallery",
+      "Stir Gallery New Delhi"
+    ],
+    "literature": [
+      "We Were Always Neighbours",
+      "Kunel Gaur: Multidisciplinary Practice"
+    ]
   },
   {
     "id": 550,
@@ -609,7 +980,10 @@
     "price": "21.50",
     "currency": "euro",
     "width": 70,
-    "height": 100
+    "height": 100,
+    "description": "Bold geometric blocks inspired by Japanese modernist traditions and street culture.",
+    "exhibitions": ["Paris Photo 2025", "Method Mumbai", "India Art Fair"],
+    "literature": ["Visual Systems in Contemporary Art", "Gaur: Cimenti"]
   },
   {
     "id": 551,
@@ -621,7 +995,13 @@
     "price": "21.50",
     "currency": "euro",
     "width": 70,
-    "height": 100
+    "height": 100,
+    "description": "Custom modular typeface designed as a site of emotional and perceptual inquiry.",
+    "exhibitions": ["Typogram Toronto", "Method Delhi", "Abri Mars"],
+    "literature": [
+      "Portrait Of A Time Group Show",
+      "Coded Languages of Production"
+    ]
   },
   {
     "id": 552,
@@ -633,7 +1013,13 @@
     "price": "21.50",
     "currency": "euro",
     "width": 70,
-    "height": 100
+    "height": 100,
+    "description": "A portrait constructed through the assembly of interface-based typographic components.",
+    "exhibitions": ["Method Kala Ghoda", "New York Art Week", "Stir Gallery"],
+    "literature": [
+      "Information Architecture Catalog",
+      "The Shifting Aesthetics of Urban Life"
+    ]
   },
   {
     "id": 553,
@@ -645,7 +1031,10 @@
     "price": "21.50",
     "currency": "euro",
     "width": 70,
-    "height": 100
+    "height": 100,
+    "description": "An investigation of how human memory moves through engineered digital structures.",
+    "exhibitions": ["Asia Now Paris", "Method Mumbai", "India Art Fair"],
+    "literature": ["Kunel Gaur: Systems", "Signs Of LifeRSVP"]
   },
   {
     "id": 554,
@@ -657,7 +1046,14 @@
     "price": "62.00",
     "currency": "euro",
     "width": 40,
-    "height": 40
+    "height": 40,
+    "description": "A constructivist study on transparency and the intersection of diagonal light beams.",
+    "exhibitions": [
+      "Bauhaus-Archiv Berlin",
+      "MoMA, New York",
+      "Guggenheim Museum"
+    ],
+    "literature": ["The New Vision", "Moholy-Nagy: Color in Transparency"]
   },
   {
     "id": 555,
@@ -669,7 +1065,17 @@
     "price": "62.00",
     "currency": "euro",
     "width": 40,
-    "height": 40
+    "height": 40,
+    "description": "Early Bauhaus portfolio work exploring non-objective geometric relationships.",
+    "exhibitions": [
+      "1923 Bauhaus Weimar Exhibition",
+      "MoMA New York",
+      "Stedelijk"
+    ],
+    "literature": [
+      "Masters' Portfolio of the Staatliches Bauhaus",
+      "Vision in Motion"
+    ]
   },
   {
     "id": 556,
@@ -681,7 +1087,17 @@
     "price": "62.00",
     "currency": "euro",
     "width": 40,
-    "height": 40
+    "height": 40,
+    "description": "Refined constructivist composition focusing on the balance of circle and line.",
+    "exhibitions": [
+      "Tate Modern",
+      "Haus der Kunst, Munich",
+      "Art Institute of Chicago"
+    ],
+    "literature": [
+      "Moholy-Nagy: Painting, Photography, Film",
+      "Bauhaus Masters Portfolio"
+    ]
   },
   {
     "id": 557,
@@ -693,7 +1109,14 @@
     "price": "62.00",
     "currency": "euro",
     "width": 40,
-    "height": 40
+    "height": 40,
+    "description": "Late Bauhaus-era study on complex spatial planes and dynamic industrial forms.",
+    "exhibitions": [
+      "Museum of Fine Arts, Budapest",
+      "Pompidou Center",
+      "Guggenheim"
+    ],
+    "literature": ["The World of Moholy-Nagy", "Bauhaus: 1919-1933"]
   },
   {
     "id": 558,
@@ -705,7 +1128,10 @@
     "price": "62.00",
     "currency": "euro",
     "width": 40,
-    "height": 40
+    "height": 40,
+    "description": "Typographic experiment showcasing Moholy-Nagy’s 'New Typography' principles.",
+    "exhibitions": ["MoMA", "Bauhaus-Archiv Berlin", "Walker Art Center"],
+    "literature": ["The New Typography", "Moholy-Nagy: Graphic Design"]
   },
   {
     "id": 559,
@@ -717,7 +1143,10 @@
     "price": "62.00",
     "currency": "euro",
     "width": 40,
-    "height": 40
+    "height": 40,
+    "description": "A study on light and shadow using industrial materials and photography.",
+    "exhibitions": ["San Francisco MoMA", "Design Museum London", "Pompidou"],
+    "literature": ["Vision in Motion", "Photogram Art"]
   },
   {
     "id": 560,
@@ -729,7 +1158,17 @@
     "price": "62.00",
     "currency": "euro",
     "width": 40,
-    "height": 40
+    "height": 40,
+    "description": "A cameraless photograph capturing the direct interaction of light and object.",
+    "exhibitions": [
+      "Whitney Museum",
+      "V&A Museum",
+      "Museum of Contemporary Art, Tokyo"
+    ],
+    "literature": [
+      "Moholy-Nagy: Photograms",
+      "The Art of the Light Space Modulator"
+    ]
   },
   {
     "id": 561,
@@ -741,7 +1180,14 @@
     "price": "62.00",
     "currency": "euro",
     "width": 40,
-    "height": 40
+    "height": 40,
+    "description": "Visual representation of mechanical motion and the Light-Space Modulator project.",
+    "exhibitions": [
+      "Staatsgalerie Stuttgart",
+      "Harvard Art Museums",
+      "Guggenheim"
+    ],
+    "literature": ["Light-Space Modulator Documentation", "The New Vision"]
   },
   {
     "id": 562,
@@ -753,7 +1199,13 @@
     "price": "62.00",
     "currency": "euro",
     "width": 40,
-    "height": 40
+    "height": 40,
+    "description": "Early constructivist work focusing on pure primary forms and spatial tension.",
+    "exhibitions": ["Berlin Der Sturm Gallery", "MoMA", "Kunstmuseum Basel"],
+    "literature": [
+      "Moholy-Nagy: Painting and Film",
+      "Bauhaus: A Global Movement"
+    ]
   },
   {
     "id": 563,
@@ -765,7 +1217,10 @@
     "price": "62.00",
     "currency": "euro",
     "width": 40,
-    "height": 40
+    "height": 40,
+    "description": "A complex linear study exploring dynamic diagonals and balanced negative space.",
+    "exhibitions": ["Ludwig Museum Budapest", "Pompidou", "MoMA New York"],
+    "literature": ["Moholy-Nagy: The Art of Light", "Masters' Portfolio"]
   },
   {
     "id": 564,
@@ -777,7 +1232,14 @@
     "price": "62.00",
     "currency": "euro",
     "width": 40,
-    "height": 40
+    "height": 40,
+    "description": "A modernist interpretation of the classical myth using abstracted geometric forms.",
+    "exhibitions": [
+      "Bauhaus Masters Exhibition",
+      "Tate Modern",
+      "Guggenheim Bilbao"
+    ],
+    "literature": ["Vision in Motion", "The World of Moholy-Nagy"]
   },
   {
     "id": 565,
@@ -789,7 +1251,10 @@
     "price": "62.00",
     "currency": "euro",
     "width": 40,
-    "height": 40
+    "height": 40,
+    "description": "A study on reflective surfaces and optical distortion using polished metal surfaces.",
+    "exhibitions": ["MoMA", "Pinakothek der Moderne", "V&A"],
+    "literature": ["Light Space Modulator", "The New Vision"]
   },
   {
     "id": 566,
@@ -801,7 +1266,17 @@
     "price": "62.00",
     "currency": "euro",
     "width": 40,
-    "height": 40
+    "height": 40,
+    "description": "Promotional artwork for Moholy-Nagy’s seminal book on modernist art theory.",
+    "exhibitions": [
+      "The Art Institute of Chicago",
+      "MoMA",
+      "Haus am Horn Weimar"
+    ],
+    "literature": [
+      "The New Vision: Fundamentals of Bauhaus Design",
+      "Moholy-Nagy Catalog"
+    ]
   },
   {
     "id": 567,
@@ -813,7 +1288,14 @@
     "price": "34.00",
     "currency": "euro",
     "width": 50,
-    "height": 75
+    "height": 75,
+    "description": "A ceramic sculpture exploring organic form and the symbolism of primary yellow.",
+    "exhibitions": [
+      "Pulvis Art Urns Exhibition",
+      "Union of Bulgarian Artists Group Show",
+      "Sofia Design Week"
+    ],
+    "literature": ["Pulvis: Shapes of Spirit", "Bulgarian Ceramic Art Annual"]
   },
   {
     "id": 568,
@@ -825,7 +1307,17 @@
     "price": "34.00",
     "currency": "euro",
     "width": 50,
-    "height": 75
+    "height": 75,
+    "description": "A serene exploration of water-like shapes in porcelain and silicate clay.",
+    "exhibitions": [
+      "Sofia National Academy of Arts",
+      "Brussels Ceramic Art Fair",
+      "Bulgarian Cultural Center Paris"
+    ],
+    "literature": [
+      "Mihail Mihaylov: 30 Years of Sculpture",
+      "Contemporary Bulgarian Ceramics"
+    ]
   },
   {
     "id": 569,
@@ -837,7 +1329,14 @@
     "price": "34.00",
     "currency": "euro",
     "width": 50,
-    "height": 75
+    "height": 75,
+    "description": "Industrial ceramic study focusing on environmental themes and natural textures.",
+    "exhibitions": [
+      "Venice Biennale 2022 (Bulgarian Pavilion)",
+      "Museum of Sofia Retrospective",
+      "Vienna Art Fair"
+    ],
+    "literature": ["Pulvis Catalog 2019", "Modern Bulgarian Art"]
   },
   {
     "id": 570,
@@ -849,7 +1348,14 @@
     "price": "34.00",
     "currency": "euro",
     "width": 50,
-    "height": 75
+    "height": 75,
+    "description": "Mixed media drawing investigating the tension between Silicate form and negative space.",
+    "exhibitions": [
+      "Chamber of Designers Bulgaria",
+      "Art Mumbai",
+      "Galleria Continua Group Show"
+    ],
+    "literature": ["Mihaylov: Silicate Forms", "Design in Bulgaria"]
   },
   {
     "id": 571,
@@ -861,7 +1367,14 @@
     "price": "34.00",
     "currency": "euro",
     "width": 50,
-    "height": 75
+    "height": 75,
+    "description": "A procedural exploration of layered glazes and kiln-fired surface reactions.",
+    "exhibitions": [
+      "Sofia Gallery Weekend",
+      "International Ceramics Fair Milan",
+      "National Art Gallery Sofia"
+    ],
+    "literature": ["Ceramics as Earth: Mihaylov", "Bulgarian Designers Today"]
   },
   {
     "id": 572,
@@ -873,7 +1386,14 @@
     "price": "34.00",
     "currency": "euro",
     "width": 50,
-    "height": 75
+    "height": 75,
+    "description": "Study of geometric fragmentation in clay and industrial glass components.",
+    "exhibitions": [
+      "Bulgarian National Academy of Arts",
+      "Design Junction London",
+      "Sofia Art Fair"
+    ],
+    "literature": ["Modern Bulgarian Sculptors", "Pulvis Art Urns Profile"]
   },
   {
     "id": 573,
@@ -885,7 +1405,17 @@
     "price": "95.00",
     "currency": "euro",
     "width": 100,
-    "height": 100
+    "height": 100,
+    "description": "A digital work investigating the boundaries of ownership and perceived value.",
+    "exhibitions": [
+      "Sotheby's: The Fungible Collection",
+      "SuperRare Gallery",
+      "Nifty Gateway Retrospective"
+    ],
+    "literature": [
+      "After the Artist: What Persists in Pak",
+      "Pak: The Fungible Protocol"
+    ]
   },
   {
     "id": 574,
@@ -897,7 +1427,14 @@
     "price": "95.00",
     "currency": "euro",
     "width": 100,
-    "height": 100
+    "height": 100,
+    "description": "A conceptual piece challenging digital scarcity by selling a single pixel.",
+    "exhibitions": [
+      "Sotheby's London",
+      "Digital Art Fair Hong Kong",
+      "Museum of Crypto Art"
+    ],
+    "literature": ["Pak: Systems As Art", "The Fungible's Burn Logic"]
   },
   {
     "id": 575,
@@ -909,7 +1446,17 @@
     "price": "95.00",
     "currency": "euro",
     "width": 100,
-    "height": 100
+    "height": 100,
+    "description": "An algorithmic visual study of fluid dynamics and procedural geometry.",
+    "exhibitions": [
+      "Art Basel Miami (Digital)",
+      "Pace Gallery NFT Show",
+      "Christie's Digital Art"
+    ],
+    "literature": [
+      "Murat Pak: The Architect of Choice",
+      "Algorithmic Aesthetics"
+    ]
   },
   {
     "id": 576,
@@ -921,7 +1468,14 @@
     "price": "95.00",
     "currency": "euro",
     "width": 100,
-    "height": 100
+    "height": 100,
+    "description": "Procedurally generated 3D cubes exploring the 'Merge' smart contract mechanic.",
+    "exhibitions": [
+      "The Labyrinth Exhibition",
+      "Unit London",
+      "Art Dubai Digital"
+    ],
+    "literature": ["Pak's Merge Protocol", "The Silence: A Thesis on Murat Pak"]
   },
   {
     "id": 577,
@@ -933,7 +1487,17 @@
     "price": "95.00",
     "currency": "euro",
     "width": 100,
-    "height": 100
+    "height": 100,
+    "description": "Kinetic digital simulation focusing on gravitational pull and orbital decay.",
+    "exhibitions": [
+      "ZKM Center for Art and Media",
+      "MoMA Post-Human Group Show",
+      "Frieze Art Fair Digital"
+    ],
+    "literature": [
+      "Protocol Art & Digital Ownership",
+      "Pak: Three Layers of Persistence"
+    ]
   },
   {
     "id": 578,
@@ -945,7 +1509,10 @@
     "price": "95.00",
     "currency": "euro",
     "width": 100,
-    "height": 100
+    "height": 100,
+    "description": "Minimalist digital lines investigating the concept of structural permanence on-chain.",
+    "exhibitions": ["Sotheby's Metaverse", "Outland Gallery", "NFT Paris"],
+    "literature": ["Pak: Systems as Architecture", "The Builder's Legacy"]
   },
   {
     "id": 579,
@@ -957,7 +1524,17 @@
     "price": "29.99",
     "currency": "euro",
     "width": 50,
-    "height": 70
+    "height": 70,
+    "description": "Part of a series exploring the intersection of brutalist architecture and screen graphics.",
+    "exhibitions": [
+      "Stedelijk Museum Amsterdam",
+      "Dutch Design Week",
+      "Graphic Design Museum Breda"
+    ],
+    "literature": [
+      "Studio Dumbar: Behind the Seen",
+      "Graphis Poster Annual 2019"
+    ]
   },
   {
     "id": 580,
@@ -969,7 +1546,14 @@
     "price": "29.99",
     "currency": "euro",
     "width": 50,
-    "height": 70
+    "height": 70,
+    "description": "Visualizing musical movement for the 2018 season of the Amsterdam Sinfonietta.",
+    "exhibitions": [
+      "Concertgebouw Amsterdam",
+      "Design Museum London",
+      "ADCN Awards"
+    ],
+    "literature": ["Studio Dumbar: Music Visualized", "Eye Magazine Feature"]
   },
   {
     "id": 581,
@@ -981,7 +1565,17 @@
     "price": "29.99",
     "currency": "euro",
     "width": 50,
-    "height": 70
+    "height": 70,
+    "description": "Concert poster focusing on the dynamic interaction of soloists through typographic layering.",
+    "exhibitions": [
+      "Graphic Design Biennial Korea",
+      "Stedelijk",
+      "Dutch Creativity Festival"
+    ],
+    "literature": [
+      "Studio Dumbar: Process & Play",
+      "Modernist Design in the 21st Century"
+    ]
   },
   {
     "id": 582,
@@ -993,7 +1587,14 @@
     "price": "29.99",
     "currency": "euro",
     "width": 50,
-    "height": 70
+    "height": 70,
+    "description": "Promotion for a contemporary music performance, using high-contrast warped type.",
+    "exhibitions": [
+      "Music Hall Rotterdam",
+      "Graphic Design Museum",
+      "Tokyo TDC Awards"
+    ],
+    "literature": ["Graphis Poster Annual", "Dutch Design History"]
   },
   {
     "id": 583,
@@ -1005,7 +1606,14 @@
     "price": "29.99",
     "currency": "euro",
     "width": 50,
-    "height": 70
+    "height": 70,
+    "description": "Experimental kinetic typography project using smooth color gradients and fluid motion.",
+    "exhibitions": [
+      "D&AD Awards Exhibition",
+      "Design Museum Ghent",
+      "Art Dubai"
+    ],
+    "literature": ["Studio Dumbar: Kinetic Type", "Adobe Creative Feature"]
   },
   {
     "id": 584,
@@ -1017,7 +1625,14 @@
     "price": "29.99",
     "currency": "euro",
     "width": 50,
-    "height": 70
+    "height": 70,
+    "description": "Red-themed poster for the Sinfonietta, interpreting classical scores as vibrant visual noise.",
+    "exhibitions": [
+      "Stedelijk Museum",
+      "Biennial of Design Brno",
+      "Concertgebouw"
+    ],
+    "literature": ["Studio Dumbar: Music Visuals", "Design Reviewed"]
   },
   {
     "id": 585,
@@ -1029,7 +1644,14 @@
     "price": "29.99",
     "currency": "euro",
     "width": 50,
-    "height": 70
+    "height": 70,
+    "description": "A refined, elegant poster design for the Russian cellist's Amsterdam concert.",
+    "exhibitions": [
+      "Amsterdam Sinfonietta Retrospective",
+      "Graphic Matters",
+      "ADCN"
+    ],
+    "literature": ["Studio Dumbar: Portfolio", "International Poster Annual"]
   },
   {
     "id": 586,
@@ -1041,7 +1663,15 @@
     "price": "52.00",
     "currency": "euro",
     "width": 45,
-    "height": 90
+    "height": 90,
+    "description": "A stark, modular typographic poster commemorating the victims of Hiroshima.",
+    "exhibitions": [
+      "Stedelijk Museum",
+      "MoMA",
+      "Design Museum London",
+      "Tate Modern"
+    ],
+    "literature": ["Wim Crouwel: Modernist", "Wim Crouwel: A Graphic Odyssey"]
   },
   {
     "id": 587,
@@ -1053,7 +1683,14 @@
     "price": "52.00",
     "currency": "euro",
     "width": 45,
-    "height": 90
+    "height": 90,
+    "description": "Exhibition poster for the French sculptor, featuring Crouwel’s signature grid-based layouts.",
+    "exhibitions": [
+      "Van Abbemuseum",
+      "Stedelijk Museum Amsterdam",
+      "Cooper Hewitt"
+    ],
+    "literature": ["Wim Crouwel: Alphabets", "Dutch Graphic Design Pioneers"]
   },
   {
     "id": 588,
@@ -1065,7 +1702,17 @@
     "price": "52.00",
     "currency": "euro",
     "width": 45,
-    "height": 90
+    "height": 90,
+    "description": "A late-career collaboration reviving the Gridnik aesthetic for a new generation.",
+    "exhibitions": [
+      "Design Museum London Retrospective",
+      "Stedelijk Museum",
+      "Design Hub Melbourne"
+    ],
+    "literature": [
+      "Wim Crouwel: A Graphic Odyssey",
+      "Grid Systems: Wim Crouwel"
+    ]
   },
   {
     "id": 589,
@@ -1077,7 +1724,14 @@
     "price": "52.00",
     "currency": "euro",
     "width": 45,
-    "height": 90
+    "height": 90,
+    "description": "Visual identity study for an educational project, using friendly yet geometric forms.",
+    "exhibitions": [
+      "Graphic Design Museum Breda",
+      "Museum Boijmans Van Beuningen",
+      "Design Museum London"
+    ],
+    "literature": ["Crouwel: Designing for Public Life", "The Gridnik Style"]
   },
   {
     "id": 590,
@@ -1089,7 +1743,10 @@
     "price": "52.00",
     "currency": "euro",
     "width": 45,
-    "height": 90
+    "height": 90,
+    "description": "Iconic poster for the Stedelijk Museum, showcasing the 'New Alphabet' system.",
+    "exhibitions": ["Stedelijk Museum", "MoMA", "Centre Pompidou", "V&A"],
+    "literature": ["New Alphabet: Wim Crouwel", "Wim Crouwel: Modernist"]
   },
   {
     "id": 591,
@@ -1101,7 +1758,14 @@
     "price": "52.00",
     "currency": "euro",
     "width": 45,
-    "height": 90
+    "height": 90,
+    "description": "Sculpture exhibition poster applying tight grid constraints to classical subject matter.",
+    "exhibitions": [
+      "Stedelijk Museum",
+      "Kröller-Müller Museum",
+      "Design Museum London"
+    ],
+    "literature": ["Wim Crouwel: A Graphic Odyssey", "The Power of the Grid"]
   },
   {
     "id": 592,
@@ -1113,6 +1777,13 @@
     "price": "52.00",
     "currency": "euro",
     "width": 45,
-    "height": 90
+    "height": 90,
+    "description": "Typographic exploration of architectural space and vertical linear rhythms.",
+    "exhibitions": [
+      "Rotterdam Architecture Institute",
+      "Stedelijk Museum Amsterdam",
+      "MoMA New York"
+    ],
+    "literature": ["Wim Crouwel: Modernist", "Dutch Design: 1945-Present"]
   }
 ]
