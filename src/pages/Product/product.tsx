@@ -1,6 +1,7 @@
-import { useEffect, useMemo } from "react";
-import { Outlet, useParams } from "react-router-dom";
+import { useEffect, useMemo, useState } from "react";
+import { Outlet, useNavigate, useParams } from "react-router-dom";
 import { useAtom, useAtomValue, useSetAtom } from "jotai";
+import { motion } from "framer-motion";
 
 import useProductData from "@/hooks/useProductData/useProductData";
 import CustomCursor from "@/components/ui/customCursor/customCursor";
@@ -15,6 +16,7 @@ import {
 } from "@/atoms/product/activeArtistAtom";
 import handleCustomCursor from "@/atoms/customCursor/customCursor";
 import LinkWrapper from "@/components/ui/Link/link";
+import useKeyboard from "@/hooks/useKeyboard/useKeyboard";
 
 const createDebounce = (fn) => debounce(fn, 2000);
 
@@ -61,8 +63,7 @@ const ExtendedProductInfo = () => {
   ];
 
   return (
-    <div className="flex flex-col gap-10 w-fit">
-      <div className="border-t border-gray-200" />
+    <div className="flex flex-col gap-10 w-fi border-t border-b border-gray-200 py-2">
       <ul className="flex flex-col">
         <li>
           <span className="large-text font-extralight uppercase">
@@ -82,10 +83,12 @@ const ExtendedProductInfo = () => {
 
       <ul className="flex flex-col gap-5">
         <li className="flex flex-col gap-1">
-          <li className="medium-text uppercase">{productInfo.title}</li>
+          <span className="medium-text uppercase">{productInfo.title}</span>
 
           {productInfo.info.map((text, i) => (
-            <li className="small-text font-extralight">{text}</li>
+            <span key={i} className="small-text font-extralight">
+              {text}
+            </span>
           ))}
         </li>
 
@@ -93,28 +96,31 @@ const ExtendedProductInfo = () => {
           <p className="medium-text font-extralight">Add to cart</p>
         </button>
 
-        {extendedInfo.map(({ title, info }, index) => (
-          <li key={index} className="flex flex-col">
-            <span className="medium-text uppercase font-extralight">
-              {title}
-            </span>
-
-            <div className="flex">
-              {info.map((e, i) => (
-                <span key={i} className="small-text font-extralight">
-                  {e}
-                  {i !== info.length - 1 ? (
-                    <span className="text-gray-400 px-1">│</span>
-                  ) : (
-                    ""
-                  )}
+        {extendedInfo.map(
+          ({ title, info }, index) =>
+            info &&
+            info.length > 0 && (
+              <li key={index} className="flex flex-col">
+                <span className="medium-text uppercase font-extralight">
+                  {title}
                 </span>
-              ))}
-            </div>
-          </li>
-        ))}
+
+                <div className="flex">
+                  {info.map((e, i) => (
+                    <span key={i} className="small-text font-extralight">
+                      {e}
+                      {i !== info.length - 1 ? (
+                        <span className="text-gray-400 px-1">│</span>
+                      ) : (
+                        ""
+                      )}
+                    </span>
+                  ))}
+                </div>
+              </li>
+            ),
+        )}
       </ul>
-      <div className="border-b border-gray-200" />
     </div>
   );
 };
@@ -123,11 +129,25 @@ const DirectionContainers = () => {
   const artArray = useAtomValue(handleArtAtom);
   const activeArt = useAtomValue(activeArtObj);
   const id = +activeArt?.id;
+  const [isInView, setIsInView] = useState(false);
+  const navigate = useNavigate();
 
   const currentIndex = artArray?.findIndex((item) => +item?.id === id);
 
+  useKeyboard(
+    {
+      ArrowRight: () => navigate(getPath(artArray, currentIndex, "inc")),
+      ArrowLeft: () => navigate(getPath(artArray, currentIndex, "dec")),
+    },
+    isInView,
+  );
+
   return (
-    <div className="h-full w-full flex">
+    <motion.div
+      className="h-full w-full flex"
+      onViewportEnter={() => setIsInView(true)}
+      onViewportLeave={() => setIsInView(false)}
+    >
       <LinkWrapper
         classes="w-full h-full flex-1 cursor-none"
         to={getPath(artArray, currentIndex, "dec")}
@@ -136,7 +156,7 @@ const DirectionContainers = () => {
         classes="w-full h-full flex-1 cursor-none"
         to={getPath(artArray, currentIndex, "inc")}
       />
-    </div>
+    </motion.div>
   );
 };
 
