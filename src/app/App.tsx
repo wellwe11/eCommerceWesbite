@@ -14,6 +14,7 @@ import Footer from "@/components/layout/Footer/footer.tsx";
 const queryClient = new QueryClient();
 
 function App() {
+  // test one
   const { pathname } = useLocation();
 
   const lenis = useLenis();
@@ -48,6 +49,7 @@ export default App;
 // randomise order for art on gallery
 // FIX custom mouse: Currently, whenever it is disabled, it stops moving. This is bad, because it cuases the cursor to snap once it appears aagain. Make it so it follows while inactive, but is simply not visible. And add a 'disable' option so it can be turned off if it completely leaves its container
 // Seperate DATA so that art-piece data like description, exhibitions etc. are in collectionsData, and prices etc. are in imagesData
+// I think I should add the left/right containers to the actual mouse-component. Then remove them so they cannot be targeted. Then add leftClick, rightClick custom clicks, and a normal click (if i want user to just click something)
 
 // Fix accessibility
 // Fix Testing
