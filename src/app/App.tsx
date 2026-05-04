@@ -14,7 +14,11 @@ import Footer from "@/components/layout/Footer/footer.tsx";
 const queryClient = new QueryClient();
 
 function App() {
+<<<<<<< HEAD
   // test one
+=======
+  // yoooo
+>>>>>>> 1382384 (testing two)
   const { pathname } = useLocation();
 
   const lenis = useLenis();
