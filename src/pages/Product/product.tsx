@@ -6,17 +6,18 @@ import { motion } from "framer-motion";
 import useProductData from "@/hooks/useProductData/useProductData";
 import CustomCursor from "@/components/ui/customCursor/customCursor";
 import debounce from "@/functions/debounce/debounce";
-import {
-  activeArtObj,
-  handleActiveArtistAtom,
-  handleArtAtom,
-  handleArtistAtom,
-  handleDisplayGridAtom,
-  setCountAtom,
-} from "@/atoms/product/activeArtistAtom";
+
 import handleCustomCursor from "@/atoms/customCursor/customCursor";
 import LinkWrapper from "@/components/ui/Link/link";
 import useKeyboard from "@/hooks/useKeyboard/useKeyboard";
+import {
+  handleArtArrAtom,
+  handleArtistAtom,
+  handleDisplayGridAtom,
+  handleActiveArtAtom,
+  handleProductAction,
+  productAtom,
+} from "@/atoms/product/productAtom";
 
 const createDebounce = (fn) => debounce(fn, 2000);
 
@@ -36,7 +37,7 @@ const getPath = (arr, currentIndex, direction) => {
 
 const ExtendedProductInfo = () => {
   const activeArtist = useAtomValue(handleArtistAtom);
-  const activeArt = useAtomValue(activeArtObj);
+  const activeArt = useAtomValue(handleActiveArtAtom);
 
   if (!activeArtist || !activeArt) return;
 
@@ -126,8 +127,9 @@ const ExtendedProductInfo = () => {
 };
 
 const DirectionContainers = () => {
-  const artArray = useAtomValue(handleArtAtom);
-  const activeArt = useAtomValue(activeArtObj);
+  const artArray = useAtomValue(handleArtArrAtom);
+  const activeArt = useAtomValue(handleActiveArtAtom);
+
   const id = +activeArt?.id;
   const [isInView, setIsInView] = useState(false);
   const navigate = useNavigate();
@@ -162,26 +164,29 @@ const DirectionContainers = () => {
 
 const CenteredText = () => {
   const [displayCursor, handleCursor] = useAtom(handleCustomCursor);
-  const activeIndex = useAtomValue(handleActiveArtistAtom);
-  const artArray = useAtomValue(handleArtAtom);
-  const activeArt = useAtomValue(activeArtObj);
-  const activeArtist = useAtomValue(handleArtistAtom);
-  const [displayGrid, setDisplayGrid] = useAtom(handleDisplayGridAtom);
 
-  if (!activeArtist) return;
+  const { artArray, artist, currentIndex, displayGrid } =
+    useAtomValue(productAtom);
+  const activeArt = useAtomValue(handleActiveArtAtom);
+
+  const setDisplayGrid = useSetAtom(handleProductAction);
+
+  if (!artist) return;
 
   const { year, name: artName } = activeArt;
-  const { name: artistName } = activeArtist;
+  const { name: artistName } = artist;
 
   return (
     <div
       className="w-full"
       onMouseEnter={() => {
-        setDisplayGrid(true);
+        setDisplayGrid({ type: "TOGGLE_GRID", payload: true });
         handleCursor(false);
       }}
-      onMouseLeave={() => setDisplayGrid(false)}
-      onClick={() => setDisplayGrid(false)}
+      onMouseLeave={() =>
+        setDisplayGrid({ type: "TOGGLE_GRID", payload: false })
+      }
+      onClick={() => setDisplayGrid({ type: "TOGGLE_GRID", payload: false })}
     >
       {!displayGrid && (
         <div className="flex justify-between w-full py-5">
@@ -208,7 +213,7 @@ const CenteredText = () => {
               <span>GRID</span>
               <span>
                 {artArray.length < 10 ? 0 : ""}
-                {activeIndex + 1} - 0{artArray.length}
+                {currentIndex + 1} - 0{artArray.length}
               </span>
             </p>
           </div>
@@ -245,7 +250,7 @@ export const GridSetup = () => {
   const displayGrid = useAtomValue(handleDisplayGridAtom);
 
   // The active object based on index
-  const data = useAtomValue(activeArtObj);
+  const data = useAtomValue(handleActiveArtAtom);
 
   if (!data) return;
 
@@ -275,11 +280,9 @@ const Product = () => {
   const data = useProductData(id);
   const handleCursor = useSetAtom(handleCustomCursor);
 
-  const displayGrid = useAtomValue(handleDisplayGridAtom);
+  const dispatch = useSetAtom(handleProductAction);
 
-  const setCount = useSetAtom(setCountAtom);
-  const setArtArray = useSetAtom(handleArtAtom);
-  const setArtist = useSetAtom(handleArtistAtom);
+  const displayGrid = useAtomValue(handleDisplayGridAtom);
 
   const debounceMouseMove = useMemo(
     () => createDebounce(() => handleCursor(false)),
@@ -297,15 +300,18 @@ const Product = () => {
 
   useEffect(() => {
     if (!data) return;
-
     const { art, ...artistData } = data.artistObj;
-
-    setArtist(artistData);
-    setArtArray(art);
-
     const initialIndex = art.findIndex((obj) => obj?.id == id);
-    setCount(initialIndex);
-  }, [data]);
+
+    dispatch({
+      type: "INIT",
+      payload: {
+        art,
+        artist: artistData,
+        index: initialIndex,
+      },
+    });
+  }, [data, id]);
 
   if (!data) return <div>Loading...</div>;
 
