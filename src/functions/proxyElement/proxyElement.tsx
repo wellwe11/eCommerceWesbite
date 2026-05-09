@@ -1,5 +1,5 @@
 /**
- * @usage <motion.div className="box">I am observed!</motion.div>
+ * @usage <proxElement.div className="box">I am observed!</.div>
  */
 
 const proxyElement = new Proxy(
