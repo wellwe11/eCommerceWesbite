@@ -1,5 +1,6 @@
 /**
- * @usage <proxElement.div className="box">I am observed!</.div>
+ * @usage <proxElement.div className="box">Some text</.div>
+ * @returns ...
  */
 
 const proxyElement = new Proxy(

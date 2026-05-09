@@ -106,7 +106,7 @@ const Product = () => {
         <div className="bio-title col-start-1 row-start-1 inset-x-0 h-full w-full flex justify-center items-center pointer-events-none">
           <CenteredText />
         </div>
-        <CustomCursor displayOnload={true} />
+        <CustomCursor />
       </nav>
     </main>
   );
